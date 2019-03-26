@@ -22,6 +22,8 @@ This repository holds the source code of a **reference** for the development of 
  ```bash
 (.env)$ pip3 install -r requirements.txt
  ```
+ * Set database settings in app/settings.py
+ * Create a new database with the name shown in the last step
  * Make migrations
  ```bash
 (.env)$ python3 manage.py makemigrations
@@ -34,3 +36,14 @@ This repository holds the source code of a **reference** for the development of 
 ```bash
 (.env)$ python3 manage.py runserver
  ```
+ 
+ ### To open admin panel
+ * Add models to /app/admin
+ * Create superuser
+```bash
+(.env)$ python3 manage.py createsuperuser
+ ```
+ * Open admin panel (/admin)
+ 
+ 
+ 
