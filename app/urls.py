@@ -3,8 +3,8 @@ from django.contrib import admin
 
 from django.urls import include
 
-
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^v1/', include('player.urls'))
+    url(r'^v1/', include('player.urls')),
+    url(r'^v1/', include('team.urls'))
 ]
