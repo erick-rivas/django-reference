@@ -1,6 +1,8 @@
 ### General ###
 env
 .env
+models/migrations/*
+!models/migrations/__init__.py
 
 ### Django ###
 *.log

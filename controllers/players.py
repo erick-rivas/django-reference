@@ -1,7 +1,7 @@
 from rest_framework import generics
 
-from player.models import Player
-from player.serializer import PlayerSerializer
+from models.players import Player
+from models.serializers.players import PlayerSerializer
 
 
 class GetPlayerList(generics.ListAPIView):

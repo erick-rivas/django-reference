@@ -1,7 +1,7 @@
 from rest_framework import generics
 
-from team.models import Team
-from team.serializer import TeamSerializer
+from models.teams import Team
+from models.serializers.teams import TeamSerializer
 
 
 class GetTeamList(generics.ListAPIView):

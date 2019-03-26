@@ -1,6 +1,6 @@
 from django.db import models
 
-from team.models import Team
+from models.teams import Team
 
 class Player(models.Model):
     name = models.CharField(max_length=256)
