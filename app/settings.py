@@ -18,10 +18,10 @@ INSTALLED_APPS = [
 
     # Modules
     'models',
-    'controllers',
 
     # Libs
     'rest_framework',
+    'rest_framework_swagger',
     'corsheaders',
 
     'django.contrib.admin',
@@ -30,8 +30,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
-
 ]
 
 MIDDLEWARE = [

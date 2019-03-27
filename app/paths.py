@@ -1,15 +1,18 @@
-from django.urls import path
-from controllers.matches import GetMatchList, GetMatchDetails
-from controllers.players import GetPlayerList, GetPlayerDetails
-from controllers.scores import SaveScore
-from controllers.teams import GetTeamList, GetTeamDetails
+from django.urls import path, include
+from rest_framework.routers import DefaultRouter
+
+from views.matches import MatchViewSet
+from views.players import PlayerViewSet
+from views.scores import ScoreViewSet
+from views.teams import TeamViewSet
+
+
+router = DefaultRouter()
+router.register(r'matches', MatchViewSet)
+router.register(r'players', PlayerViewSet)
+router.register(r'scores', ScoreViewSet)
+router.register(r'teams', TeamViewSet)
 
 urlpatterns = [
-    path('matches/', GetMatchList.as_view()),
-    path('matches/<int:pk>', GetMatchDetails.as_view()),
-    path('players/', GetPlayerList.as_view()),
-    path('players/<int:pk>', GetPlayerDetails.as_view()),
-    path('scores/', SaveScore.as_view()),
-    path('teams/', GetTeamList.as_view()),
-    path('teams/<int:pk>', GetTeamDetails.as_view())
+    path('', include(router.urls)),
 ]
