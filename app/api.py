@@ -6,7 +6,6 @@ from views.players import PlayerViewSet
 from views.scores import ScoreViewSet
 from views.teams import TeamViewSet
 
-
 router = DefaultRouter()
 router.register(r'matches', MatchViewSet)
 router.register(r'players', PlayerViewSet)
