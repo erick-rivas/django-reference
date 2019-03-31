@@ -1,6 +1,21 @@
 # Django API
 
-This repository holds the source code of a **reference** for the development of a **Django api** written mainly in typescript.
+This repository holds the source code of a **reference** for the development of a **Django api** written mainly in python.
+
+## Architecture design
+
+The reference uses a architecure based on a Generic Model View pattern, Inspired by the architecture of [Django framework](https://www.djangoproject.com) and [Django REST framework](https://www.django-rest-framework.org)
+
+### General description
+
+In general terms, the architecture uses the following structure:
+
+  - /app: App general settings
+    - api.py: Api routes definitions
+    - settings.py: App settings (dependencies, configurations, etc)
+  - /models: Model definitions [More info](https://docs.djangoproject.com/en/2.1/topics/db/models/)
+  - /serializers: Model serializers [More info](https://www.django-rest-framework.org/api-guide/serializers/)
+  - /views: Api views [More info](https://www.django-rest-framework.org/api-guide/views/)
 
 ## Pre-requisites:
 
@@ -36,14 +51,29 @@ This repository holds the source code of a **reference** for the development of 
 ```bash
 (.env)$ python3 manage.py runserver
  ```
- 
- ### To open admin panel
+
+ ### To enable admin panel
+
  * Add models to /app/admin
  * Create superuser
-```bash
+ ```bash
 (.env)$ python3 manage.py createsuperuser
  ```
- * Open admin panel (/admin)
- 
+ * Open admin panel 
+ ```bash
+ http://localhost:8080/admin
+ ```
+
+### Examples
+
+ * Example docs.
+ ```bash
+ http://localhost:8080/docs
+ ```
+  * Example requests. 
+ ```bash
+ GET http://localhost:8080/v1/players
+ ```
+
  
  
