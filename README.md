@@ -28,7 +28,7 @@ In general terms, the architecture uses the following structure:
  * Install postgresql database.
  * Create virtual environment
   ```bash
- $ python3 -m venv .env
+ $ python3 -m venv .venv
  $ . env/bin/activate
  ```
  * Open project in PyCharm
@@ -41,15 +41,15 @@ In general terms, the architecture uses the following structure:
  * Create a new database with the name shown in the last step
  * Make migrations
  ```bash
-(.env)$ python3 manage.py makemigrations
+(.venv)$ python3 manage.py makemigrations
  ```
  * Run migrations
  ```bash
-(.env)$ python3 manage.py migrate
+(.venv)$ python3 manage.py migrate
  ```
  * Run project
 ```bash
-(.env)$ python3 manage.py runserver
+(.venv)$ python3 manage.py runserver
  ```
 
  ### To enable admin panel
@@ -57,7 +57,7 @@ In general terms, the architecture uses the following structure:
  * Add models to /app/admin
  * Create superuser
  ```bash
-(.env)$ python3 manage.py createsuperuser
+(.venv)$ python3 manage.py createsuperuser
  ```
  * Open admin panel 
  ```bash

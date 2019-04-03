@@ -1,5 +1,5 @@
 ### General ###
-env
+.venv
 .env
 models/migrations/*
 !models/migrations/__init__.py
