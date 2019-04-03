@@ -1,4 +1,5 @@
 from django.urls import path, include
+from django.conf.urls import url
 from rest_framework.routers import DefaultRouter
 
 from views.matches import MatchViewSet
@@ -14,4 +15,6 @@ router.register(r'teams', TeamViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),
+    url(r'^auth/', include('rest_auth.urls'))
+
 ]

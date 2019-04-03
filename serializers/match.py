@@ -4,5 +4,5 @@ from models.match import Match
 class MatchSerializer(serializers.ModelSerializer):
     class Meta:
         model = Match
-        fields = ('id', 'date', 'local', 'visitor', 'scores')
+        fields = '__all__'
         depth = 1

@@ -4,5 +4,5 @@ from models.player import Player
 class PlayerSerializer(serializers.ModelSerializer):
     class Meta:
         model = Player
-        fields = ('id', 'name', 'photo_url', 'team')
+        fields = '__all__'
         depth = 1

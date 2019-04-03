@@ -1,9 +1,18 @@
 from django.db import models
 
+from models.model import Model
 from models.team import Team
 
-class Match(models.Model):
+class Match(Model):
+    TYPES = (
+        ('F', 'Friendship'),
+        ('C', 'Cup'),
+        ('L', 'League')
+    )
     date = models.DateTimeField()
-    type = models.CharField(max_length=128)
-    visitor = models.OneToOneField(Team, related_name='match_visitor', on_delete=models.CASCADE)
-    local = models.OneToOneField(Team, related_name='match_local', on_delete=models.CASCADE)
+    type = models.CharField(max_length=8, choices=TYPES)
+    visitor = models.ForeignKey(Team, related_name='visitors', blank=False, null=False, on_delete=models.CASCADE)
+    local = models.ForeignKey(Team, related_name='locals', blank=False, null=False, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.to_str(self.local.name + " vs " + self.visitor.name)
