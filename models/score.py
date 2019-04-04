@@ -1,6 +1,6 @@
 from django.db import models
 
-from models.model import Model
+from models.helpers.model import Model
 from models.player import Player
 from models.match import Match
 

@@ -16,5 +16,4 @@ router.register(r'teams', TeamViewSet)
 urlpatterns = [
     path('', include(router.urls)),
     url(r'^auth/', include('rest_auth.urls'))
-
 ]

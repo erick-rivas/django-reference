@@ -1,6 +1,6 @@
 from django.db import models
 
-from models.model import Model
+from models.helpers.model import Model
 from models.team import Team
 
 class Match(Model):
