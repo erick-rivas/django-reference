@@ -63,8 +63,26 @@ In general terms, the architecture uses the following structure:
  ```bash
  http://localhost:8080/admin
  ```
+ 
+ ### To enable authentication
+ * Go to views/helpers/viewsets.py and uncomment
+ ```bash
+authentication_classes = (TokenAuthentication,)
+permission_classes = (IsAuthenticated,)
+ ```
+ * To test generate token
+ ```bash
+(.venv)$ python3 manage.py drf_create_token <superuser_username>
+ ```
+ * Send request
+ ```bash
+$ curl -i -X GET http://127.0.0.1:8000/api/players -H 'Authorization: Token <Token>'
+ ```
+ 
+ 
 
-### Examples
+
+ ### Examples
 
  * Example docs.
  ```bash
@@ -74,6 +92,7 @@ In general terms, the architecture uses the following structure:
  ```bash
  GET http://localhost:8080/v1/players
  ```
+
 
  
  
