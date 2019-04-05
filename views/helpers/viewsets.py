@@ -13,6 +13,7 @@ class BaseViewSet(viewsets.GenericViewSet,
     authentication_classes = (TokenAuthentication,)
     permission_classes = (IsAuthenticated,)
     """
+    lookup_field = 'uuid'
     filter_backends = (DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter,)
     filterset_fields = '__all__'
     ordering_fields = '__all__'
