@@ -9,7 +9,7 @@ SECRET_KEY = os.getenv('DJANGO_SECRET')
 DEBUG = True
 CORS_ORIGIN_ALLOW_ALL = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 SITE_ID = 1
 
 # Application definition

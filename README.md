@@ -65,6 +65,7 @@ In general terms, the architecture uses the following structure:
  ```
  
  ### To enable authentication
+ 
  * Go to views/helpers/viewsets.py and uncomment
  ```bash
 authentication_classes = (TokenAuthentication,)
@@ -79,9 +80,6 @@ permission_classes = (IsAuthenticated,)
 $ curl -i -X GET http://127.0.0.1:8000/api/players -H 'Authorization: Token <Token>'
  ```
  
- 
-
-
  ### Examples
 
  * Example docs.
@@ -92,6 +90,30 @@ $ curl -i -X GET http://127.0.0.1:8000/api/players -H 'Authorization: Token <Tok
  ```bash
  GET http://localhost:8080/v1/players
  ```
+ 
+ ### To deploy to server (aws):
+
+* Install eb and configure credentials, See ([install](https://docs.aws.amazon.com/es_es/elasticbeanstalk/latest/dg/eb-cli3-install.html) & [credentials](https://docs.aws.amazon.com/es_es/general/latest/gr/managing-aws-access-keys.html))
+
+* Init eb project
+```bash
+$ eb init
+ ```
+ > This command will create a .elasticbeanstalk/config.yml file which can be modified to set env, zone, platform, etc.
+* Create a eb environment
+```bash
+$ eb create
+ ```
+ * Go to AWS EB panel > select env > configuration > databases
+ * Create a new postgresql instance (Store user and password)
+ * Return to database panel and copy the endpoint-url (host)
+ * In .env paste the connection attribute. 
+ > Note: By default set DB-name=ebdb
+ * Deploy to aws
+```bash
+$ eb deploy <env_name>
+ ```
+ > NOTE: Before execute deploy, COMMIT the last changes because eb only consider the last changes.
 
 
  

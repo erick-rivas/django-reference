@@ -1,6 +1,5 @@
-### General ###
+### SAME AS .GITIGNORE BUT WITHOUT .env ###
 .venv
-.env
 models/migrations/*
 !models/migrations/__init__.py
 
