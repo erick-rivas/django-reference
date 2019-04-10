@@ -29,7 +29,7 @@ In general terms, the architecture uses the following structure:
  * Create virtual environment
   ```bash
  $ python3 -m venv .venv
- $ . env/bin/activate
+ $ . .venv/bin/activate
  ```
  * Open project in PyCharm
  * Go to PyCharm > Preferences > Project interpreter > Add > Select <project_dir>/venv

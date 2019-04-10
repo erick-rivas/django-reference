@@ -1,7 +1,4 @@
-### SAME AS .GITIGNORE BUT WITHOUT .env ###
-.venv
-models/migrations/*
-!models/migrations/__init__.py
+### General (Include .env & migrations) ###
 
 ### Django ###
 *.log
@@ -110,7 +107,6 @@ celerybeat-schedule
 *.sage.py
 
 # Environments
-.env
 .venv
 env/
 venv/
