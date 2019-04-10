@@ -1,5 +1,6 @@
 ### General ###
 .env
+static
 models/migrations/*
 !models/migrations/__init__.py
 

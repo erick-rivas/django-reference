@@ -1,4 +1,4 @@
-### General (Include .env & migrations) ###
+### General (Include .env & static & migrations) ###
 
 ### Django ###
 *.log
