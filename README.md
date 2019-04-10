@@ -97,6 +97,7 @@ $ curl -i -X GET http://127.0.0.1:8000/api/players -H 'Authorization: Token <Tok
 ```bash
 (.venv)$ python3 manage.py collectstatic
  ```
+* Make database migrations
 * Set DEBUG = FALSE in app/settings.py
 * Install eb and configure credentials, See ([install](https://docs.aws.amazon.com/es_es/elasticbeanstalk/latest/dg/eb-cli3-install.html) & [credentials](https://docs.aws.amazon.com/es_es/general/latest/gr/managing-aws-access-keys.html))
 * Init eb project
@@ -109,16 +110,10 @@ $ eb init
 $ eb create
  ```
  * Go to AWS EB panel > select env > configuration > databases
- * Create a new postgresql instance (Store user and password)
- * Return to database panel and copy the endpoint-url (host)
- * In .env paste the connection attribute. 
- > Note: By default set DB-name=ebdb
+ * Create a new postgresql instance
+ > It will link automatically with the app using eb variables
  * Deploy to aws
 ```bash
 $ eb deploy <env_name>
  ```
- > NOTE: Before execute deploy, COMMIT the last changes because eb only consider the last changes.
-
-
- 
  
