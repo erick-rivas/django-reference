@@ -1,0 +1,27 @@
+#Teams
+
+- model: models.team
+  pk: 1
+  fields:
+    name: Pumas UNAM
+    logo_url: https://s3.amazonaws.com/lmxwebsite/docs/archdgtl/AfldDrct/logos/18/18.png
+- model: models.team
+  pk: 2
+  fields:
+    name: América
+    logo_url: https://s3.amazonaws.com/lmxwebsite/docs/archdgtl/AfldDrct/logos/1/1.png
+- model: models.team
+  pk: 3
+  fields:
+    name: Chivas
+    logo_url: https://s3.amazonaws.com/lmxwebsite/docs/archdgtl/AfldDrct/logos/7/7.png
+- model: models.team
+  pk: 4
+  fields:
+    name: Tigres
+    logo_url: https://s3.amazonaws.com/lmxwebsite/docs/archdgtl/AfldDrct/logos/16/16.png
+- model: models.team
+  pk: 5
+  fields:
+    name: Cruz Azul
+    logo_url: https://s3.amazonaws.com/lmxwebsite/docs/archdgtl/AfldDrct/logos/6/6.png

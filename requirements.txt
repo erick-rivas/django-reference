@@ -8,3 +8,4 @@ pip==19.0.3
 setuptools==41.0.0
 django-dotenv==1.4.2
 django-filter==2.1.0
+PyYAML==5.1
