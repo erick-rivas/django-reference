@@ -64,6 +64,13 @@ In general terms, the architecture uses the following structure:
  http://localhost:8080/admin
  ```
  
+ ### To fill database with initial data
+ 
+ * Load fixtures .yaml located in /models/fixtures
+  ```bash
+(.venv)$ python3 manage.py loaddata <fixture_name>
+ ```
+ 
  ### To enable authentication
  
  * Go to views/helpers/viewsets.py and uncomment
