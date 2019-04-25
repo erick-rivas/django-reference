@@ -3,4 +3,4 @@ from django.db import models
 
 class User(AbstractUser):
     image_url = models.CharField(max_length=512)
-    color = models.CharField(max_length=512)
+    color = models.CharField(max_length=32)

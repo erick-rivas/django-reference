@@ -6,23 +6,37 @@ from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import IsAuthenticated
 
 
-class BaseViewSet(viewsets.GenericViewSet,
-                  mixins.ListModelMixin,
-                  mixins.RetrieveModelMixin):
+class BaseViewSet(viewsets.GenericViewSet):
     """ Enable security
     authentication_classes = (TokenAuthentication,)
     permission_classes = (IsAuthenticated,)
     """
-    lookup_field = 'uuid'
+
+class ReadOnlyViewSet(
+    BaseViewSet,
+    mixins.ListModelMixin,
+    mixins.RetrieveModelMixin):
     filter_backends = (DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter,)
     filterset_fields = '__all__'
     ordering_fields = '__all__'
 
-class CreateViewSet(BaseViewSet,
-                    mixins.CreateModelMixin,
-                    mixins.UpdateModelMixin):
+class WriteOnlyViewSet(
+    BaseViewSet,
+    mixins.CreateModelMixin,
+    mixins.UpdateModelMixin):
     pass
 
-class FullViewSet(CreateViewSet,
-                  mixins.DestroyModelMixin):
+class ReadWriteViewSet(
+    ReadOnlyViewSet,
+    WriteOnlyViewSet):
+    pass
+
+class WriteDeleteViewSet(
+    WriteOnlyViewSet,
+    mixins.DestroyModelMixin):
+    pass
+
+class FullViewSet(
+    ReadWriteViewSet,
+    mixins.DestroyModelMixin):
     pass
