@@ -7,6 +7,9 @@ SECRET_KEY = 'fup+swltefA9efredrufihUSTO!wam?c'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+if 'IS_PROD' in os.environ:
+    DEBUG = False
+
 CORS_ORIGIN_ALLOW_ALL = True
 
 ALLOWED_HOSTS = ['*']
