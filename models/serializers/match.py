@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from serializers.helpers.util import Util
+from models.serializers.helpers.util import Util
 from models.match import Match
 from models.team import Team
 

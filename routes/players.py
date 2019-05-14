@@ -1,6 +1,6 @@
-from views.helpers.viewsets import FullViewSet
+from routes.helpers.viewsets import FullViewSet
 from models.player import Player
-from serializers.player import PlayerSerializer
+from models.serializers.player import PlayerSerializer
 
 class PlayerViewSet(FullViewSet):
     serializer_class = PlayerSerializer

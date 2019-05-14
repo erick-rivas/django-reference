@@ -37,7 +37,7 @@ In general terms, the architecture uses the following structure:
  ```bash
 (.env)$ pip3 install -r requirements.txt
  ```
- * Set database settings in app/settings.py
+ * Create and configure .env file
  * Create a new database with the name shown in the last step
  * Make migrations
  ```bash
@@ -66,9 +66,9 @@ In general terms, the architecture uses the following structure:
  
  ### To fill database with initial data
  
- * Load fixtures .yaml located in /models/fixtures
+ * Load fixtures
   ```bash
-(.venv)$ python3 manage.py loaddata <fixture_name>
+(.venv)$ python3 manage.py loaddata app/fixtures/*.yaml
  ```
  
  ### To enable authentication
