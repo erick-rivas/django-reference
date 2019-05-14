@@ -1,5 +1,11 @@
+.git*
 app/api.py
 app/urls.py
-models/*
-serializers/*
-app/*
+app/fixtures/*
+domain/*
+models/*.py
+models/serializers/*.py
+routes/*.py
+!*__init__.py
+!*helpers
+!.gitignore
