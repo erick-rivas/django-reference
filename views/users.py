@@ -1,6 +1,6 @@
-from models.serializers.user import UserSerializer
-from routes.helpers.viewsets import ReadOnlyViewSet
+from views.helpers.viewsets import ReadOnlyViewSet
 from models.user import User
+from serializers.user import UserSerializer
 
 class UserViewSet(ReadOnlyViewSet):
     serializer_class = UserSerializer
