@@ -4,8 +4,8 @@ app/urls.py
 app/fixtures/*
 domain/*
 models/*.py
-models/serializers/*.py
-routes/*.py
+serializers/*.py
+views/*.py
 !*__init__.py
 !*helpers
 !.gitignore
