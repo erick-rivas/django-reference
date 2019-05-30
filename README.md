@@ -61,7 +61,7 @@ In general terms, the architecture uses the following structure:
  ```
  * Open admin panel 
  ```bash
- http://localhost:8080/admin
+ http://localhost:8000/admin
  ```
  
  ### To fill database with initial data
@@ -91,11 +91,11 @@ $ curl -i -X GET http://127.0.0.1:8000/api/players -H 'Authorization: Token <Tok
 
  * Example docs.
  ```bash
- http://localhost:8080/docs
+ http://localhost:8000/docs
  ```
  * Example requests. 
  ```bash
- GET http://localhost:8080/v1/players
+ GET http://localhost:8000/v1/players
  ```
  
  
