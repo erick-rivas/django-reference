@@ -1,7 +1,14 @@
-from views.helpers.viewsets import ReadOnlyViewSet
-from models.user import User
-from serializers.user import UserSerializer
+"""
+__Seed builder__v1.0
+"""
 
-class UserViewSet(ReadOnlyViewSet):
-    serializer_class = UserSerializer
-    queryset = User.objects.all()
+from rest_framework.decorators import action
+from rest_framework.response import Response
+from rest_framework import status
+from django.shortcuts import get_object_or_404
+
+from __seed__.views.users import _UserViewSet
+from models.user import User
+
+class UserViewSet(_UserViewSet):
+    pass

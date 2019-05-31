@@ -1,12 +1,16 @@
+"""
+__Seed builder__v1.0
+  Attributes:
+    - id: int
+    - name: string
+    - photo_url: string
+    - is_active: boolean
+    - team: Team
+"""
+
 from django.db import models
+from __seed__.models.player import _Player
 
-from models.helpers.model import Model
-from models.team import Team
-
-class Player(Model):
-    name = models.CharField(max_length=256)
-    photo_url = models.CharField(max_length=512)
-    team = models.ForeignKey(Team, related_name='players', blank=False, null=False, on_delete=models.CASCADE)
-
+class Player(_Player):
     def __str__(self):
-        return self.to_str(self.name)
+        return self.to_str('')

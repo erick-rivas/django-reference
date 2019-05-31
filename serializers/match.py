@@ -1,13 +1,26 @@
-from rest_framework import serializers
-from serializers.helpers.util import Util
-from models.match import Match
-from models.team import Team
+"""
+__Seed builder__v1.0
+  Fields:
+    - id
+    - date
+    - type
+    - local
+    - visitor
+    - scores
+    - local_id
+    - visitor_id
+"""
 
-class MatchSerializer(serializers.ModelSerializer):
-    visitor_id = serializers.PrimaryKeyRelatedField(source='visitor', queryset=Team.objects.all(), write_only=True)
-    local_id = serializers.PrimaryKeyRelatedField(source='local', queryset=Team.objects.all(), write_only=True)
-    class Meta:
-        model = Match
-        fields = Util.get_attr_list(Match,
-            include=('visitor_id', 'local_id'))
-        depth = 1
+from rest_framework import serializers
+from __seed__.serializers.match import _MatchSerializer
+
+class MatchSerializer(_MatchSerializer):
+    class LocalSerializer(serializers.ModelSerializer):
+        pass
+    class VisitorSerializer(serializers.ModelSerializer):
+        pass
+    class ScoresSerializer(serializers.ModelSerializer):
+        pass
+
+    class Meta(_MatchSerializer.Meta):
+        pass

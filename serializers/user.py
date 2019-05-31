@@ -1,8 +1,21 @@
-from rest_framework import serializers
-from models.user import User
+"""
+__Seed builder__v1.0
+  Fields:
+    - id
+    - username
+    - first_name
+    - last_name
+    - email
+    - is_active
+    - teams
+"""
 
-class UserSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = User
-        fields = ('id', 'username', 'first_name', 'last_name', 'image_url', 'color')
-        depth = 1
+from rest_framework import serializers
+from __seed__.serializers.user import _UserSerializer
+
+class UserSerializer(_UserSerializer):
+    class TeamsSerializer(serializers.ModelSerializer):
+        pass
+
+    class Meta(_UserSerializer.Meta):
+        pass

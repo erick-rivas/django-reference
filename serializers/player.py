@@ -1,12 +1,20 @@
-from rest_framework import serializers
-from serializers.helpers.util import Util
-from models.team import Team
-from models.player import Player
+"""
+__Seed builder__v1.0
+  Fields:
+    - id
+    - name
+    - photo_url
+    - is_active
+    - team
+    - team_id
+"""
 
-class PlayerSerializer(serializers.ModelSerializer):
-    team_id = serializers.PrimaryKeyRelatedField(source='team', queryset=Team.objects.all(), write_only=True)
-    class Meta:
-        model = Player
-        fields = Util.get_attr_list(Player,
-            include=('team_id',))
-        depth = 1
+from rest_framework import serializers
+from __seed__.serializers.player import _PlayerSerializer
+
+class PlayerSerializer(_PlayerSerializer):
+    class TeamSerializer(serializers.ModelSerializer):
+        pass
+
+    class Meta(_PlayerSerializer.Meta):
+        pass

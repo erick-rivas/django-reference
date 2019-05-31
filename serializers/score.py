@@ -1,14 +1,22 @@
-from rest_framework import serializers
-from serializers.helpers.util import Util
-from models.player import Player
-from models.match import Match
-from models.score import Score
+"""
+__Seed builder__v1.0
+  Fields:
+    - id
+    - min
+    - player
+    - match
+    - player_id
+    - match_id
+"""
 
-class ScoreSerializer(serializers.ModelSerializer):
-    player_id = serializers.PrimaryKeyRelatedField(source='player', queryset=Player.objects.all(), write_only=True)
-    match_id = serializers.PrimaryKeyRelatedField(source='match', queryset=Match.objects.all(), write_only=True)
-    class Meta:
-        model = Score
-        fields = Util.get_attr_list(Score,
-            include=('player_id', 'match_id'))
-        depth = 1
+from rest_framework import serializers
+from __seed__.serializers.score import _ScoreSerializer
+
+class ScoreSerializer(_ScoreSerializer):
+    class PlayerSerializer(serializers.ModelSerializer):
+        pass
+    class MatchSerializer(serializers.ModelSerializer):
+        pass
+
+    class Meta(_ScoreSerializer.Meta):
+        pass

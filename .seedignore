@@ -1,3 +1,4 @@
+__seed__
 .git*
 app/api.py
 app/urls.py

@@ -1,18 +1,16 @@
+"""
+__Seed builder__v1.0
+  Attributes:
+    - id: int
+    - date: date
+    - type: enum
+    - local: Team
+    - visitor: Team
+"""
+
 from django.db import models
+from __seed__.models.match import _Match
 
-from models.helpers.model import Model
-from models.team import Team
-
-class Match(Model):
-    TYPES = (
-        ('F', 'Friendship'),
-        ('C', 'Cup'),
-        ('L', 'League')
-    )
-    date = models.DateTimeField()
-    type = models.CharField(max_length=8, choices=TYPES)
-    visitor = models.ForeignKey(Team, related_name='visitors', blank=False, null=False, on_delete=models.CASCADE)
-    local = models.ForeignKey(Team, related_name='locals', blank=False, null=False, on_delete=models.CASCADE)
-
+class Match(_Match):
     def __str__(self):
-        return self.to_str(self.local.name + " vs " + self.visitor.name)
+        return self.to_str('')

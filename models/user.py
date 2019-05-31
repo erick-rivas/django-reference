@@ -1,6 +1,13 @@
-from django.contrib.auth.models import AbstractUser
-from django.db import models
+"""
+__Seed builder__v1.0
+  Attributes:
+    - id: int
+    - teams: Team[]
+"""
 
-class User(AbstractUser):
-    image_url = models.CharField(max_length=512)
-    color = models.CharField(max_length=32)
+from django.db import models
+from __seed__.models.user import _User
+
+class User(_User):
+    def __str__(self):
+        return self.to_str('')

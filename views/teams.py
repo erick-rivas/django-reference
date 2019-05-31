@@ -1,7 +1,14 @@
-from views.helpers.viewsets import FullViewSet
-from models.team import Team
-from serializers.team import TeamSerializer
+"""
+__Seed builder__v1.0
+"""
 
-class TeamViewSet(FullViewSet):
-    serializer_class = TeamSerializer
-    queryset = Team.objects.all()
+from rest_framework.decorators import action
+from rest_framework.response import Response
+from rest_framework import status
+from django.shortcuts import get_object_or_404
+
+from __seed__.views.teams import _TeamViewSet
+from models.team import Team
+
+class TeamViewSet(_TeamViewSet):
+    pass

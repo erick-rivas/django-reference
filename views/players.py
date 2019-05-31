@@ -1,7 +1,14 @@
-from views.helpers.viewsets import FullViewSet
-from models.player import Player
-from serializers.player import PlayerSerializer
+"""
+__Seed builder__v1.0
+"""
 
-class PlayerViewSet(FullViewSet):
-    serializer_class = PlayerSerializer
-    queryset = Player.objects.all()
+from rest_framework.decorators import action
+from rest_framework.response import Response
+from rest_framework import status
+from django.shortcuts import get_object_or_404
+
+from __seed__.views.players import _PlayerViewSet
+from models.player import Player
+
+class PlayerViewSet(_PlayerViewSet):
+    pass

@@ -1,10 +1,20 @@
-from rest_framework import serializers
-from serializers.helpers.util import Util
-from models.team import Team
+"""
+__Seed builder__v1.0
+  Fields:
+    - id
+    - name
+    - logo_url
+    - description
+    - market_value
+    - players
+"""
 
-class TeamSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Team
-        fields = Util.get_attr_list(Team,
-            exclude=('visitors', 'locals'))
-        depth = 1
+from rest_framework import serializers
+from __seed__.serializers.team import _TeamSerializer
+
+class TeamSerializer(_TeamSerializer):
+    class PlayersSerializer(serializers.ModelSerializer):
+        pass
+
+    class Meta(_TeamSerializer.Meta):
+        pass

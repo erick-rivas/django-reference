@@ -1,7 +1,14 @@
-from views.helpers.viewsets import FullViewSet
-from models.match import Match
-from serializers.match import MatchSerializer
+"""
+__Seed builder__v1.0
+"""
 
-class MatchViewSet(FullViewSet):
-    serializer_class = MatchSerializer
-    queryset = Match.objects.all()
+from rest_framework.decorators import action
+from rest_framework.response import Response
+from rest_framework import status
+from django.shortcuts import get_object_or_404
+
+from __seed__.views.matches import _MatchViewSet
+from models.match import Match
+
+class MatchViewSet(_MatchViewSet):
+    pass
