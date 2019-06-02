@@ -73,11 +73,7 @@ In general terms, the architecture uses the following structure:
  
  ### To enable authentication
  
- * Go to views/helpers/viewsets.py and uncomment
- ```bash
-authentication_classes = (TokenAuthentication,)
-permission_classes = (IsAuthenticated,)
- ```
+ * Add ENABLE_SECURITY=true to .env files
  * To test generate token
  ```bash
 (.venv)$ python3 manage.py drf_create_token <superuser_username>
@@ -86,6 +82,7 @@ permission_classes = (IsAuthenticated,)
  ```bash
 $ curl -i -X GET http://127.0.0.1:8000/api/players -H 'Authorization: Token <Token>'
  ```
+ 
  
  ### Examples
 

@@ -1,11 +1,6 @@
 """
 __Seed builder__v1.0
-  Models:
-    - User
-    - Team
-    - Player
-    - Match
-    - Score
+  (Read_only) Modify via models.json
 """
 
 from django.contrib import admin

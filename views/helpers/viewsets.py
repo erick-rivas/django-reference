@@ -1,20 +1,20 @@
-from rest_framework.response import Response
+import os
 from rest_framework import mixins
 from rest_framework import viewsets
 from rest_framework import filters
 from rest_framework import status
+from rest_framework.response import Response
 from django_filters.rest_framework import DjangoFilterBackend
 from django.shortcuts import get_object_or_404
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import IsAuthenticated
 
 
-class BaseViewSet(viewsets.GenericViewSet):
+class BaseViewSet(viewsets.GenericViewSet):  #
 
-    """ Enable security
-    authentication_classes = (TokenAuthentication,)
-    permission_classes = (IsAuthenticated,)
-    """
+    if 'ENABLE_SECURITY' in os.environ:
+        authentication_classes = (TokenAuthentication,)
+        permission_classes = (IsAuthenticated,)
 
     def destroy(self, request, pk=None):
         model = get_object_or_404(self.queryset, pk=pk)

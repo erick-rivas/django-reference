@@ -1,5 +1,15 @@
 """
 __Seed builder__v1.0
+
+  Guidelines:
+    - Add business logic via domains
+    - Only override mentioned methods
+
+  Override methods:
+    - filter_queryset(self, queryset)
+    - perform_create(self, serializer)
+    - perform_update(self, serializer)
+    - perform_destroy(self, instance)
 """
 
 from rest_framework.decorators import action
@@ -10,5 +20,5 @@ from django.shortcuts import get_object_or_404
 from __seed__.views.teams import _TeamViewSet
 from models.team import Team
 
-class TeamViewSet(_TeamViewSet):
+class TeamViewSet(_TeamViewSet): #
     pass

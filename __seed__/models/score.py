@@ -1,5 +1,6 @@
 """
 __Seed builder__v1.0
+  (Read_only) Modify via models.json
 """
 
 from datetime import datetime

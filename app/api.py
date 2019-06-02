@@ -1,5 +1,9 @@
 """
 __Seed builder__v1.0
+
+  Guidelines: 
+    - Modify model routes via models.json
+
   Routes:
     - /users
     - /teams

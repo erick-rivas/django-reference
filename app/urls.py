@@ -1,5 +1,7 @@
 """
 __Seed builder__v1.0
+  Guidelines: 
+    - Modify api includes via models.json
 """
 
 from django.conf.urls import url
