@@ -31,12 +31,11 @@ class _MatchSerializer(serializers.ModelSerializer):  #
     
     local = LocalSerializer(read_only=True)
     visitor = VisitorSerializer(read_only=True)
-    scores = ScoresSerializer(many=True,read_only=True)
+    scores = ScoresSerializer(many=True, read_only=True)
     
-    local_id = serializers.PrimaryKeyRelatedField(source='local', 
-    	queryset=Team.objects.all(), write_only=True)
-    visitor_id = serializers.PrimaryKeyRelatedField(source='visitor', 
-    	queryset=Team.objects.all(), write_only=True)
+    local_id = serializers.PrimaryKeyRelatedField(source='local', queryset=Team.objects.all())
+    visitor_id = serializers.PrimaryKeyRelatedField(source='visitor', queryset=Team.objects.all())
+    score_ids = serializers.PrimaryKeyRelatedField(many=True, source='scores', read_only=True)
     
     class Meta:
         model = Match
@@ -49,6 +48,7 @@ class _MatchSerializer(serializers.ModelSerializer):  #
             'scores',
             'local_id',
             'visitor_id',
+            'score_ids',
         )
         depth = 1
 

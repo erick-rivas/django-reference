@@ -26,10 +26,8 @@ class _ScoreSerializer(serializers.ModelSerializer):  #
     player = PlayerSerializer(read_only=True)
     match = MatchSerializer(read_only=True)
     
-    player_id = serializers.PrimaryKeyRelatedField(source='player', 
-    	queryset=Player.objects.all(), write_only=True)
-    match_id = serializers.PrimaryKeyRelatedField(source='match', 
-    	queryset=Match.objects.all(), write_only=True)
+    player_id = serializers.PrimaryKeyRelatedField(source='player', queryset=Player.objects.all())
+    match_id = serializers.PrimaryKeyRelatedField(source='match', queryset=Match.objects.all())
     
     class Meta:
         model = Score

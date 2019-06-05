@@ -18,8 +18,7 @@ class _PlayerSerializer(serializers.ModelSerializer):  #
     
     team = TeamSerializer(read_only=True)
     
-    team_id = serializers.PrimaryKeyRelatedField(source='team', 
-    	queryset=Team.objects.all(), write_only=True)
+    team_id = serializers.PrimaryKeyRelatedField(source='team', queryset=Team.objects.all())
     
     class Meta:
         model = Player

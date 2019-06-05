@@ -15,8 +15,9 @@ class _UserSerializer(serializers.ModelSerializer):  #
             fields ='__all__'
             depth = 0
     
-    teams = TeamsSerializer(many=True,read_only=True)
+    teams = TeamsSerializer(many=True, read_only=True)
     
+    team_ids = serializers.PrimaryKeyRelatedField(many=True, source='teams', read_only=True)
     
     class Meta:
         model = User
@@ -28,6 +29,7 @@ class _UserSerializer(serializers.ModelSerializer):  #
             'email',
             'is_active',
             'teams',
+            'team_ids',
         )
         depth = 1
 

@@ -13,6 +13,7 @@ __Seed builder__v1.0
     - description
     - market_value
     - players
+    - player_ids
     
   Serializers (to override)
     - PlayersSerializer

@@ -16,8 +16,9 @@ class _TeamSerializer(serializers.ModelSerializer):  #
             fields ='__all__'
             depth = 0
     
-    players = PlayersSerializer(many=True,read_only=True)
+    players = PlayersSerializer(many=True, read_only=True)
     
+    player_ids = serializers.PrimaryKeyRelatedField(many=True, source='players', read_only=True)
     
     class Meta:
         model = Team
@@ -28,6 +29,7 @@ class _TeamSerializer(serializers.ModelSerializer):  #
             'description',
             'market_value',
             'players',
+            'player_ids',
         )
         depth = 1
 

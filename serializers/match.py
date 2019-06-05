@@ -15,6 +15,7 @@ __Seed builder__v1.0
     - scores
     - local_id
     - visitor_id
+    - score_ids
     
   Serializers (to override)
     - LocalSerializer

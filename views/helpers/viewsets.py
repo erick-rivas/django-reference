@@ -8,13 +8,17 @@ from django_filters.rest_framework import DjangoFilterBackend
 from django.shortcuts import get_object_or_404
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import IsAuthenticated
+from rest_framework import permissions
 
 
 class BaseViewSet(viewsets.GenericViewSet):  #
 
+    class AccessPermission(permissions.BasePermission):
+        pass
+
     if 'ENABLE_SECURITY' in os.environ:
         authentication_classes = (TokenAuthentication,)
-        permission_classes = (IsAuthenticated,)
+        permission_classes = (IsAuthenticated, AccessPermission)
 
     def destroy(self, request, pk=None):
         model = get_object_or_404(self.queryset, pk=pk)

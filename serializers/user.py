@@ -14,6 +14,7 @@ __Seed builder__v1.0
     - email
     - is_active
     - teams
+    - team_ids
     
   Serializers (to override)
     - TeamsSerializer
