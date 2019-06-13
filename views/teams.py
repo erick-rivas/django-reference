@@ -25,7 +25,7 @@ from rest_framework import status
 from rest_framework import permissions
 from django.shortcuts import get_object_or_404
 
-from __seed__.views.teams import _TeamViewSet
+from _seed.views.teams import _TeamViewSet
 from models.team import Team
 
 class TeamViewSet(_TeamViewSet): #

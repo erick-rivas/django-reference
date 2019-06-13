@@ -4,17 +4,16 @@ __Seed builder__v1.0
 """
 
 from rest_framework import serializers
+from serializers.helpers.serializer import Serializer
 from models.player import Player
 from models.team import Team
 from serializers.user import UserSerializer
 
-class _PlayerSerializer(serializers.ModelSerializer):  #
+class _PlayerSerializer(Serializer):  #
     
-    class TeamSerializer(serializers.ModelSerializer):
-        class Meta:
+    class TeamSerializer(Serializer):
+        class Meta(Serializer.Meta):
             model = Team
-            fields ='__all__'
-            depth = 0
     
     team = TeamSerializer(read_only=True)
     
@@ -24,6 +23,7 @@ class _PlayerSerializer(serializers.ModelSerializer):  #
         model = Player
         fields = (
             'id',
+            'hash',
             'name',
             'photo_url',
             'is_active',

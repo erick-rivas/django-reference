@@ -25,7 +25,7 @@ from rest_framework import status
 from rest_framework import permissions
 from django.shortcuts import get_object_or_404
 
-from __seed__.views.players import _PlayerViewSet
+from _seed.views.players import _PlayerViewSet
 from models.player import Player
 
 class PlayerViewSet(_PlayerViewSet): #

@@ -68,7 +68,7 @@ In general terms, the architecture uses the following structure:
  
  * Load fixtures
   ```bash
-(.venv)$ python3 manage.py loaddata app/fixtures/*.yaml
+(.venv)$ python3 manage.py loaddata models/fixtures/*.yaml
  ```
  
  ### To enable authentication

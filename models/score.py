@@ -14,8 +14,7 @@ __Seed builder__v1.0
 """
 
 from django.db import models
-from __seed__.models.score import _Score
+from _seed.models.score import _Score
 
 class Score(_Score):
-    def __str__(self):
-        return self.to_str('')
+    pass

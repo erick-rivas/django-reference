@@ -62,7 +62,7 @@ AUTH_USER_MODEL = 'models.User'
 REST_AUTH_SERIALIZERS = {
     'TOKEN_SERIALIZER': 'serializers.helpers.token.TokenSerializer'
 }
-FIXTURE_DIRS = (os.path.join(BASE_DIR, "app/fixtures"), )
+FIXTURE_DIRS = (os.path.join(BASE_DIR, "models/fixtures"), )
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',

@@ -19,7 +19,7 @@ __Seed builder__v1.0
 """
 
 from rest_framework import serializers
-from __seed__.serializers.player import _PlayerSerializer
+from _seed.serializers.player import _PlayerSerializer
 
 class PlayerSerializer(_PlayerSerializer): #
     

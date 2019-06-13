@@ -15,8 +15,7 @@ __Seed builder__v1.0
 """
 
 from django.db import models
-from __seed__.models.player import _Player
+from _seed.models.player import _Player
 
 class Player(_Player):
-    def __str__(self):
-        return self.to_str('')
+    pass

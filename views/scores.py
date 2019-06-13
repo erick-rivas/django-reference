@@ -25,7 +25,7 @@ from rest_framework import status
 from rest_framework import permissions
 from django.shortcuts import get_object_or_404
 
-from __seed__.views.scores import _ScoreViewSet
+from _seed.views.scores import _ScoreViewSet
 from models.score import Score
 
 class ScoreViewSet(_ScoreViewSet): #

@@ -25,7 +25,7 @@ from rest_framework import status
 from rest_framework import permissions
 from django.shortcuts import get_object_or_404
 
-from __seed__.views.users import _UserViewSet
+from _seed.views.users import _UserViewSet
 from models.user import User
 
 class UserViewSet(_UserViewSet): #

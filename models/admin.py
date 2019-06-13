@@ -4,6 +4,6 @@ __Seed builder__v1.0
 """
 
 from django.contrib import admin
-from __seed__.models.admin import _Admin
+from _seed.models.admin import _Admin
 
 _Admin().register()

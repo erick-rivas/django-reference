@@ -25,7 +25,7 @@ from rest_framework import status
 from rest_framework import permissions
 from django.shortcuts import get_object_or_404
 
-from __seed__.views.matches import _MatchViewSet
+from _seed.views.matches import _MatchViewSet
 from models.match import Match
 
 class MatchViewSet(_MatchViewSet): #

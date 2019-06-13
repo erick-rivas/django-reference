@@ -4,30 +4,25 @@ __Seed builder__v1.0
 """
 
 from rest_framework import serializers
+from serializers.helpers.serializer import Serializer
 from models.match import Match
 from models.team import Team
 from models.score import Score
 from serializers.user import UserSerializer
 
-class _MatchSerializer(serializers.ModelSerializer):  #
+class _MatchSerializer(Serializer):  #
     
-    class LocalSerializer(serializers.ModelSerializer):
-        class Meta:
+    class LocalSerializer(Serializer):
+        class Meta(Serializer.Meta):
             model = Team
-            fields ='__all__'
-            depth = 0
     
-    class VisitorSerializer(serializers.ModelSerializer):
-        class Meta:
+    class VisitorSerializer(Serializer):
+        class Meta(Serializer.Meta):
             model = Team
-            fields ='__all__'
-            depth = 0
     
-    class ScoresSerializer(serializers.ModelSerializer):
-        class Meta:
+    class ScoresSerializer(Serializer):
+        class Meta(Serializer.Meta):
             model = Score
-            fields ='__all__'
-            depth = 0
     
     local = LocalSerializer(read_only=True)
     visitor = VisitorSerializer(read_only=True)
@@ -41,6 +36,7 @@ class _MatchSerializer(serializers.ModelSerializer):  #
         model = Match
         fields = (
             'id',
+            'hash',
             'date',
             'type',
             'local',

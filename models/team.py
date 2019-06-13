@@ -15,8 +15,7 @@ __Seed builder__v1.0
 """
 
 from django.db import models
-from __seed__.models.team import _Team
+from _seed.models.team import _Team
 
 class Team(_Team):
-    def __str__(self):
-        return self.to_str('')
+    pass

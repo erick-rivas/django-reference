@@ -4,24 +4,21 @@ __Seed builder__v1.0
 """
 
 from rest_framework import serializers
+from serializers.helpers.serializer import Serializer
 from models.score import Score
 from models.player import Player
 from models.match import Match
 from serializers.user import UserSerializer
 
-class _ScoreSerializer(serializers.ModelSerializer):  #
+class _ScoreSerializer(Serializer):  #
     
-    class PlayerSerializer(serializers.ModelSerializer):
-        class Meta:
+    class PlayerSerializer(Serializer):
+        class Meta(Serializer.Meta):
             model = Player
-            fields ='__all__'
-            depth = 0
     
-    class MatchSerializer(serializers.ModelSerializer):
-        class Meta:
+    class MatchSerializer(Serializer):
+        class Meta(Serializer.Meta):
             model = Match
-            fields ='__all__'
-            depth = 0
     
     player = PlayerSerializer(read_only=True)
     match = MatchSerializer(read_only=True)
@@ -33,6 +30,7 @@ class _ScoreSerializer(serializers.ModelSerializer):  #
         model = Score
         fields = (
             'id',
+            'hash',
             'min',
             'player',
             'match',

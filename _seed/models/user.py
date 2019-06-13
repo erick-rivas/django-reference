@@ -8,7 +8,7 @@ from django.contrib.auth.models import AbstractUser
 from django.db import models
 from models.helpers.model import Model
 
-class _User(AbstractUser):  #
+class _User(AbstractUser, Model):  #
     
     teams = models.ManyToManyField('Team', related_name='users', blank=False)
 
