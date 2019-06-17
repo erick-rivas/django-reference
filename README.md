@@ -4,135 +4,149 @@ This repository holds the source code of a **reference** for the development of 
 
 ## Architecture design
 
-The reference uses a architecure based on a Generic Model View pattern, Inspired by the architecture of [Django framework](https://www.djangoproject.com) and [Django REST framework](https://www.django-rest-framework.org)
+The reference uses a architecture based on a Generic Model View pattern, Inspired by the architecture of [Django framework](https://www.djangoproject.com) and [Django REST framework](https://www.django-rest-framework.org)
 
 ### General description
 
 In general terms, the architecture uses the following structure:
 
-  - /app: App general settings
-    - api.py: Api routes definitions
-    - settings.py: App settings (dependencies, configurations, etc)
-  - /models: Model definitions [More info](https://docs.djangoproject.com/en/2.1/topics/db/models/)
-  - /serializers: Model serializers [More info](https://www.django-rest-framework.org/api-guide/serializers/)
-  - /views: Api views [More info](https://www.django-rest-framework.org/api-guide/views/)
+-   /app: App general settings
+    -   api.py: Api routes definitions
+    -   settings.py: App settings (dependencies, configurations, etc)
+-   /domain: Business logic methods
+-   /models: Model definitions [More info](https://docs.djangoproject.com/en/2.1/topics/db/models/)
+-   /serializers: Model serializers [More info](https://www.django-rest-framework.org/api-guide/serializers/)
+-   /tests: Domain test cases
+-   /views: Api views [More info](https://www.django-rest-framework.org/api-guide/views/)
 
 ## Pre-requisites:
 
- * Download & install [Python3](https://www.python.org/downloads/)
- * Download & install [PyCharm CE](https://www.jetbrains.com/pycharm/download/)
+-   Download & install [Python3](https://www.python.org/downloads/)
+-   Download & install [PyCharm CE](https://www.jetbrains.com/pycharm/download/)
 
 ### To start coding and build:
 
- * Clone this repository.
- * Install postgresql database.
- * Create virtual environment
-  ```bash
- $ python3 -m venv .venv
- $ . .venv/bin/activate
- ```
- * Open project in PyCharm
- * Go to PyCharm > Preferences > Project interpreter > Add > Select <project_dir>/venv
- * Install dependencies (Suggested in PyCharm Terminal)
- ```bash
-(.env)$ pip3 install -r requirements.txt
- ```
- * Create and configure .env.dev file
- * Create a new database with the name shown in the last step
- * Make migrations
- ```bash
+-   Clone this repository.
+-   Install postgresql database.
+-   Run install script
+
+```bash
+$ ./bin/install
+```
+
+-   Configure .env.dev file
+-   Create a new database with the name shown in the last step
+-   Make migrations
+
+```bash
 (.venv)$ python3 manage.py makemigrations
- ```
- * Run migrations
- ```bash
+```
+
+-   Run migrations
+
+```bash
 (.venv)$ python3 manage.py migrate
- ```
- * Run project
+```
+
+-   Run project
+
 ```bash
 (.venv)$ python3 manage.py runserver
- ```
+```
 
- ### To enable admin panel
+### To enable admin panel
 
- * Add models to /app/admin
- * Create superuser
- ```bash
+-   Add models to models/admin
+-   Create superuser
+
+```bash
 (.venv)$ python3 manage.py createsuperuser
- ```
- * Open admin panel 
- ```bash
- http://localhost:8000/admin
- ```
- 
- ### To fill database with initial data
- 
- * Load fixtures
-  ```bash
-(.venv)$ python3 manage.py loaddata models/fixtures/*.yaml
- ```
- 
- ### To enable authentication
- 
- * Add ENABLE_SECURITY=true to .env files
- * To test generate token
- ```bash
-(.venv)$ python3 manage.py drf_create_token <superuser_username>
- ```
- * Send request
- ```bash
-$ curl -i -X GET http://127.0.0.1:8000/api/players -H 'Authorization: Token <Token>'
- ```
- 
- 
- ### Examples
+```
 
- * Example docs.
- ```bash
- http://localhost:8000/docs
- ```
- * Example requests. 
- ```bash
- GET http://localhost:8000/v1/players
- ```
- 
- 
+-   Open admin panel 
+
+```bash
+http://localhost:8000/admin
+```
+
+### To fill database with initial data
+
+-   Load fixtures
+
+```bash
+(.venv)$ python3 manage.py loaddata models/fixtures/*.yaml
+```
+
+### To enable authentication
+
+-   Add ENABLE_SECURITY=true to .env files
+-   To test generate token
+
+```bash
+(.venv)$ python3 manage.py drf_create_token 
+```
+
+-   Send request
+
+```bash
+$ curl -i -X GET http://127.0.0.1:8000/api/players -H 'Authorization: Token '
+```
+
+### Examples
+
+-   Example docs.
+
+```bash
+http://localhost:8000/docs
+```
+
+-   Example requests. 
+
+```bash
+GET http://localhost:8000/v1/players
+```
+
 ## Deploy to aws eb
 
 ### Configure aws/dns console
 
- * Open aws elastic beanstalk console and create an environment 
-> Important: Configure apache as proxy server and enable 443 port in security groups
+-   Open aws elastic beanstalk console and create an environment 
 
- * Configure a postgresql database settings in aws console (settings/databases/modify)
+    > Important: Configure apache as proxy server and enable 443 port in security groups
 
- * Configure DNS settings in domain provider, e.g *godaddy*
+-   Configure a postgresql database settings in aws console (settings/databases/modify)
 
+-   Configure DNS settings in domain provider, e.g *godaddy*
 
 ### Configure server
 
- * Install eb and configure credentials, See ([install](https://docs.aws.amazon.com/es_es/elasticbeanstalk/latest/dg/eb-cli3-install.html) & [credentials](https://docs.aws.amazon.com/es_es/general/latest/gr/managing-aws-access-keys.html))
+-   Install eb and configure credentials, See ([install](https://docs.aws.amazon.com/es_es/elasticbeanstalk/latest/dg/eb-cli3-install.html) & [credentials](https://docs.aws.amazon.com/es_es/general/latest/gr/managing-aws-access-keys.html))
 
- * Init eb project
+-   Init eb project
+
 ```bash
 $ eb init
- ```
+```
 
- * Enable ssh
+-   Enable ssh
+
 ```bash
 $ eb ssh --setup
- ```
+```
 
- * Execute ssh and setup apache settings
+-   Execute ssh and setup apache settings
+
 ```bash
 $ sudo vim /etc/httpd/conf.d/temp.conf
 # Listen 80
-# <VirtualHost *:80 *:443>
-# 	ServerName <HTTPS_DOMAIN>
+# 
+# 	ServerName 
 # 	DocumentRoot /var/www/html
-# </VirtualHost>
+# 
 ```
 
- * Install and configure certbot
+-   Install and configure certbot
+
 ```bash
 $ sudo wget https://dl.eff.org/certbot-auto
 $ sudo chmod a+x ./certbot-auto
@@ -140,24 +154,28 @@ $ sudo ./certbot-auto certonly --debug --webroot
 # root: /var/www/html
 $ sudo ./certbot-auto certonly --debug
 ```
- * Set HTTPS_DOMAIN in .ebextensions/django.config
+
+-   Set HTTPS_DOMAIN in .ebextensions/django.config
 
 ### Configure code
 
- * Create and configure .env.prod file
- * Generate static files (autogenerated)
+-   Create and configure .env.prod file
+-   Generate static files (autogenerated)
+
 ```bash
 (.venv)$ python3 manage.py collectstatic
- ``` 
- 
- * Make database migrations
+```
+
+-   Make database migrations
+
 ```bash
 (.venv)$ python3 manage.py makemigrations
- ``` 
- 
+```
+
 ### Deploy
 
- * Deploy to aws
+-   Deploy to aws
+
 ```bash
 $ eb deploy
- ```
+```
