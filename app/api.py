@@ -2,7 +2,7 @@
 __Seed builder__v1.0
 
   Guidelines: 
-    - Modify model routes via models.json
+    - Modify model routes via SeedManifest.yaml
 
   Routes:
     - /users

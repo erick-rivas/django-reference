@@ -1,8 +1,12 @@
 _seed
 .git*
+.idea*
+.venv*
+.env.dev
+.env.prod
 app/api.py
 app/urls.py
-app/fixtures/*
+fixtures/*
 domain/*
 models/*.py
 serializers/*.py

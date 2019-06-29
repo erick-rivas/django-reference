@@ -2,7 +2,7 @@
 __Seed builder__v1.0
 
   Guidelines: 
-    - Modify attributes via models.json
+    - Modify attributes via SeedManifest.yaml
     - Only add aggregate methods if required
       - Example: has_members(), is_frequent_user() ...
 

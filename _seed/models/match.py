@@ -1,6 +1,6 @@
 """
 __Seed builder__v1.0
-  (Read_only) Modify via models.json
+  (Read_only) Modify via SeedManifest.yaml
 """
 
 from datetime import datetime
@@ -23,5 +23,4 @@ class _Match(Model):  #
 
     class Meta:
         abstract = True
-
 
