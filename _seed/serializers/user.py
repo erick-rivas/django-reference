@@ -5,17 +5,19 @@ __Seed builder__v1.0
 
 from rest_framework import serializers
 from serializers.helpers.serializer import Serializer
+from serializers.helpers.serializer import InnerSerializer
 from models.user import User
 from models.team import Team
+from models.helpers.file import File
+from serializers.helpers.file import FileSerializer
 
 class _UserSerializer(Serializer):  #
     
-    class TeamsSerializer(Serializer):
-        class Meta(Serializer.Meta):
-            model = Team
-    
-    teams = TeamsSerializer(many=True, read_only=True)
-    
+    teams = InnerSerializer(Team, many=True, read_only=True)
+    profile_image = FileSerializer(read_only=True)
+
+    profile_image_id = serializers.PrimaryKeyRelatedField(source='profile_image', queryset=File.objects.all())
+
     team_ids = serializers.PrimaryKeyRelatedField(many=True, source='teams', read_only=True)
     
     class Meta:
@@ -29,7 +31,8 @@ class _UserSerializer(Serializer):  #
             'email',
             'is_active',
             'teams',
-            'team_ids',
+            'profile_image',
+            'profile_image_id',
+            'team_ids',  
         )
-        depth = 1
 

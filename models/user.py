@@ -14,6 +14,7 @@ __Seed builder__v1.0
     - email: string
     - is_active: boolean
     - teams: Team[]
+    - profile_image: image
 """
 
 from django.db import models

@@ -17,16 +17,17 @@ __Seed builder__v1.0
     - visitor_id
     - score_ids
     
-  Serializers (to override)
-    - LocalSerializer
-    - VisitorSerializer
-    - ScoresSerializer
+  Fields to override (InnerSerializers)
+    - local: Team
+    - visitor: Team
+    - scores: Score
 """
 
 from rest_framework import serializers
+from serializers.helpers.serializer import InnerSerializer
 from _seed.serializers.match import _MatchSerializer
 
-class MatchSerializer(_MatchSerializer): #
+class MatchSerializer(_MatchSerializer):  #
     
     class Meta(_MatchSerializer.Meta):
         pass

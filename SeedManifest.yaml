@@ -3,14 +3,19 @@ models:
   - card:
       has: 0..*
       ref: 0..*
-    depth: 1
     is_fk: true
     meta: {}
     name: teams
     read: true
     type: team[]
     write: false
-  depth: 1
+  - card: {}
+    is_fk: false
+    meta: {}
+    name: profile_image
+    read: true
+    type: image
+    write: true
   meta: {}
   name: user
   read: true
@@ -18,7 +23,6 @@ models:
   write: true
 - attrs:
   - card: {}
-    depth: 1
     is_fk: false
     meta:
       length: '256'
@@ -27,17 +31,15 @@ models:
     type: string
     write: true
   - card: {}
-    depth: 1
     is_fk: false
     meta:
       length: '512'
-    name: logo_url
+    name: logo
     read: true
-    type: string
+    type: image
     write: true
   - card: {}
     default: No description available
-    depth: 1
     is_fk: false
     meta: {}
     name: description
@@ -45,24 +47,28 @@ models:
     type: text
     write: true
   - card: {}
-    depth: 1
     is_fk: false
     meta: {}
     name: market_value
     read: true
     type: float
     write: true
+  - card: {}
+    is_fk: false
+    meta: {}
+    name: identity_docs
+    read: true
+    type: file[]
+    write: false
   - card:
       has: '1'
       ref: 0..*
-    depth: 1
     is_fk: true
     meta: {}
     name: players
     read: true
     type: player[]
     write: false
-  depth: 1
   meta: {}
   name: team
   read: true
@@ -72,7 +78,6 @@ models:
   write: true
 - attrs:
   - card: {}
-    depth: 1
     is_fk: false
     meta:
       length: '256'
@@ -81,17 +86,15 @@ models:
     type: string
     write: true
   - card: {}
-    depth: 1
     is_fk: false
     meta:
       length: '512'
-    name: photo_url
+    name: photo
     read: true
-    type: string
+    type: image
     write: true
   - card: {}
     default: 'true'
-    depth: 1
     is_fk: false
     meta: {}
     name: is_active
@@ -101,14 +104,12 @@ models:
   - card:
       has: 0..*
       ref: '1'
-    depth: 1
     is_fk: true
     meta: {}
     name: team
     read: true
     type: team
     write: true
-  depth: 1
   meta: {}
   name: player
   read: true
@@ -120,7 +121,6 @@ models:
 - attrs:
   - card: {}
     default: now
-    depth: 1
     is_fk: false
     meta: {}
     name: date
@@ -128,7 +128,6 @@ models:
     type: date
     write: true
   - card: {}
-    depth: 1
     is_fk: false
     meta:
       options:
@@ -142,7 +141,6 @@ models:
   - card:
       has: 0..*
       ref: '1'
-    depth: 1
     is_fk: true
     meta: {}
     name: local
@@ -152,7 +150,6 @@ models:
   - card:
       has: 0..*
       ref: '1'
-    depth: 1
     is_fk: true
     meta: {}
     name: visitor
@@ -162,14 +159,12 @@ models:
   - card:
       has: '1'
       ref: 0..*
-    depth: 1
     is_fk: true
     meta: {}
     name: scores
     read: true
     type: score[]
     write: false
-  depth: 1
   meta: {}
   name: match
   read: true
@@ -179,7 +174,6 @@ models:
   write: true
 - attrs:
   - card: {}
-    depth: 1
     is_fk: false
     meta: {}
     name: min
@@ -189,7 +183,6 @@ models:
   - card:
       has: 0..*
       ref: '1'
-    depth: 1
     is_fk: true
     meta: {}
     name: player
@@ -199,14 +192,12 @@ models:
   - card:
       has: 0..*
       ref: '1'
-    depth: 1
     is_fk: true
     meta: {}
     name: match
     read: true
     type: match
     write: true
-  depth: 1
   meta: {}
   name: score
   read: true
@@ -214,4 +205,3 @@ models:
   - form
   write: true
 name: reference
-platform: django

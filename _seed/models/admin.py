@@ -9,13 +9,15 @@ from models.team import Team
 from models.player import Player
 from models.match import Match
 from models.score import Score
+from models.helpers.file import File
 
 class _Admin:  #
 
-	@staticmethod
-	def register():
-		admin.site.register(User)
-		admin.site.register(Team)
-		admin.site.register(Player)
-		admin.site.register(Match)
-		admin.site.register(Score)
+    @staticmethod
+    def register():
+        admin.site.register(File)
+        admin.site.register(User)
+        admin.site.register(Team)
+        admin.site.register(Player)
+        admin.site.register(Match)
+        admin.site.register(Score)

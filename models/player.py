@@ -9,7 +9,7 @@ __Seed builder__v1.0
   Attributes:
     - id: int
     - name: string
-    - photo_url: string
+    - photo: image
     - is_active: boolean
     - team: Team
 """

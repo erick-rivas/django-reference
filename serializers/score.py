@@ -14,15 +14,16 @@ __Seed builder__v1.0
     - player_id
     - match_id
     
-  Serializers (to override)
-    - PlayerSerializer
-    - MatchSerializer
+  Fields to override (InnerSerializers)
+    - player: Player
+    - match: Match
 """
 
 from rest_framework import serializers
+from serializers.helpers.serializer import InnerSerializer
 from _seed.serializers.score import _ScoreSerializer
 
-class ScoreSerializer(_ScoreSerializer): #
+class ScoreSerializer(_ScoreSerializer):  #
     
     class Meta(_ScoreSerializer.Meta):
         pass

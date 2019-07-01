@@ -14,16 +14,18 @@ __Seed builder__v1.0
     - email
     - is_active
     - teams
+    - profile_image
     - team_ids
     
-  Serializers (to override)
-    - TeamsSerializer
+  Fields to override (InnerSerializers)
+    - teams: Team
 """
 
 from rest_framework import serializers
+from serializers.helpers.serializer import InnerSerializer
 from _seed.serializers.user import _UserSerializer
 
-class UserSerializer(_UserSerializer): #
+class UserSerializer(_UserSerializer):  #
     
     class Meta(_UserSerializer.Meta):
         pass

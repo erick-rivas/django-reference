@@ -10,7 +10,7 @@ from models.player import Player
 from models.match import Match
 from models.score import Score
 
-class Test(TestCase):
+class Test(TestCase):  #
     
     def setUp(self):
         pass # Tip: Create objects

@@ -12,6 +12,7 @@ from views.teams import TeamViewSet
 from views.players import PlayerViewSet
 from views.matches import MatchViewSet
 from views.scores import ScoreViewSet
+from views.helpers.files import FileView
 
 router = DefaultRouter()
 router.register(r'users', UserViewSet)
@@ -22,5 +23,6 @@ router.register(r'scores', ScoreViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),
+    path('files/', FileView.as_view()),
     url(r'^auth/', include('rest_auth.urls'))
 ]

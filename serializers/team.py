@@ -9,20 +9,22 @@ __Seed builder__v1.0
   Fields:
     - id
     - name
-    - logo_url
+    - logo
     - description
     - market_value
+    - identity_docs
     - players
     - player_ids
     
-  Serializers (to override)
-    - PlayersSerializer
+  Fields to override (InnerSerializers)
+    - players: Player
 """
 
 from rest_framework import serializers
+from serializers.helpers.serializer import InnerSerializer
 from _seed.serializers.team import _TeamSerializer
 
-class TeamSerializer(_TeamSerializer): #
+class TeamSerializer(_TeamSerializer):  #
     
     class Meta(_TeamSerializer.Meta):
         pass

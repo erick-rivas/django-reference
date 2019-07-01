@@ -5,27 +5,22 @@ __Seed builder__v1.0
 
 from rest_framework import serializers
 from serializers.helpers.serializer import Serializer
+from serializers.helpers.serializer import InnerSerializer
 from models.score import Score
 from models.player import Player
 from models.match import Match
+from models.helpers.file import File
 from serializers.user import UserSerializer
+from serializers.helpers.file import FileSerializer
 
 class _ScoreSerializer(Serializer):  #
     
-    class PlayerSerializer(Serializer):
-        class Meta(Serializer.Meta):
-            model = Player
-    
-    class MatchSerializer(Serializer):
-        class Meta(Serializer.Meta):
-            model = Match
-    
-    player = PlayerSerializer(read_only=True)
-    match = MatchSerializer(read_only=True)
-    
+    player = InnerSerializer(Player, read_only=True)
+    match = InnerSerializer(Match, read_only=True)
+
     player_id = serializers.PrimaryKeyRelatedField(source='player', queryset=Player.objects.all())
     match_id = serializers.PrimaryKeyRelatedField(source='match', queryset=Match.objects.all())
-    
+
     class Meta:
         model = Score
         fields = (
@@ -35,6 +30,5 @@ class _ScoreSerializer(Serializer):  #
             'player',
             'match',
             'player_id',
-            'match_id',
+            'match_id',  
         )
-        depth = 1

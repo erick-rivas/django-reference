@@ -9,9 +9,10 @@ __Seed builder__v1.0
   Attributes:
     - id: int
     - name: string
-    - logo_url: string
+    - logo: image
     - description: text
     - market_value: float
+    - identity_docs: file
 """
 
 from django.db import models
