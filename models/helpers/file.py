@@ -1,3 +1,4 @@
+import os
 from datetime import datetime
 from django.db import models
 from models.helpers.model import Model
@@ -8,7 +9,9 @@ class File(Model):  #
 
     @property
     def url(self):
-        return self.file.url
+        host_url = os.getenv('HOST_URL')
+        url = self.file.url
+        return url if url.startswith("http") else host_url + url
 
     @property
     def size(self):
