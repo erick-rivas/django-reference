@@ -14,9 +14,6 @@ from serializers.helpers.file import FileSerializer
 class _UserSerializer(Serializer):  #
     
     teams = InnerSerializer(Team, many=True, read_only=True)
-    profile_image = FileSerializer(read_only=True)
-
-    profile_image_id = serializers.PrimaryKeyRelatedField(source='profile_image', queryset=File.objects.all())
 
     team_ids = serializers.PrimaryKeyRelatedField(many=True, source='teams', read_only=True)
     
@@ -31,8 +28,6 @@ class _UserSerializer(Serializer):  #
             'email',
             'is_active',
             'teams',
-            'profile_image',
-            'profile_image_id',
             'team_ids',  
         )
 

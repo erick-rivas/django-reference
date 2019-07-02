@@ -9,13 +9,6 @@ models:
     read: true
     type: team[]
     write: false
-  - card: {}
-    is_fk: false
-    meta: {}
-    name: profile_image
-    read: true
-    type: image
-    write: true
   meta: {}
   name: user
   read: true

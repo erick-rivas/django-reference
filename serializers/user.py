@@ -18,7 +18,6 @@ __Seed builder__v1.0
     - email
     - is_active
     - teams
-    - profile_image
     - team_ids
     
   Fields to override
