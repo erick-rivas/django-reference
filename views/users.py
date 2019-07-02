@@ -28,5 +28,5 @@ from django.shortcuts import get_object_or_404
 from _seed.views.users import _UserViewSet
 from models.user import User
 
-class UserViewSet(_UserViewSet): #
+class UserViewSet(_UserViewSet):  #
     pass

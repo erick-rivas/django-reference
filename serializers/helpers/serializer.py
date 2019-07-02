@@ -5,12 +5,17 @@ class Serializer(serializers.ModelSerializer):
         model = None
         exclude = None
 
-def InnerSerializer(model, **kargs):  #
+def InnerSerializerClass(model):  #
 
-    exclude = kargs.exclude if 'exclude' in kargs else []
-    serializer = type('InnerSerializer', (Serializer, ), {})
+    serializer = type('InnerSerializer', (Serializer,), {})
     meta = type('InnerMeta', (), {})
     meta.model = model
-    meta.exclude = tuple(['created_at', 'updated_at'] + exclude)
     serializer.Meta = meta
-    return serializer(**kargs)
+    return serializer
+
+def InnerSerializer(model, **kargs):  #
+
+    serializer_class = InnerSerializerClass(model)
+    exclude = kargs.exclude if 'exclude' in kargs else []
+    serializer_class.Meta.exclude = tuple(['created_at', 'updated_at'] + exclude)
+    return serializer_class(**kargs)

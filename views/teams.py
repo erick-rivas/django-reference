@@ -28,5 +28,5 @@ from django.shortcuts import get_object_or_404
 from _seed.views.teams import _TeamViewSet
 from models.team import Team
 
-class TeamViewSet(_TeamViewSet): #
+class TeamViewSet(_TeamViewSet):  #
     pass

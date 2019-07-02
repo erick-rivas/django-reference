@@ -28,5 +28,5 @@ from django.shortcuts import get_object_or_404
 from _seed.views.matches import _MatchViewSet
 from models.match import Match
 
-class MatchViewSet(_MatchViewSet): #
+class MatchViewSet(_MatchViewSet):  #
     pass

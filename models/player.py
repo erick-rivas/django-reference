@@ -17,5 +17,5 @@ __Seed builder__v1.0
 from django.db import models
 from _seed.models.player import _Player
 
-class Player(_Player):
+class Player(_Player):  #
     pass

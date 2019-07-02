@@ -28,5 +28,5 @@ from django.shortcuts import get_object_or_404
 from _seed.views.players import _PlayerViewSet
 from models.player import Player
 
-class PlayerViewSet(_PlayerViewSet): #
+class PlayerViewSet(_PlayerViewSet):  #
     pass

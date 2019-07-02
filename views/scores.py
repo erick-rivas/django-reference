@@ -28,5 +28,5 @@ from django.shortcuts import get_object_or_404
 from _seed.views.scores import _ScoreViewSet
 from models.score import Score
 
-class ScoreViewSet(_ScoreViewSet): #
+class ScoreViewSet(_ScoreViewSet):  #
     pass
