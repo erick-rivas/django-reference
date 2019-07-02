@@ -18,7 +18,7 @@ In general terms, the architecture uses the following structure:
 -  /fixtures: Preloaded data definition
 -  /models: Model definitions [More info](https://docs.djangoproject.com/en/2.1/topics/db/models/)
 -  /serializers: Model serializers [More info](https://www.django-rest-framework.org/api-guide/serializers/)
--  /views: Api views [More info](https://www.django-rest-framework.org/api-guide/views/)
+-  /views: Api views [More info](https://www.django-rest-framework.org/api-guide/viewsets/)
 
 ## Pre-requisites:
 

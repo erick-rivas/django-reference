@@ -12,3 +12,4 @@ class _UserViewSet(FullViewSet):  #
 
     serializer_class = UserSerializer
     queryset = User.objects.all()
+

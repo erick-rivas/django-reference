@@ -9,15 +9,14 @@ __Seed builder__v1.0
 
   Attributes:
     - id: int
-    - name: string
-    - photo: image
-    - is_active: boolean
-    - team: Team
+    - min: int
+    - player: Player
+    - match: Match
 """
 
 from django.db import models
-from _seed.models.player import _Player
+from _seed.models.stats.score import _Score
 
-class Player(_Player):  #
+class Score(_Score):  #
     pass
 

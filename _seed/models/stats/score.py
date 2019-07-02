@@ -8,8 +8,9 @@ from django.db import models
 from models.helpers.model import Model
 
 class _Score(Model):  #
-    
+
     min = models.IntegerField()
+
     player = models.ForeignKey('Player', related_name='scores', 
         blank=False, null=False, on_delete=models.CASCADE)
     match = models.ForeignKey('Match', related_name='scores', 
@@ -17,4 +18,3 @@ class _Score(Model):  #
 
     class Meta:
         abstract = True
-

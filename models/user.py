@@ -3,8 +3,9 @@ __Seed builder__v1.0
 
   Guidelines: 
     - Modify attributes via SeedManifest.yaml
-    - Only add aggregate methods if required
-      - Example: has_members(), is_frequent_user() ...
+    - Only add aggregate methods or definitions if required
+      - Example: has_members(), complete_name() ...
+    - Reference: https://docs.djangoproject.com/en/2.2/topics/db/models/#model-attributes
 
   Attributes:
     - id: int
@@ -21,3 +22,4 @@ from _seed.models.user import _User
 
 class User(_User):  #
     pass
+

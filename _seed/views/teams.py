@@ -12,3 +12,4 @@ class _TeamViewSet(FullViewSet):  #
 
     serializer_class = TeamSerializer
     queryset = Team.objects.all()
+

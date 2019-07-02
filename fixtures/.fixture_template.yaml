@@ -1,12 +1,5 @@
-# File
-
-- model: models.File
-  pk:
-  fields:
-    hash: PUT_PK 
-    file: FILE_NAME
-    created_at: 2019-01-01 12:00:00
-    updated_at: 2019-01-01 12:00:00
+#__Seed builder__v1.0
+#   (Read_only) Modify via SeedManifest.yaml
 
 # User
 
@@ -77,5 +70,17 @@
     min: 
     player: 
     match: 
+    created_at: 2019-01-01 12:00:00
+    updated_at: 2019-01-01 12:00:00
+
+# File
+
+- model: models.File
+  pk:
+  fields:
+    hash: PUT_PK 
+    url: 
+    size:
+    name:
     created_at: 2019-01-01 12:00:00
     updated_at: 2019-01-01 12:00:00

@@ -4,11 +4,12 @@ __Seed builder__v1.0
   Guidelines: 
     - Modify fields via SeedManifest.yaml (suggested meta: "write & read")
     - Only override serializers fields if required
-      - Examples: 
-        - Set None to attr to show only pk (attr = None)
-        - Set InnerSerializer to attr to show complete model (attr = InnerSerializer(model))
-        - For special cases it can inherit from InnerSerializerClass
-          - class CustomSerializer(InnerSerializerClass(model))
+    - Override rules: 
+      - Set None to attr to show only pk (attr = None)
+      - Set InnerSerializer to attr to show complete model (attr = InnerSerializer(model))
+      - For special cases, inherit from InnerSerializerClass
+        - class CustomSerializer(InnerSerializerClass(model))
+    - Reference: https://www.django-rest-framework.org/api-guide/serializers/#modelserializer
 
   Fields:
     - id
@@ -20,7 +21,7 @@ __Seed builder__v1.0
     - players
     - player_ids
     
-  Fields to override
+  Override fields
     - players: Player
 """
 
@@ -33,3 +34,4 @@ class TeamSerializer(_TeamSerializer):  #
     
     class Meta(_TeamSerializer.Meta):
         pass
+

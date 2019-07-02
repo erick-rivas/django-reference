@@ -8,7 +8,7 @@ from django.db import models
 from models.helpers.model import Model
 
 class _Team(Model):  #
-    
+
     name = models.CharField(max_length=256, blank=True)
     logo = models.ForeignKey('File', related_name='team_logos', 
         blank=False, null=False, on_delete=models.CASCADE)

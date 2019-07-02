@@ -18,7 +18,8 @@ class BaseViewSet(viewsets.GenericViewSet):  #
 
     if 'ENABLE_SECURITY' in os.environ:
         authentication_classes = (TokenAuthentication,)
-        permission_classes = (IsAuthenticated, AccessPermission)
+        access_class = AccessPermission
+        permission_classes = (IsAuthenticated, access_class)
 
     def destroy(self, request, pk=None):
         model = get_object_or_404(self.queryset, pk=pk)
