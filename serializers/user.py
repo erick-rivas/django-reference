@@ -34,4 +34,3 @@ class UserSerializer(_UserSerializer):  #
     
     class Meta(_UserSerializer.Meta):
         pass
-

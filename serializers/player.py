@@ -32,4 +32,3 @@ class PlayerSerializer(_PlayerSerializer):  #
     
     class Meta(_PlayerSerializer.Meta):
         pass
-

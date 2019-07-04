@@ -16,7 +16,7 @@ class _UserSerializer(Serializer):  #
     teams = InnerSerializer(Team, many=True, read_only=True)
 
     team_ids = serializers.PrimaryKeyRelatedField(many=True, source='teams', read_only=True)
-    
+
     class Meta:
         model = User
         fields = (
@@ -30,4 +30,3 @@ class _UserSerializer(Serializer):  #
             'teams',
             'team_ids',  
         )
-

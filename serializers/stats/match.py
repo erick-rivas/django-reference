@@ -37,4 +37,3 @@ class MatchSerializer(_MatchSerializer):  #
     
     class Meta(_MatchSerializer.Meta):
         pass
-

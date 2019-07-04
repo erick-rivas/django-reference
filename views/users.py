@@ -36,4 +36,3 @@ from models.user import User
 
 class UserViewSet(_UserViewSet):  #
     pass
-

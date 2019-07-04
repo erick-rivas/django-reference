@@ -22,7 +22,7 @@ class _TeamSerializer(Serializer):  #
 
     player_ids = serializers.PrimaryKeyRelatedField(many=True, source='players', read_only=True)
     identity_doc_ids = serializers.PrimaryKeyRelatedField(many=True, source='identity_docs', read_only=True)
-    
+
     class Meta:
         model = Team
         fields = (
@@ -38,4 +38,3 @@ class _TeamSerializer(Serializer):  #
             'identity_doc_ids',
             'player_ids',  
         )
-

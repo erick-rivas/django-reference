@@ -36,4 +36,3 @@ from models.stats.score import Score
 
 class ScoreViewSet(_ScoreViewSet):  #
     pass
-

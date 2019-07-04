@@ -12,4 +12,3 @@ class _ScoreViewSet(FullViewSet):  #
 
     serializer_class = ScoreSerializer
     queryset = Score.objects.all()
-

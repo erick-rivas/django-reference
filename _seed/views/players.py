@@ -12,4 +12,3 @@ class _PlayerViewSet(FullViewSet):  #
 
     serializer_class = PlayerSerializer
     queryset = Player.objects.all()
-

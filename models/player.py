@@ -20,4 +20,3 @@ from _seed.models.player import _Player
 
 class Player(_Player):  #
     pass
-

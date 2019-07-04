@@ -22,4 +22,3 @@ from _seed.models.user import _User
 
 class User(_User):  #
     pass
-

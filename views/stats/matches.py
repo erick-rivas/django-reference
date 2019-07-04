@@ -36,4 +36,3 @@ from models.stats.match import Match
 
 class MatchViewSet(_MatchViewSet):  #
     pass
-

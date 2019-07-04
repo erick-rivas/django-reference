@@ -14,4 +14,3 @@ class _User(AbstractUser, Model):  #
 
     class Meta:
         abstract = True
-

@@ -12,4 +12,3 @@ class _MatchViewSet(FullViewSet):  #
 
     serializer_class = MatchSerializer
     queryset = Match.objects.all()
-

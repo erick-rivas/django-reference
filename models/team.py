@@ -21,4 +21,3 @@ from _seed.models.team import _Team
 
 class Team(_Team):  #
     pass
-

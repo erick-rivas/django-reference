@@ -19,4 +19,3 @@ from _seed.models.stats.score import _Score
 
 class Score(_Score):  #
     pass
-

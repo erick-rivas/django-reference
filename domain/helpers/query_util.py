@@ -7,7 +7,7 @@ def _get(model, **values):
 def _list(model, **values):
     return model.objects.filter(**values)
 
-def _list_q (model, *values):
+def _list_q(model, *values):
     return model.objects.filter(*values)
 
 def _list_o(model, order_by, **values):

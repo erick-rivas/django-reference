@@ -36,4 +36,3 @@ from models.player import Player
 
 class PlayerViewSet(_PlayerViewSet):  #
     pass
-

@@ -10,7 +10,7 @@ from models.helpers.model import Model
 class _Team(Model):  #
 
     name = models.CharField(max_length=256, blank=True)
-    logo = models.ForeignKey('File', related_name='team_logos', 
+    logo = models.ForeignKey('File', related_name='team_logos',
         blank=False, null=False, on_delete=models.CASCADE)
     description = models.TextField(blank=True, default="No description available")
     market_value = models.FloatField()
@@ -18,4 +18,3 @@ class _Team(Model):  #
 
     class Meta:
         abstract = True
-

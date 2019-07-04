@@ -34,4 +34,3 @@ class TeamSerializer(_TeamSerializer):  #
     
     class Meta(_TeamSerializer.Meta):
         pass
-

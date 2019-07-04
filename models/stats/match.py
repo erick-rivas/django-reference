@@ -20,4 +20,3 @@ from _seed.models.stats.match import _Match
 
 class Match(_Match):  #
     pass
-

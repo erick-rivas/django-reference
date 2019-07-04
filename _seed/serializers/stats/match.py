@@ -23,7 +23,7 @@ class _MatchSerializer(Serializer):  #
     visitor_id = serializers.PrimaryKeyRelatedField(source='visitor', queryset=Team.objects.all())
 
     score_ids = serializers.PrimaryKeyRelatedField(many=True, source='scores', read_only=True)
-    
+
     class Meta:
         model = Match
         fields = (
@@ -38,4 +38,3 @@ class _MatchSerializer(Serializer):  #
             'visitor_id',
             'score_ids',  
         )
-

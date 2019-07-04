@@ -32,4 +32,3 @@ class _PlayerSerializer(Serializer):  #
             'photo_id',
             'team_id',  
         )
-

@@ -8,16 +8,16 @@ __Seed builder__v1.0
 
 from django.test import TestCase
 
-from models.user import User
-from models.team import Team
-from models.player import Player
 from models.stats.match import Match
+from models.player import Player
 from models.stats.score import Score
+from models.team import Team
+from models.user import User
 
 class Test(TestCase):  #
     
     def setUp(self):
-        pass # Tip: Create objects
+        pass  # Tip: Create objects
 
     def test(self):
         pass

@@ -36,4 +36,3 @@ from models.team import Team
 
 class TeamViewSet(_TeamViewSet):  #
     pass
-
