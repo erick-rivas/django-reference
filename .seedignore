@@ -7,8 +7,8 @@ _seed*
 app/api.py
 fixtures/*.yaml
 domain/*.py
-models/*.py
-serializers/*.py
+models/*
+serializers/*
 views/*.py
 ?.env.example
 ?README.md
@@ -16,6 +16,7 @@ views/*.py
 ?manage.py
 ?app/settings.py
 ?app/wsgi.py
+!models/migrations
 !*__init__.py
 !*helpers
 !.gitignore

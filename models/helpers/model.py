@@ -4,9 +4,9 @@ from django.db import models
 
 class Model(models.Model):  #
 
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
-    hash = models.CharField(max_length=32, default="", editable=False)
+    created_at = models.DateTimeField(auto_now_add=True, null=True)
+    updated_at = models.DateTimeField(auto_now=True, null=True)
+    hash = models.CharField(max_length=32, default="", editable=False, null=True)
 
     def save(self, *args, **kwargs):
         pk = self.id
