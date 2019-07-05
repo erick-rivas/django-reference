@@ -32,6 +32,8 @@ INSTALLED_APPS = [
     'rest_auth',
     'django_filters',
     'rest_framework_swagger',
+    'import_export',
+    'djangoql',
     'corsheaders',
 
     'django.contrib.admin',
@@ -118,6 +120,12 @@ TEMPLATES = [
         },
     },
 ]
+
+# Explorer settings
+
+EXPLORER_CONNECTIONS = { 'Default': 'readonly' }
+EXPLORER_DEFAULT_CONNECTION = 'readonly'
+
 
 # Internationalization
 

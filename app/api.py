@@ -5,11 +5,11 @@ __Seed builder__v1.0
     - Modify model routes via SeedManifest.yaml
 
   Routes:
-    - /matches
     - /players
-    - /scores
     - /teams
     - /users
+    - /matches
+    - /scores
 """
 
 from django.urls import path, include

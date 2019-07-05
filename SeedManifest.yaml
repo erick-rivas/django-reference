@@ -1,61 +1,6 @@
 models:
 - attrs:
   - card: {}
-    default: now
-    is_fk: false
-    meta: {}
-    name: date
-    read: true
-    type: date
-    write: true
-  - card: {}
-    is_fk: false
-    meta:
-      options:
-      - Friendship
-      - League
-      - Cup
-    name: type
-    read: true
-    type: enum
-    write: true
-  - card:
-      has: 0..*
-      ref: '1'
-    is_fk: true
-    meta: {}
-    name: local
-    read: true
-    type: team
-    write: true
-  - card:
-      has: 0..*
-      ref: '1'
-    is_fk: true
-    meta: {}
-    name: visitor
-    read: true
-    type: team
-    write: true
-  - card:
-      has: '1'
-      ref: 0..*
-    is_fk: true
-    meta: {}
-    name: scores
-    read: true
-    type: score[]
-    write: false
-  group: stat
-  meta: {}
-  name: match
-  read: true
-  views:
-  - list
-  - details
-  write: true
-- attrs:
-  - card: {}
     is_fk: false
     meta:
       length: '256'
@@ -95,39 +40,6 @@ models:
   views:
   - list
   - details
-  - form
-  write: true
-- attrs:
-  - card: {}
-    is_fk: false
-    meta: {}
-    name: min
-    read: true
-    type: int
-    write: true
-  - card:
-      has: 0..*
-      ref: '1'
-    is_fk: true
-    meta: {}
-    name: player
-    read: true
-    type: player
-    write: true
-  - card:
-      has: 0..*
-      ref: '1'
-    is_fk: true
-    meta: {}
-    name: match
-    read: true
-    type: match
-    write: true
-  group: stat
-  meta: {}
-  name: score
-  read: true
-  views:
   - form
   write: true
 - attrs:
@@ -201,5 +113,93 @@ models:
   name: user
   read: true
   views: []
+  write: true
+- attrs:
+  - card: {}
+    default: now
+    is_fk: false
+    meta: {}
+    name: date
+    read: true
+    type: date
+    write: true
+  - card: {}
+    is_fk: false
+    meta:
+      options:
+      - Friendship
+      - League
+      - Cup
+    name: type
+    read: true
+    type: enum
+    write: true
+  - card:
+      has: 0..*
+      ref: '1'
+    is_fk: true
+    meta: {}
+    name: local
+    read: true
+    type: team
+    write: true
+  - card:
+      has: 0..*
+      ref: '1'
+    is_fk: true
+    meta: {}
+    name: visitor
+    read: true
+    type: team
+    write: true
+  - card:
+      has: '1'
+      ref: 0..*
+    is_fk: true
+    meta: {}
+    name: scores
+    read: true
+    type: score[]
+    write: false
+  group: stat
+  meta: {}
+  name: match
+  read: true
+  views:
+  - list
+  - details
+  write: true
+- attrs:
+  - card: {}
+    is_fk: false
+    meta: {}
+    name: min
+    read: true
+    type: int
+    write: true
+  - card:
+      has: 0..*
+      ref: '1'
+    is_fk: true
+    meta: {}
+    name: player
+    read: true
+    type: player
+    write: true
+  - card:
+      has: 0..*
+      ref: '1'
+    is_fk: true
+    meta: {}
+    name: match
+    read: true
+    type: match
+    write: true
+  group: stat
+  meta: {}
+  name: score
+  read: true
+  views:
+  - form
   write: true
 name: reference

@@ -18,5 +18,4 @@ views/*.py
 ?app/wsgi.py
 !*__init__.py
 !*helpers
-!models/admin.py
 !.gitignore
