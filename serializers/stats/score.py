@@ -13,27 +13,23 @@ __Seed builder__v1.0
 
   Fields:
     - id
-    - date
-    - type
-    - local
-    - visitor
-    - scores
-    - local_id
-    - visitor_id
-    - score_ids
+    - min
+    - player
+    - match
+    - player_id
+    - match_id
     
   Override fields
-    - local: Team
-    - visitor: Team
-    - scores: Score
+    - player: Player
+    - match: Match
 """
 
 from rest_framework import serializers
 from serializers.helpers.serializer import InnerSerializer
 from serializers.helpers.serializer import InnerSerializerClass
-from sbuild.serializers.stat.match import _MatchSerializer
+from sbuild.serializers.stats.score import _ScoreSerializer
 
-class MatchSerializer(_MatchSerializer):  #
+class ScoreSerializer(_ScoreSerializer):  #
     
-    class Meta(_MatchSerializer.Meta):
+    class Meta(_ScoreSerializer.Meta):
         pass

@@ -9,14 +9,13 @@ __Seed builder__v1.0
 
   Attributes:
     - id: int
-    - date: date
-    - type: enum
-    - local: Team
-    - visitor: Team
+    - min: int
+    - player: Player
+    - match: Match
 """
 
 from django.db import models
-from sbuild.models.stat.match import _Match
+from sbuild.models.stats.score import _Score
 
-class Match(_Match):  #
+class Score(_Score):  #
     pass

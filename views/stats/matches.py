@@ -21,8 +21,8 @@ from django.shortcuts import get_object_or_404
 from views.helpers.req_util import has_fields_or_400
 from domain.helpers.query_util import _get, _list, _list_q, _list_o, _queryset, _create
 
-from sbuild.views.stat.matches import _MatchViewSet
-from models.stat.match import Match
+from sbuild.views.stats.matches import _MatchViewSet
+from models.stats.match import Match
 
 class MatchViewSet(_MatchViewSet):  #
     pass

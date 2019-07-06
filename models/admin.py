@@ -13,8 +13,8 @@ from models.helpers.file import File
 from models.player import Player
 from models.team import Team
 from models.user import User
-from models.stat.match import Match
-from models.stat.score import Score
+from models.stats.match import Match
+from models.stats.score import Score
 
 class FileAdmin(ModelAdminClass(File)):
     pass
