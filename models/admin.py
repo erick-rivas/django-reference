@@ -2,10 +2,9 @@
 __Seed builder__v1.0
 
   Guidelines: 
-    - Modify model routes via SeedManifest.yaml
     - Include list_filter and search_fields if required
-    - Reference-filters: https://docs.djangoproject.com/en/2.2/ref/contrib/admin/#django.contrib.admin.ModelAdmin.list_filter
-    - Reference-search: https://docs.djangoproject.com/en/2.2/ref/contrib/admin/#django.contrib.admin.ModelAdmin.list_filter
+    - Reference filters: https://docs.djangoproject.com/en/2.2/ref/contrib/admin/#django.contrib.admin.ModelAdmin.list_filter
+    - Reference search: https://docs.djangoproject.com/en/2.2/ref/contrib/admin/#django.contrib.admin.ModelAdmin.list_filter
 """
 
 from django.contrib import admin
@@ -14,8 +13,8 @@ from models.helpers.file import File
 from models.player import Player
 from models.team import Team
 from models.user import User
-from models.stats.match import Match
-from models.stats.score import Score
+from models.stat.match import Match
+from models.stat.score import Score
 
 class FileAdmin(ModelAdminClass(File)):
     pass

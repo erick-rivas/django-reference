@@ -21,8 +21,8 @@ from django.shortcuts import get_object_or_404
 from views.helpers.req_util import has_fields_or_400
 from domain.helpers.query_util import _get, _list, _list_q, _list_o, _queryset, _create
 
-from sbuild.views.teams import _TeamViewSet
-from models.team import Team
+from sbuild.views.stat.scores import _ScoreViewSet
+from models.stat.score import Score
 
-class TeamViewSet(_TeamViewSet):  #
+class ScoreViewSet(_ScoreViewSet):  #
     pass

@@ -28,7 +28,7 @@ __Seed builder__v1.0
 from rest_framework import serializers
 from serializers.helpers.serializer import InnerSerializer
 from serializers.helpers.serializer import InnerSerializerClass
-from _seed.serializers.user import _UserSerializer
+from sbuild.serializers.user import _UserSerializer
 
 class UserSerializer(_UserSerializer):  #
     

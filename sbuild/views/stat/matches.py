@@ -5,8 +5,8 @@ __Seed builder__v1.0
 
 from views.helpers.viewsets import FullViewSet
 
-from models.stats.match import Match
-from serializers.stats.match import MatchSerializer
+from models.stat.match import Match
+from serializers.stat.match import MatchSerializer
 
 class _MatchViewSet(FullViewSet):  #
 

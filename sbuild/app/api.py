@@ -10,8 +10,8 @@ from rest_framework.routers import DefaultRouter
 from views.players import PlayerViewSet
 from views.teams import TeamViewSet
 from views.users import UserViewSet
-from views.stats.matches import MatchViewSet
-from views.stats.scores import ScoreViewSet
+from views.stat.matches import MatchViewSet
+from views.stat.scores import ScoreViewSet
 from views.helpers.files import FileView
 
 router = DefaultRouter()

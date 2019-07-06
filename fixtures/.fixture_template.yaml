@@ -1,5 +1,11 @@
-#__Seed builder__v1.0
+#
+# __Seed builder__v1.0
 #   (Read_only) Modify via SeedManifest.yaml
+#
+#   Guidelines: 
+#      - Modify attributes via SeedManifest.yaml
+#      - Use template as base for domain creation
+#
 
 # Player
 

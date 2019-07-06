@@ -3,7 +3,7 @@
 .venv*
 .env.dev
 .env.prod
-_seed*
+sbuild*
 app/api.py
 fixtures/*.yaml
 domain/*.py

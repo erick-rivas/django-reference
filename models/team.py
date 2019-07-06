@@ -17,7 +17,7 @@ __Seed builder__v1.0
 """
 
 from django.db import models
-from _seed.models.team import _Team
+from sbuild.models.team import _Team
 
 class Team(_Team):  #
     pass
