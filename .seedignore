@@ -3,13 +3,15 @@
 .venv*
 .env.dev
 .env.prod
+.seedignore
+LICENSE
 sbuild*
 app/api.py
 fixtures/*.yaml
 domain/*.py
 models/*
 serializers/*
-views/*.py
+views/*
 ?.env.example
 ?README.md
 ?requirements.txt

@@ -1,3 +1,8 @@
+"""
+__Seed builder__v1.0
+  (Read_only) Builder helper
+"""
+
 def _get(model, **values):
     try:
         return model.objects.get(**values)

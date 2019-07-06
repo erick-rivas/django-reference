@@ -1,3 +1,8 @@
+"""
+__Seed builder__v1.0
+  (Read_only) Builder helper
+"""
+
 from rest_framework import serializers
 from rest_auth.models import TokenModel
 

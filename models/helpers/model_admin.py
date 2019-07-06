@@ -1,3 +1,8 @@
+"""
+__Seed builder__v1.0
+  (Read_only) Builder helper
+"""
+
 from import_export.admin import ImportExportModelAdmin
 from import_export import resources
 from djangoql.admin import DjangoQLSearchMixin

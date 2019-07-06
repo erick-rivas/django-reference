@@ -1,3 +1,8 @@
+"""
+__Seed builder__v1.0
+  (Read_only) Builder helper
+"""
+
 import os
 from rest_framework import mixins
 from rest_framework import viewsets
