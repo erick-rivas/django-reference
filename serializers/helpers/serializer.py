@@ -3,9 +3,9 @@ __Seed builder__v1.0
   (Read_only) Builder helper
 """
 
-from rest_framework import serializers
+from dynamic_rest.serializers import DynamicModelSerializer
 
-class Serializer(serializers.ModelSerializer):
+class Serializer(DynamicModelSerializer):
     class Meta:
         model = None
         exclude = None

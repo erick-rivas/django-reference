@@ -11,14 +11,18 @@ from models.team import Team
 from models.helpers.file import File
 from serializers.user import UserSerializer
 from serializers.helpers.file import FileSerializer
+from dynamic_rest.fields import DynamicRelationField
 
 class _PlayerSerializer(Serializer):  #
     
-    team = InnerSerializer(Team, read_only=True)
+    team = DynamicRelationField('serializers.team.TeamSerializer', 
+        deferred=True, embed=True, read_only=True)
     photo = FileSerializer(read_only=True)
 
-    team_id = serializers.PrimaryKeyRelatedField(source='team', queryset=Team.objects.all())
-    photo_id = serializers.PrimaryKeyRelatedField(source='photo', queryset=File.objects.all())
+    team_id = serializers.PrimaryKeyRelatedField(source='team', queryset=Team.objects.all(), 
+        required=True, allow_null=False)
+    photo_id = serializers.PrimaryKeyRelatedField(source='photo', queryset=File.objects.all(), 
+        required=True, allow_null=False)
 
     class Meta:
         model = Player

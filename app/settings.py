@@ -28,6 +28,7 @@ INSTALLED_APPS = [
 
     # Libs
     'rest_framework',
+    'dynamic_rest',
     'rest_framework.authtoken',
     'rest_auth',
     'django_filters',
@@ -121,10 +122,14 @@ TEMPLATES = [
     },
 ]
 
-# Explorer settings
+REST_FRAMEWORK = {
+    'DEFAULT_RENDERER_CLASSES': [
+        'rest_framework.renderers.JSONRenderer',
+        'dynamic_rest.renderers.DynamicBrowsableAPIRenderer',
+    ],
+}
 
-EXPLORER_CONNECTIONS = { 'Default': 'readonly' }
-EXPLORER_DEFAULT_CONNECTION = 'readonly'
+DYNAMIC_REST = {'ENABLE_LINKS': False}
 
 
 # Internationalization

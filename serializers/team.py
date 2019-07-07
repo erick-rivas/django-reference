@@ -17,11 +17,14 @@ __Seed builder__v1.0
     - logo
     - description
     - market_value
+    - rival
     - identity_docs
     - players
+    - rival_id
     - player_ids
     
   Override fields
+    - rival: Team
     - players: Player
 """
 

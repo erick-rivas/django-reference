@@ -10,10 +10,12 @@ from models.user import User
 from models.team import Team
 from models.helpers.file import File
 from serializers.helpers.file import FileSerializer
+from dynamic_rest.fields import DynamicRelationField
 
 class _UserSerializer(Serializer):  #
     
-    teams = InnerSerializer(Team, many=True, read_only=True)
+    teams = DynamicRelationField('serializers.team.TeamSerializer', 
+        deferred=True, embed=True, many=True, read_only=True)
 
     team_ids = serializers.PrimaryKeyRelatedField(many=True, source='teams', read_only=True)
 

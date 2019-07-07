@@ -4,19 +4,18 @@ __Seed builder__v1.0
 """
 
 import os
-from rest_framework import mixins
-from rest_framework import viewsets
 from rest_framework import filters
 from rest_framework import status
 from rest_framework.response import Response
-from django_filters.rest_framework import DjangoFilterBackend
-from django.shortcuts import get_object_or_404
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import IsAuthenticated
 from rest_framework import permissions
+from rest_framework import viewsets
+from dynamic_rest.viewsets import WithDynamicViewSetMixin
+from django_filters.rest_framework import DjangoFilterBackend
+from django.shortcuts import get_object_or_404
 
-
-class BaseViewSet(viewsets.GenericViewSet):  #
+class ViewSet(WithDynamicViewSetMixin, viewsets.ModelViewSet):  #
 
     class AccessPermission(permissions.BasePermission):
         pass
@@ -25,6 +24,12 @@ class BaseViewSet(viewsets.GenericViewSet):  #
         authentication_classes = (TokenAuthentication,)
         access_class = AccessPermission
         permission_classes = (IsAuthenticated, access_class)
+
+
+    def get_serializer(self, *args, **kwargs):
+        kwargs['envelope'] = False
+        return super(ViewSet, self).get_serializer(*args, **kwargs)
+
 
     def destroy(self, request, pk=None):
         model = get_object_or_404(self.queryset, pk=pk)
@@ -37,32 +42,3 @@ class BaseViewSet(viewsets.GenericViewSet):  #
         serializer.is_valid(raise_exception=True)
         serializer.save()
         return Response(serializer.data)
-
-class ReadOnlyViewSet(
-    BaseViewSet,
-    mixins.ListModelMixin,
-    mixins.RetrieveModelMixin):
-    filter_backends = (DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter,)
-    filterset_fields = '__all__'
-    ordering_fields = '__all__'
-
-class WriteOnlyViewSet(
-    BaseViewSet,
-    mixins.CreateModelMixin,
-    mixins.UpdateModelMixin):
-    pass
-
-class ReadWriteViewSet(
-    ReadOnlyViewSet,
-    WriteOnlyViewSet):
-    pass
-
-class WriteDeleteViewSet(
-    WriteOnlyViewSet,
-    mixins.DestroyModelMixin):
-    pass
-
-class FullViewSet(
-    ReadWriteViewSet,
-    mixins.DestroyModelMixin):
-    pass

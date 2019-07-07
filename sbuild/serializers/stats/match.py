@@ -12,17 +12,23 @@ from models.stats.score import Score
 from models.helpers.file import File
 from serializers.user import UserSerializer
 from serializers.helpers.file import FileSerializer
+from dynamic_rest.fields import DynamicRelationField
 
 class _MatchSerializer(Serializer):  #
     
-    local = InnerSerializer(Team, read_only=True)
-    visitor = InnerSerializer(Team, read_only=True)
-    scores = InnerSerializer(Score, many=True, read_only=True)
-
-    local_id = serializers.PrimaryKeyRelatedField(source='local', queryset=Team.objects.all())
-    visitor_id = serializers.PrimaryKeyRelatedField(source='visitor', queryset=Team.objects.all())
+    local = DynamicRelationField('serializers.team.TeamSerializer', 
+        deferred=True, embed=True, read_only=True)
+    visitor = DynamicRelationField('serializers.team.TeamSerializer', 
+        deferred=True, embed=True, read_only=True)
+    scores = DynamicRelationField('serializers.stats.score.ScoreSerializer', 
+        deferred=True, embed=True, many=True, read_only=True)
 
     score_ids = serializers.PrimaryKeyRelatedField(many=True, source='scores', read_only=True)
+
+    local_id = serializers.PrimaryKeyRelatedField(source='local', queryset=Team.objects.all(), 
+        required=True, allow_null=False)
+    visitor_id = serializers.PrimaryKeyRelatedField(source='visitor', queryset=Team.objects.all(), 
+        required=True, allow_null=False)
 
     class Meta:
         model = Match

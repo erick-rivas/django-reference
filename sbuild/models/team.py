@@ -16,5 +16,8 @@ class _Team(Model):  #
     market_value = models.FloatField()
     identity_docs = models.ManyToManyField('File', related_name='team_identity_docs', blank=False)
 
+    rival = models.ForeignKey('Team', related_name='rival_teams',
+        blank=True, null=True, on_delete=models.CASCADE)
+
     class Meta:
         abstract = True
