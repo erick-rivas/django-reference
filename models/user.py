@@ -14,7 +14,7 @@ __Seed builder__v1.0
     - last_name: string
     - email: string
     - is_active: boolean
-    - teams: Team[]
+    - teams: team[]
 """
 
 from django.db import models

@@ -10,7 +10,7 @@ from models.stats.match import Match
 from models.team import Team
 from models.stats.score import Score
 from models.helpers.file import File
-from serializers.user import UserSerializer
+
 from serializers.helpers.file import FileSerializer
 from dynamic_rest.fields import DynamicRelationField
 

@@ -10,8 +10,8 @@ __Seed builder__v1.0
   Attributes:
     - id: int
     - min: int
-    - player: Player
-    - match: Match
+    - player: player
+    - match: match
 """
 
 from django.db import models

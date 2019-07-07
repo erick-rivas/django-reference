@@ -13,8 +13,8 @@ __Seed builder__v1.0
     - logo: image
     - description: text
     - market_value: float
-    - rival: Team
     - identity_docs: file[]
+    - rival: team
 """
 
 from django.db import models

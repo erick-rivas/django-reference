@@ -12,7 +12,7 @@ __Seed builder__v1.0
     - name: string
     - photo: image
     - is_active: boolean
-    - team: Team
+    - team: team
 """
 
 from django.db import models

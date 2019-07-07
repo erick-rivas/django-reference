@@ -11,8 +11,8 @@ __Seed builder__v1.0
     - id: int
     - date: date
     - type: enum
-    - local: Team
-    - visitor: Team
+    - local: team
+    - visitor: team
 """
 
 from django.db import models
