@@ -4,7 +4,7 @@ __Seed builder__v1.0
 """
 
 from rest_framework import serializers
-from sbuild.helpers.serializer import Serializer
+from seed.helpers.serializer import Serializer
 from models.team import Team
 from models.player import Player
 from models.helpers.file import File

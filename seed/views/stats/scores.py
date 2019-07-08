@@ -3,7 +3,7 @@ __Seed builder__v1.0
   (Read_only) Modify via SeedManifest.yaml
 """
 
-from sbuild.helpers.viewsets import ViewSet
+from seed.helpers.viewsets import ViewSet
 
 from models.stats.score import Score
 from serializers.stats.score import ScoreSerializer

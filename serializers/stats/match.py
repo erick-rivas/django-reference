@@ -29,7 +29,7 @@ __Seed builder__v1.0
 """
 
 from rest_framework import serializers
-from sbuild.serializers.stats.match import _MatchSerializer
+from seed.serializers.stats.match import _MatchSerializer
 
 class MatchSerializer(_MatchSerializer):  #
     

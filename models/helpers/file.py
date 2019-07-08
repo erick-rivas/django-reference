@@ -6,7 +6,7 @@ __Seed builder__v1.0
 import os
 from datetime import datetime
 from django.db import models
-from sbuild.helpers.model import Model
+from seed.helpers.model import Model
 
 class File(Model):  #
 

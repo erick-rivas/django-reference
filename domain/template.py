@@ -10,7 +10,7 @@ __Seed builder__v1.0
 """
 
 from django.db.models import Q
-from sbuild.util.query_util import _get, _list, _list_q, _list_o, _queryset, _create
+from seed.util.query_util import _get, _list, _list_q, _list_o, _queryset, _create
 
 from models.player import Player
 from models.team import Team

@@ -24,7 +24,7 @@ __Seed builder__v1.0
 """
 
 from rest_framework import serializers
-from sbuild.serializers.player import _PlayerSerializer
+from seed.serializers.player import _PlayerSerializer
 
 class PlayerSerializer(_PlayerSerializer):  #
     

@@ -29,7 +29,7 @@ __Seed builder__v1.0
 """
 
 from rest_framework import serializers
-from sbuild.serializers.team import _TeamSerializer
+from seed.serializers.team import _TeamSerializer
 
 class TeamSerializer(_TeamSerializer):  #
     

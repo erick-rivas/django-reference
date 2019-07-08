@@ -16,7 +16,7 @@ __Seed builder__v1.0
 """
 
 from django.db import models
-from sbuild.models.stats.match import _Match
+from seed.models.stats.match import _Match
 
 class Match(_Match):  #
     pass

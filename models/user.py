@@ -18,7 +18,7 @@ __Seed builder__v1.0
 """
 
 from django.db import models
-from sbuild.models.user import _User
+from seed.models.user import _User
 
 class User(_User):  #
     pass

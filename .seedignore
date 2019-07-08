@@ -5,10 +5,10 @@
 .env.prod
 .seedignore
 LICENSE
-sbuild/app/*
-sbuild/model/*
-sbuild/serializers/*
-sbuild/view/*
+seed/app/*
+seed/model/*
+seed/serializers/*
+seed/view/*
 app/api.py
 fixtures/*
 domain/*

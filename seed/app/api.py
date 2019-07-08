@@ -12,7 +12,7 @@ from views.teams import TeamViewSet
 from views.users import UserViewSet
 from views.stats.matches import MatchViewSet
 from views.stats.scores import ScoreViewSet
-from sbuild.helpers.file_view import FileView
+from seed.helpers.file_view import FileView
 
 router = DynamicRouter()
 router.register(r'players', PlayerViewSet)

@@ -18,10 +18,10 @@ from rest_framework.response import Response
 from rest_framework import status
 from rest_framework import permissions
 from django.shortcuts import get_object_or_404
-from sbuild.util.req_util import has_fields_or_400
-from sbuild.util.query_util import _get, _list, _list_q, _list_o, _queryset, _create
+from seed.util.req_util import has_fields_or_400
+from seed.util.query_util import _get, _list, _list_q, _list_o, _queryset, _create
 
-from sbuild.views.users import _UserViewSet
+from seed.views.users import _UserViewSet
 from models.user import User
 
 class UserViewSet(_UserViewSet):  #
