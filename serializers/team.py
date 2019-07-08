@@ -29,8 +29,6 @@ __Seed builder__v1.0
 """
 
 from rest_framework import serializers
-from serializers.helpers.serializer import InnerSerializer
-from serializers.helpers.serializer import InnerSerializerClass
 from sbuild.serializers.team import _TeamSerializer
 
 class TeamSerializer(_TeamSerializer):  #

@@ -5,10 +5,13 @@
 .env.prod
 .seedignore
 LICENSE
-sbuild*
+sbuild/app/*
+sbuild/model/*
+sbuild/serializers/*
+sbuild/view/*
 app/api.py
-fixtures/*.yaml
-domain/*.py
+fixtures/*
+domain/*
 models/*
 serializers/*
 views/*
@@ -18,6 +21,7 @@ views/*
 ?manage.py
 ?app/settings.py
 ?app/wsgi.py
+!domain/tests
 !models/migrations
 !*__init__.py
 !*helpers

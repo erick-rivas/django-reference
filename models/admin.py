@@ -8,7 +8,7 @@ __Seed builder__v1.0
 """
 
 from django.contrib import admin
-from models.helpers.model_admin import ModelAdminClass
+from sbuild.helpers.model_admin import ModelAdminClass
 from models.helpers.file import File
 from models.player import Player
 from models.team import Team

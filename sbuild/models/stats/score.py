@@ -5,7 +5,7 @@ __Seed builder__v1.0
 
 from datetime import datetime
 from django.db import models
-from models.helpers.model import Model
+from sbuild.helpers.model import Model
 
 class _Score(Model):  #
 

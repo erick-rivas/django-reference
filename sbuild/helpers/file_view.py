@@ -14,7 +14,6 @@ from rest_framework import status
 from models.helpers.file import File
 from serializers.helpers.file import FileSerializer
 
-
 class FileView(views.APIView):  #
 
     parser_classes = (MultiPartParser,)
