@@ -6,9 +6,9 @@
 .seedignore
 LICENSE
 seed/app/*
-seed/model/*
+seed/models/*
 seed/serializers/*
-seed/view/*
+seed/views/*
 app/api.py
 fixtures/*
 domain/*

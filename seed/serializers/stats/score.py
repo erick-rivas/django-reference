@@ -1,16 +1,17 @@
 """
 __Seed builder__v1.0
-  (Read_only) Modify via SeedManifest.yaml
+  AUTO_GENERATED (Read only)
+  Modify via builder
 """
 
 from rest_framework import serializers
 from seed.helpers.serializer import Serializer
-from models.stats.score import Score
-from models.player import Player
-from models.stats.match import Match
-from models.helpers.file import File
+from app.models import Score
+from app.models import Player
+from app.models import Match
+from app.models import File
+from seed.serializers.helpers.file import FileSerializer
 
-from serializers.helpers.file import FileSerializer
 from dynamic_rest.fields import DynamicRelationField
 
 class _ScoreSerializer(Serializer):  #

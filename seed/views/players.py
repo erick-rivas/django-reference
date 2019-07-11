@@ -1,12 +1,13 @@
 """
 __Seed builder__v1.0
-  (Read_only) Modify via SeedManifest.yaml
+  AUTO_GENERATED (Read only)
+  Modify via builder
 """
 
 from seed.helpers.viewsets import ViewSet
 
-from models.player import Player
-from serializers.player import PlayerSerializer
+from app.models import Player
+from app.serializers import PlayerSerializer
 
 class _PlayerViewSet(ViewSet):  #
 

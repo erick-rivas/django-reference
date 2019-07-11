@@ -11,8 +11,8 @@ from rest_framework import views
 from rest_framework.parsers import MultiPartParser
 from rest_framework.response import Response
 from rest_framework import status
-from models.helpers.file import File
-from serializers.helpers.file import FileSerializer
+from app.models import File
+from seed.serializers.helpers.file import FileSerializer
 
 class FileView(views.APIView):  #
 

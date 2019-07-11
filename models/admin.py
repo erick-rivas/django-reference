@@ -9,12 +9,12 @@ __Seed builder__v1.0
 
 from django.contrib import admin
 from seed.helpers.model_admin import ModelAdminClass
-from models.helpers.file import File
-from models.player import Player
-from models.team import Team
-from models.user import User
-from models.stats.match import Match
-from models.stats.score import Score
+from app.models import Player
+from app.models import Team
+from app.models import User
+from app.models import Match
+from app.models import Score
+from app.models import File
 
 class FileAdmin(ModelAdminClass(File)):
     pass

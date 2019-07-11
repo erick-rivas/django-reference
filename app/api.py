@@ -1,10 +1,7 @@
 """
 __Seed builder__v1.0
 
-  Guidelines: 
-    - Modify model routes via SeedManifest.yaml
-
-  Routes:
+  Base routes:
     - /players
     - /teams
     - /users

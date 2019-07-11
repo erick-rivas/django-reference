@@ -1,9 +1,9 @@
 #
 # __Seed builder__v1.0
-#   (Read_only) Modify via SeedManifest.yaml
+#   AUTO_GENERATED (Read only)
+#   Modify via builder
 #
-#   Guidelines: 
-#      - Modify attributes via SeedManifest.yaml
+#   Guidelines:
 #      - Use template as base for domain creation
 #
 

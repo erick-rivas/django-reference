@@ -91,7 +91,7 @@ if not DEBUG:
 
 # Security settings
 
-REST_AUTH_SERIALIZERS = {'TOKEN_SERIALIZER': 'serializers.helpers.token.TokenSerializer'}
+REST_AUTH_SERIALIZERS = {'TOKEN_SERIALIZER': 'seed.serializers.helpers.token.TokenSerializer'}
 CORS_ORIGIN_ALLOW_ALL = True
 ALLOWED_HOSTS = ['*']
 

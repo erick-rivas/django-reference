@@ -1,12 +1,13 @@
 """
 __Seed builder__v1.0
-  (Read_only) Modify via SeedManifest.yaml
+  AUTO_GENERATED (Read only)
+  Modify via builder
 """
 
 from seed.helpers.viewsets import ViewSet
 
-from models.user import User
-from serializers.user import UserSerializer
+from app.models import User
+from app.serializers import UserSerializer
 
 class _UserViewSet(ViewSet):  #
 
