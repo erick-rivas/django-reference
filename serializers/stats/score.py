@@ -30,4 +30,4 @@ from seed.serializers.stats.score import _ScoreSerializer
 class ScoreSerializer(_ScoreSerializer):  #
     
     class Meta(_ScoreSerializer.Meta):
-        pass
+        extra_fields = ()

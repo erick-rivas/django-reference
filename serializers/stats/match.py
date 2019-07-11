@@ -34,4 +34,4 @@ from seed.serializers.stats.match import _MatchSerializer
 class MatchSerializer(_MatchSerializer):  #
     
     class Meta(_MatchSerializer.Meta):
-        pass
+        extra_fields = ()

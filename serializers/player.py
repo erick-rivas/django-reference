@@ -29,4 +29,4 @@ from seed.serializers.player import _PlayerSerializer
 class PlayerSerializer(_PlayerSerializer):  #
     
     class Meta(_PlayerSerializer.Meta):
-        pass
+        extra_fields = ()

@@ -31,4 +31,4 @@ from seed.serializers.user import _UserSerializer
 class UserSerializer(_UserSerializer):  #
     
     class Meta(_UserSerializer.Meta):
-        pass
+        extra_fields = ()

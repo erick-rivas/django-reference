@@ -31,7 +31,8 @@ class _TeamSerializer(Serializer):  #
 
     class Meta:
         model = Team
-        fields = (
+        extra_fields = ()
+        default_fields = (
             'id',
             'hash',
             'name',
@@ -46,3 +47,4 @@ class _TeamSerializer(Serializer):  #
             'rival_id',
             'player_ids',  
         )
+        fields = default_fields + extra_fields

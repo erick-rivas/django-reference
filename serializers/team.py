@@ -34,4 +34,4 @@ from seed.serializers.team import _TeamSerializer
 class TeamSerializer(_TeamSerializer):  #
     
     class Meta(_TeamSerializer.Meta):
-        pass
+        extra_fields = ()

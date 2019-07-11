@@ -17,9 +17,7 @@ from models.stats.match import Match
 from models.stats.score import Score
 
 class Test(TestCase):  #
-    
-    def setUp(self):
-        pass  # Tip: Create objects
 
     def test(self):
-        pass
+        res = "hi!"
+        self.assertEqual("hi!", res)
