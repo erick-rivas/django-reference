@@ -30,18 +30,18 @@ def get_user_viewset():
 
 def get_match_viewset():
     try:
-        from views.stats.matches import MatchViewSet
+        from views.matches import MatchViewSet
         return MatchViewSet
     except:
-        from seed.views.stats.matches import _MatchViewSet
+        from seed.views.matches import _MatchViewSet
         return _MatchViewSet
 
 def get_score_viewset():
     try:
-        from views.stats.scores import ScoreViewSet
+        from views.scores import ScoreViewSet
         return ScoreViewSet
     except:
-        from seed.views.stats.scores import _ScoreViewSet
+        from seed.views.scores import _ScoreViewSet
         return _ScoreViewSet
 
 def get_file_view():
