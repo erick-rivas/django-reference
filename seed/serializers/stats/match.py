@@ -16,11 +16,11 @@ from dynamic_rest.fields import DynamicRelationField
 
 class _MatchSerializer(Serializer):  #
     
-    local = DynamicRelationField('serializers.team.TeamSerializer', 
+    local = DynamicRelationField('app.serializers.TeamSerializer', 
         deferred=True, embed=True, read_only=True)
-    visitor = DynamicRelationField('serializers.team.TeamSerializer', 
+    visitor = DynamicRelationField('app.serializers.TeamSerializer', 
         deferred=True, embed=True, read_only=True)
-    scores = DynamicRelationField('serializers.stats.score.ScoreSerializer', 
+    scores = DynamicRelationField('app.serializers.ScoreSerializer', 
         deferred=True, embed=True, many=True, read_only=True)
 
     score_ids = serializers.PrimaryKeyRelatedField(many=True, source='scores', read_only=True)

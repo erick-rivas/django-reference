@@ -15,7 +15,7 @@ from dynamic_rest.fields import DynamicRelationField
 
 class _PlayerSerializer(Serializer):  #
     
-    team = DynamicRelationField('serializers.team.TeamSerializer', 
+    team = DynamicRelationField('app.serializers.TeamSerializer', 
         deferred=True, embed=True, read_only=True)
     photo = FileSerializer(read_only=True)
 

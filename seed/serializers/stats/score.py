@@ -16,9 +16,9 @@ from dynamic_rest.fields import DynamicRelationField
 
 class _ScoreSerializer(Serializer):  #
     
-    player = DynamicRelationField('serializers.player.PlayerSerializer', 
+    player = DynamicRelationField('app.serializers.PlayerSerializer', 
         deferred=True, embed=True, read_only=True)
-    match = DynamicRelationField('serializers.stats.match.MatchSerializer', 
+    match = DynamicRelationField('app.serializers.MatchSerializer', 
         deferred=True, embed=True, read_only=True)
 
     player_id = serializers.PrimaryKeyRelatedField(source='player', queryset=Player.objects.all(), 

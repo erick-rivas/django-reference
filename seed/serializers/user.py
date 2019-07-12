@@ -15,7 +15,7 @@ from dynamic_rest.fields import DynamicRelationField
 
 class _UserSerializer(Serializer):  #
     
-    teams = DynamicRelationField('serializers.team.TeamSerializer', 
+    teams = DynamicRelationField('app.serializers.TeamSerializer', 
         deferred=True, embed=True, many=True, read_only=True)
 
     team_ids = serializers.PrimaryKeyRelatedField(many=True, source='teams', read_only=True)
