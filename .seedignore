@@ -5,6 +5,8 @@
 .env.prod
 .seedignore
 LICENSE
+SeedManifest.json
+SeedExport.json
 seed/app/*
 seed/models/*
 seed/serializers/*

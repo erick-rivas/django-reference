@@ -1,0 +1,10 @@
+{
+  "serializers": [
+    "team",
+    "player"
+  ],
+  "views": [
+    "team",
+    "player"
+  ]
+}
