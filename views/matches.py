@@ -21,8 +21,8 @@ from django.shortcuts import get_object_or_404
 from seed.util.req_util import has_fields_or_400
 from seed.util.query_util import _get, _list, _list_q, _list_o, _queryset, _create
 
-from seed.views.players import _PlayerViewSet
-from app.models import Player
+from seed.views.matches import _MatchViewSet
+from app.models import Match
 
-class PlayerViewSet(_PlayerViewSet):  #
+class MatchViewSet(_MatchViewSet):  #
     pass

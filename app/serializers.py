@@ -13,16 +13,16 @@ def get_team_serializer():
     return TeamSerializer
 
 def get_user_serializer():
-    from seed.serializers.user import _UserSerializer
-    return _UserSerializer
+    from serializers.user import UserSerializer
+    return UserSerializer
 
 def get_match_serializer():
-    from seed.serializers.stats.match import _MatchSerializer
-    return _MatchSerializer
+    from serializers.stats.match import MatchSerializer
+    return MatchSerializer
 
 def get_score_serializer():
-    from seed.serializers.stats.score import _ScoreSerializer
-    return _ScoreSerializer
+    from serializers.stats.score import ScoreSerializer
+    return ScoreSerializer
 
 def get_file_serializer():
     from seed.serializers.helpers.file import FileSerializer

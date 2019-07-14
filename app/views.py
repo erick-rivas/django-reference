@@ -13,16 +13,16 @@ def get_team_viewset():
     return TeamViewSet
 
 def get_user_viewset():
-    from seed.views.users import _UserViewSet
-    return _UserViewSet
+    from views.users import UserViewSet
+    return UserViewSet
 
 def get_match_viewset():
-    from seed.views.matches import _MatchViewSet
-    return _MatchViewSet
+    from views.matches import MatchViewSet
+    return MatchViewSet
 
 def get_score_viewset():
-    from seed.views.scores import _ScoreViewSet
-    return _ScoreViewSet
+    from views.scores import ScoreViewSet
+    return ScoreViewSet
 
 def get_file_view():
     from seed.views.helpers.file import FileView
