@@ -19,10 +19,11 @@ class _Match(Model):  #
     date = models.DateTimeField(default=datetime.now)
     type = models.CharField(max_length=32, choices=TYPES)
 
-    local = models.ForeignKey('Team', related_name='local_matches',
+    local = models.ForeignKey('models.Team', related_name='local_matches',
         blank=False, null=False, on_delete=models.CASCADE)
-    visitor = models.ForeignKey('Team', related_name='visitor_matches',
+    visitor = models.ForeignKey('models.Team', related_name='visitor_matches',
         blank=False, null=False, on_delete=models.CASCADE)
 
     class Meta:
+        db_table = 'match'
         abstract = True

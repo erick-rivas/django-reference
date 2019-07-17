@@ -11,12 +11,13 @@ from seed.helpers.model import Model
 class _Player(Model):  #
 
     name = models.CharField(max_length=256, blank=True)
-    photo = models.ForeignKey('File', related_name='player_photos',
+    photo = models.ForeignKey('models.File', related_name='player_photos',
         blank=False, null=False, on_delete=models.PROTECT)
     is_active = models.BooleanField(default=True)
 
-    team = models.ForeignKey('Team', related_name='players',
+    team = models.ForeignKey('models.Team', related_name='players',
         blank=False, null=False, on_delete=models.CASCADE)
 
     class Meta:
+        db_table = 'player'
         abstract = True

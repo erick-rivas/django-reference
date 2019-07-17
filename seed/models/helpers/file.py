@@ -13,3 +13,7 @@ class File(Model):  #
     url = models.URLField()
     size = models.IntegerField()
     name = models.CharField(max_length=128)
+
+    class Meta:
+        db_table = 'file'
+        app_label = 'models'

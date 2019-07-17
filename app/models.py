@@ -25,7 +25,7 @@ def get_score():
     return Score
 
 def get_file():
-    from models.helpers.file import File
+    from seed.models.helpers.file import File
     return File
 
 Player = get_player()

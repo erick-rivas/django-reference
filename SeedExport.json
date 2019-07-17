@@ -1,4 +1,11 @@
 {
+  "models": [
+    "user",
+    "team",
+    "player",
+    "match",
+    "score"
+  ],
   "serializers": [
     "user",
     "team",
