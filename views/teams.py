@@ -1,16 +1,5 @@
 """
 __Seed builder__v1.0
-
-  Guidelines:
-    - Add business logic via domains
-    - Preferably just add actions if required
-    - Reference viewset: https://www.django-rest-framework.org/api-guide/viewsets/
-    - Reference actions: reference: https://www.django-rest-framework.org/api-guide/viewsets/#viewset-actions
-
-  Override attributes:
-    - access_class 
-      - Inherit from permissions.BasePermission
-      - Reference: https://www.django-rest-framework.org/api-guide/permissions/
 """
 
 from rest_framework.decorators import action

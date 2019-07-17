@@ -6,16 +6,16 @@ This file contains guides to enable security practices (hardware & deployment) f
 
 To enable token authentication:
 
-- Add ENABLE_SECURITY=true to .env files
+-  Add ENABLE_SECURITY=true to .env files
 
 ### Test token request
 
-- Generate temp token
+-  Generate temp token
 ```bash
 (.venv)$ python3 manage.py drf_create_token 
 ```
 
-- Send a request with the authentication params
+-  Send a request with the authentication params
 ```bash
 $ curl -i -X GET http://127.0.0.1:8000/api/players -H 'Authorization: Token '
 ```
