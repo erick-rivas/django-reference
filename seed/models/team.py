@@ -19,6 +19,10 @@ class _Team(Model):  #
 
     rival = models.ForeignKey('models.Team', related_name='rival_teams',
         blank=True, null=True, on_delete=models.CASCADE)
+    
+    @property
+    def players(self):
+        return self.players.all()
 
     class Meta:
         db_table = 'team'

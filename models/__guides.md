@@ -36,7 +36,7 @@ class User(_User):  #
 
     @property
     def full_name(self):
-        return self.first_name + " " self.last_name
+        return self.first_name + " " + self.last_name
 ```
 
 ## References
@@ -49,46 +49,56 @@ class User(_User):  #
 
 Reference: [Player](../seed/models/player.py) \
 Attributes:
--  name
--  photo
--  is_active
--  team
+-  id: int
+-  name: string
+-  photo: image
+-  is_active: boolean
+-  team: team
 
 ###  Team
 
 Reference: [Team](../seed/models/team.py) \
 Attributes:
--  name
--  logo
--  description
--  market_value
--  rival
--  identity_docs
--  players
+-  id: int
+-  name: string
+-  logo: image
+-  description: text
+-  market_value: float
+-  identity_docs: file[]
+-  rival: team
+-  players: player[]
 
 ###  User
 
 Reference: [User](../seed/models/user.py) \
 Attributes:
--  teams
+-  id: int
+-  username: string
+-  first_name: string
+-  last_name: string
+-  email: string
+-  is_active: boolean
+-  teams: team[]
 
 ###  Match
 
 Reference: [Match](../seed/models/stats/match.py) \
 Attributes:
--  date
--  type
--  local
--  visitor
--  scores
+-  id: int
+-  date: date
+-  type: enum
+-  local: team
+-  visitor: team
+-  scores: score[]
 
 ###  Score
 
 Reference: [Score](../seed/models/stats/score.py) \
 Attributes:
--  min
--  player
--  match
+-  id: int
+-  min: int
+-  player: player
+-  match: match
 
 > To export a model use command \
 > $ seed export -m models:model_name

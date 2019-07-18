@@ -9,6 +9,7 @@ __Seed builder__v1.0
     - market_value: float
     - identity_docs: file[]
     - rival: team
+    - players: player[]
 """
 
 from django.db import models

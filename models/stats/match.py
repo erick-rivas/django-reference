@@ -7,6 +7,7 @@ __Seed builder__v1.0
     - type: enum
     - local: team
     - visitor: team
+    - scores: score[]
 """
 
 from django.db import models

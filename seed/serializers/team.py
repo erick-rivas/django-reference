@@ -18,6 +18,7 @@ class _TeamSerializer(Serializer):  #
     rival = DynamicRelationField('app.serializers.TeamSerializer', 
         deferred=True, embed=True, read_only=True)
     players = DynamicRelationField('app.serializers.PlayerSerializer', 
+        source='players',
         deferred=True, embed=True, many=True, read_only=True)
     logo = FileSerializer(read_only=True)
     identity_docs = FileSerializer(many=True, read_only=True)
