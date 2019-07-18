@@ -1,6 +1,6 @@
 # Tests
 
-Represents the cases to test domain methods (business logic)
+Represents the domain methods test cases
 
 ## Table of content
 

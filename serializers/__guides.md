@@ -7,12 +7,12 @@ Represents the model mappers to enable rest requests (aka. models to json).
 -  [Guidelines](#guidelines)
 -  [Example](#example)
 -  [References](#references)
--  [Seed serializers](#generated-serializers)
+-  [Seed serializers](#seed-serializers)
 
 ## Guidelines
 
 -  Use serializers only to add extra attributes of models
-   -  For example (aggregated functions or definitions)
+   -  For example: properties
 
 ## Example
 
@@ -37,4 +37,4 @@ class TeamSerializer(_TeamSerializer):  #
 -  [ScoreSerializer](../seed/serializers/stats/score.py)
 
 > To export a serializer use command \
-> $ seed export -m serializer:model_name
+> $ seed export -m serializers:model_name

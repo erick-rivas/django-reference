@@ -6,8 +6,12 @@ Represents the methods to handle business logic
 
 -  [Guidelines](#guidelines)
 -  [Examples](#examples)
+-  [References](#references)
 
 ##  Guidelines
+
+-  To implement queries use query_util methods
+    - Example: _get, _create, _list
 
 ##  Examples
 
@@ -29,3 +33,7 @@ def create_project(user, project_name):  #
             total_available_market=0, served_available_market=0, target_market=0,
             project=project)
 ```
+
+## References
+
+-  Query reference: [https://docs.djangoproject.com/en/2.2/topics/db/queries/](https://docs.djangoproject.com/en/2.2/topics/db/queries/)

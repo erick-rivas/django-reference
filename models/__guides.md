@@ -1,6 +1,6 @@
 # Models
 
-Represents the model definitions to database
+Represents the model definitions of the application (database)
 
 ## Table of content
 
@@ -17,29 +17,37 @@ Represents the model definitions to database
 
 ## Description
 
-The model module represents the application models that define the database structure.
+The model module represents the application models that define the database structure, it includes:
+-  Data types
+-  Foreign keys
+-  Enums
+-  Table settings
 
 ## Guidelines
 
--  Only add aggregate methods or definitions if required
+-  Modify attributes types and names via builder.
+-  Only add aggregate methods (properties) if required
    -  Example: has_members(), complete_name() ...
 
 ## Example
 
 ```python
-class Player(_Player):  #
-    pass
+class User(_User):  #
+
+    @property
+    def full_name(self):
+        return self.first_name + " " self.last_name
 ```
 
 ## References
 
--  Model reference: [https://docs.djangoproject.com/en/2.1/topics/db/models/](https://docs.djangoproject.com/en/2.1/topics/db/models/)
+-  Model reference: [https://docs.djangoproject.com/en/2.2/topics/db/models/](https://docs.djangoproject.com/en/2.2/topics/db/models/)
 
 ## Seed models
 
 ###  Player
 
-Reference: [Player](../seed/serializers/player.py) \
+Reference: [Player](../seed/models/player.py) \
 Attributes:
 -  name
 -  photo
@@ -48,7 +56,7 @@ Attributes:
 
 ###  Team
 
-Reference: [Team](../seed/serializers/team.py) \
+Reference: [Team](../seed/models/team.py) \
 Attributes:
 -  name
 -  logo
@@ -60,13 +68,13 @@ Attributes:
 
 ###  User
 
-Reference: [User](../seed/serializers/user.py) \
+Reference: [User](../seed/models/user.py) \
 Attributes:
 -  teams
 
 ###  Match
 
-Reference: [Match](../seed/serializers/stats/match.py) \
+Reference: [Match](../seed/models/stats/match.py) \
 Attributes:
 -  date
 -  type
@@ -76,8 +84,11 @@ Attributes:
 
 ###  Score
 
-Reference: [Score](../seed/serializers/stats/score.py) \
+Reference: [Score](../seed/models/stats/score.py) \
 Attributes:
 -  min
 -  player
 -  match
+
+> To export a model use command \
+> $ seed export -m models:model_name

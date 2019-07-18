@@ -1,20 +1,20 @@
 # Views
 
-Represents the module that handle API routes (endpoints)
+Represents the API routes definitions (endpoints)
 
 ## Table of content
 
 -  [Description](#description)
 -  [Guidelines](#guidelines)
 -  [Examples](#examples)
-    - [GET Example](#get-example)
-    - [POST Example](#post-example)
+    - [GET example](#get-example)
+    - [POST example](#post-example)
 -  [References](#references)
 -  [Seed views](#seed-views)
 
 ## Description
 
-The viewsets are the responsable to handle all the http requests corresponding to a particular model (CRUD).
+The viewsets are the responsible to handle all the http requests corresponding to a particular model (CRUD).
 
 By default, a viewset the main CRUD operations of a model using REST standard. Example: 
 
@@ -26,7 +26,7 @@ By default, a viewset the main CRUD operations of a model using REST standard. E
 ## Guidelines
 
 -  Add business logic via domains.
--  Preferably *just add actions* if required-
+-  Preferably *just add actions* if required
 
 ## Examples
 
@@ -87,11 +87,11 @@ POST http://localhost:8000/users/1/create_profile
 
 ## Seed views
 
--  [PlayerViewSet](../seed/players.py)
--  [TeamViewSet](../seed/teams.py)
--  [UserViewSet](../seed/users.py)
--  [MatchViewSet](../seed/matches.py)
--  [ScoreViewSet](../seed/scores.py)
+-  [PlayerViewSet](../seed/views/players.py)
+-  [TeamViewSet](../seed/views/teams.py)
+-  [UserViewSet](../seed/views/users.py)
+-  [MatchViewSet](../seed/views/matches.py)
+-  [ScoreViewSet](../seed/views/scores.py)
 
 > To export a view use command \
 > $ seed export -m views:model_name
