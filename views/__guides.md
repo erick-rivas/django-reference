@@ -35,7 +35,7 @@ By default, a viewset the main CRUD operations of a model using REST standard. E
 ```python
 class PlayerViewSet(_PlayerViewSet):  #
     
-    @action(detail=True, methods=['get'])
+    @action(detail=False, methods=['get'])
     def top_10(self, request):  #
 
         # Validate that has required fields

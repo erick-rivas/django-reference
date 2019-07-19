@@ -17,19 +17,14 @@ from django.shortcuts import get_object_or_404
 
 class ViewSet(WithDynamicViewSetMixin, viewsets.ModelViewSet):  #
 
-    class AccessPermission(permissions.BasePermission):
-        pass
+    authentication_classes = (TokenAuthentication,)
 
     if 'ENABLE_SECURITY' in os.environ:
-        authentication_classes = (TokenAuthentication,)
-        access_class = AccessPermission
-        permission_classes = (IsAuthenticated, access_class)
-
+        permission_classes = (IsAuthenticated,)
 
     def get_serializer(self, *args, **kwargs):
         kwargs['envelope'] = False
         return super(ViewSet, self).get_serializer(*args, **kwargs)
-
 
     def destroy(self, request, pk=None):
         model = get_object_or_404(self.queryset, pk=pk)

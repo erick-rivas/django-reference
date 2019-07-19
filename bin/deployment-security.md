@@ -2,9 +2,9 @@
 
 This file contains guides to enable security practices (hardware & deployment) for django api
 
-## Token authentication
+## Limit anonymous users
 
-To enable token authentication:
+To limit request to registered users (token authentication):
 
 -  Add ENABLE_SECURITY=true to .env files
 

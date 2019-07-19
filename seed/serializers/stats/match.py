@@ -20,9 +20,7 @@ class _MatchSerializer(Serializer):  #
         deferred=True, embed=True, read_only=True)
     visitor = DynamicRelationField('app.serializers.TeamSerializer', 
         deferred=True, embed=True, read_only=True)
-    scores = DynamicRelationField('app.serializers.ScoreSerializer', 
-        source='scores',
-        deferred=True, embed=True, many=True, read_only=True)
+    scores = DynamicRelationField('app.serializers.ScoreSerializer',deferred=True, embed=True, many=True, read_only=True)
 
     score_ids = serializers.PrimaryKeyRelatedField(many=True, source='scores', read_only=True)
 
