@@ -39,5 +39,5 @@ class ViewSet(WithDynamicViewSetMixin, viewsets.ModelViewSet):  #
         return Response(serializer.data)
 
     def response(self, data, **kwargs):
-        serializer = self.serializer_class(data, **kwargs)
+        serializer = self.get_serializer(data, **kwargs)
         return Response(serializer.data)

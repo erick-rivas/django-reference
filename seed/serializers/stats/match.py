@@ -31,8 +31,7 @@ class _MatchSerializer(Serializer):  #
 
     class Meta:
         model = Match
-        extra_fields = ()
-        default_fields = (
+        fields = (
             'id',
             'hash',
             'date',
@@ -44,4 +43,3 @@ class _MatchSerializer(Serializer):  #
             'visitor_id',
             'score_ids',  
         )
-        fields = default_fields + extra_fields

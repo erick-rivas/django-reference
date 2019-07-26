@@ -21,3 +21,4 @@ class TeamSerializer(_TeamSerializer):  #
     
     class Meta(_TeamSerializer.Meta):
         extra_fields = ()
+        fields = _TeamSerializer.Meta.fields + extra_fields

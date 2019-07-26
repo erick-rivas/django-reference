@@ -28,8 +28,7 @@ class _ScoreSerializer(Serializer):  #
 
     class Meta:
         model = Score
-        extra_fields = ()
-        default_fields = (
+        fields = (
             'id',
             'hash',
             'min',
@@ -38,4 +37,3 @@ class _ScoreSerializer(Serializer):  #
             'player_id',
             'match_id',  
         )
-        fields = default_fields + extra_fields

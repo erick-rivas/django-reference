@@ -26,8 +26,7 @@ class _PlayerSerializer(Serializer):  #
 
     class Meta:
         model = Player
-        extra_fields = ()
-        default_fields = (
+        fields = (
             'id',
             'hash',
             'name',
@@ -37,4 +36,3 @@ class _PlayerSerializer(Serializer):  #
             'photo_id',
             'team_id',  
         )
-        fields = default_fields + extra_fields

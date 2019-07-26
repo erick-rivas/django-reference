@@ -17,3 +17,4 @@ class ScoreSerializer(_ScoreSerializer):  #
     
     class Meta(_ScoreSerializer.Meta):
         extra_fields = ()
+        fields = _ScoreSerializer.Meta.fields + extra_fields

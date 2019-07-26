@@ -19,3 +19,4 @@ class UserSerializer(_UserSerializer):  #
     
     class Meta(_UserSerializer.Meta):
         extra_fields = ()
+        fields = _UserSerializer.Meta.fields + extra_fields

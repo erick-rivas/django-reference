@@ -17,3 +17,4 @@ class PlayerSerializer(_PlayerSerializer):  #
     
     class Meta(_PlayerSerializer.Meta):
         extra_fields = ()
+        fields = _PlayerSerializer.Meta.fields + extra_fields

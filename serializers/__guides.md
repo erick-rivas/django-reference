@@ -21,7 +21,8 @@ class TeamSerializer(_TeamSerializer):  #
     
     class Meta(_TeamSerializer.Meta):
         # Include extra field called 'complete_name'
-        extra_fields = ('complete_name')
+        extra_fields = ('complete_name',)
+        fields = _TeamSerializer.Meta.fields + extra_fields
 ```
 
 ## References

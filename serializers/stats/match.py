@@ -20,3 +20,4 @@ class MatchSerializer(_MatchSerializer):  #
     
     class Meta(_MatchSerializer.Meta):
         extra_fields = ()
+        fields = _MatchSerializer.Meta.fields + extra_fields
