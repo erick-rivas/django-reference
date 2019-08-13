@@ -18,7 +18,8 @@ class _UserSerializer(Serializer):  #
     teams = DynamicRelationField('app.serializers.TeamSerializer', 
         deferred=True, embed=True, many=True, read_only=True)
 
-    team_ids = serializers.PrimaryKeyRelatedField(many=True, source='teams', read_only=True)
+    team_ids = serializers.PrimaryKeyRelatedField(many=True, source='teams', queryset=Team.objects.all(), 
+        required=True, allow_null=False)
 
     class Meta:
         model = User
