@@ -29,5 +29,5 @@ class _Match(Model):  #
         return self.scores.all()
 
     class Meta:
-        db_table = 'match'
+        db_table = '_match'
         abstract = True

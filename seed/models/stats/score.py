@@ -18,5 +18,5 @@ class _Score(Model):  #
         blank=False, null=False, on_delete=models.CASCADE)
 
     class Meta:
-        db_table = 'score'
+        db_table = '_score'
         abstract = True

@@ -19,5 +19,5 @@ class _Player(Model):  #
         blank=False, null=False, on_delete=models.CASCADE)
 
     class Meta:
-        db_table = 'player'
+        db_table = '_player'
         abstract = True

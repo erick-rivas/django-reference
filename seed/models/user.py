@@ -11,8 +11,9 @@ from seed.helpers.model import Model
 
 class _User(AbstractUser, Model):  #
 
-    teams = models.ManyToManyField('models.Team', related_name='users', blank=False)
+    teams = models.ManyToManyField('models.Team', related_name='users', blank=False,
+        db_table = '_user__teams')
 
     class Meta:
-        db_table = 'user'
+        db_table = '_user'
         abstract = True

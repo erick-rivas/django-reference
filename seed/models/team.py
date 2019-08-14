@@ -25,5 +25,5 @@ class _Team(Model):  #
         return self.players.all()
 
     class Meta:
-        db_table = 'team'
+        db_table = '_team'
         abstract = True
