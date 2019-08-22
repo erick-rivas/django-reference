@@ -9,6 +9,15 @@ Represents the domain methods test cases
 
 ## Guidelines
 
+-  Start file name with test_
+>  Example test_players.py
+
+-  Run with:
+```
+$ python3 manage.py test domain/tests
+```
+
+
 ## Example
 
 ```python

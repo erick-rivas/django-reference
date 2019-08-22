@@ -20,5 +20,11 @@ class Model(models.Model):  #
         self.hash = hash((pk, time.time()))
         super().save(*args, **kwargs)
 
+    def get(self, **values):
+        try:
+            return self.objects.get(**values)
+        except self.DoesNotExist:
+            return None
+
     class Meta:
         abstract = True
