@@ -131,6 +131,14 @@ REST_FRAMEWORK = {
 
 DYNAMIC_REST = {'ENABLE_LINKS': False}
 
+# EMAIL
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST_USER = os.getenv('SMTP_EMAIL')
+EMAIL_HOST_PASSWORD = os.getenv('SMTP_PASSWORD')
+EMAIL_HOST = os.getenv('SMTP_HOST')
+EMAIL_PORT = os.getenv('SMTP_PORT')
+EMAIL_USE_SSL = True
 
 # Internationalization
 
