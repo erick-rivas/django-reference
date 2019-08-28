@@ -17,7 +17,6 @@ Represents the domain methods test cases
 $ python3 manage.py test domain/tests
 ```
 
-
 ## Example
 
 ```python
