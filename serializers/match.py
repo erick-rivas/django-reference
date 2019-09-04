@@ -14,7 +14,7 @@ __Seed builder__v1.0
 """
 
 from rest_framework import serializers
-from seed.serializers.stats.match import _MatchSerializer
+from seed.serializers.match import _MatchSerializer
 
 class MatchSerializer(_MatchSerializer):  #
     

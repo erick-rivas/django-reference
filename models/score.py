@@ -9,7 +9,7 @@ __Seed builder__v1.0
 """
 
 from django.db import models
-from seed.models.stats.score import _Score
+from seed.models.score import _Score
 
 class Score(_Score):  #
     pass

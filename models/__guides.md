@@ -9,11 +9,11 @@ Represents the model definitions of the application (database)
 -  [Example](#example)
 -  [References](#references)
 -  [Seed models](#seed-models)
+    -  [Match](#Match)
     -  [Player](#Player)
+    -  [Score](#Score)
     -  [Team](#Team)
     -  [User](#User)
-    -  [Match](#Match)
-    -  [Score](#Score)
 
 ## Description
 
@@ -45,6 +45,17 @@ class User(_User):  #
 
 ## Seed models
 
+###  Match
+
+Reference: [Match](../seed/models/match.py) \
+Attributes:
+-  id: int
+-  date: date
+-  type: enum
+-  local: team
+-  visitor: team
+-  scores: score[]
+
 ###  Player
 
 Reference: [Player](../seed/models/player.py) \
@@ -54,6 +65,15 @@ Attributes:
 -  photo: image
 -  is_active: boolean
 -  team: team
+
+###  Score
+
+Reference: [Score](../seed/models/score.py) \
+Attributes:
+-  id: int
+-  min: int
+-  player: player
+-  match: match
 
 ###  Team
 
@@ -79,26 +99,6 @@ Attributes:
 -  email: string
 -  is_active: boolean
 -  teams: team[]
-
-###  Match
-
-Reference: [Match](../seed/models/stats/match.py) \
-Attributes:
--  id: int
--  date: date
--  type: enum
--  local: team
--  visitor: team
--  scores: score[]
-
-###  Score
-
-Reference: [Score](../seed/models/stats/score.py) \
-Attributes:
--  id: int
--  min: int
--  player: player
--  match: match
 
 > To export a model use command \
 > $ seed export -m models:model_name

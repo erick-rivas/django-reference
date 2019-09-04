@@ -31,11 +31,11 @@ class TeamSerializer(_TeamSerializer):  #
 
 ## Seed serializers
 
+-  [MatchSerializer](../seed/serializers/match.py)
 -  [PlayerSerializer](../seed/serializers/player.py)
+-  [ScoreSerializer](../seed/serializers/score.py)
 -  [TeamSerializer](../seed/serializers/team.py)
 -  [UserSerializer](../seed/serializers/user.py)
--  [MatchSerializer](../seed/serializers/stats/match.py)
--  [ScoreSerializer](../seed/serializers/stats/score.py)
 
 > To export a serializer use command \
 > $ seed export -m serializers:model_name

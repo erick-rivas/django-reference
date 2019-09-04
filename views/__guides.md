@@ -87,11 +87,11 @@ POST http://localhost:8000/users/1/create_profile
 
 ## Seed views
 
+-  [MatchViewSet](../seed/views/matches.py)
 -  [PlayerViewSet](../seed/views/players.py)
+-  [ScoreViewSet](../seed/views/scores.py)
 -  [TeamViewSet](../seed/views/teams.py)
 -  [UserViewSet](../seed/views/users.py)
--  [MatchViewSet](../seed/views/matches.py)
--  [ScoreViewSet](../seed/views/scores.py)
 
 > To export a view use command \
 > $ seed export -m views:model_name

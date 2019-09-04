@@ -8,6 +8,16 @@
 #      - Run with > python3 manage.py loaddata fixtures/*.yaml
 #
 
+# Match
+
+- model: models.match
+  pk:
+  fields:
+    date: 
+    type: FRIENDSHIP|LEAGUE|CUP|
+    local: 
+    visitor: 
+
 # Player
 
 - model: models.player
@@ -17,6 +27,15 @@
     photo: 
     is_active: 
     team: 
+
+# Score
+
+- model: models.score
+  pk:
+  fields:
+    min: 
+    player: 
+    match: 
 
 # Team
 
@@ -47,25 +66,6 @@
     user_permissions: []
     date_joined: 2019-01-01 12:00:00
     teams: 
-
-# Match
-
-- model: models.match
-  pk:
-  fields:
-    date: 
-    type: FRIENDSHIP|LEAGUE|CUP|
-    local: 
-    visitor: 
-
-# Score
-
-- model: models.score
-  pk:
-  fields:
-    min: 
-    player: 
-    match: 
 
 # File
 

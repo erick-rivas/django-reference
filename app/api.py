@@ -2,11 +2,11 @@
 __Seed builder__v1.0
 
   Base routes:
+    - /matches
     - /players
+    - /scores
     - /teams
     - /users
-    - /matches
-    - /scores
 """
 
 from django.urls import path, include

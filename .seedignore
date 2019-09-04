@@ -22,6 +22,7 @@ views/*
 ?requirements.txt
 ?manage.py
 ?app/settings.py
+?app/urls.py
 ?app/wsgi.py
 !domain/tests
 !models/migrations

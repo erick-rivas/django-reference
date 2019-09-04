@@ -11,7 +11,7 @@ __Seed builder__v1.0
 """
 
 from rest_framework import serializers
-from seed.serializers.stats.score import _ScoreSerializer
+from seed.serializers.score import _ScoreSerializer
 
 class ScoreSerializer(_ScoreSerializer):  #
     
