@@ -14,7 +14,7 @@ class _Team(Model):  #
     logo = models.ForeignKey('models.File', related_name='team_logos',
         blank=False, null=False, on_delete=models.PROTECT)
     description = models.TextField(blank=True, default="No description available")
-    market_value = models.FloatField()
+    market_value = models.FloatField(default=0)
     identity_docs = models.ManyToManyField('models.File', related_name='team_identity_docses', blank=False)
 
     rival = models.ForeignKey('models.Team', related_name='rival_teams',

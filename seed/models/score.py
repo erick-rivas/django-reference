@@ -10,7 +10,7 @@ from seed.helpers.model import Model
 
 class _Score(Model):  #
 
-    min = models.IntegerField()
+    min = models.IntegerField(default=0)
 
     player = models.ForeignKey('models.Player', related_name='scores',
         blank=False, null=False, on_delete=models.CASCADE)
