@@ -42,6 +42,11 @@ In general terms, the architecture uses the following structure:
 $ ./bin/install
 ```
 
+- Install builder
+```bash
+$ npm install -g seed-builder
+```
+
 -  Configure .env.dev file attributes.
 -  Create a new database with the name shown in the last step.
 -  Make migrations.
