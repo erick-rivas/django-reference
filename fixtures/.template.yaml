@@ -11,67 +11,67 @@
 # Match
 
 - model: models.match
-  pk:
+  pk: 0
   fields:
-    date: 
-    type: FRIENDSHIP|LEAGUE|CUP|
-    local: 
-    visitor: 
+    date: "2019-01-01T12:00:00+00:00"
+    type: "FRIENDSHIP|LEAGUE|CUP|"
+    local:  0
+    visitor:  0
 
 # Player
 
 - model: models.player
-  pk:
+  pk: 0
   fields:
-    name: 
-    photo: 
-    is_active: 
-    team: 
+    name: ""
+    photo: 0
+    is_active: false
+    team:  0
 
 # Score
 
 - model: models.score
-  pk:
+  pk: 0
   fields:
-    min: 
-    player: 
-    match: 
+    min: 128
+    player:  0
+    match:  0
 
 # Team
 
 - model: models.team
-  pk:
+  pk: 0
   fields:
-    name: 
-    logo: 
-    description: 
-    market_value: 
-    rival: 
+    name: ""
+    logo: 0
+    description: ""
+    market_value: 128.0
+    rival:  0
 
 # User
 
 - model: models.user
-  pk:
+  pk: 0
   fields:
-    username:
-    first_name:
-    last_name:
-    email:
-    password: pbkdf2_sha256$150000$jMOqkdOUpor5$kU/QofjBsopM+CdCnU2+pROhtnxd5CZc7NhUiXNTMc0=
+    username: ""
+    first_name: ""
+    last_name: ""
+    email: ""
+    password: "pbkdf2_sha256$150000$jMOqkdOUpor5$kU/QofjBsopM+CdCnU2+pROhtnxd5CZc7NhUiXNTMc0="
     is_active: true
     is_superuser: true
     is_staff: true
-    last_login: 2019-01-01 12:00:00
+    last_login: "2019-01-01T12:00:00+00:00"
     groups: []
     user_permissions: []
-    date_joined: 2019-01-01 12:00:00
-    teams: 
+    date_joined: "2019-01-01T12:00:00+00:00"
+    teams: []
 
 # File
 
 - model: models.File
-  pk:
+  pk: 9
   fields:
-    url: 
-    size:
-    name:
+    url: "https://st-listas.20minutos.es/images/2010-01/177732/1966423_640px.jpg?1518458710"
+    size: 128
+    name: "file"
