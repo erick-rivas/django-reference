@@ -7,6 +7,7 @@ __Seed builder__v1.0
     - photo: image
     - is_active: boolean
     - team: team
+    - type: player_type
 """
 
 from django.db import models

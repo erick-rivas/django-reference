@@ -10,8 +10,8 @@ from django.shortcuts import get_object_or_404
 from seed.util.req_util import has_fields_or_400
 from seed.util.query_util import _get, _list, _list_q, _list_o, _queryset, _create
 
-from seed.views.scores import _ScoreViewSet
-from app.models import Score
+from seed.views.player_types import _PlayerTypeViewSet
+from app.models import PlayerType
 
-class ScoreViewSet(_ScoreViewSet):  #
+class PlayerTypeViewSet(_PlayerTypeViewSet):  #
     pass

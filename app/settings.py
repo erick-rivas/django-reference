@@ -32,10 +32,11 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'rest_auth',
     'django_filters',
-    'rest_framework_swagger',
     'import_export',
     'djangoql',
     'corsheaders',
+    'graphene_django',
+
 
     'django.contrib.admin',
     'django.contrib.auth',
@@ -43,6 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
 ]
 
 MIDDLEWARE = [
@@ -130,6 +132,10 @@ REST_FRAMEWORK = {
 }
 
 DYNAMIC_REST = {'ENABLE_LINKS': False}
+
+GRAPHENE = {
+    'SCHEMA': 'schema.schema.schema'
+}
 
 # EMAIL
 

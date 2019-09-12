@@ -7,7 +7,9 @@ __Seed builder__v1.0
     - photo
     - is_active
     - team
+    - type
     - team_id
+    - type_id
 """
 
 from rest_framework import serializers

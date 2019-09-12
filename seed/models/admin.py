@@ -8,6 +8,7 @@ from django.contrib import admin
 from seed.helpers.model_admin import ModelAdminClass
 from app.models import Match
 from app.models import Player
+from app.models import PlayerType
 from app.models import Score
 from app.models import Team
 from app.models import User
@@ -24,6 +25,9 @@ class _Admin:  #
       class PlayerAdmin(ModelAdminClass(Player)):
           pass
       
+      class PlayerTypeAdmin(ModelAdminClass(PlayerType)):
+          pass
+      
       class ScoreAdmin(ModelAdminClass(Score)):
           pass
       
@@ -37,6 +41,7 @@ class _Admin:  #
           pass
       admin.site.register(Match, MatchAdmin)
       admin.site.register(Player, PlayerAdmin)
+      admin.site.register(PlayerType, PlayerTypeAdmin)
       admin.site.register(Score, ScoreAdmin)
       admin.site.register(Team, TeamAdmin)
       admin.site.register(User, UserAdmin)

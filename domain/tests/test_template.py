@@ -11,6 +11,7 @@ __Seed builder__v1.0
 from django.test import TestCase
 from app.models import Match
 from app.models import Player
+from app.models import PlayerType
 from app.models import Score
 from app.models import Team
 from app.models import User

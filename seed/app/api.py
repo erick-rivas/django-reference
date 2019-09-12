@@ -10,6 +10,7 @@ from dynamic_rest.routers import DynamicRouter
 
 from app.views import MatchViewSet
 from app.views import PlayerViewSet
+from app.views import PlayerTypeViewSet
 from app.views import ScoreViewSet
 from app.views import TeamViewSet
 from app.views import UserViewSet
@@ -18,6 +19,7 @@ from app.views import FileView
 router = DynamicRouter()
 router.register(r'matches', MatchViewSet)
 router.register(r'players', PlayerViewSet)
+router.register(r'player_types', PlayerTypeViewSet)
 router.register(r'scores', ScoreViewSet)
 router.register(r'teams', TeamViewSet)
 router.register(r'users', UserViewSet)

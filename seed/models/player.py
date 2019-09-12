@@ -17,6 +17,8 @@ class _Player(Model):  #
 
     team = models.ForeignKey('models.Team', related_name='players',
         blank=False, null=False, on_delete=models.CASCADE)
+    type = models.ForeignKey('models.PlayerType', related_name='type_players',
+        blank=False, null=False, on_delete=models.CASCADE)
 
     class Meta:
         db_table = '_player'

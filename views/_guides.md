@@ -89,6 +89,7 @@ POST http://localhost:8000/users/1/create_profile
 
 -  [MatchViewSet](../seed/views/matches.py)
 -  [PlayerViewSet](../seed/views/players.py)
+-  [PlayerTypeViewSet](../seed/views/player_types.py)
 -  [ScoreViewSet](../seed/views/scores.py)
 -  [TeamViewSet](../seed/views/teams.py)
 -  [UserViewSet](../seed/views/users.py)

@@ -33,6 +33,7 @@ class TeamSerializer(_TeamSerializer):  #
 
 -  [MatchSerializer](../seed/serializers/match.py)
 -  [PlayerSerializer](../seed/serializers/player.py)
+-  [PlayerTypeSerializer](../seed/serializers/player_type.py)
 -  [ScoreSerializer](../seed/serializers/score.py)
 -  [TeamSerializer](../seed/serializers/team.py)
 -  [UserSerializer](../seed/serializers/user.py)

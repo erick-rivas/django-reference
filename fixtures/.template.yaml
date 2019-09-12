@@ -11,7 +11,7 @@
 # Match
 
 - model: models.match
-  pk: 0
+  pk: 1
   fields:
     date: "2019-01-01T12:00:00+00:00"
     type: "FRIENDSHIP|LEAGUE|CUP|"
@@ -21,17 +21,25 @@
 # Player
 
 - model: models.player
-  pk: 0
+  pk: 1
   fields:
     name: ""
     photo: 0
     is_active: false
     team:  0
+    type:  0
+
+# PlayerType
+
+- model: models.playerType
+  pk: 1
+  fields:
+    name: ""
 
 # Score
 
 - model: models.score
-  pk: 0
+  pk: 1
   fields:
     min: 128
     player:  0
@@ -40,7 +48,7 @@
 # Team
 
 - model: models.team
-  pk: 0
+  pk: 1
   fields:
     name: ""
     logo: 0
@@ -51,7 +59,7 @@
 # User
 
 - model: models.user
-  pk: 0
+  pk: 1
   fields:
     username: ""
     first_name: ""
@@ -70,7 +78,7 @@
 # File
 
 - model: models.File
-  pk: 9
+  pk: 1
   fields:
     url: "https://st-listas.20minutos.es/images/2010-01/177732/1966423_640px.jpg?1518458710"
     size: 128

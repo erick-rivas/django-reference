@@ -4,20 +4,23 @@
     "team",
     "player",
     "match",
-    "score"
+    "score",
+    "player_type"
   ],
   "serializers": [
     "user",
     "team",
     "player",
     "match",
-    "score"
+    "score",
+    "player_type"
   ],
   "views": [
     "user",
     "team",
     "player",
     "match",
-    "score"
+    "score",
+    "player_type"
   ]
 }
