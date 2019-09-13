@@ -18,9 +18,23 @@ class _Query(seed.schema.types.Query, graphene.ObjectType):
     pass
 
 class _Mutation(graphene.ObjectType):
-    matches = seed.mutations.match.MatchMutation.Field()
-    players = seed.mutations.player.PlayerMutation.Field()
-    playerTypes = seed.mutations.player_type.PlayerTypeMutation.Field()
-    scores = seed.mutations.score.ScoreMutation.Field()
-    teams = seed.mutations.team.TeamMutation.Field()
-    users = seed.mutations.user.UserMutation.Field()
+    
+    createMatch = seed.mutations.match.CreateMatchMutation.Field()
+    updateMatch = seed.mutations.match.UpdateMatchMutation.Field()
+    deleteMatch = seed.mutations.match.DeleteMatchMutation.Field()
+    createPlayer = seed.mutations.player.CreatePlayerMutation.Field()
+    updatePlayer = seed.mutations.player.UpdatePlayerMutation.Field()
+    deletePlayer = seed.mutations.player.DeletePlayerMutation.Field()
+    createPlayerType = seed.mutations.player_type.CreatePlayerTypeMutation.Field()
+    updatePlayerType = seed.mutations.player_type.UpdatePlayerTypeMutation.Field()
+    deletePlayerType = seed.mutations.player_type.DeletePlayerTypeMutation.Field()
+    createScore = seed.mutations.score.CreateScoreMutation.Field()
+    updateScore = seed.mutations.score.UpdateScoreMutation.Field()
+    deleteScore = seed.mutations.score.DeleteScoreMutation.Field()
+    createTeam = seed.mutations.team.CreateTeamMutation.Field()
+    updateTeam = seed.mutations.team.UpdateTeamMutation.Field()
+    deleteTeam = seed.mutations.team.DeleteTeamMutation.Field()
+    createUser = seed.mutations.user.CreateUserMutation.Field()
+    updateUser = seed.mutations.user.UpdateUserMutation.Field()
+    deleteUser = seed.mutations.user.DeleteUserMutation.Field()
+

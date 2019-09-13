@@ -14,9 +14,13 @@ seed/mutations/*
 seed/schema/*
 seed/views/*
 app/api.py
+app/models.py
+app/serializers.py
+app/views.py
 fixtures/*
 domain/*
 models/*.py
+models/*.md
 models/migrations/*
 mutations
 schema
@@ -29,7 +33,6 @@ views
 ?app/settings.py
 ?app/urls.py
 ?app/wsgi.py
-!domain/tests
 !*__init__.py
 !*helpers
 !.gitignore

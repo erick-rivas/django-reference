@@ -26,4 +26,3 @@ class Test(TestCase):  #
         res = "hi!"
         self.assertEqual("hi!", res)
 ```
-

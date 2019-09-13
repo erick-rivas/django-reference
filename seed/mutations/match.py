@@ -9,39 +9,70 @@ from graphene_django import DjangoObjectType
 from app.models import Match
 from app.models import Team
 from app.models import Score
-from seed.schema.types import _MatchType
+from app.models import File
+from seed.schema.types import Match as MatchType
 
-class MatchMutation(graphene.Mutation):
-    match = graphene.Field(_MatchType)
+class CreateMatchMutation(graphene.Mutation):
+    
+    match = graphene.Field(MatchType)
+    
     class Arguments:
-        id = graphene.Int(required=False)
-        date = graphene.DateTime(required=False)
-        type = graphene.String(required=False)
-        localId = graphene.Int(required=False)
-        visitorId = graphene.Int(required=False)
+        date = graphene.DateTime(required=True)
+        type = graphene.String(required=True)
+        local = graphene.Int(required=True)
+        visitor = graphene.Int(required=True)
 
     def mutate(self, info, **kwargs):
 
-        match = None
-        if "id" in kwargs:
-            match = Match.objects.get(pk=kwargs["id"])
-            if "date" in kwargs: match.date = kwargs["date"]
-            if "type" in kwargs: match.type = kwargs["type"]
-            if "localId" in kwargs: 
-                local = Team.objects.get(pk = kwargs["localId"])
-                match.local = local
-            if "visitorId" in kwargs: 
-                visitor = Team.objects.get(pk = kwargs["visitorId"])
-                match.visitor = visitor
-        else:
-            local = Team.objects.get(pk = kwargs["localId"])
-            visitor = Team.objects.get(pk = kwargs["visitorId"])
-            match = Match.objects.create(
-                date = kwargs["date"],
-                type = kwargs["type"],
-                local = local,
-                visitor = visitor,
-            )
+        match = {}
+        if "date" in kwargs: match["date"] = kwargs["date"]
+        if "type" in kwargs: match["type"] = kwargs["type"]
+        if "local" in kwargs:
+             local = Team.objects.get(pk = kwargs["local"])
+             match["local"] = local
+        if "visitor" in kwargs:
+             visitor = Team.objects.get(pk = kwargs["visitor"])
+             match["visitor"] = visitor
+        match = Match.objects.create(**match)
         match.save()
     
-        return MatchMutation(match=match)
+        return CreateMatchMutation(match=match)
+
+class UpdateMatchMutation(graphene.Mutation):
+    
+    match = graphene.Field(MatchType)
+    
+    class Arguments:
+        id = graphene.Int(required=True)
+        date = graphene.DateTime(required=False)
+        type = graphene.String(required=False)
+        local = graphene.Int(required=False)
+        visitor = graphene.Int(required=False)
+
+    def mutate(self, info, **kwargs):
+
+        match = Match.objects.get(pk=kwargs["id"])
+        if "date" in kwargs: match.date = kwargs["date"]
+        if "type" in kwargs: match.type = kwargs["type"]
+        if "local" in kwargs:
+             local = Team.objects.get(pk = kwargs["local"])
+             match.local = local
+        if "visitor" in kwargs:
+             visitor = Team.objects.get(pk = kwargs["visitor"])
+             match.visitor = visitor
+        match.save()
+    
+        return UpdateMatchMutation(match=match)
+
+class DeleteMatchMutation(graphene.Mutation):
+    
+    id = graphene.Int()
+    
+    class Arguments:
+        id = graphene.Int(required=True)
+
+    def mutate(self, info, **kwargs):
+        id = kwargs["id"]
+        match = Match.objects.get(pk=kwargs["id"])
+        match.delete()
+        return DeleteMatchMutation(id=id)

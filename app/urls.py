@@ -3,7 +3,6 @@ from django.conf.urls import url
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import include
-from rest_framework_swagger.views import get_swagger_view
 from graphene_django.views import GraphQLView
 from django.views.decorators.csrf import csrf_exempt
 
