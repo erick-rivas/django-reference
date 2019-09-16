@@ -17,7 +17,8 @@ app/api.py
 app/models.py
 app/serializers.py
 app/views.py
-fixtures/*
+fixtures/*.yaml
+fixtures/media/*
 domain/*
 models/*.py
 models/*.md
@@ -36,3 +37,4 @@ views
 !*__init__.py
 !*helpers
 !.gitignore
+!.keep

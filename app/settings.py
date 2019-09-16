@@ -16,6 +16,10 @@ FIXTURE_DIRS = (os.path.join(BASE_DIR, "fixtures"),)
 
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
 STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "reactjs", "static"),
+    os.path.join(BASE_DIR, "fixtures", "media")
+]
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 MEDIA_URL = '/media/'
 
@@ -109,7 +113,7 @@ AUTH_PASSWORD_VALIDATORS = [
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'reactjs')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

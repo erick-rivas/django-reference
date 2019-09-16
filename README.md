@@ -14,7 +14,7 @@ This repository holds the source code of a **reference** for the development of 
     
 ## Overview
 
-The reference uses a architecture based on a Generic Model View pattern, Inspired by the architecture of [Django framework](https://www.djangoproject.com) and [Django REST framework](https://www.django-rest-framework.org).
+The reference uses a architecture based on a Generic Model View pattern, Inspired by the architecture of [Django framework](https://www.djangoproject.com), [Django REST framework](https://www.django-rest-framework.org) and [Graphene-Django](https://docs.graphene-python.org/projects/django/en/latest/).
 
 In general terms, the architecture uses the following structure:
 

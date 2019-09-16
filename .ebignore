@@ -1,5 +1,6 @@
 ### General (Include .env.prod, static & migrations) ###
 .env.dev
+reactjs/static
 
 ### Django ###
 *.log

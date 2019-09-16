@@ -1,9 +1,8 @@
 ### General ###
 .env.prod
 .env.dev
-static/admin
-static/rest_framework
-static/rest_framework_swagger
+static
+reactjs
 
 ### Django ###
 *.log
