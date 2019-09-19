@@ -11,7 +11,7 @@ from app.models import Player
 from app.models import File
 from seed.schema.types import Team as TeamType
 
-class CreateTeamMutation(graphene.Mutation):
+class SaveTeamMutation(graphene.Mutation):
     
     team = graphene.Field(TeamType)
     
@@ -37,9 +37,9 @@ class CreateTeamMutation(graphene.Mutation):
         team = Team.objects.create(**team)
         team.save()
     
-        return CreateTeamMutation(team=team)
+        return SaveTeamMutation(team=team)
 
-class UpdateTeamMutation(graphene.Mutation):
+class SetTeamMutation(graphene.Mutation):
     
     team = graphene.Field(TeamType)
     
@@ -65,7 +65,7 @@ class UpdateTeamMutation(graphene.Mutation):
              team.rival = rival
         team.save()
     
-        return UpdateTeamMutation(team=team)
+        return SetTeamMutation(team=team)
 
 class DeleteTeamMutation(graphene.Mutation):
     

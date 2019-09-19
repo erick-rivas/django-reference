@@ -12,7 +12,7 @@ from app.models import PlayerType
 from app.models import File
 from seed.schema.types import Player as PlayerType
 
-class CreatePlayerMutation(graphene.Mutation):
+class SavePlayerMutation(graphene.Mutation):
     
     player = graphene.Field(PlayerType)
     
@@ -40,9 +40,9 @@ class CreatePlayerMutation(graphene.Mutation):
         player = Player.objects.create(**player)
         player.save()
     
-        return CreatePlayerMutation(player=player)
+        return SavePlayerMutation(player=player)
 
-class UpdatePlayerMutation(graphene.Mutation):
+class SetPlayerMutation(graphene.Mutation):
     
     player = graphene.Field(PlayerType)
     
@@ -70,7 +70,7 @@ class UpdatePlayerMutation(graphene.Mutation):
              player.type = type
         player.save()
     
-        return UpdatePlayerMutation(player=player)
+        return SetPlayerMutation(player=player)
 
 class DeletePlayerMutation(graphene.Mutation):
     

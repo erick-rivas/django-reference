@@ -12,7 +12,7 @@ from app.models import Match
 from app.models import File
 from seed.schema.types import Score as ScoreType
 
-class CreateScoreMutation(graphene.Mutation):
+class SaveScoreMutation(graphene.Mutation):
     
     score = graphene.Field(ScoreType)
     
@@ -34,9 +34,9 @@ class CreateScoreMutation(graphene.Mutation):
         score = Score.objects.create(**score)
         score.save()
     
-        return CreateScoreMutation(score=score)
+        return SaveScoreMutation(score=score)
 
-class UpdateScoreMutation(graphene.Mutation):
+class SetScoreMutation(graphene.Mutation):
     
     score = graphene.Field(ScoreType)
     
@@ -58,7 +58,7 @@ class UpdateScoreMutation(graphene.Mutation):
              score.match = match
         score.save()
     
-        return UpdateScoreMutation(score=score)
+        return SetScoreMutation(score=score)
 
 class DeleteScoreMutation(graphene.Mutation):
     

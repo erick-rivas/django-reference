@@ -11,7 +11,7 @@ from app.models import Team
 from app.models import File
 from seed.schema.types import User as UserType
 
-class CreateUserMutation(graphene.Mutation):
+class SaveUserMutation(graphene.Mutation):
     
     user = graphene.Field(UserType)
     
@@ -41,9 +41,9 @@ class CreateUserMutation(graphene.Mutation):
                 user.teams.add(teams)
         user.save()
     
-        return CreateUserMutation(user=user)
+        return SaveUserMutation(user=user)
 
-class UpdateUserMutation(graphene.Mutation):
+class SetUserMutation(graphene.Mutation):
     
     user = graphene.Field(UserType)
     
@@ -73,7 +73,7 @@ class UpdateUserMutation(graphene.Mutation):
                 user.teams.add(teams)
         user.save()
     
-        return UpdateUserMutation(user=user)
+        return SetUserMutation(user=user)
 
 class DeleteUserMutation(graphene.Mutation):
     
