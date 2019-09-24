@@ -78,49 +78,49 @@ class Query(object):
 
     def resolve_matches(self, info, **kwargs):
         if "query" in kwargs:
-            return query(kwargs["query"], Match)
+            return query(kwargs["query"], MatchModel)
         return MatchModel.objects.all()
     def resolve_match(self, info, id):
         return MatchModel.objects.get(pk=id)
     
     def resolve_players(self, info, **kwargs):
         if "query" in kwargs:
-            return query(kwargs["query"], Player)
+            return query(kwargs["query"], PlayerModel)
         return PlayerModel.objects.all()
     def resolve_player(self, info, id):
         return PlayerModel.objects.get(pk=id)
     
     def resolve_playerTypes(self, info, **kwargs):
         if "query" in kwargs:
-            return query(kwargs["query"], PlayerType)
+            return query(kwargs["query"], PlayerTypeModel)
         return PlayerTypeModel.objects.all()
     def resolve_playerType(self, info, id):
         return PlayerTypeModel.objects.get(pk=id)
     
     def resolve_scores(self, info, **kwargs):
         if "query" in kwargs:
-            return query(kwargs["query"], Score)
+            return query(kwargs["query"], ScoreModel)
         return ScoreModel.objects.all()
     def resolve_score(self, info, id):
         return ScoreModel.objects.get(pk=id)
     
     def resolve_teams(self, info, **kwargs):
         if "query" in kwargs:
-            return query(kwargs["query"], Team)
+            return query(kwargs["query"], TeamModel)
         return TeamModel.objects.all()
     def resolve_team(self, info, id):
         return TeamModel.objects.get(pk=id)
     
     def resolve_users(self, info, **kwargs):
         if "query" in kwargs:
-            return query(kwargs["query"], User)
+            return query(kwargs["query"], UserModel)
         return UserModel.objects.all()
     def resolve_user(self, info, id):
         return UserModel.objects.get(pk=id)
     
     def resolve_files(self, info, **kwargs):
         if "query" in kwargs:
-            return query(kwargs["query"], File)
+            return query(kwargs["query"], FileModel)
         return FileModel.objects.all()
     def resolve_file(self, info, id):
         return FileModel.objects.get(pk=id)
