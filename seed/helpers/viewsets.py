@@ -17,11 +17,6 @@ from django.shortcuts import get_object_or_404
 
 class ViewSet(WithDynamicViewSetMixin, viewsets.ModelViewSet):  #
 
-    authentication_classes = (TokenAuthentication,)
-
-    if 'ENABLE_SECURITY' in os.environ:
-        permission_classes = (IsAuthenticated,)
-
     def get_serializer(self, *args, **kwargs):
         kwargs['envelope'] = False
         return super(ViewSet, self).get_serializer(*args, **kwargs)
@@ -36,8 +31,4 @@ class ViewSet(WithDynamicViewSetMixin, viewsets.ModelViewSet):  #
         serializer = self.get_serializer(obj, data=request.data, partial=True)
         serializer.is_valid(raise_exception=True)
         serializer.save()
-        return Response(serializer.data)
-
-    def response(self, data, **kwargs):
-        serializer = self.get_serializer(data, **kwargs)
         return Response(serializer.data)

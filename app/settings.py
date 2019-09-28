@@ -86,7 +86,7 @@ DATABASES = {
 
 # S3 Settings
 
-if not DEBUG:
+if os.getenv('USE_S3'):
     DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
     AWS_ACCESS_KEY_ID = os.getenv('S3_KEY')
     AWS_SECRET_ACCESS_KEY = os.getenv('S3_SECRET')

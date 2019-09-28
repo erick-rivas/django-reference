@@ -73,14 +73,6 @@ $ npm install -g seed-builder
 (.venv)$ python3 manage.py loaddata fixtures/*.yaml
 ```
 
-### Test running
-
--  Run domain test cases.
-```bash
-(.venv)$ python3 manage.py test domain/tests/
-```
-
-
 ## Examples
 
 -  Execute api request.

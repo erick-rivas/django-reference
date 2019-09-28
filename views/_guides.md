@@ -96,3 +96,4 @@ POST http://localhost:8000/users/1/create_profile
 
 > To export a view use command \
 > $ seed export -m views:model_name
+
