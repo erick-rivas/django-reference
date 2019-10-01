@@ -8,7 +8,7 @@ from rest_framework import serializers
 from seed.helpers.serializer import Serializer
 from app.models import Player
 from app.models import Team
-from app.models import PlayerType
+from app.models import PlayerPosition
 from app.models import File
 from seed.serializers.helpers.file import FileSerializer
 
@@ -18,13 +18,13 @@ class _PlayerSerializer(Serializer):  #
     
     team = DynamicRelationField('app.serializers.TeamSerializer', 
         deferred=True, embed=True, read_only=True)
-    type = DynamicRelationField('app.serializers.PlayerTypeSerializer', 
+    position = DynamicRelationField('app.serializers.PlayerPositionSerializer', 
         deferred=True, embed=True, read_only=True)
     photo = FileSerializer(read_only=True)
 
     team_id = serializers.PrimaryKeyRelatedField(source='team', queryset=Team.objects.all(), 
         required=True, allow_null=False)
-    type_id = serializers.PrimaryKeyRelatedField(source='type', queryset=PlayerType.objects.all(), 
+    position_id = serializers.PrimaryKeyRelatedField(source='position', queryset=PlayerPosition.objects.all(), 
         required=True, allow_null=False)
     photo_id = serializers.PrimaryKeyRelatedField(source='photo', queryset=File.objects.all(), 
         required=True, allow_null=False)
@@ -38,8 +38,8 @@ class _PlayerSerializer(Serializer):  #
             'photo',
             'is_active',
             'team',
-            'type',
+            'position',
             'photo_id',
             'team_id',
-            'type_id',  
+            'position_id',  
         )

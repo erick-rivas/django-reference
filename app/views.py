@@ -12,9 +12,9 @@ def get_player_viewset():
     from views.players import PlayerViewSet
     return PlayerViewSet
 
-def get_player_type_viewset():
-    from views.player_types import PlayerTypeViewSet
-    return PlayerTypeViewSet
+def get_player_position_viewset():
+    from views.player_positions import PlayerPositionViewSet
+    return PlayerPositionViewSet
 
 def get_score_viewset():
     from views.scores import ScoreViewSet
@@ -34,7 +34,7 @@ def get_file_view():
 
 MatchViewSet = get_match_viewset()
 PlayerViewSet = get_player_viewset()
-PlayerTypeViewSet = get_player_type_viewset()
+PlayerPositionViewSet = get_player_position_viewset()
 ScoreViewSet = get_score_viewset()
 TeamViewSet = get_team_viewset()
 UserViewSet = get_user_viewset()

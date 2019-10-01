@@ -7,7 +7,7 @@ __Seed builder__v1.0
 """
 
 from django.db import models
-from seed.models.player_type import _PlayerType
+from seed.models.player_position import _PlayerPosition
 
-class PlayerType(_PlayerType):  #
+class PlayerPosition(_PlayerPosition):  #
     pass

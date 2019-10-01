@@ -4,18 +4,9 @@ Represents the model definitions of the application (database)
 
 ## Table of content
 
--  [Description](#description)
 -  [Guidelines](#guidelines)
 -  [Example](#example)
 -  [References](#references)
-
-## Description
-
-The model module represents the application models that define the database structure, it includes:
--  Data types
--  Foreign keys
--  Enums
--  Table settings
 
 ## Guidelines
 
@@ -29,7 +20,6 @@ The model module represents the application models that define the database stru
 
 ```python
 class User(_User):  #
-
     @property
     def full_name(self):
         return self.first_name + " " + self.last_name

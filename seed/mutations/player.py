@@ -8,7 +8,7 @@ import graphene
 from graphene_django import DjangoObjectType
 from app.models import Player
 from app.models import Team
-from app.models import PlayerType
+from app.models import PlayerPosition
 from app.models import File
 from seed.schema.types import Player as PlayerType
 
@@ -21,7 +21,7 @@ class SavePlayerMutation(graphene.Mutation):
         photo = graphene.Int(required=True)
         isActive = graphene.Boolean(required=True)
         team = graphene.Int(required=True)
-        type = graphene.Int(required=True)
+        position = graphene.Int(required=True)
 
     def mutate(self, info, **kwargs):
 
@@ -34,9 +34,9 @@ class SavePlayerMutation(graphene.Mutation):
         if "team" in kwargs:
              team = Team.objects.get(pk = kwargs["team"])
              player["team"] = team
-        if "type" in kwargs:
-             type = PlayerType.objects.get(pk = kwargs["type"])
-             player["type"] = type
+        if "position" in kwargs:
+             position = PlayerPosition.objects.get(pk = kwargs["position"])
+             player["position"] = position
         player = Player.objects.create(**player)
         player.save()
     
@@ -52,7 +52,7 @@ class SetPlayerMutation(graphene.Mutation):
         photo = graphene.Int(required=False)
         isActive = graphene.Boolean(required=False)
         team = graphene.Int(required=False)
-        type = graphene.Int(required=False)
+        position = graphene.Int(required=False)
 
     def mutate(self, info, **kwargs):
 
@@ -65,9 +65,9 @@ class SetPlayerMutation(graphene.Mutation):
         if "team" in kwargs:
              team = Team.objects.get(pk = kwargs["team"])
              player.team = team
-        if "type" in kwargs:
-             type = PlayerType.objects.get(pk = kwargs["type"])
-             player.type = type
+        if "position" in kwargs:
+             position = PlayerPosition.objects.get(pk = kwargs["position"])
+             player.position = position
         player.save()
     
         return SetPlayerMutation(player=player)

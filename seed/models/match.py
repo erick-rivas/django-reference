@@ -17,7 +17,7 @@ class _Match(Model):  #
     )
 
     date = models.DateTimeField(default=datetime.now)
-    type = models.CharField(max_length=64, choices=TYPES)
+    type = models.CharField(max_length=64, choices=TYPES, help_text="Match type (eg. cup)")
 
     local = models.ForeignKey('models.Team', related_name='local_matches',
         blank=False, null=False, on_delete=models.CASCADE)

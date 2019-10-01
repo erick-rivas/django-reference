@@ -9,8 +9,8 @@ from rest_framework import permissions
 from django.shortcuts import get_object_or_404
 from seed.util.req_util import has_fields_or_400
 
-from seed.views.player_types import _PlayerTypeViewSet
-from app.models import PlayerType
+from seed.views.player_positions import _PlayerPositionViewSet
+from app.models import PlayerPosition
 
-class PlayerTypeViewSet(_PlayerTypeViewSet):  #
+class PlayerPositionViewSet(_PlayerPositionViewSet):  #
     pass

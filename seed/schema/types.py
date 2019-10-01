@@ -10,7 +10,7 @@ from django.db.models import Q
 from graphene_django.types import DjangoObjectType
 from app.models import Match as MatchModel
 from app.models import Player as PlayerModel
-from app.models import PlayerType as PlayerTypeModel
+from app.models import PlayerPosition as PlayerPositionModel
 from app.models import Score as ScoreModel
 from app.models import Team as TeamModel
 from app.models import User as UserModel
@@ -34,18 +34,21 @@ def query(data, model):
 class Match(DjangoObjectType):
     class Meta:
         model = MatchModel
+        description = "Represents a match between two teams  (A vs B)"
 
 class Player(DjangoObjectType):
     class Meta:
         model = PlayerModel
 
-class PlayerType(DjangoObjectType):
+class PlayerPosition(DjangoObjectType):
     class Meta:
-        model = PlayerTypeModel
+        model = PlayerPositionModel
+        description = "Represents a player  position (eg. forward)"
 
 class Score(DjangoObjectType):
     class Meta:
         model = ScoreModel
+        description = "Represents a match score (goal)"
 
 class Team(DjangoObjectType):
     class Meta:
@@ -55,9 +58,12 @@ class User(DjangoObjectType):
     class Meta:
         model = UserModel
         exclude = ('password',)
+        description = "Represents a registered user"
+
 class File(DjangoObjectType):
     class Meta:
         model = FileModel
+        description = 'Represents a File object'
 
 class Query(object):
     
@@ -65,8 +71,8 @@ class Query(object):
     match = graphene.Field(Match, id=graphene.Int())
     players = graphene.List(Player, query=graphene.String())
     player = graphene.Field(Player, id=graphene.Int())
-    playerTypes = graphene.List(PlayerType, query=graphene.String())
-    playerType = graphene.Field(PlayerType, id=graphene.Int())
+    playerPositions = graphene.List(PlayerPosition, query=graphene.String())
+    playerPosition = graphene.Field(PlayerPosition, id=graphene.Int())
     scores = graphene.List(Score, query=graphene.String())
     score = graphene.Field(Score, id=graphene.Int())
     teams = graphene.List(Team, query=graphene.String())
@@ -90,12 +96,12 @@ class Query(object):
     def resolve_player(self, info, id):
         return PlayerModel.objects.get(pk=id)
     
-    def resolve_playerTypes(self, info, **kwargs):
+    def resolve_playerPositions(self, info, **kwargs):
         if "query" in kwargs:
-            return query(kwargs["query"], PlayerTypeModel)
-        return PlayerTypeModel.objects.all()
-    def resolve_playerType(self, info, id):
-        return PlayerTypeModel.objects.get(pk=id)
+            return query(kwargs["query"], PlayerPositionModel)
+        return PlayerPositionModel.objects.all()
+    def resolve_playerPosition(self, info, id):
+        return PlayerPositionModel.objects.get(pk=id)
     
     def resolve_scores(self, info, **kwargs):
         if "query" in kwargs:

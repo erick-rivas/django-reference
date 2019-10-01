@@ -4,29 +4,22 @@ Represents the methods to handle business logic
 
 ## Table of content
 
--  [Guidelines](#guidelines)
 -  [Examples](#examples)
 -  [References](#references)
-
-##  Guidelines
-
--  To implement queries use query_util methods
-    - Example: _get, _create, _list
 
 ##  Examples
 
 ```python
 def create_project(user, project_name):  #
 
-    # Use query_util methods to simplify requests
-    # Example: (_get, _create, etc.)
-    bmc_type = _get(CanvasType, type="BMC")
-    project = _create(Project, name=project_name, description="description")
-    c_types = _list(CanvasType)
+    bmc_type = CanvasType.objects.get(CanvasType, type="BMC")
+    project = Project.objects.create(name=project_name, description="description")
+    c_types = CanvasType.objects.all()
 
     for c_type in c_types:
-        project.add(_create(Canvas, type=c_type, project=project))
-        _create(ProjectDetail, visibility="PUBLIC")
+        canvas = Canvas.objects.create(type=c_type, project=project)
+        project.add(canvas)
+        ProjectDetail.objects.create(visibility="PUBLIC")
 ```
 
 ## References

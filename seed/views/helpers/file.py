@@ -3,9 +3,6 @@ __Seed builder__v1.0
   (Read_only) Builder helper
 """
 
-import os
-import uuid
-
 from rest_framework import views
 from rest_framework.parsers import MultiPartParser
 from rest_framework.response import Response

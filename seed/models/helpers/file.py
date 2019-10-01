@@ -10,9 +10,9 @@ from seed.helpers.model import Model
 
 class File(Model):  #
 
-    url = models.URLField(max_length=1024)
-    size = models.IntegerField()
-    name = models.CharField(max_length=1024)
+    url = models.URLField(max_length=1024, help_text="File reference link (eg. http://localhost:8000/image.png)")
+    size = models.IntegerField(help_text="File size in bytes")
+    name = models.CharField(max_length=1024, help_text="Common File Name (eg. Image.png)")
 
     class Meta:
         db_table = 'file'

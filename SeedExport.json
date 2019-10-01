@@ -5,7 +5,7 @@
     "player",
     "match",
     "score",
-    "player_type"
+    "player_position"
   ],
   "serializers": [
     "user",
@@ -13,7 +13,7 @@
     "player",
     "match",
     "score",
-    "player_type"
+    "player_position"
   ],
   "views": [
     "user",
@@ -21,6 +21,6 @@
     "player",
     "match",
     "score",
-    "player_type"
+    "player_position"
   ]
 }

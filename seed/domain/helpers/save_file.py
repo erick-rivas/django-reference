@@ -1,3 +1,5 @@
+import os
+import uuid
 from django.core.files.storage import default_storage
 from urllib.parse import urlparse
 

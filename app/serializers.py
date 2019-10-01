@@ -12,9 +12,9 @@ def get_player_serializer():
     from serializers.player import PlayerSerializer
     return PlayerSerializer
 
-def get_player_type_serializer():
-    from serializers.player_type import PlayerTypeSerializer
-    return PlayerTypeSerializer
+def get_player_position_serializer():
+    from serializers.player_position import PlayerPositionSerializer
+    return PlayerPositionSerializer
 
 def get_score_serializer():
     from serializers.score import ScoreSerializer
@@ -34,7 +34,7 @@ def get_file_serializer():
 
 MatchSerializer = get_match_serializer()
 PlayerSerializer = get_player_serializer()
-PlayerTypeSerializer = get_player_type_serializer()
+PlayerPositionSerializer = get_player_position_serializer()
 ScoreSerializer = get_score_serializer()
 TeamSerializer = get_team_serializer()
 UserSerializer = get_user_serializer()

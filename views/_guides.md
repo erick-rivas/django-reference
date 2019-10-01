@@ -27,6 +27,8 @@ By default, a viewset the main CRUD operations of a model using REST standard. E
 
 -  Add business logic via domains.
 -  Preferably *just add actions* if required
+-  To export a view use command \
+>  $ seed export -m views:model_name
 
 ## Examples
 
@@ -84,16 +86,3 @@ POST http://localhost:8000/users/1/create_profile
 -  REST API explanation: [https://hackernoon.com/restful-api-designing-guidelines-the-best-practices-60e1d954e7c9](https://hackernoon.com/restful-api-designing-guidelines-the-best-practices-60e1d954e7c9)
 -  Viewsets reference: [https://www.django-rest-framework.org/api-guide/viewsets/](https://www.django-rest-framework.org/api-guide/viewsets/)
 -  Actions reference: [https://www.django-rest-framework.org/api-guide/viewsets/#viewset-actions](https://www.django-rest-framework.org/api-guide/viewsets/#viewset-actions)
-
-## Seed views
-
--  [MatchViewSet](../seed/views/matches.py)
--  [PlayerViewSet](../seed/views/players.py)
--  [PlayerTypeViewSet](../seed/views/player_types.py)
--  [ScoreViewSet](../seed/views/scores.py)
--  [TeamViewSet](../seed/views/teams.py)
--  [UserViewSet](../seed/views/users.py)
-
-> To export a view use command \
-> $ seed export -m views:model_name
-

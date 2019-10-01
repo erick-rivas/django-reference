@@ -4,7 +4,7 @@ __Seed builder__v1.0
   Base routes:
     - /matches
     - /players
-    - /player_types
+    - /player_positions
     - /scores
     - /teams
     - /users

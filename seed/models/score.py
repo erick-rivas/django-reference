@@ -10,10 +10,10 @@ from seed.helpers.model import Model
 
 class _Score(Model):  #
 
-    min = models.IntegerField(default=0)
+    min = models.IntegerField(default=0, help_text="Minute of the goal")
 
     player = models.ForeignKey('models.Player', related_name='scores',
-        blank=False, null=False, on_delete=models.CASCADE)
+        blank=False, null=False, on_delete=models.CASCADE, help_text="Player that score")
     match = models.ForeignKey('models.Match', related_name='scores',
         blank=False, null=False, on_delete=models.CASCADE)
 

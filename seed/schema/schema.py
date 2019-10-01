@@ -3,13 +3,12 @@ __Seed builder__v1.0
   AUTO_GENERATED (Read only)
   Modify via builder
 """
-
 import graphene
 
 import seed.schema.types
 import seed.mutations.match
 import seed.mutations.player
-import seed.mutations.player_type
+import seed.mutations.player_position
 import seed.mutations.score
 import seed.mutations.team
 import seed.mutations.user
@@ -25,9 +24,9 @@ class _Mutation(graphene.ObjectType):
     savePlayer = seed.mutations.player.SavePlayerMutation.Field()
     setPlayer = seed.mutations.player.SetPlayerMutation.Field()
     deletePlayer = seed.mutations.player.DeletePlayerMutation.Field()
-    savePlayerType = seed.mutations.player_type.SavePlayerTypeMutation.Field()
-    setPlayerType = seed.mutations.player_type.SetPlayerTypeMutation.Field()
-    deletePlayerType = seed.mutations.player_type.DeletePlayerTypeMutation.Field()
+    savePlayerPosition = seed.mutations.player_position.SavePlayerPositionMutation.Field()
+    setPlayerPosition = seed.mutations.player_position.SetPlayerPositionMutation.Field()
+    deletePlayerPosition = seed.mutations.player_position.DeletePlayerPositionMutation.Field()
     saveScore = seed.mutations.score.SaveScoreMutation.Field()
     setScore = seed.mutations.score.SetScoreMutation.Field()
     deleteScore = seed.mutations.score.DeleteScoreMutation.Field()
