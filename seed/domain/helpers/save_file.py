@@ -13,7 +13,7 @@ def save_file(f):
     host_url = os.getenv('HOST_URL')
     if url.startswith("http"):
         u = urlparse(url)
-        url = u.geturl()
+        url = u.scheme + "://" + u.netloc + u.path
     else:
         url = host_url + url
     return File.objects.create(name=name, size=size, url=url)
