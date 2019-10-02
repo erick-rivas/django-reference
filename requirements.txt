@@ -12,5 +12,5 @@ dynamic-rest==1.9.4
 graphene-django==2.5.0
 pip==19.2.1
 psycopg2-binary==2.8.3
-PyYAML==3.13
+PyYAML==5.1.2
 setuptools==41.0.1
