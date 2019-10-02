@@ -1,7 +1,8 @@
 import os
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-DEBUG = True if 'IS_PROD' not in os.environ else False
+IS_PROD = True if 'IS_PROD' in os.environ and os.environ['IS_PROD'].lower() == "true" else False
+DEBUG = not IS_PROD
 SECRET_KEY = 'fup+swltefA9efredrufihUSTO!wam?c'
 SITE_ID = 1
 
@@ -86,7 +87,7 @@ DATABASES = {
 
 # S3 Settings
 
-if os.getenv('USE_S3'):
+if os.getenv('USE_S3') is not None and os.getenv('USE_S3').lower() == "true":
     DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
     AWS_ACCESS_KEY_ID = os.getenv('S3_KEY')
     AWS_SECRET_ACCESS_KEY = os.getenv('S3_SECRET')
