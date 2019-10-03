@@ -5,28 +5,28 @@ __Seed builder__v1.0
 """
 
 def get_match_serializer():
-    from serializers.match import MatchSerializer
-    return MatchSerializer
+    from seed.serializers.match import _MatchSerializer
+    return _MatchSerializer
 
 def get_player_serializer():
-    from serializers.player import PlayerSerializer
-    return PlayerSerializer
+    from seed.serializers.player import _PlayerSerializer
+    return _PlayerSerializer
 
 def get_player_position_serializer():
-    from serializers.player_position import PlayerPositionSerializer
-    return PlayerPositionSerializer
+    from seed.serializers.player_position import _PlayerPositionSerializer
+    return _PlayerPositionSerializer
 
 def get_score_serializer():
-    from serializers.score import ScoreSerializer
-    return ScoreSerializer
+    from seed.serializers.score import _ScoreSerializer
+    return _ScoreSerializer
 
 def get_team_serializer():
-    from serializers.team import TeamSerializer
-    return TeamSerializer
+    from seed.serializers.team import _TeamSerializer
+    return _TeamSerializer
 
 def get_user_serializer():
-    from serializers.user import UserSerializer
-    return UserSerializer
+    from seed.serializers.user import _UserSerializer
+    return _UserSerializer
 
 def get_file_serializer():
     from seed.serializers.helpers.file import FileSerializer

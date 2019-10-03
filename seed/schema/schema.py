@@ -13,10 +13,10 @@ import seed.mutations.score
 import seed.mutations.team
 import seed.mutations.user
 
-class _Query(seed.schema.types.Query, graphene.ObjectType):
+class Query(seed.schema.types.Query, graphene.ObjectType):
     pass
 
-class _Mutation(graphene.ObjectType):
+class Mutation(graphene.ObjectType):
     
     saveMatch = seed.mutations.match.SaveMatchMutation.Field()
     setMatch = seed.mutations.match.SetMatchMutation.Field()
@@ -36,4 +36,6 @@ class _Mutation(graphene.ObjectType):
     saveUser = seed.mutations.user.SaveUserMutation.Field()
     setUser = seed.mutations.user.SetUserMutation.Field()
     deleteUser = seed.mutations.user.DeleteUserMutation.Field()
+
+schema = graphene.Schema(query=Query, mutation=Mutation)
 

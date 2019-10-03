@@ -8,7 +8,7 @@ from datetime import datetime
 from django.db import models
 from seed.helpers.model import Model
 
-class _Match(Model):  #
+class Match(Model):  #
     
     TYPES = (
         ('FRIENDSHIP', 'Friendship'),
@@ -30,4 +30,4 @@ class _Match(Model):  #
 
     class Meta:
         db_table = '_match'
-        abstract = True
+        app_label = 'models'

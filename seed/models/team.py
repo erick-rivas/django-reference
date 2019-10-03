@@ -8,7 +8,7 @@ from datetime import datetime
 from django.db import models
 from seed.helpers.model import Model
 
-class _Team(Model):  #
+class Team(Model):  #
 
     name = models.CharField(max_length=256, blank=True)
     logo = models.ForeignKey('models.File', related_name='team_logos',
@@ -26,4 +26,4 @@ class _Team(Model):  #
 
     class Meta:
         db_table = '_team'
-        abstract = True
+        app_label = 'models'

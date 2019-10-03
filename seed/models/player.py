@@ -8,7 +8,7 @@ from datetime import datetime
 from django.db import models
 from seed.helpers.model import Model
 
-class _Player(Model):  #
+class Player(Model):  #
 
     name = models.CharField(max_length=256, blank=True)
     photo = models.ForeignKey('models.File', related_name='player_photos',
@@ -22,4 +22,4 @@ class _Player(Model):  #
 
     class Meta:
         db_table = '_player'
-        abstract = True
+        app_label = 'models'

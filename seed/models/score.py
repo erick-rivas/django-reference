@@ -8,7 +8,7 @@ from datetime import datetime
 from django.db import models
 from seed.helpers.model import Model
 
-class _Score(Model):  #
+class Score(Model):  #
 
     min = models.IntegerField(default=0, help_text="Minute of the goal")
 
@@ -19,4 +19,4 @@ class _Score(Model):  #
 
     class Meta:
         db_table = '_score'
-        abstract = True
+        app_label = 'models'

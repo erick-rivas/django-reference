@@ -139,7 +139,7 @@ REST_FRAMEWORK = {
 DYNAMIC_REST = {'ENABLE_LINKS': False}
 
 GRAPHENE = {
-    'SCHEMA': 'schema.schema.schema'
+    'SCHEMA': 'app.graphene.schema'
 }
 
 # EMAIL
