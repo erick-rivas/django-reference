@@ -4,8 +4,8 @@ __Seed builder__v1.0
   Modify via builder
 """
 
-import graphene
 import re
+import graphene
 from django.db.models import Q
 from graphene_django.types import DjangoObjectType
 from app.models import Match as MatchModel
@@ -17,6 +17,9 @@ from app.models import User as UserModel
 from app.models import File as FileModel
 
 def query(data, model):
+    def snake_case(name):
+        s1 = re.sub('(.)([A-Z][a-z]+)', r'\1_\2', name)
+        return re.sub('([a-z0-9])([A-Z])', r'\1_\2', s1).lower()
     data = data.replace(".", "__")
     data = data.replace("(", "")
     data = data.replace(")", "")
@@ -26,8 +29,16 @@ def query(data, model):
         filters = [i.strip() for i in q.split("AND")]
         values = {}
         for f in filters:
-            ele = f.split("=")
-            values[ele[0].strip()] = ele[1].strip()
+            opt = ("=", "")
+            if ">=" in f: opt = (">=", "gte")
+            elif "<=" in f: opt = ("<=", "lte")
+            elif ">" in f: opt = (">", "gt")
+            elif "<" in f: opt = ("<", "lt")
+            ele = f.split(opt[0])
+            if opt[0] == "==":
+              values[snake_case(ele[0].strip())] = ele[1].strip()
+            else:
+                values[snake_case(ele[0].strip()) + "__" + opt[1]] = ele[1].strip()
         res |= Q(**values)
     return model.objects.filter(res)
 
