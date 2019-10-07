@@ -1,3 +1,8 @@
+"""
+__Seed builder__v0.1.7
+  (Read_only) Builder helper
+"""
+
 import os
 import uuid
 from django.core.files.storage import default_storage

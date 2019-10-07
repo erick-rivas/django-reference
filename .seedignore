@@ -36,5 +36,6 @@ views
 ?app/wsgi.py
 !*__init__.py
 !*helpers
+!*util
 !.gitignore
 !.keep
