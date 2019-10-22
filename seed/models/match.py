@@ -1,5 +1,5 @@
 """
-__Seed builder__v0.1.7
+__Seed builder__v0.1.8
   AUTO_GENERATED (Read only)
   Modify via builder
 """
@@ -17,7 +17,8 @@ class Match(Model):  #
     )
 
     date = models.DateTimeField(default=datetime.now)
-    type = models.CharField(max_length=64, choices=TYPES, help_text="Match type (eg. cup)")
+    type = models.CharField(max_length=64, choices=TYPES,
+        blank=False, help_text="Match type (eg. cup)")
 
     local = models.ForeignKey('models.Team', related_name='local_matches',
         blank=False, null=False, on_delete=models.CASCADE)
