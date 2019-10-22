@@ -1,5 +1,5 @@
 """
-__Seed builder__v1.0
+__Seed builder__v1.7
   (Read_only) Builder helper
 """
 
@@ -15,7 +15,16 @@ class FileView(views.APIView):  #
     parser_classes = (MultiPartParser,)
 
     def post(self, request):  #
-        f = request.data['file']
-        model = save_file(f)
-        serializer = FileSerializer(model, many=False)
-        return Response(serializer.data, status=status.HTTP_201_CREATED)
+        fs = request.FILES.getlist('file')
+        if len(fs) == 0: return Response(status=status.HTTP_400_BAD_REQUEST)
+        if len(fs) > 1:
+            models = []
+            for f in fs:
+                model = save_file(f)
+                models.append(model)
+            serializer = FileSerializer(models, many=True)
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        else:
+            model = save_file(fs[0])
+            serializer = FileSerializer(model, many=False)
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
