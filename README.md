@@ -42,7 +42,7 @@ $ ./bin/install
 ```
 -  For windows open powershell and run with admnistrative privilages.
 ```bash
-$ ./bin/install_win
+$ ./bin/install-win
 ```
 
 - Install builder

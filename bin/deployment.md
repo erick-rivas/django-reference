@@ -25,6 +25,7 @@ This file contains guides to deploy project to aws elastic beanstalk
 
 ### Production settings
 
+-  Move bin/eb/.ebextensions & bin/eb/.ebignore to root folder
 -  Create and configure *.env.prod* file.
 -  Make database migrations.
 ```bash
