@@ -12,7 +12,7 @@ Represents the model definitions of the application (database)
 
 -   Modify attributes types and names via builder.
 -   Only add aggregate methods (properties) if required
-      -   Example: has_members(), complete_name() ...
+    -   Example: has_members(), complete_name() ...
 -   To export a model use command \
 >   $ seed export -m models:model_name
 

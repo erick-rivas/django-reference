@@ -9,10 +9,10 @@ This file contains guides to deploy project to aws elastic beanstalk
 -   Go to elastic beanstalk pane.
 -   Create a new application (if required).
 -   Create a new environment.
-      -   Select python platform.
-      -   Press *more_options* and go to database.
-      -   Create a new **postgresql** database.
-      >   For development(sandbox)  use preferably a t3a.nano instance
+    -   Select python platform.
+    -   Press *more_options* and go to database.
+    -   Create a new **postgresql** database.
+    >   For development(sandbox)  use preferably a t3a.nano instance
    
 ### EB CLI
 
