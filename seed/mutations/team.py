@@ -6,7 +6,6 @@ __Seed builder__v0.1.8
 
 import graphene
 from app.models import Team
-from app.models import Player
 from app.models import File
 from seed.schema.types import Team as TeamType
 

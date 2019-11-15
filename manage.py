@@ -13,6 +13,7 @@ if __name__ == "__main__":
    except ImportError:
       try:
          import django
+         print(django.VERSION)
       except ImportError:
          raise ImportError(
             "Couldn't import Django. Are you sure it's installed and "

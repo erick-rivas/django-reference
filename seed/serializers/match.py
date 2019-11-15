@@ -3,13 +3,11 @@ __Seed builder__v0.1.8
   AUTO_GENERATED (Read only)
   Modify via builder
 """
-
 from rest_framework import serializers
-from seed.helpers.serializer import Serializer
 from dynamic_rest.fields import DynamicRelationField
+from seed.helpers.serializer import Serializer
 from app.models import Match
 from app.models import Team
-from app.models import Score
 
 class _MatchSerializer(Serializer):  #
     

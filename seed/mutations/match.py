@@ -7,8 +7,6 @@ __Seed builder__v0.1.8
 import graphene
 from app.models import Match
 from app.models import Team
-from app.models import Score
-from app.models import File
 from seed.schema.types import Match as MatchType
 
 class SaveMatchMutation(graphene.Mutation):

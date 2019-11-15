@@ -8,7 +8,6 @@ import graphene
 from app.models import Score
 from app.models import Player
 from app.models import Match
-from app.models import File
 from seed.schema.types import Score as ScoreType
 
 class SaveScoreMutation(graphene.Mutation):

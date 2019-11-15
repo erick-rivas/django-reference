@@ -7,7 +7,6 @@ __Seed builder__v0.1.8
 import graphene
 from app.models import User
 from app.models import Team
-from app.models import File
 from seed.schema.types import User as UserType
 
 class SaveUserMutation(graphene.Mutation):
