@@ -5,7 +5,6 @@ __Seed builder__v0.1.8
 """
 
 import graphene
-from graphene_django import DjangoObjectType
 from app.models import PlayerPosition
 from app.models import File
 from seed.schema.types import PlayerPosition as PlayerPositionType

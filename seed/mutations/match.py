@@ -5,7 +5,6 @@ __Seed builder__v0.1.8
 """
 
 import graphene
-from graphene_django import DjangoObjectType
 from app.models import Match
 from app.models import Team
 from app.models import Score

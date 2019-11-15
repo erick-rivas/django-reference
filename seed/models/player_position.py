@@ -4,7 +4,6 @@ __Seed builder__v0.1.8
   Modify via builder
 """
 
-from datetime import datetime
 from django.db import models
 from seed.helpers.model import Model
 

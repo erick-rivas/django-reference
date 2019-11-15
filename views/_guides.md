@@ -52,7 +52,7 @@ class PlayerViewSet(_PlayerViewSet):  #
 ```
 
 Endpoint
-```
+```bash
 GET http://localhost:8000/players/top_10
 ```
 
@@ -77,7 +77,7 @@ class UserViewSet(_UserViewSet):  #
 ```
 
 Endpoint
-```
+```bash
 POST http://localhost:8000/users/1/create_profile
 ```
 

@@ -7,8 +7,8 @@ This repository holds the source code of a **reference** for the development of 
 -   [Overview](#overview)
 -   [Pre-requisites](#pre-requisites)
 -   [Installation](#installation)
-      -   [Filling of database](#filling-of-database)
-      -   [Test running](#test-running)
+    -   [Filling of database](#filling-of-database)
+    -   [Test running](#test-running)
 -   [Examples](#examples)
 -   [Deployment](#deployment)
     
@@ -19,8 +19,8 @@ The reference uses a architecture based on a Generic Model View pattern, Inspire
 In general terms, the architecture uses the following structure:
 
 -   /app: General settings of api.
-      -   api.py: Api routes definitions.
-      -   settings.py: App settings (dependencies, configurations, etc).
+    -   api.py: Api routes definitions.
+    -   settings.py: App settings (dependencies, configurations, etc).
 -   /domain: Business logic methods. [More info](./domain/__guides.md)
 -   /fixtures: Preloaded data definitions.
 -   /models: Model definitions. [More info](./models/__guides.md)
@@ -91,7 +91,7 @@ GET http://localhost:8000/graphql
 ```bash
 http://localhost:8000/admin
 ```
-> To access admin pane, create a user fixture with *is_superuser* attribute set to true 
+>   To access admin pane, create a user fixture with *is_superuser* attribute set to true 
 
 
 ## Deployment

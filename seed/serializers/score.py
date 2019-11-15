@@ -6,13 +6,10 @@ __Seed builder__v0.1.8
 
 from rest_framework import serializers
 from seed.helpers.serializer import Serializer
+from dynamic_rest.fields import DynamicRelationField
 from app.models import Score
 from app.models import Player
 from app.models import Match
-from app.models import File
-from seed.serializers.helpers.file import FileSerializer
-
-from dynamic_rest.fields import DynamicRelationField
 
 class _ScoreSerializer(Serializer):  #
     

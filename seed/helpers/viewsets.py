@@ -3,16 +3,13 @@ __Seed builder__v0.1.8
   (Read_only) Builder helper
 """
 
-import os
-from rest_framework import filters
 from rest_framework import status
 from rest_framework.response import Response
-from rest_framework.authentication import TokenAuthentication
-from rest_framework.permissions import IsAuthenticated
-from rest_framework import permissions
+#from rest_framework.authentication import TokenAuthentication
+#from rest_framework.permissions import IsAuthenticated
+#from rest_framework import permissions
 from rest_framework import viewsets
 from dynamic_rest.viewsets import WithDynamicViewSetMixin
-from django_filters.rest_framework import DjangoFilterBackend
 from django.shortcuts import get_object_or_404
 
 class ViewSet(WithDynamicViewSetMixin, viewsets.ModelViewSet):  #
