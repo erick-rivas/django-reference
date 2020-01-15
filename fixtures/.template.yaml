@@ -67,8 +67,8 @@
     email: ""
     password: "pbkdf2_sha256$150000$jMOqkdOUpor5$kU/QofjBsopM+CdCnU2+pROhtnxd5CZc7NhUiXNTMc0="
     is_active: true
-    is_superuser: true
-    is_staff: true
+    is_superuser: false
+    is_staff: false
     last_login: "2019-01-01T12:00:00+00:00"
     groups: []
     user_permissions: []
@@ -83,3 +83,4 @@
     url: "https://st-listas.20minutos.es/images/2010-01/177732/1966423_640px.jpg?1518458710"
     size: 128
     name: "file"
+

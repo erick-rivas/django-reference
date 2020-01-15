@@ -2,11 +2,26 @@
 
 This file contains guides to enable security practices (hardware & deployment) for django api
 
-## Limit anonymous users
+## Enable request authentication
 
-To limit request to registered users (token authentication):
+To limit request to anonymous users enable token authentication:
 
--   Add ENABLE_SECURITY=true to .env files
+-   Add ENABLE_AUTH=true to .env files
+
+In case of using AWS elastic beanstalk, open ssh (eb ssh) and create the config file /etc/httpd/conf.d/wigs.conf
+
+```bash
+$ vim /etc/httpd/conf.d/wigs.conf
+```
+
+```text
+WSGIPassAuthorization On
+
+RewriteEngine on
+RewriteCond %{HTTP:Authorization} ^(.*)
+RewriteRule .* - [e=HTTP_AUTHORIZATION:%1]
+```
+
 
 ### Test token request
 

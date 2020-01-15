@@ -1,7 +1,20 @@
 import os
+import dotenv
+from urllib.parse import urlparse
+
+def get_environ(key):
+    return True if key in os.environ and os.environ[key].lower() == "true" else False
+
+def get_env(key):
+    return True if os.getenv(key) is not None and os.getenv(key).lower() == "true" else False
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-IS_PROD = True if 'IS_PROD' in os.environ and os.environ['IS_PROD'].lower() == "true" else False
+IS_PROD = get_environ('IS_PROD')
+dotenv.read_dotenv(os.path.join(os.path.dirname(os.path.dirname(__file__)),
+    '.env.prod' if IS_PROD else '.env.dev'))
+
+USE_AWS_EB = get_env('USE_AWS_EB')
+USE_AWS_S3 = get_env('USE_AWS_S3')
 DEBUG = not IS_PROD
 SECRET_KEY = 'fup+swltefA9efredrufihUSTO!wam?c'
 SITE_ID = 1
@@ -42,18 +55,17 @@ INSTALLED_APPS = [
     'corsheaders',
     'graphene_django',
 
-
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
 ]
 
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
+    'seed.helpers.csrf_except.CSRFDisableMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -74,7 +86,7 @@ DATABASES = {
         'HOST': os.getenv('DB_HOST'),
         'PORT': os.getenv('DB_PORT')
     }
-} if DEBUG else {
+} if not USE_AWS_EB else {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': os.environ['RDS_DB_NAME'],
@@ -87,11 +99,11 @@ DATABASES = {
 
 # S3 Settings
 
-if os.getenv('USE_S3') is not None and os.getenv('USE_S3').lower() == "true":
+if USE_AWS_S3:
     DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-    AWS_ACCESS_KEY_ID = os.getenv('S3_KEY')
-    AWS_SECRET_ACCESS_KEY = os.getenv('S3_SECRET')
-    AWS_STORAGE_BUCKET_NAME = os.getenv('S3_BUCKET_NAME')
+    AWS_ACCESS_KEY_ID = os.getenv('AWS_S3_KEY')
+    AWS_SECRET_ACCESS_KEY = os.getenv('AWS_S3_SECRET')
+    AWS_STORAGE_BUCKET_NAME = os.getenv('AWS_S3_BUCKET_NAME')
     AWS_DEFAULT_ACL = "public-read"
     AWS_BUCKET_ACL = "public-read"
     AWS_AUTO_CREATE_BUCKET = True
@@ -99,8 +111,8 @@ if os.getenv('USE_S3') is not None and os.getenv('USE_S3').lower() == "true":
 # Security settings
 
 REST_AUTH_SERIALIZERS = {'TOKEN_SERIALIZER': 'seed.serializers.helpers.token.TokenSerializer'}
-CORS_ORIGIN_ALLOW_ALL = True
-ALLOWED_HOSTS = ['*']
+CORS_ORIGIN_WHITELIST = [os.getenv('APP_URL')]
+ALLOWED_HOSTS = [urlparse(os.getenv('HOST_URL')).hostname]
 
 AUTH_PASSWORD_VALIDATORS = [
     {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator', },

@@ -1,5 +1,4 @@
 #!/bin/sh
-
 npm run-script build --prefix $1
 mkdir -p reactjs
 cp -R $1/build/* reactjs

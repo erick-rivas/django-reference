@@ -2,7 +2,6 @@
 
 This file contains guides to deploy project to aws elastic beanstalk
 
-
 ### Elastic beanstalk instance
 
 -   Open aws console in [aws.amazon.com](https://aws.amazon.com),

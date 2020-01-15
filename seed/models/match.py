@@ -16,7 +16,8 @@ class Match(Model):  #
         ('CUP', 'Cup'),
     )
 
-    date = models.DateTimeField(default=datetime.now)
+    date = models.DateTimeField(
+        blank=False, null=False, default=datetime.now)
     type = models.CharField(max_length=64, choices=TYPES,
         blank=False, help_text="Match type (eg. cup)")
 

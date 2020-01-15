@@ -1,0 +1,17 @@
+
+- model: models.user
+  pk: 1
+  fields:
+    username: "admin"
+    first_name: "admin"
+    last_name: "str"
+    email: "admin@email.com"
+    password: "pbkdf2_sha256$150000$jMOqkdOUpor5$kU/QofjBsopM+CdCnU2+pROhtnxd5CZc7NhUiXNTMc0="
+    is_active: true
+    is_superuser: true
+    is_staff: true
+    last_login: "2019-01-01T12:00:00+00:00"
+    groups: []
+    user_permissions: []
+    date_joined: "2019-01-01T12:00:00+00:00"
+    teams: []
