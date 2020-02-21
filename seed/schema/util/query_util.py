@@ -42,12 +42,12 @@ def get_sub_query(sub_content, hsh):
 def get_query(data, hsh):
     data = data.replace(".", "__")
     res = Q()
-    queries = [i.strip() for i in data.split("OR")]
+    queries = [i.strip() for i in data.split(" OR ")]
     for q in queries:
         if q.startswith("Q["):
             res |= get_sub_query(q, hsh)
         else:
-            filters = [i.strip() for i in q.split("AND")]
+            filters = [i.strip() for i in q.split(" AND ")]
             values = []
             for f in filters:
                 if f.startswith("Q["):
@@ -70,10 +70,13 @@ def get_query(data, hsh):
 
                     ele = f.split(opt[0])
                     if len(ele) > 1:
+                        val_l = ele[1].strip()
+                        if ele[1].strip().upper() == "TRUE": val_l = True
+                        if ele[1].strip().upper() == "FALSE": val_l = False
                         if opt[0] == "=":
-                            val_s[snake_case(ele[0].strip())] = ele[1].strip()
+                            val_s[snake_case(ele[0].strip())] = val_l
                         else:
-                            val_s[snake_case(ele[0].strip()) + "__" + opt[1]] = ele[1].strip()
+                            val_s[snake_case(ele[0].strip()) + "__" + opt[1]] = val_l
                         q_s = Q(**val_s)
                         values.append(q_s)
             res |= Q(*values)
