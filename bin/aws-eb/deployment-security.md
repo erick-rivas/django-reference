@@ -41,7 +41,7 @@ To enable a https connection:
 
 ### Configure aws/dns settings
 
--   Create an elastic beanstalk instance for reactjs support (see [README.md](../README.md))   
+-   Create an elastic beanstalk instance for reactjs support (see [README.md](../../README.md))   
 
 -   Enable 443 port in ec2 settings
     -   Go to ec2 pane 
@@ -52,7 +52,7 @@ To enable a https connection:
 
 ### Configure server
 
--   Install eb terminal and init project (see [README.md](../README.md))
+-   Install eb terminal and init project (see [README.md](../../README.md))
 -   Enable & execute ssh
 
 ```bash
@@ -79,5 +79,5 @@ $ sudo ./certbot-auto certonly --debug
   # Select 1. apache
 ```
 
--   Copy bin/eb/http-instance.config to .ebextensions folder
--   Set HTTPS_DOMAIN in .ebextensions/django.config
+-   Copy bin/awb-eb/config/.ebextensions/http-instance.config to .ebextensions folder
+-   Set HTTPS_DOMAIN in .ebextensions/https-instance.config

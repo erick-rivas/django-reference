@@ -20,7 +20,7 @@ This file contains guides to deploy project to aws elastic beanstalk
 
 ### Security settings
 
--   To enable security protocols, see [deployment-security.md](./deployment-security.md).
+-   To enable security protocols, see [deployment-security.md](deployment-security.md).
 
 ### Production settings
 
@@ -35,5 +35,5 @@ This file contains guides to deploy project to aws elastic beanstalk
 
 -   Run command to aws.
 ```bash
-$ ./bin/deploy
+$ ./bin/aws-eb/deploy.sh
 ```
