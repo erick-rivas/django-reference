@@ -1,3 +1,12 @@
+#
+# __Seed builder__v0.1.8
+#   AUTO_GENERATED (Read only)
+#   Modify via builder
+#
+#   Guidelines:
+#      - Use template as base for fixture creation
+#      - Run with > python3 manage.py loaddata fixtures/*.yaml
+#
 
 - model: models.user
   pk: 1
