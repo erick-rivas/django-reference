@@ -7,6 +7,7 @@
 LICENSE
 SeedManifest.json
 SeedExport.json
+SeedModeling.mdj
 seed/app/*
 seed/models/*
 seed/serializers/*

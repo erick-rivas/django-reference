@@ -8,36 +8,9 @@ To limit request to anonymous users enable token authentication:
 
 -   Add ENABLE_AUTH=true to .env files
 
-In case of using AWS elastic beanstalk, open ssh (eb ssh) and create the config file /etc/httpd/conf.d/wigs.conf
-
-```bash
-$ vim /etc/httpd/conf.d/wigs.conf
-```
-
-```text
-WSGIPassAuthorization On
-
-RewriteEngine on
-RewriteCond %{HTTP:Authorization} ^(.*)
-RewriteRule .* - [e=HTTP_AUTHORIZATION:%1]
-```
-
-
-### Test token request
-
--   Generate temp token
-```bash
-(.venv)$ python3 manage.py drf_create_token 
-```
-
--   Send a request with the authentication params
-```bash
-$ curl -i -X GET http://127.0.0.1:8000/api/players -H 'Authorization: Token '
-```
-
 ## Https
 
-To enable a https connection:
+To enable a https connection
 
 ### Configure aws/dns settings
 
@@ -52,32 +25,33 @@ To enable a https connection:
 
 ### Configure server
 
--   Install eb terminal and init project (see [README.md](../../README.md))
+-   Install eb terminal and init project (see [deployment.md](./deployment.md))
 -   Enable & execute ssh
 
 ```bash
-$ eb ssh --setup
-$ eb ssh
+eb ssh --setup
+eb ssh
 ```
 
 -   Setup apache settings
-
 ```bash
-$ sudo vim /etc/httpd/conf.d/temp.conf
+sudo vim /etc/httpd/conf.d/temp.conf
+```
+-   Set config content
+```
 <VirtualHost *:80 *:443>
-	ServerName <HTTPS_DOMAIN>
+	ServerName #HTTPS_DOMAIN#
 	DocumentRoot /var/www/html
 </VirtualHost>
 ```
 
 -   Install and configure certbot
-
 ```bash
-$ sudo wget https://dl.eff.org/certbot-auto
-$ sudo chmod a+x ./certbot-auto
-$ sudo ./certbot-auto certonly --debug
-  # Select 1. apache
+sudo wget https://dl.eff.org/certbot-auto
+sudo chmod a+x ./certbot-auto
+sudo ./certbot-auto certonly --debug
+# Select 1. apache
 ```
 
--   Copy bin/awb-eb/config/.ebextensions/http-instance.config to .ebextensions folder
--   Set HTTPS_DOMAIN in .ebextensions/https-instance.config
+-   Copy [config/https-instance.config](.config/https-instance.config) to .ebextensions folder
+-   Replace #HTTPS_DOMAIN# to server name
