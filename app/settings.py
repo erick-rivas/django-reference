@@ -115,7 +115,7 @@ CORS_ORIGIN_WHITELIST = [os.getenv('APP_URL')]
 ALLOWED_HOSTS = [urlparse(os.getenv('HOST_URL')).hostname]
 
 # For Docker development, change the allowed hosts
-# ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS").split(" ")
+#ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS").split(" ")
 
 AUTH_PASSWORD_VALIDATORS = [
     {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator', },

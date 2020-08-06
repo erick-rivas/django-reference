@@ -20,9 +20,9 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data/
     environment:
-      - POSTGRES_USER
-      - POSTGRES_PASSWORD
-      - POSTGRES_DB
+      - POSTGRES_USER=django_db
+      - POSTGRES_PASSWORD=n0m3l0
+      - POSTGRES_DB=django_db
 
 volumes:
   postgres_data:
