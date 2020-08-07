@@ -56,4 +56,30 @@ Finally, install Docker:
 sudo apt install docker-ce
 ```
 
-## Setup config files
+## For development
+
+Copy the `.env.example` file as `.env.dev`.
+
+```
+cp .env.example .env.dev #Linux / MacOS
+copy .env.example .env.dev #Windows
+```
+Change the following atributes to develop in a Docker container:
+
+```
+#For docker development
+DJANGO_ALLOWED_HOSTS=localhost 127.0.0.1 [::1]
+DB_HOST=db # Delete comment in this line
+
+#docker-compose.yml variables
+POSTGRES_DB=django_db #POSTGRES_DB name must be the same as in DB_NAME
+POSTGRES_USER=django_db #POSTGRES_USER name must be the same as in DB_USER
+POSTGRES_PASSWORD=n0m3l0 #POSTGRES_PASSWORD name must be the same as in DB_PASSWORD
+DATABASE=postgres
+```
+
+Next run the next command from the root directory of the project as **administrator or superuser**:
+
+```
+docker-compose up -d --build
+```
