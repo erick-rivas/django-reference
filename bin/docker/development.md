@@ -31,6 +31,13 @@ POSTGRES_USER=django_db
 POSTGRES_PASSWORD=n0m3l0 
 ```
 
+Inside `app/settings.py` remove the comment in the line:
+
+```
+# For Docker development, change the allowed hosts
+ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS").split(" ")
+```
+
 Copy the files in the `bin/docker/config/development` folder to the root directory. Run the following command from the root directory:
 
 ```
@@ -45,6 +52,27 @@ Next run the next command from the root directory of the project as **administra
 ```
 docker-compose up -d --build
 ```
+
+To check all the running containers in your system, use
+
+```
+docker ps -a #or
+docker-compose ps
+```
+
+To stop a container use
+
+```
+docker stop [CONTAINER_ID]
+```
+
+To remove the volumes and the containers use
+
+```
+docker-compose down -v
+```
+
+To edit code live from a container see [the VSCode documentation](https://code.visualstudio.com/docs/remote/containers)
 
 ## Troubleshooting
 
@@ -76,7 +104,7 @@ To execute a command on the docker container use the `exec` command [see the Doc
 After starting the container, run the *exec* command:
 
 ```
-docker-compose exec web python manage.py loaddata fixtures/*.yaml
+docker-compose exec django python manage.py loaddata fixtures/*.yaml
 ```
 
 ### Inspecting the database
