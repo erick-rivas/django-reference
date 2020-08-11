@@ -56,6 +56,8 @@ Finally, install Docker:
 sudo apt install docker-ce
 ```
 
+Follow the [post-installation steps](https://docs.docker.com/engine/install/linux-postinstall/) to get more out of your docker install in linux (such as the Docker extension for VSCode).
+
 ## For development
 
 See the [development instructions](development.md)
