@@ -50,7 +50,7 @@ Or just copy the files with the file manager.
 Next run the next command from the root directory of the project as **administrator or superuser**:
 
 ```
-docker-compose up -d --build
+docker-compose --env-file ./.env.dev -f docker-compose.yml up -d --build
 ```
 
 To check all the running containers in your system, use
@@ -79,7 +79,7 @@ To edit code live from a container see [the VSCode documentation](https://code.v
 If the `localhost:8000` is not connected run:
 
 ```
-docker-compose up --build
+docker-compose --env-file ./.env.dev -f docker-compose.yml up --build
 ```
 
 If you're presented with the following error:
@@ -103,14 +103,16 @@ To execute a command on the docker container use the `exec` command [see the Doc
 
 After starting the container, run the *exec* command:
 
-```
-docker-compose exec django python manage.py loaddata fixtures/*.yaml
-```
+```docker-compose exec django python manage.py loaddata fixtures/*.yaml```
 
 ### Inspecting the database
 
 To use *PSQL* commands in the container access it by:
 
 ```docker-compose exec db psql --username=django_db --dbname=django_db```
+
+or 
+
+```docker-compose exec db psql -U django_db```
 
 And you'll be prompted with the *psql* interface for the database in the container.

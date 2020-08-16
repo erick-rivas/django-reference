@@ -1,8 +1,8 @@
 version: '3.7'
 
 services:
-  django:
-    build: ./
+  web:
+    build: .
     command: python manage.py runserver 0.0.0.0:8000
     volumes:
       - ./:/usr/src/app/
@@ -17,12 +17,14 @@ services:
     image: postgres:12.0-alpine
     ports:
       - "5432:5432"
+    env_file:
+      - ./.env.dev
     volumes:
       - postgres_data:/var/lib/postgresql/data/
     environment:
-      - POSTGRES_USER
-      - POSTGRES_PASSWORD
-      - POSTGRES_DB
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_DB=${POSTGRES_DB}
 
 volumes:
   postgres_data:
