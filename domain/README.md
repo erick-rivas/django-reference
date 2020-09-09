@@ -1,6 +1,6 @@
 # Domains
 
-Represents the methods to handle business logic
+Represents the methods that handle business logic
 
 ## Table of content
 

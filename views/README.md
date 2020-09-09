@@ -1,34 +1,20 @@
 # Views
 
-Represents the API routes definitions (endpoints)
+Represents the **extensions** of API routes (endpoints)
 
 ## Table of content
 
 -   [Description](#description)
--   [Guidelines](#guidelines)
 -   [Examples](#examples)
     -   [GET example](#get-example)
     -   [POST example](#post-example)
 -   [References](#references)
--   [Seed views](#seed-views)
 
 ## Description
 
-The viewsets are the responsible to handle all the http requests corresponding to a particular model (CRUD).
+The viewsets are the responsible to handle all the http requests corresponding to a particular model.
 
-By default, a viewset the main CRUD operations of a model using REST standard. Example: 
-
--   GET (get list & details)
--   POST (save)
--   PUT (Modify)
--   DELETE (Delete)
-
-## Guidelines
-
--   Add business logic via domains.
--   Preferably *just add actions* if required
--   To export a view use command \
->   $ seed export -m views:model_name
+By default, the builder generate the endpoints related to CRUD operations of a model. **In case of extension** (Eg. dedicated methods) include new routes to the viewsets
 
 ## Examples
 

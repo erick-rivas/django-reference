@@ -1,6 +1,7 @@
 # Models
 
-Represents the model definitions of the application (database)
+Represents the **extensions** of model definitions \
+In most cases the entire models are generated automatically by seed-builder in (seed/models) folder
 
 ## Table of content
 
@@ -10,11 +11,13 @@ Represents the model definitions of the application (database)
 
 ## Guidelines
 
--   Modify attributes types and names via builder.
+-   Modify attributes types and names via seed-builder.
 -   Only add aggregate methods (properties) if required
     -   Example: has_members(), complete_name() ...
--   To export a model use command \
->   $ seed export -m models:model_name
+-   To extend a model use command
+```bash
+seed extend -m models:<model_name>
+```
 
 ## Example
 
@@ -28,3 +31,4 @@ class User(_User):  #
 ## References
 
 -   Model reference: [https://docs.djangoproject.com/en/2.2/topics/db/models/](https://docs.djangoproject.com/en/2.2/topics/db/models/)
+
