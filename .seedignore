@@ -3,6 +3,7 @@
 .venv*
 .env.dev
 .env.prod
+.gitignore
 .seedignore
 LICENSE
 SeedManifest.json
@@ -38,5 +39,4 @@ views
 !*__init__.py
 !*helpers
 !*util
-!.gitignore
 !.keep
