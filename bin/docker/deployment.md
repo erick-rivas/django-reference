@@ -1,6 +1,6 @@
-# For development
+# For deployment
 
-- [For development](#for-development)
+- [For deployment](#for-development)
   - [Run the container](#run-the-container)
   - [Troubleshooting](#troubleshooting)
   - [Executing commands on the Docker Container](#executing-commands-on-the-docker-container)
@@ -15,6 +15,7 @@ Copy the `.env.example` file as `.env.prod`.
 cp .env.example .env.prod #Linux / MacOS
 copy .env.example .env.prod #Windows
 ```
+
 Change the following atributes to develop in a Docker container:
 
 1. Delete the comment on the `DB_HOST` line under the `#For docker development` section.
@@ -26,9 +27,9 @@ DJANGO_ALLOWED_HOSTS=localhost 127.0.0.1 [::1]
 DB_HOST=db
 
 #docker-compose.yml variables
-POSTGRES_DB=django_db 
-POSTGRES_USER=django_db 
-POSTGRES_PASSWORD=n0m3l0 
+POSTGRES_DB=django_db
+POSTGRES_USER=django_db
+POSTGRES_PASSWORD=n0m3l0
 ```
 
 Inside `app/settings.py` remove the comment in the line:
@@ -78,6 +79,8 @@ To edit code live from a container see [the VSCode documentation](https://code.v
 
 ## Troubleshooting
 
+If you are presented with an _standard_init_linux.go:[number]: exec user process caused “no such file or directory” - Docker_ error, open the **entrypoint.sh** file in Notepad++, go to _EDIT-> EOL conversion -> change from CRLF to LF_ and run the `docker-compose` again
+
 If the `localhost:1337` is not connected run:
 
 ```
@@ -95,7 +98,7 @@ django.db.utils.OperationalError: could not connect to server: Connection refuse
 try the following:
 
 1. Inspect and kill any process that is running on port **5432** on your system
-2. Make sure you deleted the comment on the line `DB_HOST=db` on the *.env.dev* file
+2. Make sure you deleted the comment on the line `DB_HOST=db` on the _.env.dev_ file
 
 ## Executing commands on the Docker Container
 
@@ -103,18 +106,18 @@ To execute a command on the docker container use the `exec` command [see the Doc
 
 ### Using fixtures
 
-After starting the container, run the *exec* command:
+After starting the container, run the _exec_ command:
 
-```docker-compose exec web python manage.py loaddata fixtures/*.yaml```
+`docker-compose exec web python manage.py loaddata fixtures/*.yaml`
 
 ### Inspecting the database
 
-To use *PSQL* commands in the container access it by:
+To use _PSQL_ commands in the container access it by:
 
-```docker-compose exec db psql --username=django_db --dbname=django_db```
+`docker-compose exec db psql --username=django_db --dbname=django_db`
 
-or 
+or
 
-```docker-compose exec db psql -U django_db```
+`docker-compose exec db psql -U django_db`
 
-And you'll be prompted with the *psql* interface for the database in the container.
+And you'll be prompted with the _psql_ interface for the database in the container.
