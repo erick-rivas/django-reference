@@ -5,6 +5,7 @@ static
 reactjs
 
 ### Django ###
+.vscode
 .idea
 *.log
 *.pot

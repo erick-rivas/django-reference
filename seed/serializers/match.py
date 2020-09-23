@@ -9,7 +9,7 @@ from seed.helpers.serializer import Serializer
 from app.models import Match
 from app.models import Team
 
-class _MatchSerializer(Serializer):  #
+class _MatchSerializer(Serializer):
     
     local = DynamicRelationField('app.serializers.TeamSerializer', 
         deferred=True, embed=True, read_only=True)

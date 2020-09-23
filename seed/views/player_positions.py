@@ -5,11 +5,9 @@ __Seed builder__v0.2.0
 """
 
 from seed.helpers.viewsets import ViewSet
-
 from app.models import PlayerPosition
 from app.serializers import PlayerPositionSerializer
 
-class _PlayerPositionViewSet(ViewSet):  #
-
+class _PlayerPositionViewSet(ViewSet):
     serializer_class = PlayerPositionSerializer
     queryset = PlayerPosition.objects.all()

@@ -10,7 +10,7 @@ from app.models import Score
 from app.models import Player
 from app.models import Match
 
-class _ScoreSerializer(Serializer):  #
+class _ScoreSerializer(Serializer):
     
     player = DynamicRelationField('app.serializers.PlayerSerializer', 
         deferred=True, embed=True, read_only=True)

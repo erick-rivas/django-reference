@@ -5,11 +5,9 @@ __Seed builder__v0.2.0
 """
 
 from seed.helpers.viewsets import ViewSet
-
 from app.models import Team
 from app.serializers import TeamSerializer
 
-class _TeamViewSet(ViewSet):  #
-
+class _TeamViewSet(ViewSet):
     serializer_class = TeamSerializer
     queryset = Team.objects.all()

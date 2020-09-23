@@ -5,11 +5,9 @@ __Seed builder__v0.2.0
 """
 
 from seed.helpers.viewsets import ViewSet
-
 from app.models import Match
 from app.serializers import MatchSerializer
 
-class _MatchViewSet(ViewSet):  #
-
+class _MatchViewSet(ViewSet):
     serializer_class = MatchSerializer
     queryset = Match.objects.all()

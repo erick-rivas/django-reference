@@ -6,13 +6,16 @@ __Seed builder__v0.2.0
 from import_export.admin import ImportExportModelAdmin
 from import_export import resources
 from djangoql.admin import DjangoQLSearchMixin
-        
+
+
 class Resource(resources.ModelResource):
     class Meta:
         model = None
 
+
 class ModelAdmin(DjangoQLSearchMixin, ImportExportModelAdmin):
     resource_class = None
+
 
 def ModelAdminClass(model):  #
 

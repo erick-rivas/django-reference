@@ -12,7 +12,8 @@ from dynamic_rest.viewsets import WithDynamicViewSetMixin
 from django.shortcuts import get_object_or_404
 from app.settings import get_env
 
-class ViewSet(WithDynamicViewSetMixin, viewsets.ModelViewSet):  #
+
+class ViewSet(WithDynamicViewSetMixin, viewsets.ModelViewSet):
 
     if get_env('ENABLE_AUTH'):
         authentication_classes = (TokenAuthentication,)

@@ -10,7 +10,7 @@ from app.models import Team
 from app.models import File
 from seed.serializers.helpers.file import FileSerializer
 
-class _TeamSerializer(Serializer):  #
+class _TeamSerializer(Serializer):
     
     rival = DynamicRelationField('app.serializers.TeamSerializer', 
         deferred=True, embed=True, read_only=True)

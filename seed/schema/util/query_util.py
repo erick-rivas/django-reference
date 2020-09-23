@@ -6,16 +6,18 @@ __Seed builder__v0.2.0
 import re
 from django.db.models import Q
 
+
 def snake_case(name):
     s1 = re.sub('(.)([A-Z][a-z]+)', r'\1_\2', name)
     return re.sub('([a-z0-9])([A-Z])', r'\1_\2', s1).lower()
+
 
 def parse_query(data, model):
     hsh = dict()
     stack = [0]
     hsh_idx = 0
     overflow = 0
-    while data.find('(') != -1 and overflow < 100 :
+    while data.find('(') != -1 and overflow < 100:
         idx_ini = data[stack[-1]+1: len(data)].find('(') + stack[-1] + 1
         idx_end = data[stack[-1]+1: len(data)].find(')') + stack[-1] + 1
         if idx_ini < idx_end and data[stack[-1]+1: len(data)].find('(') != -1:
@@ -38,6 +40,7 @@ def get_sub_query(sub_content, hsh):
     idx_end = sub_content.find(']')
     idx = sub_content[idx_ini + 1: idx_end]
     return hsh["Q[" + str(idx) + "]"]
+
 
 def get_query(data, hsh):
     data = data.replace(".", "__")
@@ -71,12 +74,15 @@ def get_query(data, hsh):
                     ele = f.split(opt[0])
                     if len(ele) > 1:
                         val_l = ele[1].strip()
-                        if ele[1].strip().upper() == "TRUE": val_l = True
-                        if ele[1].strip().upper() == "FALSE": val_l = False
+                        if ele[1].strip().upper() == "TRUE":
+                            val_l = True
+                        if ele[1].strip().upper() == "FALSE":
+                            val_l = False
                         if opt[0] == "=":
                             val_s[snake_case(ele[0].strip())] = val_l
                         else:
-                            val_s[snake_case(ele[0].strip()) + "__" + opt[1]] = val_l
+                            val_s[snake_case(ele[0].strip()) +
+                                  "__" + opt[1]] = val_l
                         q_s = Q(**val_s)
                         values.append(q_s)
             res |= Q(*values)

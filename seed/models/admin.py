@@ -14,10 +14,10 @@ from app.models import Team
 from app.models import User
 from app.models import File
 
-class _Admin:  #
+class _Admin:
 
   @staticmethod
-  def register():  #
+  def register():
       
       class MatchAdmin(ModelAdminClass(Match)):
           pass

@@ -7,8 +7,8 @@ import os
 import uuid
 from django.core.files.storage import default_storage
 from urllib.parse import urlparse
-
 from app.models import File
+
 
 def save_file(f):
     filename = uuid.uuid4().hex + "_" + f.name

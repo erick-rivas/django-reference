@@ -5,11 +5,9 @@ __Seed builder__v0.2.0
 """
 
 from seed.helpers.viewsets import ViewSet
-
 from app.models import Score
 from app.serializers import ScoreSerializer
 
-class _ScoreViewSet(ViewSet):  #
-
+class _ScoreViewSet(ViewSet):
     serializer_class = ScoreSerializer
     queryset = Score.objects.all()

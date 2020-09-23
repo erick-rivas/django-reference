@@ -7,7 +7,7 @@ __Seed builder__v0.2.0
 from django.db import models
 from seed.helpers.model import Model
 
-class Score(Model):  #
+class Score(Model):
 
     min = models.IntegerField(default=0, help_text="Minute of the goal")
 

@@ -7,7 +7,7 @@ __Seed builder__v0.2.0
 from django.db import models
 from seed.helpers.model import Model
 
-class Team(Model):  #
+class Team(Model):
 
     name = models.CharField(max_length=256, blank=True)
     logo = models.ForeignKey('models.File', related_name='team_logos',

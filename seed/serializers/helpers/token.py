@@ -6,7 +6,8 @@ __Seed builder__v0.2.0
 from rest_framework import serializers
 from rest_auth.models import TokenModel
 
-class TokenSerializer(serializers.ModelSerializer):  #
+
+class TokenSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = TokenModel

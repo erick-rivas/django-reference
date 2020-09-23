@@ -12,7 +12,7 @@ from app.models import PlayerPosition
 from app.models import File
 from seed.serializers.helpers.file import FileSerializer
 
-class _PlayerSerializer(Serializer):  #
+class _PlayerSerializer(Serializer):
     
     team = DynamicRelationField('app.serializers.TeamSerializer', 
         deferred=True, embed=True, read_only=True)
