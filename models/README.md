@@ -31,4 +31,3 @@ class User(_User):  #
 ## References
 
 -   Model reference: [https://docs.djangoproject.com/en/2.2/topics/db/models/](https://docs.djangoproject.com/en/2.2/topics/db/models/)
-
