@@ -1,18 +1,8 @@
-# Django API - Security
-
-This file contains guides to enable security practices (hardware & deployment) for django api
-
-## Enable request authentication
-
-To limit request to anonymous users enable token authentication:
-
--   Add ENABLE_AUTH=true to .env files
-
-## Https
+# Django API - SSL
 
 To enable a https connection
 
-### Configure aws/dns settings
+### Open 443 port 
 
 -   Create an elastic beanstalk instance for reactjs support (see [README.md](../../README.md))   
 
@@ -25,12 +15,17 @@ To enable a https connection
 
 ### Configure server
 
--   Install eb terminal and init project (see [deployment.md](./deployment.md))
--   Enable & execute ssh
-
+-   Access the server by ssh
 ```bash
-eb ssh --setup
 eb ssh
+```
+>   In case of error, configure keys with eb ssh --setup command
+
+-   Delete preconfigure files
+```bash
+sudo rm /etc/httpd/conf.d/ssl.conf
+sudo rm /etc/httpd/conf.d/ssl_rewrite.conf
+sudo rm /opt/elasticbeanstalk/tasks/taillogs.d/letsencrypt.conf
 ```
 
 -   Setup apache settings
@@ -45,13 +40,12 @@ sudo vim /etc/httpd/conf.d/temp.conf
 </VirtualHost>
 ```
 
--   Install and configure certbot
+-   Exit and run "eb deploy" without .ebextensions/https-instance.config
+-   Connect again and configure certbot
 ```bash
 sudo wget https://dl.eff.org/certbot-auto
 sudo chmod a+x ./certbot-auto
 sudo ./certbot-auto certonly --debug
 # Select 1. apache
 ```
-
--   Copy [config/https-instance.config](.config/https-instance.config) to .ebextensions folder
--   Replace #HTTPS_DOMAIN# to server name
+-    Finally remove temp.config and deploy again with .ebextensions/https-instance.config file

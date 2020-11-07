@@ -1,17 +1,21 @@
 import os
-import dotenv
 from urllib.parse import urlparse
+
+import dotenv
+
 
 def get_environ(key):
     return True if key in os.environ and os.environ[key].lower() == "true" else False
 
+
 def get_env(key):
     return True if os.getenv(key) is not None and os.getenv(key).lower() == "true" else False
+
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 IS_PROD = get_environ('IS_PROD')
 dotenv.read_dotenv(os.path.join(os.path.dirname(os.path.dirname(__file__)),
-    '.env.prod' if IS_PROD else '.env.dev'))
+                                '.env.prod' if IS_PROD else '.env.dev'))
 
 USE_AWS_EB = get_env('USE_AWS_EB')
 USE_AWS_S3 = get_env('USE_AWS_S3')
@@ -86,15 +90,6 @@ DATABASES = {
         'HOST': os.getenv('DB_HOST'),
         'PORT': os.getenv('DB_PORT')
     }
-} if not USE_AWS_EB else {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.environ['RDS_DB_NAME'],
-        'USER': os.environ['RDS_USERNAME'],
-        'PASSWORD': os.environ['RDS_PASSWORD'],
-        'HOST': os.environ['RDS_HOSTNAME'],
-        'PORT': os.environ['RDS_PORT']
-    }
 }
 
 # S3 Settings
@@ -142,6 +137,10 @@ TEMPLATES = [
 ]
 
 REST_FRAMEWORK = {
+    'DEFAULT_RENDERER_CLASSES': [
+        'rest_framework.renderers.JSONRenderer',
+    ],
+} if IS_PROD else {
     'DEFAULT_RENDERER_CLASSES': [
         'rest_framework.renderers.JSONRenderer',
         'dynamic_rest.renderers.DynamicBrowsableAPIRenderer',
