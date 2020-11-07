@@ -19,6 +19,7 @@ dotenv.read_dotenv(os.path.join(os.path.dirname(os.path.dirname(__file__)),
 
 USE_AWS_EB = get_env('USE_AWS_EB')
 USE_AWS_S3 = get_env('USE_AWS_S3')
+USE_DOCKER = get_env('USE_DOCKER')
 DEBUG = not IS_PROD
 SECRET_KEY = 'fup+swltefA9efredrufihUSTO!wam?c'
 SITE_ID = 1
@@ -108,9 +109,8 @@ if USE_AWS_S3:
 REST_AUTH_SERIALIZERS = {'TOKEN_SERIALIZER': 'seed.serializers.helpers.token.TokenSerializer'}
 CORS_ORIGIN_WHITELIST = [os.getenv('APP_URL')]
 ALLOWED_HOSTS = [urlparse(os.getenv('HOST_URL')).hostname]
-
-# For Docker development, change the allowed hosts
-ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS").split(" ")
+if USE_DOCKER:
+    ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS").split(" ")
 
 AUTH_PASSWORD_VALIDATORS = [
     {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator', },
