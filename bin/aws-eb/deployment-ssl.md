@@ -1,10 +1,8 @@
-# Django API - SSL
+# Django Web - SSL
 
 To enable a https connection
 
 ### Open 443 port 
-
--   Create an elastic beanstalk instance for reactjs support (see [README.md](../../README.md))   
 
 -   Enable 443 port in ec2 settings
     -   Go to ec2 pane 
@@ -32,7 +30,7 @@ sudo rm /opt/elasticbeanstalk/tasks/taillogs.d/letsencrypt.conf
 ```bash
 sudo vim /etc/httpd/conf.d/temp.conf
 ```
--   Set config content
+-   Set config content (Change #HTTPS_DOMAIN# to host domain)
 ```
 <VirtualHost *:80 *:443>
 	ServerName #HTTPS_DOMAIN#
@@ -40,7 +38,7 @@ sudo vim /etc/httpd/conf.d/temp.conf
 </VirtualHost>
 ```
 
--   Exit and run "eb deploy" without .ebextensions/https-instance.config
+-   Exit and deploy server
 -   Connect again and configure certbot
 ```bash
 sudo wget https://dl.eff.org/certbot-auto
@@ -48,4 +46,8 @@ sudo chmod a+x ./certbot-auto
 sudo ./certbot-auto certonly --debug
 # Select 1. apache
 ```
--    Finally remove temp.config and deploy again with .ebextensions/https-instance.config file
+-    **Important:** Copy the certificate and private key paths for later
+-    Remove /etc/httpd/conf.d/temp.conf and exit server
+-    Copy [bin/aws-eb/config/https-instance.config](./config/https-instance.config) into .ebextensions folder
+-    Configure the *SSLCertificateFile* and *SSLCertificateKeyFile* keys with the files created by certbot
+-    Deploy again "eb deploy"

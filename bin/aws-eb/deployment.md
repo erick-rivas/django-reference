@@ -24,11 +24,11 @@ This file contains guides to deploy project to aws elastic beanstalk
 ## Pre-configuration
 
 -   Create and configure *.env.prod* file.
--   Create a *.ebextension* folder in root and copy inside
-    -   [config/apache-settings.config](./config/apache-settings.config)
-    -   [config/db.config](./config/db.config)
-    -   [config/django.config](./config/django.config)
--   Copy [config/.ebignore](./config/.ebignore) to root folder
+-   Create a *.ebextensions* folder in root and copy inside
+    -   [bin/aws-eb/config/apache-settings.config](./config/apache-settings.config)
+    -   [bin/aws-eb/config/db.config](./config/db.config)
+    -   [bin/aws-eb/config/django.config](./config/django.config)
+-   Copy [bin/aws-eb/config/.ebignore](./config/.ebignore) to root folder
 
 ## Deployment
 

@@ -36,9 +36,10 @@ FIXTURE_DIRS = (os.path.join(BASE_DIR, "fixtures"),)
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "reactjs", "static"),
-    os.path.join(BASE_DIR, "fixtures", "media")
+    os.path.join(BASE_DIR, "fixtures", "media"),
 ]
+if os.path.exists((os.path.join(BASE_DIR, "reactjs", "index.html"))):
+    STATICFILES_DIRS.append(os.path.join(BASE_DIR, "reactjs", "static"))
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 MEDIA_URL = '/media/'
 
@@ -108,9 +109,8 @@ if USE_AWS_S3:
 
 REST_AUTH_SERIALIZERS = {'TOKEN_SERIALIZER': 'seed.serializers.helpers.token.TokenSerializer'}
 CORS_ORIGIN_WHITELIST = [os.getenv('APP_URL')]
-ALLOWED_HOSTS = [urlparse(os.getenv('HOST_URL')).hostname]
-if USE_DOCKER:
-    ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS").split(" ")
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', urlparse(os.getenv('HOST_URL')).hostname] \
+    if not USE_DOCKER else os.environ.get("DJANGO_ALLOWED_HOSTS").split(" ")
 
 AUTH_PASSWORD_VALIDATORS = [
     {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator', },
