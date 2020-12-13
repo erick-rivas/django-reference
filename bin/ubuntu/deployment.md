@@ -1,4 +1,4 @@
-# ReactJS Web - Deployment Ubuntu
+# Django API - Deployment Ubuntu
 
 This file contains guides to deploy project to a Debian Server (Ubuntu Server)
 

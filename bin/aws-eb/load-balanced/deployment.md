@@ -1,4 +1,4 @@
-# Django API - Deployment
+# Django API - Deployment AWS
 
 This file contains guides to deploy project to aws elastic beanstalk
 
@@ -8,15 +8,12 @@ This file contains guides to deploy project to aws elastic beanstalk
 -   Go to Elastic Beanstalk pane.
 -   Create a new application.
 -   Create a new environment (Web server environment)
-    -   Select python platform *version 3.6*
+    -   Select python platform **Amazon Linux**
     -   Press *Configure more options* 
-        -   Go to Software and verify that Apache is set as server proxy
-            >   If there are not options it is set by default
         -   Go to Database and create a new postgresql
-        -   Go to Capacity and select the server capacity
-            >   For development(sandbox) use preferably a t3a.nano instance
-   
-## EB command line interface
+        -   Go to Capacity, capacity type and select load balanced as Environment type
+        
+# EB command line interface
 
 -   Install eb cli [See documentation](https://docs.aws.amazon.com/es_es/elasticbeanstalk/latest/dg/eb-cli3-install.html).
 -   Configure AMI credentials [See documentation](https://docs.aws.amazon.com/es_es/general/latest/gr/managing-aws-access-keys.html).

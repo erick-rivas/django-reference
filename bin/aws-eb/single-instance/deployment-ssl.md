@@ -1,4 +1,4 @@
-# Django Web - SSL
+# Deployment - SSL
 
 To enable a https connection
 
@@ -37,8 +37,7 @@ sudo vim /etc/httpd/conf.d/temp.conf
 	DocumentRoot /var/www/html
 </VirtualHost>
 ```
-
--   Exit and deploy server
+-   Exit and deploy server removing .ebextensions/https-instance.config if it appears
 -   Connect again and configure certbot
 ```bash
 sudo wget https://dl.eff.org/certbot-auto
@@ -48,6 +47,6 @@ sudo ./certbot-auto certonly --debug
 ```
 -    **Important:** Copy the certificate and private key paths for later
 -    Remove /etc/httpd/conf.d/temp.conf and exit server
--    Copy [bin/aws-eb/config/https-instance.config](./config/https-instance.config) into .ebextensions folder
+-    Copy [bin/aws-eb/single-instance/config/https-instance.config](./config/https-instance.config) into .ebextensions folder
 -    Configure the *SSLCertificateFile* and *SSLCertificateKeyFile* keys with the files created by certbot
 -    Deploy again "eb deploy"
