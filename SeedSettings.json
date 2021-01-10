@@ -1,0 +1,17 @@
+{
+  "api": {
+    "engine": "DynamicRestFramework",
+    "exclude": [],
+    "include": [
+      "*"
+    ]
+  },
+  "extend": {},
+  "graphql": {
+    "exclude": [],
+    "include": [
+      "*"
+    ]
+  },
+  "platform": "django"
+}

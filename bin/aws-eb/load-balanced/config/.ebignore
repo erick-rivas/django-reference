@@ -2,6 +2,7 @@
 .env.dev
 reactjs/static
 
+
 ### Django ###
 *.log
 *.pot
@@ -109,6 +110,7 @@ celerybeat-schedule
 *.sage.py
 
 # Environments
+.git
 .venv
 env/
 venv/
