@@ -124,7 +124,7 @@ AUTH_PASSWORD_VALIDATORS = [
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'reactjs')],
+        'DIRS': [os.path.join(BASE_DIR, 'renders'), os.path.join(BASE_DIR, 'reactjs')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
