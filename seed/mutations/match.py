@@ -20,15 +20,15 @@ class SaveMatchMutation(graphene.Mutation):
         visitor = graphene.Int(required=True)
 
     def mutate(self, info, **kwargs):
-
+        user = info.context.user
         match = {}
         if "date" in kwargs: match["date"] = kwargs["date"]
         if "type" in kwargs: match["type"] = kwargs["type"]
         if "local" in kwargs:
-             local = Team.objects.get(pk = kwargs["local"])
+             local = Team.filter_permissions(Team.objects, Team.permission_filters(user)).get(pk = kwargs["local"])
              match["local"] = local
         if "visitor" in kwargs:
-             visitor = Team.objects.get(pk = kwargs["visitor"])
+             visitor = Team.filter_permissions(Team.objects, Team.permission_filters(user)).get(pk = kwargs["visitor"])
              match["visitor"] = visitor
         match = Match.objects.create(**match)
         match.save()
@@ -47,8 +47,8 @@ class SetMatchMutation(graphene.Mutation):
         visitor = graphene.Int(required=False)
 
     def mutate(self, info, **kwargs):
-
-        match = Match.objects.get(pk=kwargs["id"])
+        user = info.context.user
+        match = Match.filter_permissions(Match.objects, Match.permission_filters(user)).get(pk=kwargs["id"])
         if "date" in kwargs: match.date = kwargs["date"]
         if "type" in kwargs: match.type = kwargs["type"]
         if "local" in kwargs:

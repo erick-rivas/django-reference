@@ -29,3 +29,7 @@ class _PlayerViewSet(ViewSet,
         serializer.is_valid(raise_exception=True)
         serializer.save()
         return Response(serializer.data)
+
+    def get_queryset(self):
+        user = self.request.user
+        return Player.filter_permissions(super().get_queryset(), Player.permission_filters(user))

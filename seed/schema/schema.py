@@ -36,5 +36,5 @@ class Mutation(graphene.ObjectType):
     saveUser = seed.mutations.user.SaveUserMutation.Field()
     setUser = seed.mutations.user.SetUserMutation.Field()
     deleteUser = seed.mutations.user.DeleteUserMutation.Field()
-
+    pass
 schema = graphene.Schema(query=Query, mutation=Mutation)

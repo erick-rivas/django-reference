@@ -111,9 +111,10 @@ class Query(object):
     fileCount = graphene.Field(FileCount, query=graphene.String())
 
     def resolve_matches(self, info, **kwargs):
+        user = info.context.user
         if "query" in kwargs:
             res = parse_query(kwargs["query"], MatchModel)
-        else: res = MatchModel.objects.all()
+        else: res = MatchModel.filter_permissions(MatchModel.objects.all(), MatchModel.permission_filters(user))
         if "orderBy" in kwargs:
             orders = kwargs["orderBy"].split(",")
             for order in orders:
@@ -124,9 +125,11 @@ class Query(object):
             res = res[:kwargs["end"]]
         if "start" in kwargs and "end" in kwargs:
             res = res[kwargs["start"]:kwargs["end"]]
+        res = MatchModel.filter_permissions(res, MatchModel.permission_filters(user))
         return res
 
     def resolve_matchCount(self, info, **kwargs):
+        user = info.context.user
         if "query" in kwargs:
             return MatchCount(
                 id = random.randint(0, 1000000),
@@ -134,15 +137,17 @@ class Query(object):
         else:
             return MatchCount(
                 id = random.randint(0, 1000000),
-                count=len(MatchModel.objects.all()))
+                count=len(MatchModel.filter_permissions(MatchModel.objects.all(), MatchModel.permission_filters(user))))
 
     def resolve_match(self, info, id):
-        return MatchModel.objects.get(pk=id)
+        user = info.context.user
+        return MatchModel.filter_permissions(MatchModel.objects, MatchModel.permission_filters(user)).get(pk=id)
     
     def resolve_players(self, info, **kwargs):
+        user = info.context.user
         if "query" in kwargs:
             res = parse_query(kwargs["query"], PlayerModel)
-        else: res = PlayerModel.objects.all()
+        else: res = PlayerModel.filter_permissions(PlayerModel.objects.all(), PlayerModel.permission_filters(user))
         if "orderBy" in kwargs:
             orders = kwargs["orderBy"].split(",")
             for order in orders:
@@ -153,9 +158,11 @@ class Query(object):
             res = res[:kwargs["end"]]
         if "start" in kwargs and "end" in kwargs:
             res = res[kwargs["start"]:kwargs["end"]]
+        res = PlayerModel.filter_permissions(res, PlayerModel.permission_filters(user))
         return res
 
     def resolve_playerCount(self, info, **kwargs):
+        user = info.context.user
         if "query" in kwargs:
             return PlayerCount(
                 id = random.randint(0, 1000000),
@@ -163,15 +170,17 @@ class Query(object):
         else:
             return PlayerCount(
                 id = random.randint(0, 1000000),
-                count=len(PlayerModel.objects.all()))
+                count=len(PlayerModel.filter_permissions(PlayerModel.objects.all(), PlayerModel.permission_filters(user))))
 
     def resolve_player(self, info, id):
-        return PlayerModel.objects.get(pk=id)
+        user = info.context.user
+        return PlayerModel.filter_permissions(PlayerModel.objects, PlayerModel.permission_filters(user)).get(pk=id)
     
     def resolve_playerPositions(self, info, **kwargs):
+        user = info.context.user
         if "query" in kwargs:
             res = parse_query(kwargs["query"], PlayerPositionModel)
-        else: res = PlayerPositionModel.objects.all()
+        else: res = PlayerPositionModel.filter_permissions(PlayerPositionModel.objects.all(), PlayerPositionModel.permission_filters(user))
         if "orderBy" in kwargs:
             orders = kwargs["orderBy"].split(",")
             for order in orders:
@@ -182,9 +191,11 @@ class Query(object):
             res = res[:kwargs["end"]]
         if "start" in kwargs and "end" in kwargs:
             res = res[kwargs["start"]:kwargs["end"]]
+        res = PlayerPositionModel.filter_permissions(res, PlayerPositionModel.permission_filters(user))
         return res
 
     def resolve_playerPositionCount(self, info, **kwargs):
+        user = info.context.user
         if "query" in kwargs:
             return PlayerPositionCount(
                 id = random.randint(0, 1000000),
@@ -192,15 +203,17 @@ class Query(object):
         else:
             return PlayerPositionCount(
                 id = random.randint(0, 1000000),
-                count=len(PlayerPositionModel.objects.all()))
+                count=len(PlayerPositionModel.filter_permissions(PlayerPositionModel.objects.all(), PlayerPositionModel.permission_filters(user))))
 
     def resolve_playerPosition(self, info, id):
-        return PlayerPositionModel.objects.get(pk=id)
+        user = info.context.user
+        return PlayerPositionModel.filter_permissions(PlayerPositionModel.objects, PlayerPositionModel.permission_filters(user)).get(pk=id)
     
     def resolve_scores(self, info, **kwargs):
+        user = info.context.user
         if "query" in kwargs:
             res = parse_query(kwargs["query"], ScoreModel)
-        else: res = ScoreModel.objects.all()
+        else: res = ScoreModel.filter_permissions(ScoreModel.objects.all(), ScoreModel.permission_filters(user))
         if "orderBy" in kwargs:
             orders = kwargs["orderBy"].split(",")
             for order in orders:
@@ -211,9 +224,11 @@ class Query(object):
             res = res[:kwargs["end"]]
         if "start" in kwargs and "end" in kwargs:
             res = res[kwargs["start"]:kwargs["end"]]
+        res = ScoreModel.filter_permissions(res, ScoreModel.permission_filters(user))
         return res
 
     def resolve_scoreCount(self, info, **kwargs):
+        user = info.context.user
         if "query" in kwargs:
             return ScoreCount(
                 id = random.randint(0, 1000000),
@@ -221,15 +236,17 @@ class Query(object):
         else:
             return ScoreCount(
                 id = random.randint(0, 1000000),
-                count=len(ScoreModel.objects.all()))
+                count=len(ScoreModel.filter_permissions(ScoreModel.objects.all(), ScoreModel.permission_filters(user))))
 
     def resolve_score(self, info, id):
-        return ScoreModel.objects.get(pk=id)
+        user = info.context.user
+        return ScoreModel.filter_permissions(ScoreModel.objects, ScoreModel.permission_filters(user)).get(pk=id)
     
     def resolve_teams(self, info, **kwargs):
+        user = info.context.user
         if "query" in kwargs:
             res = parse_query(kwargs["query"], TeamModel)
-        else: res = TeamModel.objects.all()
+        else: res = TeamModel.filter_permissions(TeamModel.objects.all(), TeamModel.permission_filters(user))
         if "orderBy" in kwargs:
             orders = kwargs["orderBy"].split(",")
             for order in orders:
@@ -240,9 +257,11 @@ class Query(object):
             res = res[:kwargs["end"]]
         if "start" in kwargs and "end" in kwargs:
             res = res[kwargs["start"]:kwargs["end"]]
+        res = TeamModel.filter_permissions(res, TeamModel.permission_filters(user))
         return res
 
     def resolve_teamCount(self, info, **kwargs):
+        user = info.context.user
         if "query" in kwargs:
             return TeamCount(
                 id = random.randint(0, 1000000),
@@ -250,15 +269,17 @@ class Query(object):
         else:
             return TeamCount(
                 id = random.randint(0, 1000000),
-                count=len(TeamModel.objects.all()))
+                count=len(TeamModel.filter_permissions(TeamModel.objects.all(), TeamModel.permission_filters(user))))
 
     def resolve_team(self, info, id):
-        return TeamModel.objects.get(pk=id)
+        user = info.context.user
+        return TeamModel.filter_permissions(TeamModel.objects, TeamModel.permission_filters(user)).get(pk=id)
     
     def resolve_users(self, info, **kwargs):
+        user = info.context.user
         if "query" in kwargs:
             res = parse_query(kwargs["query"], UserModel)
-        else: res = UserModel.objects.all()
+        else: res = UserModel.filter_permissions(UserModel.objects.all(), UserModel.permission_filters(user))
         if "orderBy" in kwargs:
             orders = kwargs["orderBy"].split(",")
             for order in orders:
@@ -269,9 +290,11 @@ class Query(object):
             res = res[:kwargs["end"]]
         if "start" in kwargs and "end" in kwargs:
             res = res[kwargs["start"]:kwargs["end"]]
+        res = UserModel.filter_permissions(res, UserModel.permission_filters(user))
         return res
 
     def resolve_userCount(self, info, **kwargs):
+        user = info.context.user
         if "query" in kwargs:
             return UserCount(
                 id = random.randint(0, 1000000),
@@ -279,15 +302,17 @@ class Query(object):
         else:
             return UserCount(
                 id = random.randint(0, 1000000),
-                count=len(UserModel.objects.all()))
+                count=len(UserModel.filter_permissions(UserModel.objects.all(), UserModel.permission_filters(user))))
 
     def resolve_user(self, info, id):
-        return UserModel.objects.get(pk=id)
+        user = info.context.user
+        return UserModel.filter_permissions(UserModel.objects, UserModel.permission_filters(user)).get(pk=id)
     
     def resolve_files(self, info, **kwargs):
+        user = info.context.user
         if "query" in kwargs:
             res = parse_query(kwargs["query"], FileModel)
-        else: res = FileModel.objects.all()
+        else: res = FileModel.filter_permissions(FileModel.objects.all(), FileModel.permission_filters(user))
         if "orderBy" in kwargs:
             orders = kwargs["orderBy"].split(",")
             for order in orders:
@@ -298,9 +323,11 @@ class Query(object):
             res = res[:kwargs["end"]]
         if "start" in kwargs and "end" in kwargs:
             res = res[kwargs["start"]:kwargs["end"]]
+        res = FileModel.filter_permissions(res, FileModel.permission_filters(user))
         return res
 
     def resolve_fileCount(self, info, **kwargs):
+        user = info.context.user
         if "query" in kwargs:
             return FileCount(
                 id = 0,
@@ -308,7 +335,9 @@ class Query(object):
         else:
             return FileCount(
                 id = 0,
-                count=len(FileModel.objects.all()))
+                count=len(FileModel.filter_permissions(FileModel.objects.all(), FileModel.permission_filters(user))))
 
     def resolve_file(self, info, id):
-        return FileModel.objects.get(pk=id)
+        user = info.context.user
+        return FileModel.filter_permissions(FileModel.objects, FileModel.permission_filters(user)).get(pk=id)
+    pass

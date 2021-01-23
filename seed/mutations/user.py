@@ -23,7 +23,7 @@ class SaveUserMutation(graphene.Mutation):
         teams = graphene.List(graphene.Int)
 
     def mutate(self, info, **kwargs):
-
+        user = info.context.user
         user = {}
         if "userName" in kwargs: user["user_name"] = kwargs["userName"]
         if "firstName" in kwargs: user["first_name"] = kwargs["firstName"]
@@ -35,7 +35,7 @@ class SaveUserMutation(graphene.Mutation):
         if "teams" in kwargs:
             user.teams.clear()
             for id in kwargs["teams"]:
-                teams = Team.objects.get(pk = id)
+                teams = Team.filter_permissions(Team.objects, Team.permission_filters(user)).get(pk = id)
                 user.teams.add(teams)
         user.save()
     
@@ -56,8 +56,8 @@ class SetUserMutation(graphene.Mutation):
         teams = graphene.List(graphene.Int)
 
     def mutate(self, info, **kwargs):
-
-        user = User.objects.get(pk=kwargs["id"])
+        user = info.context.user
+        user = User.filter_permissions(User.objects, User.permission_filters(user)).get(pk=kwargs["id"])
         if "userName" in kwargs: user.user_name = kwargs["userName"]
         if "firstName" in kwargs: user.first_name = kwargs["firstName"]
         if "lastName" in kwargs: user.last_name = kwargs["lastName"]

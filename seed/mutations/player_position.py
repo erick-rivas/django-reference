@@ -16,7 +16,7 @@ class SavePlayerPositionMutation(graphene.Mutation):
         name = graphene.String(required=True)
 
     def mutate(self, info, **kwargs):
-
+        user = info.context.user
         player_position = {}
         if "name" in kwargs: player_position["name"] = kwargs["name"]
         player_position = PlayerPosition.objects.create(**player_position)
@@ -33,8 +33,8 @@ class SetPlayerPositionMutation(graphene.Mutation):
         name = graphene.String(required=False)
 
     def mutate(self, info, **kwargs):
-
-        player_position = PlayerPosition.objects.get(pk=kwargs["id"])
+        user = info.context.user
+        player_position = PlayerPosition.filter_permissions(PlayerPosition.objects, PlayerPosition.permission_filters(user)).get(pk=kwargs["id"])
         if "name" in kwargs: player_position.name = kwargs["name"]
         player_position.save()
     

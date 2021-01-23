@@ -29,3 +29,7 @@ class _ScoreViewSet(ViewSet,
         serializer.is_valid(raise_exception=True)
         serializer.save()
         return Response(serializer.data)
+
+    def get_queryset(self):
+        user = self.request.user
+        return Score.filter_permissions(super().get_queryset(), Score.permission_filters(user))

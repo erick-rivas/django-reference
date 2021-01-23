@@ -29,3 +29,7 @@ class _PlayerPositionViewSet(ViewSet,
         serializer.is_valid(raise_exception=True)
         serializer.save()
         return Response(serializer.data)
+
+    def get_queryset(self):
+        user = self.request.user
+        return PlayerPosition.filter_permissions(super().get_queryset(), PlayerPosition.permission_filters(user))

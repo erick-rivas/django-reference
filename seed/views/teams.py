@@ -29,3 +29,7 @@ class _TeamViewSet(ViewSet,
         serializer.is_valid(raise_exception=True)
         serializer.save()
         return Response(serializer.data)
+
+    def get_queryset(self):
+        user = self.request.user
+        return Team.filter_permissions(super().get_queryset(), Team.permission_filters(user))

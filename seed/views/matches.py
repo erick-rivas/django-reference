@@ -29,3 +29,7 @@ class _MatchViewSet(ViewSet,
         serializer.is_valid(raise_exception=True)
         serializer.save()
         return Response(serializer.data)
+
+    def get_queryset(self):
+        user = self.request.user
+        return Match.filter_permissions(super().get_queryset(), Match.permission_filters(user))
