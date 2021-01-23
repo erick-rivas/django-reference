@@ -4,7 +4,12 @@
       "*": "*"
     }
   },
-  "extend": {},
+  "extend": {
+    "models": [],
+    "schema_types": [],
+    "serializers": [],
+    "views": []
+  },
   "graphql": {
     "include": {
       "*": "*"

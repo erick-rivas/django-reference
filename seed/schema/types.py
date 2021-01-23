@@ -8,7 +8,6 @@ import graphene
 import random
 from graphene import ObjectType
 from graphene_django.types import DjangoObjectType
-from seed.schema.util.query_util import parse_query
 from app.models import Match as MatchModel
 from app.models import Player as PlayerModel
 from app.models import PlayerPosition as PlayerPositionModel
@@ -16,6 +15,7 @@ from app.models import Score as ScoreModel
 from app.models import Team as TeamModel
 from app.models import User as UserModel
 from app.models import File as FileModel
+from seed.util.query_util import str_Q
 
 class Match(DjangoObjectType):
     class Meta:
@@ -113,8 +113,8 @@ class Query(object):
     def resolve_matches(self, info, **kwargs):
         user = info.context.user
         if "query" in kwargs:
-            res = parse_query(kwargs["query"], MatchModel)
-        else: res = MatchModel.filter_permissions(MatchModel.objects.all(), MatchModel.permission_filters(user))
+            res = MatchModel.objects.filter(str_Q(kwargs["query"])).distinct()
+        else: res = MatchModel.objects.all()
         if "orderBy" in kwargs:
             orders = kwargs["orderBy"].split(",")
             for order in orders:
@@ -133,7 +133,7 @@ class Query(object):
         if "query" in kwargs:
             return MatchCount(
                 id = random.randint(0, 1000000),
-                count=len(parse_query(kwargs["query"], MatchModel)))
+                count=len(MatchModel.objects.filter(str_Q(kwargs["query"])).distinct()))
         else:
             return MatchCount(
                 id = random.randint(0, 1000000),
@@ -146,8 +146,8 @@ class Query(object):
     def resolve_players(self, info, **kwargs):
         user = info.context.user
         if "query" in kwargs:
-            res = parse_query(kwargs["query"], PlayerModel)
-        else: res = PlayerModel.filter_permissions(PlayerModel.objects.all(), PlayerModel.permission_filters(user))
+            res = PlayerModel.objects.filter(str_Q(kwargs["query"])).distinct()
+        else: res = PlayerModel.objects.all()
         if "orderBy" in kwargs:
             orders = kwargs["orderBy"].split(",")
             for order in orders:
@@ -166,7 +166,7 @@ class Query(object):
         if "query" in kwargs:
             return PlayerCount(
                 id = random.randint(0, 1000000),
-                count=len(parse_query(kwargs["query"], PlayerModel)))
+                count=len(PlayerModel.objects.filter(str_Q(kwargs["query"])).distinct()))
         else:
             return PlayerCount(
                 id = random.randint(0, 1000000),
@@ -179,8 +179,8 @@ class Query(object):
     def resolve_playerPositions(self, info, **kwargs):
         user = info.context.user
         if "query" in kwargs:
-            res = parse_query(kwargs["query"], PlayerPositionModel)
-        else: res = PlayerPositionModel.filter_permissions(PlayerPositionModel.objects.all(), PlayerPositionModel.permission_filters(user))
+            res = PlayerPositionModel.objects.filter(str_Q(kwargs["query"])).distinct()
+        else: res = PlayerPositionModel.objects.all()
         if "orderBy" in kwargs:
             orders = kwargs["orderBy"].split(",")
             for order in orders:
@@ -199,7 +199,7 @@ class Query(object):
         if "query" in kwargs:
             return PlayerPositionCount(
                 id = random.randint(0, 1000000),
-                count=len(parse_query(kwargs["query"], PlayerPositionModel)))
+                count=len(PlayerPositionModel.objects.filter(str_Q(kwargs["query"])).distinct()))
         else:
             return PlayerPositionCount(
                 id = random.randint(0, 1000000),
@@ -212,8 +212,8 @@ class Query(object):
     def resolve_scores(self, info, **kwargs):
         user = info.context.user
         if "query" in kwargs:
-            res = parse_query(kwargs["query"], ScoreModel)
-        else: res = ScoreModel.filter_permissions(ScoreModel.objects.all(), ScoreModel.permission_filters(user))
+            res = ScoreModel.objects.filter(str_Q(kwargs["query"])).distinct()
+        else: res = ScoreModel.objects.all()
         if "orderBy" in kwargs:
             orders = kwargs["orderBy"].split(",")
             for order in orders:
@@ -232,7 +232,7 @@ class Query(object):
         if "query" in kwargs:
             return ScoreCount(
                 id = random.randint(0, 1000000),
-                count=len(parse_query(kwargs["query"], ScoreModel)))
+                count=len(ScoreModel.objects.filter(str_Q(kwargs["query"])).distinct()))
         else:
             return ScoreCount(
                 id = random.randint(0, 1000000),
@@ -245,8 +245,8 @@ class Query(object):
     def resolve_teams(self, info, **kwargs):
         user = info.context.user
         if "query" in kwargs:
-            res = parse_query(kwargs["query"], TeamModel)
-        else: res = TeamModel.filter_permissions(TeamModel.objects.all(), TeamModel.permission_filters(user))
+            res = TeamModel.objects.filter(str_Q(kwargs["query"])).distinct()
+        else: res = TeamModel.objects.all()
         if "orderBy" in kwargs:
             orders = kwargs["orderBy"].split(",")
             for order in orders:
@@ -265,7 +265,7 @@ class Query(object):
         if "query" in kwargs:
             return TeamCount(
                 id = random.randint(0, 1000000),
-                count=len(parse_query(kwargs["query"], TeamModel)))
+                count=len(TeamModel.objects.filter(str_Q(kwargs["query"])).distinct()))
         else:
             return TeamCount(
                 id = random.randint(0, 1000000),
@@ -278,8 +278,8 @@ class Query(object):
     def resolve_users(self, info, **kwargs):
         user = info.context.user
         if "query" in kwargs:
-            res = parse_query(kwargs["query"], UserModel)
-        else: res = UserModel.filter_permissions(UserModel.objects.all(), UserModel.permission_filters(user))
+            res = UserModel.objects.filter(str_Q(kwargs["query"])).distinct()
+        else: res = UserModel.objects.all()
         if "orderBy" in kwargs:
             orders = kwargs["orderBy"].split(",")
             for order in orders:
@@ -298,7 +298,7 @@ class Query(object):
         if "query" in kwargs:
             return UserCount(
                 id = random.randint(0, 1000000),
-                count=len(parse_query(kwargs["query"], UserModel)))
+                count=len(UserModel.objects.filter(str_Q(kwargs["query"])).distinct()))
         else:
             return UserCount(
                 id = random.randint(0, 1000000),
@@ -311,8 +311,8 @@ class Query(object):
     def resolve_files(self, info, **kwargs):
         user = info.context.user
         if "query" in kwargs:
-            res = parse_query(kwargs["query"], FileModel)
-        else: res = FileModel.filter_permissions(FileModel.objects.all(), FileModel.permission_filters(user))
+            res = FileModel.objects.filter(str_Q(kwargs["query"])).distinct()
+        else: res = FileModel.objects.all()
         if "orderBy" in kwargs:
             orders = kwargs["orderBy"].split(",")
             for order in orders:
@@ -331,7 +331,7 @@ class Query(object):
         if "query" in kwargs:
             return FileCount(
                 id = 0,
-                count=len(parse_query(kwargs["query"], FileModel)))
+                count=len(FileModel.objects.filter(str_Q(kwargs["query"])).distinct()))
         else:
             return FileCount(
                 id = 0,
