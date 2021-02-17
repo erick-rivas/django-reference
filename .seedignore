@@ -14,11 +14,11 @@ seed/models/*
 seed/serializers/*
 seed/mutations/*
 seed/schema/*
-seed/views/*
+seed/routes/*
 app/api.py
 app/models.py
 app/serializers.py
-app/views.py
+app/routes.py
 fixtures/*.yaml
 fixtures/media/*
 domain/*
@@ -28,7 +28,7 @@ models/migrations/*
 mutations
 schema
 serializers
-views
+routes
 ?.env.example
 ?README.md
 ?requirements.txt

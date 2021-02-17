@@ -6,9 +6,9 @@
   },
   "extend": {
     "models": [],
+    "routes": [],
     "schema_types": [],
-    "serializers": [],
-    "views": []
+    "serializers": []
   },
   "graphql": {
     "include": {

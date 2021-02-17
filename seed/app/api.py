@@ -8,13 +8,13 @@ from django.urls import path, include
 from django.conf.urls import url
 from dynamic_rest.routers import DynamicRouter
 
-from app.views import MatchViewSet
-from app.views import PlayerViewSet
-from app.views import PlayerPositionViewSet
-from app.views import ScoreViewSet
-from app.views import TeamViewSet
-from app.views import UserViewSet
-from app.views import FileView
+from app.routes import MatchViewSet
+from app.routes import PlayerViewSet
+from app.routes import PlayerPositionViewSet
+from app.routes import ScoreViewSet
+from app.routes import TeamViewSet
+from app.routes import UserViewSet
+from app.routes import FileView
 
 router = DynamicRouter()
 router.register(r'matches', MatchViewSet)

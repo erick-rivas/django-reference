@@ -1,4 +1,4 @@
-# Views
+# Routes
 
 Represents the **extensions** of API routes (endpoints)
 
@@ -12,7 +12,7 @@ Represents the **extensions** of API routes (endpoints)
 
 ## Description
 
-The viewsets are the responsible to handle all the http requests corresponding to a particular model.
+The routes (viewsets) are the responsible to handle all the http requests corresponding to a particular model.
 
 By default, the builder generate the endpoints related to CRUD operations of a model. **In case of extension** (Eg. dedicated methods) include new routes to the viewsets
 
