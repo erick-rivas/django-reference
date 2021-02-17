@@ -35,7 +35,9 @@ class Model(models.Model):
 
     @staticmethod
     def filter_permissions(queryset, filters):
-        return filter_perms(queryset, filters)
+        if get_env('ENABLE_AUTH'):
+            return filter_perms(queryset, filters)
+        return queryset
 
     @staticmethod
     def permission_filters(user):
