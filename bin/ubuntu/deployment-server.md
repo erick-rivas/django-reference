@@ -2,7 +2,7 @@
 
 This file contains guides to deploy project to a Debian Server (Ubuntu Server)
 
-### Dependencies
+## Dependencies
 
 - Connect to server
 
@@ -12,26 +12,26 @@ ssh <USER@SERVER_URL>
 
 - Install general dependencies
 ```bash
-sudo apt-get update
-sudo apt-get install curl git-core zlib1g-dev build-essential libssl-dev libreadline-dev libyaml-dev libsqlite3-dev sqlite3 libxml2-dev libxslt1-dev libcurl4-openssl-dev software-properties-common libffi-dev nodejs yarn
+sudo apt update
+sudo apt install curl git-core zlib1g-dev build-essential libssl-dev libreadline-dev libyaml-dev libsqlite3-dev sqlite3 libxml2-dev libxslt1-dev libcurl4-openssl-dev software-properties-common libffi-dev nodejs yarn
 ```
 
 -   Install python and django
 ```bash
 sudo apt update
-sudo apt install python3-pip python3-dev libpq-dev postgresql postgresql-contrib nginx curl
+sudo apt install python3-pip python3-dev python3-venv libpq-dev postgresql postgresql-contrib nginx curl
 ```
 
 ### Postgresql
 
 - Install dependencies
 ```bash
-sudo apt-get install wget ca-certificates
+sudo apt install wget ca-certificates
 wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
 sudo sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt/ `lsb_release -cs`-pgdg main" >> /etc/apt/sources.list.d/pgdg.list'
 
-sudo apt-get update
-sudo apt-get install postgresql postgresql-contrib libpq-dev
+sudo apt update
+sudo apt install postgresql postgresql-contrib libpq-dev
 ```
 
 -  Create user and database
@@ -41,40 +41,71 @@ postgres=# create user admin with encrypted password 'password';
 postgres=# ALTER ROLE admin WITH SUPERUSER;
 ```
 
-### Nginx and gunicorn
 
-- Follow this [link] (https://www.digitalocean.com/community/tutorials/how-to-set-up-django-with-postgres-nginx-and-gunicorn-on-ubuntu-18-04)
+## Gunicorn configuration
+
+-   Modify /etc/systemd/system/gunicorn.socket with the following structure
+
+```
+[Unit]
+Description=gunicorn socket
+
+[Socket]
+ListenStream=/run/gunicorn.sock
+
+[Install]
+WantedBy=sockets.target
+```
+
+-   Modify /etc/systemd/system/gunicorn.service with the following structure
+```
+[Unit]
+Description=gunicorn daemon
+Requires=gunicorn.socket
+After=network.target
+
+[Service]
+User=#SO_USER#
+Group=#SO_USER#
+WorkingDirectory=#PROJECT_DIR#
+ExecStart=#PROJECT_DIR#/.venv/bin/gunicorn \
+          --access-logfile - \
+          --workers 3 \
+          --bind unix:/run/gunicorn.sock \
+          app.wsgi:application
+
+[Install]
+WantedBy=multi-user.target
+```
+>  To check os user and group user id command (For aws-ec2=ubuntu,ubuntu)
+> 
+-  Init gunicorn socket
+``` bash
+sudo systemctl start gunicorn.socket
+sudo systemctl enable gunicorn.socket
+```
+
+-  Check gunicorn status
+``` bash
+sudo systemctl status gunicorn
+```
+
+-  Restart gunicorn
+``` bash
+sudo systemctl restart gunicorn
+```
 
 
-### Security & Custom adjustments
+## Nginx configuration
 
-- To customize certificate, timeout, body size modify /etc/nginx/sites-available/app with the following structure
+-  Modify /etc/nginx/sites-available/app with the following structure
 ```
 server {
     listen 80;
     server_name #SERVER_NAME#;
-    return 301 https://#SERVER_NAME#$request_uri;
-}
-server {
-    listen 80;
-    server_name #SERVER_IP#;
-}
-server {
-    listen 443 ssl default_server;
-    server_name smp.#SERVER_NAME#;
     client_max_body_size 75M;
     fastcgi_read_timeout 3000;
-    proxy_read_timeout 3000;   
-
-    ssl on;
-    ssl_certificate #CERTIFICATE_CRT_FILE#
-    ssl_certificate_key #CERTIFICATE_RSA_FILE#
-
-    location = /favicon.ico { access_log off; log_not_found off; }
-    
-    location /static/ {
-        root <PROJECT_PATH>;
-    }
+    proxy_read_timeout 3000;
 
     location / {
         include proxy_params;
@@ -82,3 +113,21 @@ server {
     }
 }
 ```
+
+-   Create a link to sites-enabled
+``` bash
+sudo ln -s /etc/nginx/sites-available/app /etc/nginx/sites-enabled
+```
+
+-  Check nginx status
+``` bash
+sudo nginx -t
+```
+
+-  Restart nginx
+``` bash
+sudo systemctl restart nginx
+```
+
+## References
+-   Gunicorn-nginx tutorial [https://www.digitalocean.com/community/tutorials/how-to-set-up-django-with-postgres-nginx-and-gunicorn-on-ubuntu-18-04#creating-systemd-socket-and-service-files-for-gunicorn](https://www.digitalocean.com/community/tutorials/how-to-set-up-django-with-postgres-nginx-and-gunicorn-on-ubuntu-18-04#creating-systemd-socket-and-service-files-for-gunicorn)

@@ -29,14 +29,14 @@ SITE_ID = 1
 ROOT_URLCONF = 'app.urls'
 WSGI_APPLICATION = 'app.wsgi.application'
 AUTH_USER_MODEL = 'models.User'
-FIXTURE_DIRS = (os.path.join(BASE_DIR, "fixtures"),)
+FIXTURE_DIRS = (os.path.join(BASE_DIR, "models", "fixtures"),)
 
 # Files definitions
 
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "fixtures", "media"),
+    os.path.join(BASE_DIR, "models", "fixtures", "media"),
 ]
 if os.path.exists((os.path.join(BASE_DIR, "reactjs", "index.html"))):
     STATICFILES_DIRS.append(os.path.join(BASE_DIR, "reactjs", "static"))

@@ -6,7 +6,16 @@ This file contains guides to deploy project to a Debian Server (Ubuntu Server)
 
 -   To install server dependencies, see [deployment-server.md](./deployment-server.md).
 
-### Update & install 
+### Project installation
+
+- Connect to server
+```bash
+ssh #USER@SERVER_URL#
+```
+
+-   To install project see [README#installation](../../README.md#installation)
+
+### Project update
 
 - Connect to server
 ```bash
@@ -17,8 +26,10 @@ ssh #USER@SERVER_URL#
 ```bash
 cd #PROJECT_WEB_PATH#
 sudo git pull origin dev
+pip3 install -r requirements.txt
 python3 manage.py migrate
 python3 manage.py loaddata fixtures/*.yaml
+python3 manage.py collectstatic
 ```
 
 -   Restart server

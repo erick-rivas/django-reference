@@ -23,3 +23,4 @@ sed -i "s/DB_PASSWORD=/DB_PASSWORD=$3/" ".env.dev"
 echo "== Making & executing migrations"
 python3 manage.py makemigrations
 python3 manage.py migrate
+python3 manage.py loaddata models/fixtures/*.yaml
