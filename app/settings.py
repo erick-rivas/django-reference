@@ -29,7 +29,6 @@ SITE_ID = 1
 ROOT_URLCONF = 'app.urls'
 WSGI_APPLICATION = 'app.wsgi.application'
 AUTH_USER_MODEL = 'models.User'
-FIXTURE_DIRS = (os.path.join(BASE_DIR, "models", "fixtures"),)
 
 # Files definitions
 

@@ -18,53 +18,73 @@ from app.models import File as FileModel
 from seed.util.query_util import str_Q
 
 class Match(DjangoObjectType):
+    id = graphene.Int(description = "Match primary key")
     class Meta:
         model = MatchModel
         description = "Represents a match between two teams  (A vs B)"
+    def resolve_id(self, info):
+        return self.pk
 
 class MatchCount(ObjectType):
     id = graphene.Int()
     count = graphene.Int()
 
 class Player(DjangoObjectType):
+    id = graphene.Int(description = "Player primary key")
     class Meta:
         model = PlayerModel
+        
+    def resolve_id(self, info):
+        return self.pk
 
 class PlayerCount(ObjectType):
     id = graphene.Int()
     count = graphene.Int()
 
 class PlayerPosition(DjangoObjectType):
+    id = graphene.Int(description = "PlayerPosition primary key")
     class Meta:
         model = PlayerPositionModel
         description = "Represents a player  position (eg. forward)"
+    def resolve_id(self, info):
+        return self.pk
 
 class PlayerPositionCount(ObjectType):
     id = graphene.Int()
     count = graphene.Int()
 
 class Score(DjangoObjectType):
+    id = graphene.Int(description = "Score primary key")
     class Meta:
         model = ScoreModel
         description = "Represents a match score (goal)"
+    def resolve_id(self, info):
+        return self.pk
 
 class ScoreCount(ObjectType):
     id = graphene.Int()
     count = graphene.Int()
 
 class Team(DjangoObjectType):
+    id = graphene.Int(description = "Team primary key")
     class Meta:
         model = TeamModel
+        
+    def resolve_id(self, info):
+        return self.pk
 
 class TeamCount(ObjectType):
     id = graphene.Int()
     count = graphene.Int()
 
 class User(DjangoObjectType):
+    id = graphene.Int(description = "User primary key")
     class Meta:
         model = UserModel
         exclude = ('password',)
         description = "Represents a registered user"
+    def resolve_id(self, info):
+        return self.pk
 
 class UserCount(ObjectType):
     id = graphene.Int()

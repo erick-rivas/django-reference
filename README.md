@@ -66,6 +66,12 @@ python3 manage.py loaddata models/fixtures/*.yaml
 python3 manage.py runserver
 ```
 
+-   Test use cases
+```bash
+. .venv/bin/activate
+python3 manage.py test
+```
+
 ### Examples
 
 -   Execute an API request.
