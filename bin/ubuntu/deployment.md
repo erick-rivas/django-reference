@@ -28,7 +28,7 @@ cd #PROJECT_WEB_PATH#
 sudo git pull origin dev
 pip3 install -r requirements.txt
 python3 manage.py migrate
-python3 manage.py loaddata fixtures/*.yaml
+python3 manage.py loaddata models/fixtures/*.yaml
 python3 manage.py collectstatic
 ```
 
