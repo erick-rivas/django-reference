@@ -20,7 +20,17 @@ class TestGraphql(GraphQLTestCase):
         response = self.query(
             '''
             {
-                matches(query: "id=1", orderBy: "id", start: 0, end: 1){ id }
+                matches(query: "id=1", orderBy: "id", start: 0, end: 1){
+                    id
+                    date
+                    type
+                    local {
+                      id
+                    }
+                    visitor {
+                      id
+                    }
+                }
             }
             ''')
         res = json.loads(response.content)["data"]
@@ -31,7 +41,17 @@ class TestGraphql(GraphQLTestCase):
         response = self.query(
             '''
             {
-                match(id: 1){ id }
+                match(id: 1){
+                    id
+                    date
+                    type
+                    local {
+                      id
+                    }
+                    visitor {
+                      id
+                    }
+                }
             }
             ''')
         res = json.loads(response.content)["data"]
@@ -43,7 +63,17 @@ class TestGraphql(GraphQLTestCase):
             '''
             mutation {
                 setMatch(id:1) {
-                    match { id }
+                    match {
+                        id
+                        date
+                        type
+                        local {
+                          id
+                        }
+                        visitor {
+                          id
+                        }
+                    }
                 }
             }
             '''
@@ -68,7 +98,20 @@ class TestGraphql(GraphQLTestCase):
         response = self.query(
             '''
             {
-                players(query: "id=1", orderBy: "id", start: 0, end: 1){ id }
+                players(query: "id=1", orderBy: "id", start: 0, end: 1){
+                    id
+                    name
+                    isActive
+                    photo {
+                      id
+                    }
+                    team {
+                      id
+                    }
+                    position {
+                      id
+                    }
+                }
             }
             ''')
         res = json.loads(response.content)["data"]
@@ -79,7 +122,20 @@ class TestGraphql(GraphQLTestCase):
         response = self.query(
             '''
             {
-                player(id: 1){ id }
+                player(id: 1){
+                    id
+                    name
+                    isActive
+                    photo {
+                      id
+                    }
+                    team {
+                      id
+                    }
+                    position {
+                      id
+                    }
+                }
             }
             ''')
         res = json.loads(response.content)["data"]
@@ -91,7 +147,20 @@ class TestGraphql(GraphQLTestCase):
             '''
             mutation {
                 setPlayer(id:1) {
-                    player { id }
+                    player {
+                        id
+                        name
+                        isActive
+                        photo {
+                          id
+                        }
+                        team {
+                          id
+                        }
+                        position {
+                          id
+                        }
+                    }
                 }
             }
             '''
@@ -116,7 +185,10 @@ class TestGraphql(GraphQLTestCase):
         response = self.query(
             '''
             {
-                playerPositions(query: "id=1", orderBy: "id", start: 0, end: 1){ id }
+                playerPositions(query: "id=1", orderBy: "id", start: 0, end: 1){
+                    id
+                    name
+                }
             }
             ''')
         res = json.loads(response.content)["data"]
@@ -127,7 +199,10 @@ class TestGraphql(GraphQLTestCase):
         response = self.query(
             '''
             {
-                playerPosition(id: 1){ id }
+                playerPosition(id: 1){
+                    id
+                    name
+                }
             }
             ''')
         res = json.loads(response.content)["data"]
@@ -139,7 +214,10 @@ class TestGraphql(GraphQLTestCase):
             '''
             mutation {
                 setPlayerPosition(id:1) {
-                    playerPosition { id }
+                    playerPosition {
+                        id
+                        name
+                    }
                 }
             }
             '''
@@ -164,7 +242,16 @@ class TestGraphql(GraphQLTestCase):
         response = self.query(
             '''
             {
-                scores(query: "id=1", orderBy: "id", start: 0, end: 1){ id }
+                scores(query: "id=1", orderBy: "id", start: 0, end: 1){
+                    id
+                    min
+                    player {
+                      id
+                    }
+                    match {
+                      id
+                    }
+                }
             }
             ''')
         res = json.loads(response.content)["data"]
@@ -175,7 +262,16 @@ class TestGraphql(GraphQLTestCase):
         response = self.query(
             '''
             {
-                score(id: 1){ id }
+                score(id: 1){
+                    id
+                    min
+                    player {
+                      id
+                    }
+                    match {
+                      id
+                    }
+                }
             }
             ''')
         res = json.loads(response.content)["data"]
@@ -187,7 +283,16 @@ class TestGraphql(GraphQLTestCase):
             '''
             mutation {
                 setScore(id:1) {
-                    score { id }
+                    score {
+                        id
+                        min
+                        player {
+                          id
+                        }
+                        match {
+                          id
+                        }
+                    }
                 }
             }
             '''
@@ -212,7 +317,18 @@ class TestGraphql(GraphQLTestCase):
         response = self.query(
             '''
             {
-                teams(query: "id=1", orderBy: "id", start: 0, end: 1){ id }
+                teams(query: "id=1", orderBy: "id", start: 0, end: 1){
+                    id
+                    name
+                    description
+                    marketValue
+                    logo {
+                      id
+                    }
+                    rival {
+                      id
+                    }
+                }
             }
             ''')
         res = json.loads(response.content)["data"]
@@ -223,7 +339,18 @@ class TestGraphql(GraphQLTestCase):
         response = self.query(
             '''
             {
-                team(id: 1){ id }
+                team(id: 1){
+                    id
+                    name
+                    description
+                    marketValue
+                    logo {
+                      id
+                    }
+                    rival {
+                      id
+                    }
+                }
             }
             ''')
         res = json.loads(response.content)["data"]
@@ -235,7 +362,18 @@ class TestGraphql(GraphQLTestCase):
             '''
             mutation {
                 setTeam(id:1) {
-                    team { id }
+                    team {
+                        id
+                        name
+                        description
+                        marketValue
+                        logo {
+                          id
+                        }
+                        rival {
+                          id
+                        }
+                    }
                 }
             }
             '''
@@ -260,7 +398,17 @@ class TestGraphql(GraphQLTestCase):
         response = self.query(
             '''
             {
-                users(query: "id=1", orderBy: "id", start: 0, end: 1){ id }
+                users(query: "id=1", orderBy: "id", start: 0, end: 1){
+                    id
+                    username
+                    firstName
+                    lastName
+                    email
+                    isActive
+                    teams {
+                      id
+                    }
+                }
             }
             ''')
         res = json.loads(response.content)["data"]
@@ -271,7 +419,17 @@ class TestGraphql(GraphQLTestCase):
         response = self.query(
             '''
             {
-                user(id: 1){ id }
+                user(id: 1){
+                    id
+                    username
+                    firstName
+                    lastName
+                    email
+                    isActive
+                    teams {
+                      id
+                    }
+                }
             }
             ''')
         res = json.loads(response.content)["data"]
@@ -283,7 +441,17 @@ class TestGraphql(GraphQLTestCase):
             '''
             mutation {
                 setUser(id:1) {
-                    user { id }
+                    user {
+                        id
+                        username
+                        firstName
+                        lastName
+                        email
+                        isActive
+                        teams {
+                          id
+                        }
+                    }
                 }
             }
             '''

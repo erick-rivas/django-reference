@@ -16,4 +16,4 @@ def fill_test_database():
         cursor.execute('ALTER TABLE "_team" DISABLE TRIGGER ALL;')
         cursor.execute('ALTER TABLE "_user" DISABLE TRIGGER ALL;')
         cursor.execute('ALTER TABLE "file" DISABLE TRIGGER ALL;')
-    call_command('loaddata', 'models/fixtures/.template.yaml', verbosity=0)
+    call_command('loaddata', 'seed/tests/fixtures.yaml', verbosity=0)

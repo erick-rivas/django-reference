@@ -14,9 +14,9 @@
   pk: 1
   fields:
     date: "2020-01-01T12:00:00+00:00"
-    type: "FRIENDSHIP|LEAGUE|CUP|"
-    local:  0
-    visitor:  0
+    type: "FRIENDSHIP"
+    local:  1
+    visitor:  1
 
 ## PLAYERS
 
@@ -24,10 +24,10 @@
   pk: 1
   fields:
     name: ""
-    photo: 0
+    photo: 1
     is_active: false
-    team:  0
-    position:  0
+    team:  1
+    position:  1
 
 ## PLAYER_POSITIONS
 
@@ -41,9 +41,9 @@
 - model: models.score
   pk: 1
   fields:
-    min: 0
-    player:  0
-    match:  0
+    min: 128
+    player:  1
+    match:  1
 
 ## TEAMS
 
@@ -51,20 +51,20 @@
   pk: 1
   fields:
     name: ""
-    logo: 0
+    logo: 1
     description: ""
-    market_value: 0
-    rival:  0
+    market_value: 128.0
+    rival:  1
 
 ## USERS
 
 - model: models.user
   pk: 1
   fields:
-    username: ""
-    first_name: ""
-    last_name: ""
-    email: ""
+    username: "email@test.com"
+    first_name: "FirstName"
+    last_name: "LastName"
+    email: "email@test.com"
     password: "pbkdf2_sha256$150000$jMOqkdOUpor5$kU/QofjBsopM+CdCnU2+pROhtnxd5CZc7NhUiXNTMc0="
     is_active: true
     is_superuser: false
@@ -79,5 +79,5 @@
   pk: 1
   fields:
     url: "https://st-listas.20minutos.es/images/2010-01/177732/1966423_640px.jpg?1518458710"
-    size: 0
+    size: 128
     name: "file"
