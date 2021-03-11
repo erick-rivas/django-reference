@@ -1,5 +1,6 @@
 wheel==0.36.2
 boto3==1.17.9
+coverage==5.5
 Django==2.2.18
 django-cors-headers==3.7.0
 django-dotenv==1.4.2

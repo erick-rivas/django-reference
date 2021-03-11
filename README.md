@@ -11,6 +11,7 @@ This repository holds the source code of a **reference** for the development of 
     -   [Database filling](#database-filling)
 -   [Execution](#execution)
     -   [Examples](#examples)
+-   [Testing](#testing)
 -   [Seed-Builder](#seed-builder)
     -   [Extend modules](#extend-modules)
 -   [Deployment](#deployment)
@@ -62,14 +63,7 @@ python3 manage.py loaddata models/fixtures/*.yaml
 
 -   Run server.
 ```bash
-. .venv/bin/activate
 python3 manage.py runserver
-```
-
--   Test use cases
-```bash
-. .venv/bin/activate
-python3 manage.py test
 ```
 
 ### Examples
@@ -90,6 +84,19 @@ http://localhost:8000/admin
 ```
 >   To access admin pane, create a user fixture with the *is_superuser* attribute set to true 
 
+
+## Testing
+
+-   Test use cases
+```bash
+python3 manage.py test
+```
+
+-   Analyze code coverage
+```bash
+coverage run --omit='.venv/*,bin/*,tests/*,*__init__*' manage.py test
+coverage report -m
+```
 
 ## Seed-Builder
 
