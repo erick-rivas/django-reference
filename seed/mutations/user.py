@@ -31,7 +31,7 @@ class SaveUserMutation(graphene.Mutation):
         if "email" in kwargs: user["email"] = kwargs["email"]
         if "isActive" in kwargs: user["is_active"] = kwargs["isActive"]
         user = User.objects.create(**user)
-        if "password" in kwargs: user.setPassword(kwargs["password"])
+        if "password" in kwargs: user.set_password(kwargs["password"])
         if "teams" in kwargs:
             user.teams.clear()
             for id in kwargs["teams"]:
@@ -63,7 +63,7 @@ class SetUserMutation(graphene.Mutation):
         if "lastName" in kwargs: user.last_name = kwargs["lastName"]
         if "email" in kwargs: user.email = kwargs["email"]
         if "isActive" in kwargs: user.is_active = kwargs["isActive"]
-        if "password" in kwargs: user.setPassword(kwargs["password"])
+        if "password" in kwargs: user.set_password(kwargs["password"])
         if "teams" in kwargs:
             user.teams.clear()
             for id in kwargs["teams"]:

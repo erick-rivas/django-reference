@@ -9,7 +9,7 @@ import json
 from rest_framework import status
 from rest_framework.test import APITestCase
 
-from seed.tests.util import fill_test_database
+from seed.tests.util_test import fill_test_database
 
 class TestRest(APITestCase):
     def setUp(self):
