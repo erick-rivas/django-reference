@@ -28,11 +28,23 @@ class TestRest(APITestCase):
         self.assertEqual(res["id"], 1)
     
     def test_post_matches(self):
-        response = self.client.post('/api/matches')
-        self.assertIn(response.status_code, [status.HTTP_400_BAD_REQUEST, status.HTTP_201_CREATED])
+        data = {
+            "date": "2020-01-01T12:00:00+00:00",
+            "type": "FRIENDSHIP",
+            "local_id":  1,
+            "visitor_id":  1,
+        }
+        response = self.client.post('/api/matches', data)
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
     
     def test_put_matches(self):
-        response = self.client.put('/api/matches/1')
+        data = {
+            "date": "2020-01-01T12:00:00+00:00",
+            "type": "FRIENDSHIP",
+            "local_id":  1,
+            "visitor_id":  1,
+        }
+        response = self.client.put('/api/matches/1', data)
         res = json.loads(response.content)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(res["id"], 1)
@@ -56,11 +68,25 @@ class TestRest(APITestCase):
         self.assertEqual(res["id"], 1)
     
     def test_post_players(self):
-        response = self.client.post('/api/players')
-        self.assertIn(response.status_code, [status.HTTP_400_BAD_REQUEST, status.HTTP_201_CREATED])
+        data = {
+            "name": "",
+            "photo_id": 1,
+            "is_active": False,
+            "team_id":  1,
+            "position_id":  1,
+        }
+        response = self.client.post('/api/players', data)
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
     
     def test_put_players(self):
-        response = self.client.put('/api/players/1')
+        data = {
+            "name": "",
+            "photo_id": 1,
+            "is_active": False,
+            "team_id":  1,
+            "position_id":  1,
+        }
+        response = self.client.put('/api/players/1', data)
         res = json.loads(response.content)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(res["id"], 1)
@@ -84,11 +110,17 @@ class TestRest(APITestCase):
         self.assertEqual(res["id"], 1)
     
     def test_post_player_positions(self):
-        response = self.client.post('/api/player_positions')
-        self.assertIn(response.status_code, [status.HTTP_400_BAD_REQUEST, status.HTTP_201_CREATED])
+        data = {
+            "name": "",
+        }
+        response = self.client.post('/api/player_positions', data)
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
     
     def test_put_player_positions(self):
-        response = self.client.put('/api/player_positions/1')
+        data = {
+            "name": "",
+        }
+        response = self.client.put('/api/player_positions/1', data)
         res = json.loads(response.content)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(res["id"], 1)
@@ -112,11 +144,21 @@ class TestRest(APITestCase):
         self.assertEqual(res["id"], 1)
     
     def test_post_scores(self):
-        response = self.client.post('/api/scores')
-        self.assertIn(response.status_code, [status.HTTP_400_BAD_REQUEST, status.HTTP_201_CREATED])
+        data = {
+            "min": 128,
+            "player_id":  1,
+            "match_id":  1,
+        }
+        response = self.client.post('/api/scores', data)
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
     
     def test_put_scores(self):
-        response = self.client.put('/api/scores/1')
+        data = {
+            "min": 128,
+            "player_id":  1,
+            "match_id":  1,
+        }
+        response = self.client.put('/api/scores/1', data)
         res = json.loads(response.content)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(res["id"], 1)
@@ -140,11 +182,25 @@ class TestRest(APITestCase):
         self.assertEqual(res["id"], 1)
     
     def test_post_teams(self):
-        response = self.client.post('/api/teams')
-        self.assertIn(response.status_code, [status.HTTP_400_BAD_REQUEST, status.HTTP_201_CREATED])
+        data = {
+            "name": "",
+            "logo_id": 1,
+            "description": "",
+            "market_value": 128.0,
+            "rival_id":  1,
+        }
+        response = self.client.post('/api/teams', data)
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
     
     def test_put_teams(self):
-        response = self.client.put('/api/teams/1')
+        data = {
+            "name": "",
+            "logo_id": 1,
+            "description": "",
+            "market_value": 128.0,
+            "rival_id":  1,
+        }
+        response = self.client.put('/api/teams/1', data)
         res = json.loads(response.content)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(res["id"], 1)
@@ -168,11 +224,29 @@ class TestRest(APITestCase):
         self.assertEqual(res["id"], 1)
     
     def test_post_users(self):
-        response = self.client.post('/api/users')
-        self.assertIn(response.status_code, [status.HTTP_400_BAD_REQUEST, status.HTTP_201_CREATED])
+        data = {
+            "username": "email_1@test.com",
+            "first_name": "FirstName",
+            "last_name": "LastName",
+            "email": "email_1@test.com",
+            "password": "pbkdf2_sha256$150000$jMOqkdOUpor5$kU/QofjBsopM+CdCnU2+pROhtnxd5CZc7NhUiXNTMc0=",
+            "is_active": False,
+            "team_ids": [1],
+        }
+        response = self.client.post('/api/users', data)
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
     
     def test_put_users(self):
-        response = self.client.put('/api/users/1')
+        data = {
+            "username": "email_1@test.com",
+            "first_name": "FirstName",
+            "last_name": "LastName",
+            "email": "email_1@test.com",
+            "password": "pbkdf2_sha256$150000$jMOqkdOUpor5$kU/QofjBsopM+CdCnU2+pROhtnxd5CZc7NhUiXNTMc0=",
+            "is_active": False,
+            "team_ids": [1],
+        }
+        response = self.client.put('/api/users/1', data)
         res = json.loads(response.content)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(res["id"], 1)

@@ -1,4 +1,8 @@
 #!/bin/bash
+echo "== Creating postgres database"
+echo "Enter postgres password"
+createdb -h localhost -p 5432 -U $2 $1
+
 echo "== Creating virtual environment"
 python3 -m venv .venv
 PWD=`pwd`
@@ -10,10 +14,6 @@ activate
 echo "== Installing dependencies"
 python3 -m pip install --upgrade pip
 pip3 install -r requirements.txt
-
-echo "== Creating postgres database"
-echo "Enter postgres password"
-createdb -h localhost -p 5432 -U $2 $1
 
 echo "== Creating & configuring env.dev file"
 cp .env.example .env.dev

@@ -71,7 +71,7 @@
     is_staff: false
     last_login: "2020-01-01T12:00:00+00:00"
     date_joined: "2020-01-01T12:00:00+00:00"
-    teams: []
+    teams: [1]
 
 ## FILES
 

@@ -97,10 +97,10 @@ class TestGraphql(GraphQLTestCase):
             '''
             mutation {
                 saveMatch(
-                    , date: "2020-01-01T12:00:00+00:00"
-                    , type: "FRIENDSHIP"
-                    , local:  1
-                    , visitor:  1
+                    date: "2020-01-01T12:00:00+00:00",
+                    type: "FRIENDSHIP",
+                    local:  1,
+                    visitor:  1,
                 ) {
                     match {
                         id
@@ -126,10 +126,10 @@ class TestGraphql(GraphQLTestCase):
             '''
             mutation {
                 setMatch(id:1
-                    , date: "2020-01-01T12:00:00+00:00"
-                    , type: "FRIENDSHIP"
-                    , local:  1
-                    , visitor:  1
+                    date: "2020-01-01T12:00:00+00:00",
+                    type: "FRIENDSHIP",
+                    local:  1,
+                    visitor:  1,
 
                 ) {
                     match {
@@ -250,11 +250,11 @@ class TestGraphql(GraphQLTestCase):
             '''
             mutation {
                 savePlayer(
-                    , name: ""
-                    , photo: 1
-                    , isActive: false
-                    , team:  1
-                    , position:  1
+                    name: "",
+                    photo: 1,
+                    isActive: false,
+                    team:  1,
+                    position:  1,
                 ) {
                     player {
                         id
@@ -283,11 +283,11 @@ class TestGraphql(GraphQLTestCase):
             '''
             mutation {
                 setPlayer(id:1
-                    , name: ""
-                    , photo: 1
-                    , isActive: false
-                    , team:  1
-                    , position:  1
+                    name: "",
+                    photo: 1,
+                    isActive: false,
+                    team:  1,
+                    position:  1,
 
                 ) {
                     player {
@@ -391,7 +391,7 @@ class TestGraphql(GraphQLTestCase):
             '''
             mutation {
                 savePlayerPosition(
-                    , name: ""
+                    name: "",
                 ) {
                     playerPosition {
                         id
@@ -410,7 +410,7 @@ class TestGraphql(GraphQLTestCase):
             '''
             mutation {
                 setPlayerPosition(id:1
-                    , name: ""
+                    name: "",
 
                 ) {
                     playerPosition {
@@ -516,9 +516,9 @@ class TestGraphql(GraphQLTestCase):
             '''
             mutation {
                 saveScore(
-                    , min: 128
-                    , player:  1
-                    , match:  1
+                    min: 128,
+                    player:  1,
+                    match:  1,
                 ) {
                     score {
                         id
@@ -543,9 +543,9 @@ class TestGraphql(GraphQLTestCase):
             '''
             mutation {
                 setScore(id:1
-                    , min: 128
-                    , player:  1
-                    , match:  1
+                    min: 128,
+                    player:  1,
+                    match:  1,
 
                 ) {
                     score {
@@ -661,11 +661,11 @@ class TestGraphql(GraphQLTestCase):
             '''
             mutation {
                 saveTeam(
-                    , name: ""
-                    , logo: 1
-                    , description: ""
-                    , marketValue: 128.0
-                    , rival:  1
+                    name: "",
+                    logo: 1,
+                    description: "",
+                    marketValue: 128.0,
+                    rival:  1,
                 ) {
                     team {
                         id
@@ -692,11 +692,11 @@ class TestGraphql(GraphQLTestCase):
             '''
             mutation {
                 setTeam(id:1
-                    , name: ""
-                    , logo: 1
-                    , description: ""
-                    , marketValue: 128.0
-                    , rival:  1
+                    name: "",
+                    logo: 1,
+                    description: "",
+                    marketValue: 128.0,
+                    rival:  1,
 
                 ) {
                     team {
@@ -816,9 +816,9 @@ class TestGraphql(GraphQLTestCase):
                     firstName: "FirstName",
                     lastName: "LastName",
                     email: "email@test.com",
-                    password: "pbkdf2_sha256$150000$jMOqkdOUpor5$kU/QofjBsopM+CdCnU2+pROhtnxd5CZc7NhUiXNTMc0="
-                    isActive: true
-                    , teams: []
+                    password: "pbkdf2_sha256$150000$jMOqkdOUpor5$kU/QofjBsopM+CdCnU2+pROhtnxd5CZc7NhUiXNTMc0=",
+                    isActive: true,
+                    teams: [1],
                 ) {
                     user {
                         id
@@ -844,13 +844,13 @@ class TestGraphql(GraphQLTestCase):
             '''
             mutation {
                 setUser(id:1
-                    username: "email@test.com",
+                    username: "email_1@test.com",
                     firstName: "FirstName",
                     lastName: "LastName",
-                    email: "email@test.com",
-                    password: "pbkdf2_sha256$150000$jMOqkdOUpor5$kU/QofjBsopM+CdCnU2+pROhtnxd5CZc7NhUiXNTMc0="
-                    isActive: true
-                    , teams: []
+                    email: "email_1@test.com",
+                    password: "pbkdf2_sha256$150000$jMOqkdOUpor5$kU/QofjBsopM+CdCnU2+pROhtnxd5CZc7NhUiXNTMc0=",
+                    isActive: true,
+                    teams: [1],
 
                 ) {
                     user {
