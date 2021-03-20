@@ -12,8 +12,11 @@ django-storages==1.11.1
 djangorestframework==3.12.2
 graphene-django==2.15.0
 gunicorn==20.0.4
+myst-parser==0.13.5
 pip==21.0.1
 psycopg2-binary==2.8.6
 PyYAML==5.4.1
 setuptools==54.1.2
 six==1.15.0
+Sphinx==3.5.2
+sphinx-rtd-theme==0.5.1

@@ -15,6 +15,7 @@ seed/serializers/*
 seed/mutations/*
 seed/schema/*
 seed/routes/*
+bin/sphinx/docs/*
 app/api.py
 app/models.py
 app/serializers.py

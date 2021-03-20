@@ -34,11 +34,7 @@ AUTH_USER_MODEL = 'models.User'
 
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "models", "fixtures", "media"),
-]
-if os.path.exists((os.path.join(BASE_DIR, "reactjs", "index.html"))):
-    STATICFILES_DIRS.append(os.path.join(BASE_DIR, "reactjs", "static"))
+STATICFILES_DIRS = [os.path.join(BASE_DIR, "models", "fixtures", "media"), ]
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 MEDIA_URL = '/media/'
 
@@ -119,10 +115,13 @@ AUTH_PASSWORD_VALIDATORS = [
 
 # Templates settings
 
+TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
+DOCS_DIR = os.path.join(BASE_DIR, "bin", "sphinx", "docs")
+REACTJS_DIR = os.path.join(BASE_DIR, "reactjs")
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates'), os.path.join(BASE_DIR, 'reactjs')],
+        'DIRS': [TEMPLATES_DIR, os.path.join(BASE_DIR, REACTJS_DIR)],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
