@@ -1,4 +1,9 @@
 #!/bin/bash
+if [ $# -lt 3 ]; then
+  echo "Missing params"
+  echo "Call $ ./bin/setup.sh <db_name> <db_username> <db_password>"
+  exit 1
+fi
 echo "== Creating postgres database"
 echo "Enter postgres password"
 createdb -h localhost -p 5432 -U $2 $1

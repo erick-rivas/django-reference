@@ -19,11 +19,11 @@ app/api.py
 app/models.py
 app/serializers.py
 app/routes.py
-fixtures/*.yaml
-fixtures/media/*
 domain/*
 models/*.py
 models/*.md
+models/fixtures/*.yaml
+models/fixtures/media/*
 models/migrations/*
 mutations
 schema

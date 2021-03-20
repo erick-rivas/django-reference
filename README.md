@@ -56,7 +56,7 @@ This repository holds the source code of a **reference** for the development of 
 ```bash
 python3 manage.py loaddata models/fixtures/*.yaml
 ```
->  For windows, each .yaml file has to be executed one by one. It is recommended to implement an execution script (eg. run-all-fixtures.bat)
+>  For windows, run ./models/fixtures/fixtures.bat
 
 
 ## Execution

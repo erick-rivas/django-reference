@@ -3,18 +3,14 @@ __Seed builder__v0.2.0
   AUTO_GENERATED (Read only)
   Modify via builder
 """
+
 from rest_framework import serializers
-from dynamic_rest.fields import DynamicRelationField
-from seed.helpers.serializer import Serializer
 from app.models import Team
 from app.models import File
 from seed.serializers.helpers.file import FileSerializer
 
-class _TeamSerializer(Serializer):
+class _TeamSerializer(serializers.ModelSerializer):
     
-    rival = DynamicRelationField('app.serializers.TeamSerializer', 
-        deferred=True, embed=True, read_only=True)
-    players = DynamicRelationField('app.serializers.PlayerSerializer',deferred=True, embed=True, many=True, read_only=True)
     logo = FileSerializer(read_only=True)
     identity_docs = FileSerializer(many=True, read_only=True)
 
@@ -35,9 +31,7 @@ class _TeamSerializer(Serializer):
             'logo',
             'description',
             'market_value',
-            'rival',
             'identity_docs',
-            'players',
             'logo_id',
             'identity_doc_ids',
             'rival_id',

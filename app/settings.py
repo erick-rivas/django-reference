@@ -51,7 +51,6 @@ INSTALLED_APPS = [
 
     # Libs
     'rest_framework',
-    'dynamic_rest',
     'rest_framework.authtoken',
     'rest_auth',
     'django_filters',
@@ -145,11 +144,10 @@ REST_FRAMEWORK = {
 } if IS_PROD else {
     'DEFAULT_RENDERER_CLASSES': [
         'rest_framework.renderers.JSONRenderer',
-        'dynamic_rest.renderers.DynamicBrowsableAPIRenderer',
+        'rest_framework.renderers.BrowsableAPIRenderer'
     ],
 }
 
-DYNAMIC_REST = {'ENABLE_LINKS': False}
 
 GRAPHENE = {
     'SCHEMA': 'app.graphene.schema'

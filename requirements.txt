@@ -1,7 +1,7 @@
 wheel==0.36.2
-boto3==1.17.9
+boto3==1.17.33
 coverage==5.5
-Django==2.2.18
+Django==3.1.7
 django-cors-headers==3.7.0
 django-dotenv==1.4.2
 django-filter==2.4.0
@@ -9,14 +9,11 @@ djangoql==0.14.3
 django-import-export==2.5.0
 django-rest-auth==0.9.5
 django-storages==1.11.1
-djangorestframework==3.10.3
+djangorestframework==3.12.2
 graphene-django==2.15.0
 gunicorn==20.0.4
 pip==21.0.1
 psycopg2-binary==2.8.6
 PyYAML==5.4.1
-setuptools==53.0.0
+setuptools==54.1.2
 six==1.15.0
-
-# WARNING - TO DEPRECATE
-dynamic-rest==1.9.5

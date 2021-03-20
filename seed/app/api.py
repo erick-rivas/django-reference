@@ -6,7 +6,7 @@ __Seed builder__v0.2.0
 
 from django.urls import path, include
 from django.conf.urls import url
-from dynamic_rest.routers import DynamicRouter
+from rest_framework.routers import DefaultRouter
 
 from app.routes import MatchViewSet
 from app.routes import PlayerViewSet
@@ -16,7 +16,7 @@ from app.routes import TeamViewSet
 from app.routes import UserViewSet
 from app.routes import FileView
 
-router = DynamicRouter()
+router = DefaultRouter()
 router.register(r'matches', MatchViewSet)
 router.register(r'players', PlayerViewSet)
 router.register(r'player_positions', PlayerPositionViewSet)
