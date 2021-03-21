@@ -20,10 +20,10 @@ urlpatterns = \
 
 if settings.DEBUG and os.path.exists((os.path.join(settings.DOCS_DIR, "index.html"))):
     urlpatterns += \
-        [path('docs/', RedirectView.as_view(url='./guides/README.html'))] \
-        + static("/docs", document_root=os.path.join(settings.DOCS_DIR))
+        [url(r'^$', RedirectView.as_view(url='./docs/general.html'))] \
+        + static("/docs", document_root=settings.DOCS_DIR)
 
-if os.path.exists((os.path.join(settings.BASE_DIR, "reactjs", "index.html"))):
+if os.path.exists((os.path.join(settings.REACTJS_DIR, "index.html"))):
     urlpatterns += \
         [url(r'^.*', never_cache(TemplateView.as_view(template_name='index.html')))] \
-        + static(settings.STATIC_URL, document_root=os.path.join(settings.BASE_DIR, "reactjs"))
+        + static(settings.STATIC_URL, document_root=settings.REACTJS_DIR)

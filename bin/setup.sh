@@ -31,6 +31,9 @@ python3 manage.py makemigrations
 python3 manage.py migrate
 python3 manage.py loaddata models/fixtures/*.yaml
 
+echo "== Filling database"
+python3 manage.py loaddata models/fixtures/*.yaml
+
 echo "== Creating documentation"
 chmod 777 ./bin/docs.sh
 ./bin/docs.sh

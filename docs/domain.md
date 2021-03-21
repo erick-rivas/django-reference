@@ -2,11 +2,6 @@
 
 Represents the methods that handle business logic
 
-## Table of content
-
--   [Examples](#examples)
--   [References](#references)
-
 ## Examples
 
 ```python

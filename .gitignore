@@ -3,7 +3,7 @@
 .env.dev
 static
 reactjs
-bin/sphinx/docs/
+bin/docs/
 
 ### Django ###
 .vscode
