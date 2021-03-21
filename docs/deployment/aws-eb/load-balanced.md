@@ -19,11 +19,11 @@
 ### Pre-configuration
 
 -   Create and configure *.env.prod* file.
--   Create a `.ebextensions` folder in root and copy inside
+-   Create a `.ebextensions` folder in project root and copy inside
     -   `bin/config/aws-eb/load-balanced/apache-settings.config`
     -   `bin/config/aws-eb/load-balanced/db.config`
     -   `bin/config/aws-eb/load-balanced/django.config`
--   Copy `bin/config/aws-eb/load-balanced/.ebignore` in root folder
+-   Copy `bin/config/aws-eb/load-balanced/.ebignore` in project root folder
 -   Copy `bin/config/aws-eb/load-balanced/deploy.sh` in `/bin` folder
 
 ### SSL

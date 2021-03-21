@@ -1,6 +1,5 @@
 # Update project
 
-cd <PROJECT_WEB_PATH>
 sudo git pull origin dev
 PWD=`pwd`
 activate () {

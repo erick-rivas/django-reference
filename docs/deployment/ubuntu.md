@@ -83,7 +83,7 @@ ExecStart=#PROJECT_DIR#/.venv/bin/gunicorn \
 [Install]
 WantedBy=multi-user.target
 ```
->  To check os user and group user id command (For aws-ec2=ubuntu,ubuntu)
+>  *To check os user and group user id command (For aws-ec2=ubuntu,ubuntu)*
 > 
 -  Init gunicorn socket
 ``` bash
@@ -194,11 +194,11 @@ sudo systemctl restart nginx
 ssh #USER@SERVER_URL#
 ```
 
--   Paste `bin/config/ubuntu/deploy.sh` in server root
+-   Paste `bin/config/ubuntu/deploy.sh` in `bin` folder
 
 -   Run deployment script
 ```bash
-./deploy.sh
+./bin/deploy.sh
 ```
 
 ### References

@@ -9,10 +9,10 @@
     -   Select python platform **Amazon Linux**
     -   Press *Configure more options* 
         -   Go to Software and verify that Apache is set as server proxy
-            >   If there are not options it is set by default
+            >   *If there are not options aws set it by default*
         -   Go to Database and create a new postgresql
         -   Go to Capacity and select the server capacity
-            >   For development(sandbox) use preferably a t3a.nano instance
+            >   *For development(sandbox) use preferably a t3a.nano instance*
    
 ### EB command line interface
 
@@ -22,11 +22,11 @@
 ### Pre-configuration
 
 -   Create and configure *.env.prod* file.
--   Create a `.ebextensions` folder in root and copy inside
+-   Create a `.ebextensions` folder in project root and copy inside
     -   `bin/config/aws-eb/single-instance/apache-settings.config`
     -   `bin/config/aws-eb/single-instance/db.config`
     -   `bin/config/aws-eb/single-instance/django.config`
--   Copy `bin/config/aws-eb/single-instance/.ebignore` in root folder
+-   Copy `bin/config/aws-eb/single-instance/.ebignore` in project root folder
 -   Copy `bin/config/aws-eb/single-instance/deploy.sh` in `/bin` folder
 
 ### SSL
@@ -48,7 +48,7 @@ To enable a https connection
 ```bash
 eb ssh
 ```
->   In case of error, configure keys with eb ssh --setup command
+>   *In case of error, configure keys with eb ssh --setup command*
 
 -   Delete preconfigure files
 ```bash
