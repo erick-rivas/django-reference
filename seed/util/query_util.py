@@ -1,23 +1,37 @@
 """
 __Seed builder__v0.2.0
-  (Read_only) Builder util
+  (Read_only) Query util
 """
 import re
 
 from django.db.models import Q
 
 
-def multi_Q(qs):
-    if type(qs) is dict:  # Single query (ands)
-        return Q(**qs)
+def multi_Q(query):
+    """
+    | Return a Q Object base on multilevel query
+    | Example [{key_1: 1, key_2: 2}, {key_3: 3}] returns Q(OR(AND(key_1=1, key_2=2), key_3=3)
+
+    :param query: query object
+    :return: Q object
+    """
+    if type(query) is dict:  # Single query (ands)
+        return Q(**query)
     else:  # Multiple queries (or, ands)
         res = Q()
-        for q in qs:
-            res |= multi_Q(q)
+        for sub in query:
+            res |= multi_Q(sub)
         return res
 
 
-def str_Q(query):
+def sql_alike_Q(query):
+    """
+    | Return a Q Object base on a SQL alike query
+    | Example \"(key_1=1 AND key_2=2) OR (key_3=3)\" returns Q(OR(AND(key_1=1, key_2=2), key_3=3)
+
+    :param query: SQL alike query
+    :return: Q object
+    """
     hsh = dict()
     stack = [0]
     hsh_idx = 0
@@ -29,23 +43,23 @@ def str_Q(query):
             stack.append(idx_ini)
         else:
             sub_con = query[stack[-1]: idx_end + 1]
-            sub_query = get_query(sub_con[1: len(sub_con) - 1], hsh)
+            sub_query = _get_query(sub_con[1: len(sub_con) - 1], hsh)
             sub_name = 'Q[' + str(hsh_idx) + ']'
             query = query.replace(sub_con, sub_name, 1)
             hsh[sub_name] = sub_query
             hsh_idx += 1
             stack.pop(-1)
         overflow += 1
-    res = get_query(query, hsh)
+    res = _get_query(query, hsh)
     return res
 
 
-def snake_case(name):
+def _snake_case(name):
     s1 = re.sub('(.)([A-Z][a-z]+)', r'\1_\2', name)
     return re.sub('([a-z0-9])([A-Z])', r'\1_\2', s1).lower()
 
 
-def is_float(val):
+def _is_float(val):
     try:
         float(val)
         return True
@@ -53,7 +67,7 @@ def is_float(val):
         return False
 
 
-def get_query(data, hsh):
+def _get_query(data, hsh):
     res = Q()
     queries = [i.strip() for i in data.split(' OR ')]
     for q in queries:
@@ -61,7 +75,7 @@ def get_query(data, hsh):
         values = []
         for f in filters:
             if f.startswith('Q['):
-                values.append(get_sub_query(f, hsh))
+                values.append(_get_sub_query(f, hsh))
             else:
                 val_s = {}
                 opt = ('=', '')
@@ -86,14 +100,14 @@ def get_query(data, hsh):
                         val_l = str(ele[1][1:-1])
                     elif ele[1].isdigit():
                         val_l = int(ele[1])
-                    elif is_float(ele[1]):
+                    elif _is_float(ele[1]):
                         val_l = float(ele[1])
                     elif ele[1].strip().upper() == 'TRUE':
                         val_l = True
                     elif ele[1].strip().upper() == 'FALSE':
                         val_l = False
 
-                    val_k = snake_case(ele[0].strip()).replace(".", "__")
+                    val_k = _snake_case(ele[0].strip()).replace(".", "__")
                     if opt[0] == '=':
                         val_s[val_k] = val_l
                     else:
@@ -104,7 +118,7 @@ def get_query(data, hsh):
     return res
 
 
-def get_sub_query(sub_content, hsh):
+def _get_sub_query(sub_content, hsh):
     idx_ini = sub_content.find('[')
     idx_end = sub_content.find(']')
     idx = sub_content[idx_ini + 1: idx_end]

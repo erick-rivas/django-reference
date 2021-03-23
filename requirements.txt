@@ -16,7 +16,7 @@ myst-parser==0.13.5
 pip==21.0.1
 psycopg2-binary==2.8.6
 PyYAML==5.4.1
-setuptools==54.1.2
+setuptools==54.2.0
 six==1.15.0
 Sphinx==3.5.3
 sphinx-rtd-theme==0.5.1

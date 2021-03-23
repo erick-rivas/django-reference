@@ -1,6 +1,6 @@
 """
 __Seed builder__v0.2.0
-  (Read_only) Builder helper
+  (Read_only) Domain helper
 """
 
 import os
@@ -10,9 +10,27 @@ from urllib.parse import urlparse
 from app.models import File
 
 
-def save_file(f):
-    filename = uuid.uuid4().hex + "_" + f.name
-    name = default_storage.save(filename, f)
+def save_file(path, mode="rb"):
+    """
+   Saves a local file in media/static folder and in file model (database) based on server settings
+
+   :param path: File path
+   :param mode: File open mode (Default rb)
+   :return: File model (app.models.File)
+   """
+    with open(path, mode=mode) as file:
+        return save_file_obj(file)
+
+
+def save_file_obj(file):
+    """
+    Saves a local file in media/static folder and in file model (database) based on server settings
+
+    :param file: File object in r mode
+    :return: File model (app.models.File)
+    """
+    filename = uuid.uuid4().hex + "_" + file.name
+    name = default_storage.save(filename, file)
     size = default_storage.size(name)
     url = default_storage.url(name)
     host_url = os.getenv('HOST_URL')

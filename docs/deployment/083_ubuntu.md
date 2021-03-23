@@ -45,7 +45,7 @@ postgres=# ALTER ROLE admin WITH SUPERUSER;
 
 #### Project installation
 
--   Clone repository and follow installation steps in [general docs](../general.md)
+-   Clone repository and follow installation steps in [general docs](../010_general.md)
 
 
 #### Gunicorn configuration

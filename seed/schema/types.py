@@ -15,7 +15,7 @@ from app.models import Score as ScoreModel
 from app.models import Team as TeamModel
 from app.models import User as UserModel
 from app.models import File as FileModel
-from seed.util.query_util import str_Q
+from seed.util.query_util import sql_alike_Q
 
 class Match(DjangoObjectType):
     id = graphene.Int(description = "Match primary key")
@@ -102,7 +102,7 @@ class FileCount(ObjectType):
 def resolve_list(model, info, **kwargs):
     user = info.context.user
     if "query" in kwargs:
-        res = model.objects.filter(str_Q(kwargs["query"])).distinct()
+        res = model.objects.filter(sql_alike_Q(kwargs["query"])).distinct()
     else:
         res = model.objects.all()
     if "orderBy" in kwargs:
@@ -121,7 +121,7 @@ def resolve_list(model, info, **kwargs):
 def resolve_count(model, countType, info, **kwargs):
     user = info.context.user
     if "query" in kwargs:
-        query = model.objects.filter(str_Q(kwargs["query"])).distinct()
+        query = model.objects.filter(sql_alike_Q(kwargs["query"])).distinct()
     else:
         query = model.objects.all()
     query = model.filter_permissions(query, model.permission_filters(user))
@@ -224,7 +224,7 @@ class Query(object):
     def resolve_files(self, info, **kwargs):
         user = info.context.user
         if "query" in kwargs:
-            res = FileModel.objects.filter(str_Q(kwargs["query"])).distinct()
+            res = FileModel.objects.filter(sql_alike_Q(kwargs["query"])).distinct()
         else: res = FileModel.objects.all()
         if "orderBy" in kwargs:
             orders = kwargs["orderBy"].split(",")
@@ -244,7 +244,7 @@ class Query(object):
         if "query" in kwargs:
             return FileCount(
                 id = 0,
-                count=len(FileModel.objects.filter(str_Q(kwargs["query"])).distinct()))
+                count=len(FileModel.objects.filter(sql_alike_Q(kwargs["query"])).distinct()))
         else:
             return FileCount(
                 id = 0,

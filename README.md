@@ -19,7 +19,7 @@ This repository holds the source code of a **reference** for the development of 
 -   Install [PostgreSQL](https://www.postgresqltutorial.com/postgresql-getting-started/)
 -   Clone this repository
     
--   Execute installation script `
+-   Execute setup script `
 ```bash
 ./bin/setup.sh <DB_NAME> <DB_USER> <DB_PASSWORD>
 ```
