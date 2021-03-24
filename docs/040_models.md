@@ -1,6 +1,6 @@
 # Models
 
-Represents data model representation. (Database models)
+Represents data model representation (Database models)
 
 
 ## Description
@@ -14,7 +14,7 @@ By default, the seed-builder generate the models based on SeedManifest.json stru
 ## Extension Example
 
 ```python
-class User(_User):  #
+class User(_User):
     @property
     def full_name(self):
         return self.first_name + " " + self.last_name
@@ -22,7 +22,7 @@ class User(_User):  #
 
 ## Guidelines
 
--   Modify attributes types and names via seed-builder.
+-   Modify attributes types and names via seed-builder
 -   Only add aggregate methods (properties) if required
     -   Example: has_members(), complete_name() ...
 

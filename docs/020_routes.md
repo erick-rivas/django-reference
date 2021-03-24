@@ -4,7 +4,7 @@ Represents API routes (endpoints)
 
 ## Description
 
-The routes (viewsets) are the responsible to handle all the http requests corresponding to a particular model.
+The routes are the responsible to handle all the http requests corresponding to a particular model
 
 By default, the seed-builder generate the endpoints related to CRUD operations of a model. In case of extension new endpoints may be included in `routes/*py` files
 >   *For more information see [seed-builder docs](060_seed_builder.md)*

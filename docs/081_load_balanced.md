@@ -8,7 +8,7 @@
 -   Create a new environment (Web server environment)
     -   Select python platform **Amazon Linux**
     -   Press *Configure more options* 
-        -   Go to Database and create a new postgresql
+        -   Go to Database and create a new postgresql db
         -   Go to Capacity, capacity type and select load balanced as Environment type
         
 ### EB command line interface

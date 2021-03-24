@@ -1,12 +1,12 @@
 # Serializers
 
-Represents the model mappers to REST outputs (Eg. models to json).
+Represents the model mappers to REST outputs (e.g. models to json)
 
 
 ## Example
 
 ```python
-class TeamSerializer(_TeamSerializer):  #
+class TeamSerializer(_TeamSerializer):
     
     class Meta(_TeamSerializer.Meta):
         # Include extra field called 'complete_name'
