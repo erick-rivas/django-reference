@@ -4,7 +4,7 @@ __Seed builder__v0.2.0
 """
 
 from rest_framework import serializers
-from seed.models.helpers.file import File
+from seed.models.file import File
 
 
 class FileSerializer(serializers.ModelSerializer):

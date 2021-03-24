@@ -5,7 +5,7 @@ __Seed builder__v0.2.0
 """
 
 from django.contrib import admin
-from seed.helpers.model_admin import ModelAdminClass
+from seed.models.helpers.model_admin import ModelAdminClass
 from app.models import Match
 from app.models import Player
 from app.models import PlayerPosition

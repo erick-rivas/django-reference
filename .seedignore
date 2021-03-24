@@ -38,6 +38,11 @@ routes
 ?app/urls.py
 ?app/wsgi.py
 !*__init__.py
+!seed/models/model.py
+!seed/models/file.py
+!seed/routes/viewset.py
+!seed/routes/files.py
+!seed/serializers/file.py
 !*helpers
 !*util
 !.keep

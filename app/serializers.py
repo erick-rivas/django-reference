@@ -29,7 +29,7 @@ def get_user_serializer():
     return _UserSerializer
 
 def get_file_serializer():
-    from seed.serializers.helpers.file import FileSerializer
+    from seed.serializers.file import FileSerializer
     return FileSerializer
 
 MatchSerializer = get_match_serializer()

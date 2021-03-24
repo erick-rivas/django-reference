@@ -6,7 +6,7 @@ __Seed builder__v0.2.0
 
 from django.contrib.auth.models import AbstractUser
 from django.db import models
-from seed.helpers.model import Model
+from seed.models.model import Model
 
 class User(AbstractUser, Model):
 

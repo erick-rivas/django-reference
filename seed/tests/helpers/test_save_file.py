@@ -1,6 +1,6 @@
 import os
 from unittest import TestCase
-from seed.domain.save_file import save_file, save_file_obj
+from seed.helpers.save_file import save_file, save_file_obj
 from app.settings import MEDIA_ROOT
 
 class TestSaveFile(TestCase):

@@ -8,8 +8,8 @@ import time
 
 from app.settings import get_env
 from django.db import models
-from seed.models.util.permission_util import filter_perms
-from seed.models.util.permission_util import inherit_perms
+from seed.util.model_util import filter_perms
+from seed.util.model_util import inherit_perms
 
 
 class Model(models.Model):

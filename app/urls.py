@@ -7,7 +7,7 @@ from django.contrib import admin
 from django.urls import include, path
 from django.views.decorators.cache import never_cache
 from django.views.generic import TemplateView, RedirectView
-from seed.helpers.graphene_view import graphene_view
+from seed.routes.helpers.graphene_view import graphene_view
 
 urlpatterns = \
     [

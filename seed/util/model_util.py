@@ -6,19 +6,6 @@ __Seed builder__v0.2.0
 from seed.util.query_util import multi_Q
 
 
-def filter_perms(queryset, filters):
-    """
-    Execute queryset filtering based on model perms
-
-    :param queryset: Model queryset
-    :param filters: Filter collection
-    :return: Queryset filtered
-    """
-    if filters is None:
-        return queryset
-    return queryset.filter(multi_Q(filters))
-
-
 def inherit_perms(parent_model, attr, user):
     """
     Create a new permission collection in an specific attribute with parent_model perms
@@ -44,3 +31,16 @@ def _inherit_permissions_query(permissions, attr):
         for permission in permissions:
             new_permissions.append(_inherit_permissions_query(permission, attr))
         return new_permissions
+
+
+def filter_perms(queryset, filters):
+    """
+    Execute queryset filtering based on model perms
+
+    :param queryset: Model queryset
+    :param filters: Filter collection
+    :return: Queryset filtered
+    """
+    if filters is None:
+        return queryset
+    return queryset.filter(multi_Q(filters))

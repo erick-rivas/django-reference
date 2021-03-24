@@ -29,7 +29,7 @@ def get_user():
     return User
 
 def get_file():
-    from seed.models.helpers.file import File
+    from seed.models.file import File
     return File
 
 Match = get_match()

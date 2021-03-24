@@ -2,12 +2,12 @@
 
 Seed builder include several methods (utils, helpers) to ease the development of the project
 
-## General utils
+## Utils
 
 ### Routes
 
 ```{eval-rst}
-.. autofunction:: seed.util.req_util.has_fields_or_400
+.. autofunction:: seed.util.request_util.has_fields_or_400
 ```
 
 ### Queries
@@ -20,18 +20,14 @@ Seed builder include several methods (utils, helpers) to ease the development of
 .. autofunction:: seed.util.query_util.multi_Q
 ```
 
-## Domain utils
+### Models
 
 ```{eval-rst}
-.. autofunction:: seed.domain.save_file.save_file
+.. autofunction:: seed.util.model_util.inherit_perms
 ```
 
-## Model utils
+## Helpers
 
 ```{eval-rst}
-.. autofunction:: seed.models.util.permission_util.filter_perms
-```
-
-```{eval-rst}
-.. autofunction:: seed.models.util.permission_util.inherit_perms
+.. autofunction:: seed.helpers.save_file.save_file
 ```

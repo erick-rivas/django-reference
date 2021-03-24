@@ -29,7 +29,7 @@ def get_user_viewset():
     return _UserViewSet
 
 def get_file_view():
-    from seed.routes.helpers.file import FileView
+    from seed.routes.files import FileView
     return FileView
 
 MatchViewSet = get_match_viewset()

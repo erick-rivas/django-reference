@@ -9,7 +9,7 @@ from app.models import Player
 from app.models import Team
 from app.models import PlayerPosition
 from app.models import File
-from seed.serializers.helpers.file import FileSerializer
+from seed.serializers.file import FileSerializer
 
 class _PlayerSerializer(serializers.ModelSerializer):
     
