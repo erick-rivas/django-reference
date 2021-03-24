@@ -20,3 +20,4 @@ setuptools==54.2.0
 six==1.15.0
 Sphinx==3.5.3
 sphinx-rtd-theme==0.5.1
+sphinx-redactor-theme==0.0.1

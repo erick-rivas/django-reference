@@ -43,6 +43,7 @@ routes
 !seed/routes/viewset.py
 !seed/routes/files.py
 !seed/serializers/file.py
+!docs/*.md
 !*helpers
 !*util
 !.keep
