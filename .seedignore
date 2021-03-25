@@ -15,7 +15,8 @@ seed/serializers/*
 seed/mutations/*
 seed/schema/*
 seed/routes/*
-bin/docs/*
+bin/docs-build/*
+bin/docker-data/*
 app/api.py
 app/models.py
 app/serializers.py

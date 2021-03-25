@@ -3,7 +3,8 @@
 .env.dev
 static
 reactjs
-bin/docs/
+bin/docs-build/
+bin/docker-data/
 
 ### Django ###
 .vscode

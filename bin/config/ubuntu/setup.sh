@@ -25,6 +25,7 @@ cp .env.example .env.dev
 sed -i "s/DB_NAME=/DB_NAME=$1/" ".env.dev"
 sed -i "s/DB_USER=/DB_USER=$2/" ".env.dev"
 sed -i "s/DB_PASSWORD=/DB_PASSWORD=$3/" ".env.dev"
+sed -i "s/DB_HOST=/DB_HOST=localhost/" ".env.dev"
 
 echo "== Making & executing migrations"
 python3 manage.py makemigrations
@@ -35,5 +36,4 @@ echo "== Filling database"
 python3 manage.py loaddata models/fixtures/*.yaml
 
 echo "== Creating documentation"
-chmod 777 ./bin/docs.sh
-./bin/docs.sh
+sphinx-build -E -b html ./docs ./bin/docs-build

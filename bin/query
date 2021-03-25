@@ -1,0 +1,1 @@
+docker-compose -f bin/config/docker/docker-compose.dev.yml run python3 manage.py dbshell

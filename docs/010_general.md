@@ -6,7 +6,7 @@
 -   [Installation](#installation)
     -   [Pre-requisites](#pre-requisites)
     -   [Initial setup](#initial-setup)
--   [Database updates](#database-updates)
+-   [Database management](#database-management)
 -   [Execution](#execution)
     -   [Examples](#examples)
 -   [Testing](#testing)
@@ -27,37 +27,30 @@
 
 ### Pre-requisites
 
--   Download & install [Python3](https://www.python.org/downloads/)
--   Download & install [PostgreSQL](https://www.postgresqltutorial.com/postgresql-getting-started/)
+-   Download & Install [Docker Engine](https://docs.docker.com/engine/install/)
+-   Download & Install [Docker Compose](https://docs.docker.com/compose/install/)
 -   Download & install [PyCharm CE](https://www.jetbrains.com/pycharm/download/) (optional)
->   *To facilitate development it is recommended to run the project on a debian distribution (e.g. ubuntu)*
 
 ### Initial setup
 
 -   Clone this repository
--   Execute setup script
-```bash
-./bin/setup.sh <DB_NAME> <DB_USER> <DB_PASSWORD>
-```
->   *For windows, run the bin/setup.sh commands manually*
+-   Set execute permissions to scripts (linux) `chmod +x bin/*`
+-   Execute setup script `bin/setup`
+    >   For linux is necessary to execute commands as root (e.g. sudo bin/setup)
+-   Optionally configure .env.dev fields with custom server attributes, database connections, secret keys, etc
 
--   Optionally configure .env.dev fields with server attributes, database connections, secret keys, etc
+## Database management
 
-### Database updates
-
--   To update database (migration, fixtures) execute
-```bash
-./bin/update.sh
-```
->   *For windows, run the bin/update.sh commands manually*
+-   To update database (migration, fixtures) execute `./bin/update`
+-   To open db manager (psql) execute `./bin/query`
 
 
 ## Execution
 
--   Run server.
-```bash
-python3 manage.py runserver
-```
+-   Start / Restart server `bin/start`
+-   Stop server `bin/stop`
+-   Open server shell `bin/shell`
+>   *It is useful to execute specific django commands*
 
 ### Examples
 
@@ -68,13 +61,5 @@ python3 manage.py runserver
 
 ## Testing
 
--   Test use cases
-```bash
-python3 manage.py test
-```
-
--   Analyze code coverage
-```bash
-coverage run --omit='.venv/*,bin/*,tests/*,*__init__*' manage.py test
-coverage report -m
-```
+-   Test use cases `bin/test`
+-   Analyze code coverage `bin/coverage`
