@@ -1,1 +1,1 @@
-docker-compose -f bin/config/docker/docker-compose.dev.yml exec django sh
+docker-compose -f bin/docker/docker-compose.dev.yml exec django sh

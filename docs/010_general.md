@@ -9,6 +9,7 @@
 -   [Database management](#database-management)
 -   [Execution](#execution)
     -   [Examples](#examples)
+    -   [IDE interpreter](#IDE-interpreter)
 -   [Testing](#testing)
     
 
@@ -27,17 +28,19 @@
 
 ### Pre-requisites
 
+
 -   Download & Install [Docker Engine](https://docs.docker.com/engine/install/)
 -   Download & Install [Docker Compose](https://docs.docker.com/compose/install/)
--   Download & install [PyCharm CE](https://www.jetbrains.com/pycharm/download/) (optional)
+    >   For linux adjust docker for non-root user usage [guide](https://docs.docker.com/engine/install/linux-postinstall/#manage-docker-as-a-non-root-user)
+-   Download & install [VSCode](https://code.visualstudio.com/)
 
 ### Initial setup
 
 -   Clone this repository
+-   Copy .env.example as .env.dev
+    >   Optionally configure .env.dev fields with custom server attributes, database connections, secret, etc
 -   Set execute permissions to scripts (linux) `chmod +x bin/*`
 -   Execute setup script `bin/setup`
-    >   For linux is necessary to execute commands as root (e.g. sudo bin/setup)
--   Optionally configure .env.dev fields with custom server attributes, database connections, secret keys, etc
 
 ## Database management
 
@@ -50,15 +53,33 @@
 -   Start / Restart server `bin/start`
 -   Stop server `bin/stop`
 -   Open server shell `bin/shell`
->   *It is useful to execute specific django commands*
+    >   *It is useful to execute specific django commands*
+
 
 ### Examples
 
 -   API browser: [http://localhost:8000/api](http://localhost:8000/api)
 -   Graphql browser: [http://localhost:8000/graphql](http://localhost:8000/graphql)
 -   Admin pane: [http://localhost:8000/admin](http://localhost:8000/admin)
->   *To access admin pane, create a user fixture with the *is_superuser* attribute set to true*
+    >   *To access admin pane, create a user fixture with the *is_superuser* attribute set to true*
 
+### IDE interpreter
+-   For enable a IDE intepreter for developing (e.g. lint, debug), create a python virtual environment and install requirements
+    -   Linux
+    ```shell
+    sudo apt update
+    sudo apt install python3.6
+    python3 -m venv .venv
+    . .venv/bin/activate
+    pip3 install -r requirements.txt
+    ```
+    -   Windows
+    ```shell
+    # Install python from https://www.python.org/downloads/
+    python -m venv .venv
+    . .venv/Script/activate
+    pip install -r requirements.txt
+    ```
 ## Testing
 
 -   Test use cases `bin/test`

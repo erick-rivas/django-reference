@@ -1,19 +1,15 @@
 # Delete previous containers
-docker-compose -f bin/config/docker/docker-compose.dev.yml down
+docker-compose -f bin/docker/docker-compose.dev.yml down
 
 # Build project
-docker-compose -f bin/config/docker/docker-compose.dev.yml up --build -d
+docker-compose -f bin/docker/docker-compose.dev.yml up --build -d
 
-# Generate .env.dev file
-docker-compose -f bin/config/docker/docker-compose.dev.yml run django chmod +x ./bin/config/docker/bin/env-dev.sh
-docker-compose -f bin/config/docker/docker-compose.dev.yml run django ./bin/config/docker/bin/env-dev.sh
-
-# Execute db-update (make & run migrations)
-docker-compose -f bin/config/docker/docker-compose.dev.yml run django chmod +x ./bin/config/docker/bin/update-db.sh
-docker-compose -f bin/config/docker/docker-compose.dev.yml run django ./bin/config/docker/bin/update-db.sh
+# Execute entrypoint.sh (make & run migrations)
+docker-compose -f bin/docker/docker-compose.dev.yml run django chmod +x ./bin/docker/entrypoint.sh
+docker-compose -f bin/docker/docker-compose.dev.yml run django ./bin/docker/entrypoint.sh
 
 # Generate docs
-docker-compose -f bin/config/docker/docker-compose.dev.yml run django sphinx-build -E -b html ./docs ./bin/docs-build
+docker-compose -f bin/docker/docker-compose.dev.yml run django sphinx-build -E -b html ./docs ./.data/docs
 
 # Restart server
-docker-compose -f bin/config/docker/docker-compose.dev.yml restart
+docker-compose -f bin/docker/docker-compose.dev.yml restart

@@ -114,7 +114,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Templates settings
 
 TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
-DOCS_DIR = os.path.join(BASE_DIR, "bin", "docs-build")
+DOCS_DIR = os.path.join(BASE_DIR, ".data", "docs")
 REACTJS_DIR = os.path.join(BASE_DIR, "reactjs")
 TEMPLATES = [
     {

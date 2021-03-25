@@ -1,8 +1,7 @@
 ### General (Include .env.prod, static & migrations) ###
 .env.dev
 reactjs/static
-bin/docs-build/
-bin/docker-data/
+.data
 
 ### Django ###
 *.log

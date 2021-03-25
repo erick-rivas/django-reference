@@ -1,1 +1,1 @@
-docker-compose -f bin/config/docker/docker-compose.dev.yml run ./bin/config/docker/bin/update-db.sh
+docker-compose -f bin/docker/docker-compose.dev.yml run django ./bin/docker/entrypoint.sh

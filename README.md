@@ -13,12 +13,12 @@ This repository holds the source code of a **reference** for the development of 
 
 ## Quickstart
 
--   Install [Docker Engine](https://docs.docker.com/engine/install/)
--   Install [Docker Compose](https://docs.docker.com/compose/install/)
+-   Install [Docker Engine](https://docs.docker.com/engine/install/) & [Compose](https://docs.docker.com/compose/install/)
+    >   For linux adjust docker for non-root user usage [guide](https://docs.docker.com/engine/install/linux-postinstall/#manage-docker-as-a-non-root-user)
 -   Clone this repository
+-   Copy .env.example as .env.dev
 -   Set execute permissions to scripts (linux) `chmod +x bin/*`
 -   Execute setup script `bin/setup`
-    >   For linux is necessary to execute commands as root (e.g. sudo bin/setup)
 
 -   Open server [http://localhost:8000](http://localhost:8000)
 

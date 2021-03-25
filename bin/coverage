@@ -1,2 +1,2 @@
-docker-compose -f bin/config/docker/docker-compose.dev.yml run django coverage run --omit='.venv/*,bin/*,tests/*,*__init__*' manage.py test
-docker-compose -f bin/config/docker/docker-compose.dev.yml run django coverage report -m
+docker-compose -f bin/docker/docker-compose.dev.yml run django coverage run --omit='.venv/*,bin/*,tests/*,*__init__*' manage.py test
+docker-compose -f bin/docker/docker-compose.dev.yml run django coverage report -m

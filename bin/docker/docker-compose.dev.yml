@@ -4,11 +4,11 @@ services:
 
   django:
     build:
-      context: ../../../.
+      context: ../../.
       dockerfile: Dockerfile
     command: python manage.py runserver 0.0.0.0:8000
     volumes:
-      - ../../../.:/usr/src/app
+      - ../../.:/usr/src/app
     ports:
       - "8000:8000"
     depends_on:
@@ -17,10 +17,10 @@ services:
   postgres:
     image: postgres
     volumes:
-      - ../../../bin/docker-data/postgres:/var/lib/postgresql/data
+      - ../../.data/postgres:/var/lib/postgresql/data
     environment:
       - POSTGRES_DB=postgres
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
     ports:
-      - "5430:5432"
+      - "5432"
