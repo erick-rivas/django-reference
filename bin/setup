@@ -7,7 +7,7 @@ docker-compose -f bin/docker/docker-compose.dev.yml build
 # Set execute permissions to bin
 docker-compose -f bin/docker/docker-compose.dev.yml run django chmod +x bin/*;chmod +x bin/docker/* 
 
-# Creating .env.dev
+# Creating .env.devs
 docker-compose -f bin/docker/docker-compose.dev.yml run django bin/docker/env-dev.sh
 
 # Execute entrypoint.sh (make & run migrations)

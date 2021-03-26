@@ -1,5 +1,7 @@
 ### General (Include .env.prod, static & migrations) ###
 .env.dev
+.env.docker.dev
+.env.docker.prod
 reactjs/static
 .data
 

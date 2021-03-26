@@ -11,16 +11,19 @@ def get_environ(key):
 def get_env(key):
     return True if os.getenv(key) is not None and os.getenv(key).lower() == "true" else False
 
+def get_dotenv():
+    if get_environ('USE_DOCKER'):
+        return '.env.docker.prod' if get_environ('IS_PROD') else '.env.docker.dev'
+    else:
+        return '.env.prod' if get_environ('IS_PROD') else '.env.dev'
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-IS_PROD = get_environ('IS_PROD')
-dotenv.read_dotenv(os.path.join(os.path.dirname(os.path.dirname(__file__)),
-                                '.env.prod' if IS_PROD else '.env.dev'))
+dotenv.read_dotenv(os.path.join(os.path.dirname(os.path.dirname(__file__)), get_dotenv()))
 
-USE_AWS_EB = get_env('USE_AWS_EB')
-USE_AWS_S3 = get_env('USE_AWS_S3')
+IS_PROD = get_environ('IS_PROD')
 DEBUG = not IS_PROD
 SECRET_KEY = 'fup+swltefA9efredrufihUSTO!wam?c'
+USE_AWS_S3 = get_env('USE_AWS_S3')
 SITE_ID = 1
 
 # General settings

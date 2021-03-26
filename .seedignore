@@ -4,6 +4,8 @@
 .data*
 .env.dev
 .env.prod
+.env.docker.dev
+.env.docker.prod
 .gitignore
 .seedignore
 LICENSE

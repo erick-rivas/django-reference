@@ -20,7 +20,7 @@ This repository holds the source code of a **reference** for the development of 
 -   Execute setup script `bin/setup`
 -   Run server `bin/start`
 
--   Open server [http://localhost:8000](http://localhost:8000)
+-   Open server [http://localhost:8008](http://localhost:8008)
 
 ## Documentation
 

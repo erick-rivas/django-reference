@@ -1,5 +1,7 @@
 ### General (Include .env.prod, static & migrations) ###
 .env.dev
+.env.docker.dev
+.env.docker.prod
 reactjs/static
 .data
 
@@ -11,9 +13,6 @@ __pycache__/
 local_settings.py
 db.sqlite3
 media
-
-### Docker ###
-app/data
 
 # If your build process includes running collectstatic, then you probably don't need or want to include staticfiles/
 # in your Git repository. Update and uncomment the following line accordingly.

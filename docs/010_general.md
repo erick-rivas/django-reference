@@ -9,7 +9,7 @@
 -   [Database management](#database-management)
 -   [Execution](#execution)
     -   [Examples](#examples)
-    -   [IDE interpreter](#IDE-interpreter)
+-   [Development](Development)
 -   [Testing](#testing)
     
 
@@ -56,12 +56,13 @@
 
 ### Examples
 
--   API browser: [http://localhost:8000/api](http://localhost:8000/api)
--   Graphql browser: [http://localhost:8000/graphql](http://localhost:8000/graphql)
--   Admin pane: [http://localhost:8000/admin](http://localhost:8000/admin)
+-   API browser: [http://localhost:8008/api](http://localhost:8008/api)
+-   Graphql browser: [http://localhost:8008/graphql](http://localhost:8008/graphql)
+-   Admin pane: [http://localhost:8008/admin](http://localhost:8008/admin)
     >   *To access admin pane, create a user fixture with the *is_superuser* attribute set to true*
 
-### IDE interpreter
+### Development
+
 -   For enable a IDE intepreter for developing (e.g. lint, debug), create a python virtual environment and install requirements
     -   Linux
     ```shell
@@ -78,6 +79,7 @@
     . .venv/Script/activate
     pip install -r requirements.txt
     ```
+
 ## Testing
 
 -   Test use cases `bin/test`
