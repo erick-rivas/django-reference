@@ -1,1 +1,1 @@
-docker-compose -f bin/docker/docker-compose.dev.yml start
+docker-compose -f bin/docker/docker-compose.dev.yml up

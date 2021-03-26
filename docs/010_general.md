@@ -49,10 +49,9 @@
 
 ## Execution
 
--   Start / Restart server `bin/start`
--   Stop server `bin/stop`
+-   Start server `bin/start`
 -   Open server shell `bin/shell`
-    >   *It is useful to execute specific django commands*
+    >   *Open in a new terminal with server running*
 
 
 ### Examples

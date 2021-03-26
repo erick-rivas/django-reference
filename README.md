@@ -18,6 +18,7 @@ This repository holds the source code of a **reference** for the development of 
 -   Clone this repository
 -   Set execute permissions to scripts (linux) `chmod +x bin/setup`
 -   Execute setup script `bin/setup`
+-   Run server `bin/start`
 
 -   Open server [http://localhost:8000](http://localhost:8000)
 

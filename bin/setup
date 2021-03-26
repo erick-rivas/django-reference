@@ -2,7 +2,7 @@
 docker-compose -f bin/docker/docker-compose.dev.yml down
 
 # Build project
-docker-compose -f bin/docker/docker-compose.dev.yml up --build -d
+docker-compose -f bin/docker/docker-compose.dev.yml build
 
 # Set execute permissions to bin
 docker-compose -f bin/docker/docker-compose.dev.yml run django chmod +x bin/*;chmod +x bin/docker/* 
@@ -15,6 +15,3 @@ docker-compose -f bin/docker/docker-compose.dev.yml run django bin/docker/entryp
 
 # Generate docs
 docker-compose -f bin/docker/docker-compose.dev.yml run django sphinx-build -E -b html ./docs ./.data/docs
-
-# Restart server
-docker-compose -f bin/docker/docker-compose.dev.yml restart
