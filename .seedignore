@@ -47,3 +47,4 @@ routes
 !*helpers
 !*util
 !.keep
+!.github

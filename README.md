@@ -16,8 +16,7 @@ This repository holds the source code of a **reference** for the development of 
 -   Install [Docker Engine](https://docs.docker.com/engine/install/) & [Compose](https://docs.docker.com/compose/install/)
     >   For linux adjust docker for non-root user usage [guide](https://docs.docker.com/engine/install/linux-postinstall/#manage-docker-as-a-non-root-user)
 -   Clone this repository
--   Copy .env.example as .env.dev
--   Set execute permissions to scripts (linux) `chmod +x bin/*`
+-   Set execute permissions to scripts (linux) `chmod +x bin/setup`
 -   Execute setup script `bin/setup`
 
 -   Open server [http://localhost:8000](http://localhost:8000)

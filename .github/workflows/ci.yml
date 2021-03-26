@@ -1,0 +1,60 @@
+name: Django API
+
+on:
+  push:
+    branches: [master, dev]
+
+  pull_request:
+    branches:
+      - '*'
+  
+jobs:
+  build-test:
+
+    runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        image: postgres:12
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: postgres
+        ports: ['5432:5432']
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - uses: actions/cache@v2
+      with:
+        path: ~/.cache/pip
+        key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+        restore-keys: |
+          ${{ runner.os }}-pip-
+    
+    - name: "Preconfiguring"
+      run: |
+        cp .env.example .env.dev
+        sed -i "s/DB_NAME=/DB_NAME=postgres/" ".env.dev"
+        sed -i "s/DB_USER=/DB_USER=postgres/" ".env.dev"
+        sed -i "s/DB_PASSWORD=/DB_PASSWORD=postgres/" ".env.dev"
+        sed -i "s/DB_HOST=/DB_HOST=localhost/" ".env.dev"
+    
+    - name: Installing dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+    
+    - name: "Making and executing migrations"
+      run: |
+        python manage.py makemigrations
+        python manage.py migrate
+
+    - name: Run test
+      run: |
+        python manage.py test

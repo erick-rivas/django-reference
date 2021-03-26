@@ -4,9 +4,14 @@ docker-compose -f bin/docker/docker-compose.dev.yml down
 # Build project
 docker-compose -f bin/docker/docker-compose.dev.yml up --build -d
 
+# Set execute permissions to bin
+docker-compose -f bin/docker/docker-compose.dev.yml run django chmod +x bin/*;chmod +x bin/docker/* 
+
+# Creating .env.dev
+docker-compose -f bin/docker/docker-compose.dev.yml run django bin/docker/env-dev.sh
+
 # Execute entrypoint.sh (make & run migrations)
-docker-compose -f bin/docker/docker-compose.dev.yml run django chmod +x ./bin/docker/entrypoint.sh
-docker-compose -f bin/docker/docker-compose.dev.yml run django ./bin/docker/entrypoint.sh
+docker-compose -f bin/docker/docker-compose.dev.yml run django bin/docker/entrypoint.sh
 
 # Generate docs
 docker-compose -f bin/docker/docker-compose.dev.yml run django sphinx-build -E -b html ./docs ./.data/docs

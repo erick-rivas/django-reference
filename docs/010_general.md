@@ -37,10 +37,9 @@
 ### Initial setup
 
 -   Clone this repository
--   Copy .env.example as .env.dev
-    >   Optionally configure .env.dev fields with custom server attributes, database connections, secret, etc
--   Set execute permissions to scripts (linux) `chmod +x bin/*`
+-   Set execute permissions to scripts (linux) `chmod +x bin/setup`
 -   Execute setup script `bin/setup`
+-   Optionally configure .env.dev fields with custom server attributes, database connections, secret, etc
 
 ## Database management
 
