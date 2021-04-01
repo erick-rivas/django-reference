@@ -2,15 +2,47 @@
 
 ## Table of content
 
--   [Project structure](#project-structure)
 -   [Installation](#installation)
-    -   [Pre-requisites](#pre-requisites)
-    -   [Initial setup](#initial-setup)
--   [Database management](#database-management)
 -   [Execution](#execution)
-    -   [Examples](#examples)
--   [Development](Development)
--   [Testing](#testing)
+-   [Project structure](#project-structure)
+-   [Database management](#database-management)
+-   [Development](#development)
+    -   [Dev environment](#dev-environment)
+    -   [Database management](#database-management)
+    -   [Testing](#testing)
+
+## Installation
+
+### Pre-requisites
+
+
+-   Download & Install [Docker Engine](https://docs.docker.com/engine/install/)
+-   Download & Install [Docker Compose](https://docs.docker.com/compose/install/)
+    >   For linux adjust docker for non-root user usage [guide](https://docs.docker.com/engine/install/linux-postinstall/#manage-docker-as-a-non-root-user)
+-   Download & install [PyCharm CE](https://www.jetbrains.com/pycharm/download/) (optional)
+
+### Initial setup
+
+-   Clone this repository
+-   Set execute permissions to scripts (linux) `chmod +x bin/setup`
+-   Execute setup script `bin/setup`, for windows `bin/setup.bat`
+    >  For linux you can specify container ports `bin/setup <DJANGO_PORT> <POSTGRES_PORT> <REDIS_PORT>`
+    
+-   Optionally configure .env.dev fields with custom server attributes, database connections, secret, etc
+
+
+## Execution
+
+-   Start server `bin/start`
+-   Open server shell `bin/shell`
+    >   *Open in a new terminal with server running*
+    
+### Examples
+
+-   API browser: [http://localhost:8008/api](http://localhost:8008/api)
+-   Graphql browser: [http://localhost:8008/graphql](http://localhost:8008/graphql)
+-   Admin pane: [http://localhost:8008/admin](http://localhost:8008/admin)
+    >   *To access admin pane, create a user fixture with the *is_superuser* attribute set to true*
     
 
 ## Project structure
@@ -24,46 +56,11 @@
     >   *These files are *read-only*, modifiable only through [seed-builder](./060_seed_builder.md)*
 
 
-## Installation
+## Development
 
-### Pre-requisites
+### Dev environment
 
-
--   Download & Install [Docker Engine](https://docs.docker.com/engine/install/)
--   Download & Install [Docker Compose](https://docs.docker.com/compose/install/)
-    >   For linux adjust docker for non-root user usage [guide](https://docs.docker.com/engine/install/linux-postinstall/#manage-docker-as-a-non-root-user)
--   Download & install [VSCode](https://code.visualstudio.com/)
-
-### Initial setup
-
--   Clone this repository
--   Set execute permissions to scripts (linux) `chmod +x bin/setup`
--   Execute setup script `bin/setup`
--   Optionally configure .env.dev fields with custom server attributes, database connections, secret, etc
-
-## Database management
-
--   To update database (migration, fixtures) execute `./bin/update`
--   To open db manager (psql) execute `./bin/query`
-
-
-## Execution
-
--   Start server `bin/start`
--   Open server shell `bin/shell`
-    >   *Open in a new terminal with server running*
-
-
-### Examples
-
--   API browser: [http://localhost:8008/api](http://localhost:8008/api)
--   Graphql browser: [http://localhost:8008/graphql](http://localhost:8008/graphql)
--   Admin pane: [http://localhost:8008/admin](http://localhost:8008/admin)
-    >   *To access admin pane, create a user fixture with the *is_superuser* attribute set to true*
-
-### Development
-
--   For enable a IDE intepreter for developing (e.g. lint, debug), create a python virtual environment and install requirements
+-   For enable a IDE interpreter for developing (e.g. lint, debug), create a python virtual environment and install requirements
     -   Linux
     ```shell
     sudo apt update
@@ -79,8 +76,13 @@
     . .venv/Script/activate
     pip install -r requirements.txt
     ```
+    
+### Database management
 
-## Testing
+-   To update database (migration, fixtures) execute `./bin/update`
+-   To open db manager (psql) execute `./bin/query`
+
+### Testing
 
 -   Test use cases `bin/test`
 -   Analyze code coverage `bin/coverage`

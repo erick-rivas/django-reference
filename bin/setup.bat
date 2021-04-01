@@ -1,24 +1,13 @@
 # Configure docker .env
-DJANGO_PORT=8008
-POSTGRES_PORT=5435
-REDIS_PORT=6377
-if [ $# -ge 1 ]; then
-  DJANGO_PORT=$1
-fi
-if [ $# -ge 2 ]; then
-  DB_PORT=$2
-fi
-if [ $# -ge 3 ]; then
-  REDIS_PORT=$3
-fi
-sudo rm .env
-touch .env
-echo "# DOCKER PORTS" >> ".env"
-echo "== MODIFY WITH WITH $ bin/setup <DJANGO_PORT> <POSTGRES_PORT> <REDIS_PORT> ==" >> ".env"
-echo "" >> ".env"
-echo "DJANGO_PORT=${DJANGO_PORT}" >> ".env"
-echo "POSTGRES_PORT=${POSTGRES_PORT}" >> ".env"
-echo "REDIS_PORT=${REDIS_PORT}" >> ".env"
+@echo off
+del ./.env
+echo "# DOCKER PORTS (DON'T MODIFY)" > ".env"
+echo "DJANGO_PORT=8008" >> ".env"
+echo "POSTGRES_PORT=5435" >> ".env"
+echo "REDIS_PORT=6377" >> ".env"
+
+# Configure docker .env
+cp ./bin/docker/.docker.env ./.env
 
 # Delete previous containers
 docker-compose -f bin/docker/docker-compose.dev.yml down
@@ -30,7 +19,7 @@ docker-compose -f bin/docker/docker-compose.dev.yml build
 docker-compose -f bin/docker/docker-compose.dev.yml run django chmod +x bin/*;chmod +x bin/docker/* 
 
 # Creating .env.devs
-docker-compose -f bin/docker/docker-compose.dev.yml run django bin/docker/env-dev.sh $DJANGO_PORT $POSTGRES_PORT $REDIS_PORT
+docker-compose -f bin/docker/docker-compose.dev.yml run django bin/docker/env-dev.sh 8008 5435 6377
 
 # Execute entrypoint.sh (make & run migrations)
 docker-compose -f bin/docker/docker-compose.dev.yml run django bin/docker/entrypoint.sh

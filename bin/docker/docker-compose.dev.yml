@@ -6,15 +6,16 @@ services:
     build:
       context: ../../.
       dockerfile: Dockerfile
-    command: python manage.py runserver 0.0.0.0:8008
+    command: /bin/sh -c "python manage.py runserver 0.0.0.0:${DJANGO_PORT}; celery -A app worker -l INFO"
     volumes:
       - ../../.:/app
-    ports:
-      - "8008:8008"
     environment:
       - USE_DOCKER=true
+    ports:
+      - "${DJANGO_PORT}:${DJANGO_PORT}"
     depends_on:
       - postgres
+      - redis
 
   postgres:
     image: postgres
@@ -25,4 +26,9 @@ services:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
     ports:
-      - "5435:5432"
+      - "${POSTGRES_PORT}:5432"
+
+  redis:
+    image: "redis:alpine"
+    ports:
+      - "${REDIS_PORT}:6379"

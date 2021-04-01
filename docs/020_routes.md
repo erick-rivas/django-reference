@@ -14,7 +14,7 @@ By default, the seed-builder generate the endpoints related to CRUD operations o
 ### GET example
 
 ```python
-class PlayerViewSet(_PlayerViewSet):  #
+class PlayerViewSet(_PlayerViewSet):
     
     @action(detail=False, methods=['get'])
     def top_10(self, request):  #
@@ -38,7 +38,7 @@ GET http://localhost:8000/players/top_10
 ### POST example
 
 ```python
-class UserViewSet(_UserViewSet):  #
+class UserViewSet(_UserViewSet):
     
     @action(detail=True, methods=['post'])
     def create_profile(self, request, pk=None):  #
