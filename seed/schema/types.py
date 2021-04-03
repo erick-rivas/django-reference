@@ -6,7 +6,9 @@ __Seed builder__v0.2.0
 
 import graphene
 import random
+import math
 from graphene import ObjectType
+from graphene_django import DjangoListField
 from graphene_django.types import DjangoObjectType
 from app.models import Match as MatchModel
 from app.models import Player as PlayerModel
@@ -25,6 +27,13 @@ class Match(DjangoObjectType):
     def resolve_id(self, info):
         return self.pk
 
+class MatchPagination(ObjectType):
+    pageNum = graphene.Int()
+    pageSize = graphene.Int()
+    totalPages = graphene.Int()
+    totalCount = graphene.Int()
+    matches = DjangoListField(Match)
+
 class MatchCount(ObjectType):
     id = graphene.Int()
     count = graphene.Int()
@@ -36,6 +45,13 @@ class Player(DjangoObjectType):
         
     def resolve_id(self, info):
         return self.pk
+
+class PlayerPagination(ObjectType):
+    pageNum = graphene.Int()
+    pageSize = graphene.Int()
+    totalPages = graphene.Int()
+    totalCount = graphene.Int()
+    players = DjangoListField(Player)
 
 class PlayerCount(ObjectType):
     id = graphene.Int()
@@ -49,6 +65,13 @@ class PlayerPosition(DjangoObjectType):
     def resolve_id(self, info):
         return self.pk
 
+class PlayerPositionPagination(ObjectType):
+    pageNum = graphene.Int()
+    pageSize = graphene.Int()
+    totalPages = graphene.Int()
+    totalCount = graphene.Int()
+    playerPositions = DjangoListField(PlayerPosition)
+
 class PlayerPositionCount(ObjectType):
     id = graphene.Int()
     count = graphene.Int()
@@ -61,6 +84,13 @@ class Score(DjangoObjectType):
     def resolve_id(self, info):
         return self.pk
 
+class ScorePagination(ObjectType):
+    pageNum = graphene.Int()
+    pageSize = graphene.Int()
+    totalPages = graphene.Int()
+    totalCount = graphene.Int()
+    scores = DjangoListField(Score)
+
 class ScoreCount(ObjectType):
     id = graphene.Int()
     count = graphene.Int()
@@ -72,6 +102,13 @@ class Team(DjangoObjectType):
         
     def resolve_id(self, info):
         return self.pk
+
+class TeamPagination(ObjectType):
+    pageNum = graphene.Int()
+    pageSize = graphene.Int()
+    totalPages = graphene.Int()
+    totalCount = graphene.Int()
+    teams = DjangoListField(Team)
 
 class TeamCount(ObjectType):
     id = graphene.Int()
@@ -86,6 +123,13 @@ class User(DjangoObjectType):
     def resolve_id(self, info):
         return self.pk
 
+class UserPagination(ObjectType):
+    pageNum = graphene.Int()
+    pageSize = graphene.Int()
+    totalPages = graphene.Int()
+    totalCount = graphene.Int()
+    users = DjangoListField(User)
+
 class UserCount(ObjectType):
     id = graphene.Int()
     count = graphene.Int()
@@ -94,6 +138,13 @@ class File(DjangoObjectType):
     class Meta:
         model = FileModel
         description = 'Represents a File object'
+
+class FilePagination(ObjectType):
+    pageNum = graphene.Int()
+    pageSize = graphene.Int()
+    totalPages = graphene.Int()
+    totalCount = graphene.Int()
+    files = DjangoListField(File)
 
 class FileCount(ObjectType):
     id = graphene.Int()
@@ -118,6 +169,21 @@ def resolve_list(model, info, **kwargs):
     res = model.filter_permissions(res, model.permission_filters(user))
     return res
 
+def resolve_pagination(model, modelName, paginationType, info, **kwargs):
+    totalCount = len(resolve_list(model, info, **kwargs))
+    totalPages = math.floor(totalCount / kwargs["pageSize"])
+    kwargs["start"] = (kwargs["pageNum"] - 1) * kwargs["pageSize"]
+    kwargs["end"] = (kwargs["pageNum"]) * kwargs["pageSize"]
+    page = resolve_list(model, info, **kwargs)
+
+    return paginationType(**{
+       "pageNum": kwargs["pageNum"],
+       "pageSize": kwargs["pageSize"],
+       "totalPages": totalPages,
+       "totalCount": totalCount,
+       modelName: page
+    })
+
 def resolve_count(model, countType, info, **kwargs):
     user = info.context.user
     if "query" in kwargs:
@@ -132,37 +198,42 @@ def resolve_count(model, countType, info, **kwargs):
 
 class Query(object):
     
-    matches = graphene.List(Match, query=graphene.String(), orderBy=graphene.String(),
-      start=graphene.Int(), end=graphene.Int())
+    matches = graphene.List(Match, query=graphene.String(), orderBy=graphene.String(), limit=graphene.Int())
+    matchPagination = graphene.Field(MatchPagination, pageNum=graphene.Int(required=True), pageSize=graphene.Int(required=True), query=graphene.String(), orderBy=graphene.String())
     matchCount = graphene.Field(MatchCount, query=graphene.String())
-    match = graphene.Field(Match, id=graphene.Int())
-    players = graphene.List(Player, query=graphene.String(), orderBy=graphene.String(),
-      start=graphene.Int(), end=graphene.Int())
+    match = graphene.Field(Match, id=graphene.Int(required=True))
+    players = graphene.List(Player, query=graphene.String(), orderBy=graphene.String(), limit=graphene.Int())
+    playerPagination = graphene.Field(PlayerPagination, pageNum=graphene.Int(required=True), pageSize=graphene.Int(required=True), query=graphene.String(), orderBy=graphene.String())
     playerCount = graphene.Field(PlayerCount, query=graphene.String())
-    player = graphene.Field(Player, id=graphene.Int())
-    playerPositions = graphene.List(PlayerPosition, query=graphene.String(), orderBy=graphene.String(),
-      start=graphene.Int(), end=graphene.Int())
+    player = graphene.Field(Player, id=graphene.Int(required=True))
+    playerPositions = graphene.List(PlayerPosition, query=graphene.String(), orderBy=graphene.String(), limit=graphene.Int())
+    playerPositionPagination = graphene.Field(PlayerPositionPagination, pageNum=graphene.Int(required=True), pageSize=graphene.Int(required=True), query=graphene.String(), orderBy=graphene.String())
     playerPositionCount = graphene.Field(PlayerPositionCount, query=graphene.String())
-    playerPosition = graphene.Field(PlayerPosition, id=graphene.Int())
-    scores = graphene.List(Score, query=graphene.String(), orderBy=graphene.String(),
-      start=graphene.Int(), end=graphene.Int())
+    playerPosition = graphene.Field(PlayerPosition, id=graphene.Int(required=True))
+    scores = graphene.List(Score, query=graphene.String(), orderBy=graphene.String(), limit=graphene.Int())
+    scorePagination = graphene.Field(ScorePagination, pageNum=graphene.Int(required=True), pageSize=graphene.Int(required=True), query=graphene.String(), orderBy=graphene.String())
     scoreCount = graphene.Field(ScoreCount, query=graphene.String())
-    score = graphene.Field(Score, id=graphene.Int())
-    teams = graphene.List(Team, query=graphene.String(), orderBy=graphene.String(),
-      start=graphene.Int(), end=graphene.Int())
+    score = graphene.Field(Score, id=graphene.Int(required=True))
+    teams = graphene.List(Team, query=graphene.String(), orderBy=graphene.String(), limit=graphene.Int())
+    teamPagination = graphene.Field(TeamPagination, pageNum=graphene.Int(required=True), pageSize=graphene.Int(required=True), query=graphene.String(), orderBy=graphene.String())
     teamCount = graphene.Field(TeamCount, query=graphene.String())
-    team = graphene.Field(Team, id=graphene.Int())
-    users = graphene.List(User, query=graphene.String(), orderBy=graphene.String(),
-      start=graphene.Int(), end=graphene.Int())
+    team = graphene.Field(Team, id=graphene.Int(required=True))
+    users = graphene.List(User, query=graphene.String(), orderBy=graphene.String(), limit=graphene.Int())
+    userPagination = graphene.Field(UserPagination, pageNum=graphene.Int(required=True), pageSize=graphene.Int(required=True), query=graphene.String(), orderBy=graphene.String())
     userCount = graphene.Field(UserCount, query=graphene.String())
-    user = graphene.Field(User, id=graphene.Int())
-    files = graphene.List(File, query=graphene.String(), orderBy=graphene.String(),
-      start=graphene.Int(), end=graphene.Int())
-    file = graphene.Field(File, id=graphene.Int())
+    user = graphene.Field(User, id=graphene.Int(required=True))
+    files = graphene.List(File, query=graphene.String(), orderBy=graphene.String(), limit=graphene.Int())
+    filePagination = graphene.Field(FilePagination, pageNum=graphene.Int(required=True), query=graphene.String(), pageSize=graphene.Int(required=True), orderBy=graphene.String())
+    file = graphene.Field(File, id=graphene.Int(required=True))
     fileCount = graphene.Field(FileCount, query=graphene.String())
 
     def resolve_matches(self, info, **kwargs):
+        if "limit" in kwargs:
+            kwargs["end"] = kwargs["limit"]
         return resolve_list(MatchModel, info, **kwargs)
+
+    def resolve_matchPagination(self, info, **kwargs):
+        return resolve_pagination(MatchModel, 'matches', MatchPagination, info, **kwargs)
 
     def resolve_matchCount(self, info, **kwargs):
         return resolve_count(MatchModel, MatchCount, info, **kwargs)
@@ -172,7 +243,12 @@ class Query(object):
         return MatchModel.filter_permissions(MatchModel.objects, MatchModel.permission_filters(user)).get(pk=id)
     
     def resolve_players(self, info, **kwargs):
+        if "limit" in kwargs:
+            kwargs["end"] = kwargs["limit"]
         return resolve_list(PlayerModel, info, **kwargs)
+
+    def resolve_playerPagination(self, info, **kwargs):
+        return resolve_pagination(PlayerModel, 'players', PlayerPagination, info, **kwargs)
 
     def resolve_playerCount(self, info, **kwargs):
         return resolve_count(PlayerModel, PlayerCount, info, **kwargs)
@@ -182,7 +258,12 @@ class Query(object):
         return PlayerModel.filter_permissions(PlayerModel.objects, PlayerModel.permission_filters(user)).get(pk=id)
     
     def resolve_playerPositions(self, info, **kwargs):
+        if "limit" in kwargs:
+            kwargs["end"] = kwargs["limit"]
         return resolve_list(PlayerPositionModel, info, **kwargs)
+
+    def resolve_playerPositionPagination(self, info, **kwargs):
+        return resolve_pagination(PlayerPositionModel, 'playerPositions', PlayerPositionPagination, info, **kwargs)
 
     def resolve_playerPositionCount(self, info, **kwargs):
         return resolve_count(PlayerPositionModel, PlayerPositionCount, info, **kwargs)
@@ -192,7 +273,12 @@ class Query(object):
         return PlayerPositionModel.filter_permissions(PlayerPositionModel.objects, PlayerPositionModel.permission_filters(user)).get(pk=id)
     
     def resolve_scores(self, info, **kwargs):
+        if "limit" in kwargs:
+            kwargs["end"] = kwargs["limit"]
         return resolve_list(ScoreModel, info, **kwargs)
+
+    def resolve_scorePagination(self, info, **kwargs):
+        return resolve_pagination(ScoreModel, 'scores', ScorePagination, info, **kwargs)
 
     def resolve_scoreCount(self, info, **kwargs):
         return resolve_count(ScoreModel, ScoreCount, info, **kwargs)
@@ -202,7 +288,12 @@ class Query(object):
         return ScoreModel.filter_permissions(ScoreModel.objects, ScoreModel.permission_filters(user)).get(pk=id)
     
     def resolve_teams(self, info, **kwargs):
+        if "limit" in kwargs:
+            kwargs["end"] = kwargs["limit"]
         return resolve_list(TeamModel, info, **kwargs)
+
+    def resolve_teamPagination(self, info, **kwargs):
+        return resolve_pagination(TeamModel, 'teams', TeamPagination, info, **kwargs)
 
     def resolve_teamCount(self, info, **kwargs):
         return resolve_count(TeamModel, TeamCount, info, **kwargs)
@@ -212,7 +303,12 @@ class Query(object):
         return TeamModel.filter_permissions(TeamModel.objects, TeamModel.permission_filters(user)).get(pk=id)
     
     def resolve_users(self, info, **kwargs):
+        if "limit" in kwargs:
+            kwargs["end"] = kwargs["limit"]
         return resolve_list(UserModel, info, **kwargs)
+
+    def resolve_userPagination(self, info, **kwargs):
+        return resolve_pagination(UserModel, 'users', UserPagination, info, **kwargs)
 
     def resolve_userCount(self, info, **kwargs):
         return resolve_count(UserModel, UserCount, info, **kwargs)
@@ -222,33 +318,15 @@ class Query(object):
         return UserModel.filter_permissions(UserModel.objects, UserModel.permission_filters(user)).get(pk=id)
     
     def resolve_files(self, info, **kwargs):
-        user = info.context.user
-        if "query" in kwargs:
-            res = FileModel.objects.filter(sql_alike_Q(kwargs["query"])).distinct()
-        else: res = FileModel.objects.all()
-        if "orderBy" in kwargs:
-            orders = kwargs["orderBy"].split(",")
-            for order in orders:
-              res = res.order_by(order)
-        if "start" in kwargs and "end" not in kwargs:
-            res = res[kwargs["start"]:]
-        if "end" in kwargs and "start" not in kwargs:
-            res = res[:kwargs["end"]]
-        if "start" in kwargs and "end" in kwargs:
-            res = res[kwargs["start"]:kwargs["end"]]
-        res = FileModel.filter_permissions(res, FileModel.permission_filters(user))
-        return res
+        if "limit" in kwargs:
+            kwargs["end"] = kwargs["limit"]
+        return resolve_list(FileModel, info, **kwargs)
+
+    def resolve_filePagination(self, info, **kwargs):
+        return resolve_pagination(FileModel, 'files', FilePagination, info, **kwargs)
 
     def resolve_fileCount(self, info, **kwargs):
-        user = info.context.user
-        if "query" in kwargs:
-            return FileCount(
-                id = 0,
-                count=len(FileModel.objects.filter(sql_alike_Q(kwargs["query"])).distinct()))
-        else:
-            return FileCount(
-                id = 0,
-                count=len(FileModel.filter_permissions(FileModel.objects.all(), FileModel.permission_filters(user))))
+        return resolve_count(FileModel, FileCount, info, **kwargs)
 
     def resolve_file(self, info, id):
         user = info.context.user

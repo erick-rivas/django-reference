@@ -1,5 +1,4 @@
 ### General ###
-.env
 .env.prod
 .env.dev
 .env.docker.dev

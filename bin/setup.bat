@@ -26,4 +26,3 @@ docker-compose -f bin/docker/docker-compose.dev.yml run django bin/docker/entryp
 
 # Generate docs
 docker-compose -f bin/docker/docker-compose.dev.yml run django sphinx-build -E -b html ./docs ./.data/docs
-

@@ -20,7 +20,7 @@ class TestGraphql(GraphQLTestCase):
         response_01 = self.query(
             '''
             {
-                matches(query: "id=1", orderBy: "id", start: 0, end: 1){
+                matches(query: "id=1", orderBy: "id", limit: 1){
                     id
                     date
                     type
@@ -52,24 +52,43 @@ class TestGraphql(GraphQLTestCase):
         response_03 = self.query(
             '''
             {
-                matchCount(query: "id=1"){ count }
+                matchPagination(pageNum: 1, pageSize: 1){
+                    pageNum
+                    pageSize
+                    totalPages
+                    totalCount
+                    matches { id }
+                }
             }
             ''')
         res_03 = json.loads(response_03.content)["data"]
         self.assertResponseNoErrors(response_03)
         with self.subTest():
-            self.assertEqual(res_03["matchCount"]["count"], 1)
+            self.assertEqual(res_03["matchPagination"]["totalPages"], 1)
+            self.assertEqual(res_03["matchPagination"]["totalCount"], 1)
+            self.assertEqual(res_03["matchPagination"]["matches"][0]["id"], 1)
 
         response_04 = self.query(
             '''
             {
-                matchCount { count }
+                matchCount(query: "id=1"){ count }
             }
             ''')
         res_04 = json.loads(response_04.content)["data"]
         self.assertResponseNoErrors(response_04)
         with self.subTest():
             self.assertEqual(res_04["matchCount"]["count"], 1)
+
+        response_05 = self.query(
+            '''
+            {
+                matchCount { count }
+            }
+            ''')
+        res_05 = json.loads(response_05.content)["data"]
+        self.assertResponseNoErrors(response_05)
+        with self.subTest():
+            self.assertEqual(res_05["matchCount"]["count"], 1)
 
     def test_query_match(self):
         response = self.query(
@@ -167,7 +186,7 @@ class TestGraphql(GraphQLTestCase):
         response_01 = self.query(
             '''
             {
-                players(query: "id=1", orderBy: "id", start: 0, end: 1){
+                players(query: "id=1", orderBy: "id", limit: 1){
                     id
                     name
                     isActive
@@ -202,24 +221,43 @@ class TestGraphql(GraphQLTestCase):
         response_03 = self.query(
             '''
             {
-                playerCount(query: "id=1"){ count }
+                playerPagination(pageNum: 1, pageSize: 1){
+                    pageNum
+                    pageSize
+                    totalPages
+                    totalCount
+                    players { id }
+                }
             }
             ''')
         res_03 = json.loads(response_03.content)["data"]
         self.assertResponseNoErrors(response_03)
         with self.subTest():
-            self.assertEqual(res_03["playerCount"]["count"], 1)
+            self.assertEqual(res_03["playerPagination"]["totalPages"], 1)
+            self.assertEqual(res_03["playerPagination"]["totalCount"], 1)
+            self.assertEqual(res_03["playerPagination"]["players"][0]["id"], 1)
 
         response_04 = self.query(
             '''
             {
-                playerCount { count }
+                playerCount(query: "id=1"){ count }
             }
             ''')
         res_04 = json.loads(response_04.content)["data"]
         self.assertResponseNoErrors(response_04)
         with self.subTest():
             self.assertEqual(res_04["playerCount"]["count"], 1)
+
+        response_05 = self.query(
+            '''
+            {
+                playerCount { count }
+            }
+            ''')
+        res_05 = json.loads(response_05.content)["data"]
+        self.assertResponseNoErrors(response_05)
+        with self.subTest():
+            self.assertEqual(res_05["playerCount"]["count"], 1)
 
     def test_query_player(self):
         response = self.query(
@@ -328,7 +366,7 @@ class TestGraphql(GraphQLTestCase):
         response_01 = self.query(
             '''
             {
-                playerPositions(query: "id=1", orderBy: "id", start: 0, end: 1){
+                playerPositions(query: "id=1", orderBy: "id", limit: 1){
                     id
                     name
                 }
@@ -353,24 +391,43 @@ class TestGraphql(GraphQLTestCase):
         response_03 = self.query(
             '''
             {
-                playerPositionCount(query: "id=1"){ count }
+                playerPositionPagination(pageNum: 1, pageSize: 1){
+                    pageNum
+                    pageSize
+                    totalPages
+                    totalCount
+                    playerPositions { id }
+                }
             }
             ''')
         res_03 = json.loads(response_03.content)["data"]
         self.assertResponseNoErrors(response_03)
         with self.subTest():
-            self.assertEqual(res_03["playerPositionCount"]["count"], 1)
+            self.assertEqual(res_03["playerPositionPagination"]["totalPages"], 1)
+            self.assertEqual(res_03["playerPositionPagination"]["totalCount"], 1)
+            self.assertEqual(res_03["playerPositionPagination"]["playerPositions"][0]["id"], 1)
 
         response_04 = self.query(
             '''
             {
-                playerPositionCount { count }
+                playerPositionCount(query: "id=1"){ count }
             }
             ''')
         res_04 = json.loads(response_04.content)["data"]
         self.assertResponseNoErrors(response_04)
         with self.subTest():
             self.assertEqual(res_04["playerPositionCount"]["count"], 1)
+
+        response_05 = self.query(
+            '''
+            {
+                playerPositionCount { count }
+            }
+            ''')
+        res_05 = json.loads(response_05.content)["data"]
+        self.assertResponseNoErrors(response_05)
+        with self.subTest():
+            self.assertEqual(res_05["playerPositionCount"]["count"], 1)
 
     def test_query_player_position(self):
         response = self.query(
@@ -441,7 +498,7 @@ class TestGraphql(GraphQLTestCase):
         response_01 = self.query(
             '''
             {
-                scores(query: "id=1", orderBy: "id", start: 0, end: 1){
+                scores(query: "id=1", orderBy: "id", limit: 1){
                     id
                     min
                     player {
@@ -472,24 +529,43 @@ class TestGraphql(GraphQLTestCase):
         response_03 = self.query(
             '''
             {
-                scoreCount(query: "id=1"){ count }
+                scorePagination(pageNum: 1, pageSize: 1){
+                    pageNum
+                    pageSize
+                    totalPages
+                    totalCount
+                    scores { id }
+                }
             }
             ''')
         res_03 = json.loads(response_03.content)["data"]
         self.assertResponseNoErrors(response_03)
         with self.subTest():
-            self.assertEqual(res_03["scoreCount"]["count"], 1)
+            self.assertEqual(res_03["scorePagination"]["totalPages"], 1)
+            self.assertEqual(res_03["scorePagination"]["totalCount"], 1)
+            self.assertEqual(res_03["scorePagination"]["scores"][0]["id"], 1)
 
         response_04 = self.query(
             '''
             {
-                scoreCount { count }
+                scoreCount(query: "id=1"){ count }
             }
             ''')
         res_04 = json.loads(response_04.content)["data"]
         self.assertResponseNoErrors(response_04)
         with self.subTest():
             self.assertEqual(res_04["scoreCount"]["count"], 1)
+
+        response_05 = self.query(
+            '''
+            {
+                scoreCount { count }
+            }
+            ''')
+        res_05 = json.loads(response_05.content)["data"]
+        self.assertResponseNoErrors(response_05)
+        with self.subTest():
+            self.assertEqual(res_05["scoreCount"]["count"], 1)
 
     def test_query_score(self):
         response = self.query(
@@ -582,7 +658,7 @@ class TestGraphql(GraphQLTestCase):
         response_01 = self.query(
             '''
             {
-                teams(query: "id=1", orderBy: "id", start: 0, end: 1){
+                teams(query: "id=1", orderBy: "id", limit: 1){
                     id
                     name
                     description
@@ -615,24 +691,43 @@ class TestGraphql(GraphQLTestCase):
         response_03 = self.query(
             '''
             {
-                teamCount(query: "id=1"){ count }
+                teamPagination(pageNum: 1, pageSize: 1){
+                    pageNum
+                    pageSize
+                    totalPages
+                    totalCount
+                    teams { id }
+                }
             }
             ''')
         res_03 = json.loads(response_03.content)["data"]
         self.assertResponseNoErrors(response_03)
         with self.subTest():
-            self.assertEqual(res_03["teamCount"]["count"], 1)
+            self.assertEqual(res_03["teamPagination"]["totalPages"], 1)
+            self.assertEqual(res_03["teamPagination"]["totalCount"], 1)
+            self.assertEqual(res_03["teamPagination"]["teams"][0]["id"], 1)
 
         response_04 = self.query(
             '''
             {
-                teamCount { count }
+                teamCount(query: "id=1"){ count }
             }
             ''')
         res_04 = json.loads(response_04.content)["data"]
         self.assertResponseNoErrors(response_04)
         with self.subTest():
             self.assertEqual(res_04["teamCount"]["count"], 1)
+
+        response_05 = self.query(
+            '''
+            {
+                teamCount { count }
+            }
+            ''')
+        res_05 = json.loads(response_05.content)["data"]
+        self.assertResponseNoErrors(response_05)
+        with self.subTest():
+            self.assertEqual(res_05["teamCount"]["count"], 1)
 
     def test_query_team(self):
         response = self.query(
@@ -735,7 +830,7 @@ class TestGraphql(GraphQLTestCase):
         response_01 = self.query(
             '''
             {
-                users(query: "id=1", orderBy: "id", start: 0, end: 1){
+                users(query: "id=1", orderBy: "id", limit: 1){
                     id
                     username
                     firstName
@@ -767,24 +862,43 @@ class TestGraphql(GraphQLTestCase):
         response_03 = self.query(
             '''
             {
-                userCount(query: "id=1"){ count }
+                userPagination(pageNum: 1, pageSize: 1){
+                    pageNum
+                    pageSize
+                    totalPages
+                    totalCount
+                    users { id }
+                }
             }
             ''')
         res_03 = json.loads(response_03.content)["data"]
         self.assertResponseNoErrors(response_03)
         with self.subTest():
-            self.assertEqual(res_03["userCount"]["count"], 1)
+            self.assertEqual(res_03["userPagination"]["totalPages"], 1)
+            self.assertEqual(res_03["userPagination"]["totalCount"], 1)
+            self.assertEqual(res_03["userPagination"]["users"][0]["id"], 1)
 
         response_04 = self.query(
             '''
             {
-                userCount { count }
+                userCount(query: "id=1"){ count }
             }
             ''')
         res_04 = json.loads(response_04.content)["data"]
         self.assertResponseNoErrors(response_04)
         with self.subTest():
             self.assertEqual(res_04["userCount"]["count"], 1)
+
+        response_05 = self.query(
+            '''
+            {
+                userCount { count }
+            }
+            ''')
+        res_05 = json.loads(response_05.content)["data"]
+        self.assertResponseNoErrors(response_05)
+        with self.subTest():
+            self.assertEqual(res_05["userCount"]["count"], 1)
 
     def test_query_user(self):
         response = self.query(
