@@ -25,6 +25,6 @@ class FileView(views.APIView):  #
             serializer = FileSerializer(models, many=True)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         else:
-            model = save_file(files[0])
+            model = save_file_obj(files[0])
             serializer = FileSerializer(model, many=False)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
