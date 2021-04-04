@@ -1,9 +1,8 @@
 #!/bin/sh
 # Update project
 sudo git pull origin dev
-PWD=`pwd`
 # shellcheck disable=SC1090
-. "$PWD"/.venv/bin/activate
+. "$(pwd)"/.venv/bin/activate
 pip3 install -r requirements.txt
 python3 manage.py migrate
 python3 manage.py loaddata models/fixtures/*.yaml

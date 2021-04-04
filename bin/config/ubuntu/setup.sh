@@ -10,9 +10,8 @@ createdb -h localhost -p 5432 -U "$2" "$1"
 
 echo "== Creating virtual environment"
 python3 -m venv .venv
-PWD=`pwd`
 # shellcheck disable=SC1090
-. "$PWD"/.venv/bin/activate
+. "$(pwd)"/.venv/bin/activate
 
 echo "== Installing dependencies"
 python3 -m pip install --upgrade pip

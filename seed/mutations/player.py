@@ -28,15 +28,18 @@ class SavePlayerMutation(graphene.Mutation):
         if "name" in kwargs: player["name"] = kwargs["name"]
         if "isActive" in kwargs: player["is_active"] = kwargs["isActive"]
         if "photo" in kwargs:
-            photo = File.filter_permissions(File.objects, File.permission_filters(user)) \
+            photo = File.filter_permissions(
+                File.objects, File.permission_filters(user))\
                 .get(pk=kwargs["photo"])
             player["photo"] = photo
         if "team" in kwargs:
-            team = Team.filter_permissions(Team.objects, Team.permission_filters(user)) \
+            team = Team.filter_permissions(
+                Team.objects, Team.permission_filters(user))\
                 .get(pk=kwargs["team"])
             player["team"] = team
         if "position" in kwargs:
-            position = PlayerPosition.filter_permissions(PlayerPosition.objects, PlayerPosition.permission_filters(user)) \
+            position = PlayerPosition.filter_permissions(
+                PlayerPosition.objects, PlayerPosition.permission_filters(user))\
                 .get(pk=kwargs["position"])
             player["position"] = position
         player = Player.objects.create(**player)
@@ -58,7 +61,9 @@ class SetPlayerMutation(graphene.Mutation):
 
     def mutate(self, info, **kwargs):
         user = info.context.user
-        player = Player.filter_permissions(Player.objects, Player.permission_filters(user)).get(pk=kwargs["id"])
+        player = Player.filter_permissions(
+            Player.objects, Player.permission_filters(user))\
+            .get(pk=kwargs["id"])
         if "name" in kwargs: player.name = kwargs["name"]
         if "isActive" in kwargs: player.is_active = kwargs["isActive"]
         if "photo" in kwargs:

@@ -13,8 +13,8 @@ from app.settings import get_env
 
 class AuthGraphQLView(GraphQLView):
     @classmethod
-    def as_view(self, *args, **kwargs):
-        view = super(AuthGraphQLView, self).as_view(*args, **kwargs)
+    def as_view(cls, *args, **kwargs):
+        view = super(AuthGraphQLView, cls).as_view(*args, **kwargs)
         view = permission_classes((IsAuthenticated,))(view)
         view = authentication_classes((TokenAuthentication,))(view)
         view = api_view(['POST'])(view)

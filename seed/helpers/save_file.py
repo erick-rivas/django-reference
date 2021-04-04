@@ -35,8 +35,8 @@ def save_file_obj(file):
     url = default_storage.url(name)
     host_url = os.getenv('SERVER_URL')
     if url.startswith("http"):
-        u = urlparse(url)
-        url = u.scheme + "://" + u.netloc + u.path
+        url_parsed = urlparse(url)
+        url = url_parsed.scheme + "://" + url_parsed.netloc + url_parsed.path
     else:
         url = host_url + url
     return File.objects.create(name=name, size=size, url=url)

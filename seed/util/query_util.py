@@ -7,7 +7,7 @@ import re
 from django.db.models import Q
 
 
-def multi_Q(query):
+def multi_q(query):
     """
     | Return a Q Object base on a multilevel query
     | Example [{key_1: 1, key_2: 2}, {key_3: 3}] returns Q(OR(AND(key_1=1, key_2=2), key_3=3)
@@ -15,16 +15,16 @@ def multi_Q(query):
     :param query: query object
     :return: Q object
     """
-    if type(query) is dict:  # Single query (ands)
+    if isinstance(query, dict):  # Single query (ands)
         return Q(**query)
     else:  # Multiple queries (or, ands)
         res = Q()
         for sub in query:
-            res |= multi_Q(sub)
+            res |= multi_q(sub)
         return res
 
 
-def sql_alike_Q(query):
+def sql_alike_q(query):
     """
     | Return a Q Object base on an SQL alike query
     | Example \"(key_1=1 AND key_2=2) OR (key_3=3)\" returns Q(OR(AND(key_1=1, key_2=2), key_3=3)
@@ -55,8 +55,8 @@ def sql_alike_Q(query):
 
 
 def _snake_case(name):
-    s1 = re.sub('(.)([A-Z][a-z]+)', r'\1_\2', name)
-    return re.sub('([a-z0-9])([A-Z])', r'\1_\2', s1).lower()
+    s_1 = re.sub('(.)([A-Z][a-z]+)', r'\1_\2', name)
+    return re.sub('([a-z0-9])([A-Z])', r'\1_\2', s_1).lower()
 
 
 def _is_float(val):
@@ -70,29 +70,29 @@ def _is_float(val):
 def _get_query(data, hsh):
     res = Q()
     queries = [i.strip() for i in data.split(' OR ')]
-    for q in queries:
-        filters = [i.strip() for i in q.split(' AND ')]
+    for query in queries:
+        filters = [i.strip() for i in query.split(' AND ')]
         values = []
-        for f in filters:
-            if f.startswith('Q['):
-                values.append(_get_sub_query(f, hsh))
+        for flt in filters:
+            if flt.startswith('Q['):
+                values.append(_get_sub_query(flt, hsh))
             else:
                 val_s = {}
                 opt = ('=', '')
-                if '>=' in f:
+                if '>=' in flt:
                     opt = ('>=', 'gte')
-                elif '<=' in f:
+                elif '<=' in flt:
                     opt = ('<=', 'lte')
-                elif '>' in f:
+                elif '>' in flt:
                     opt = ('>', 'gt')
-                elif '<' in f:
+                elif '<' in flt:
                     opt = ('<', 'lt')
-                elif 'ILIKE' in f:
+                elif 'ILIKE' in flt:
                     opt = ('ILIKE', 'icontains')
-                elif 'LIKE' in f:
+                elif 'LIKE' in flt:
                     opt = ('LIKE', 'contains')
 
-                ele = f.split(opt[0])
+                ele = flt.split(opt[0])
                 if len(ele) > 1:
                     val_l = ele[1].strip()
                     if ele[1].startswith('"') and ele[1].endswith('"') or \

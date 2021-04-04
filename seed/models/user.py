@@ -12,7 +12,7 @@ class User(AbstractUser, Model):
 
     teams = models.ManyToManyField(
         'models.Team', related_name='users', blank=False,
-        db_table = '_user__teams', help_text="User team preferences")
+        db_table='_user__teams', help_text="User team preferences")
 
     class Meta:
         db_table = '_user'

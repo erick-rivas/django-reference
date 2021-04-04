@@ -24,11 +24,13 @@ class SaveScoreMutation(graphene.Mutation):
         score = {}
         if "min" in kwargs: score["min"] = kwargs["min"]
         if "player" in kwargs:
-            player = Player.filter_permissions(Player.objects, Player.permission_filters(user)) \
+            player = Player.filter_permissions(
+                Player.objects, Player.permission_filters(user))\
                 .get(pk=kwargs["player"])
             score["player"] = player
         if "match" in kwargs:
-            match = Match.filter_permissions(Match.objects, Match.permission_filters(user)) \
+            match = Match.filter_permissions(
+                Match.objects, Match.permission_filters(user))\
                 .get(pk=kwargs["match"])
             score["match"] = match
         score = Score.objects.create(**score)
@@ -48,7 +50,9 @@ class SetScoreMutation(graphene.Mutation):
 
     def mutate(self, info, **kwargs):
         user = info.context.user
-        score = Score.filter_permissions(Score.objects, Score.permission_filters(user)).get(pk=kwargs["id"])
+        score = Score.filter_permissions(
+            Score.objects, Score.permission_filters(user))\
+            .get(pk=kwargs["id"])
         if "min" in kwargs: score.min = kwargs["min"]
         if "player" in kwargs:
             player = Player.objects.get(pk=kwargs["player"])

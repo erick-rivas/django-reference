@@ -3,7 +3,7 @@ __Seed builder__v0.2.0
   (Read_only) Model permission util
 """
 
-from seed.util.query_util import multi_Q
+from seed.util.query_util import multi_q
 
 
 def inherit_perms(parent_model, attr, user):
@@ -21,7 +21,7 @@ def inherit_perms(parent_model, attr, user):
 
 
 def _inherit_permissions_query(permissions, attr):
-    if type(permissions) is dict:  # Single filter (ands)
+    if isinstance(permissions, dict):  # Single filter (ands)
         new_permissions = {}
         for key in permissions:
             new_permissions[attr + "__" + key] = permissions[key]
@@ -43,4 +43,4 @@ def filter_perms(queryset, filters):
     """
     if filters is None:
         return queryset
-    return queryset.filter(multi_Q(filters))
+    return queryset.filter(multi_q(filters))

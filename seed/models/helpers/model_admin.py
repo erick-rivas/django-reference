@@ -3,9 +3,9 @@ __Seed builder__v0.2.0
   (Read_only) Builder helper
 """
 
-from import_export.admin import ImportExportModelAdmin
-from import_export import resources
 from djangoql.admin import DjangoQLSearchMixin
+from import_export import resources
+from import_export.admin import ImportExportModelAdmin
 
 
 class Resource(resources.ModelResource):
@@ -17,8 +17,8 @@ class ModelAdmin(DjangoQLSearchMixin, ImportExportModelAdmin):
     resource_class = None
 
 
-def ModelAdminClass(model):  #
-
+# pylint: disable=C0103
+def ModelAdminClass(model):
     resource_class = type('IEResource', (Resource,), {})
     meta = type('IEMeta', (), {})
     meta.model = model
