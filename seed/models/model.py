@@ -20,6 +20,7 @@ class Model(models.Model):
     hash = models.CharField(max_length=32, default="", editable=False, null=True,
                             help_text="Unique identifier to identify the state of the model")
 
+    # pylint: disable=W0221
     def save(self, *args, **kwargs):
         pk = self.id
         if self.id is None:

@@ -1,3 +1,3 @@
-from seed.models.admin import _Admin
+import seed.models.admin as SeedAdmin
 
-_Admin().register()
+SeedAdmin.Admin().register()

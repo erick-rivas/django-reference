@@ -23,7 +23,7 @@ class Match(DjangoObjectType):
     id = graphene.Int(description="Match primary key")
     class Meta:
         model = MatchModel
-        description="Represents a match between two teams  (A vs B)"
+        description = "Represents a match between two teams  (A vs B)"
     def resolve_id(self, info):
         return self.pk
 
@@ -63,7 +63,7 @@ class PlayerPosition(DjangoObjectType):
     id = graphene.Int(description="PlayerPosition primary key")
     class Meta:
         model = PlayerPositionModel
-        description="Represents a player  position (eg. forward)"
+        description = "Represents a player  position (eg. forward)"
     def resolve_id(self, info):
         return self.pk
 
@@ -83,7 +83,7 @@ class Score(DjangoObjectType):
     id = graphene.Int(description="Score primary key")
     class Meta:
         model = ScoreModel
-        description="Represents a match score (goal)"
+        description = "Represents a match score (goal)"
     def resolve_id(self, info):
         return self.pk
 
@@ -124,7 +124,7 @@ class User(DjangoObjectType):
     class Meta:
         model = UserModel
         exclude = ('password',)
-        description="Represents a registered user"
+        description = "Represents a registered user"
     def resolve_id(self, info):
         return self.pk
 
@@ -251,7 +251,7 @@ class Query(object):
         File, query=graphene.String(), orderBy=graphene.String(), limit=graphene.Int())
     filePagination = graphene.Field(
         FilePagination, pageNum=graphene.Int(required=True), pageSize=graphene.Int(required=True),
-        query=graphene.String(),  orderBy=graphene.String())
+        query=graphene.String(), orderBy=graphene.String())
     file = graphene.Field(File, id=graphene.Int(required=True))
     fileCount = graphene.Field(FileCount, query=graphene.String())
 
@@ -267,6 +267,7 @@ class Query(object):
     def resolve_matchCount(self, info, **kwargs):
         return resolve_count(MatchModel, MatchCount, info, **kwargs)
 
+    # pylint: disable=W0622
     def resolve_match(self, info, id):
         user = info.context.user
         return MatchModel.filter_permissions(
@@ -284,6 +285,7 @@ class Query(object):
     def resolve_playerCount(self, info, **kwargs):
         return resolve_count(PlayerModel, PlayerCount, info, **kwargs)
 
+    # pylint: disable=W0622
     def resolve_player(self, info, id):
         user = info.context.user
         return PlayerModel.filter_permissions(
@@ -301,6 +303,7 @@ class Query(object):
     def resolve_playerPositionCount(self, info, **kwargs):
         return resolve_count(PlayerPositionModel, PlayerPositionCount, info, **kwargs)
 
+    # pylint: disable=W0622
     def resolve_playerPosition(self, info, id):
         user = info.context.user
         return PlayerPositionModel.filter_permissions(
@@ -318,6 +321,7 @@ class Query(object):
     def resolve_scoreCount(self, info, **kwargs):
         return resolve_count(ScoreModel, ScoreCount, info, **kwargs)
 
+    # pylint: disable=W0622
     def resolve_score(self, info, id):
         user = info.context.user
         return ScoreModel.filter_permissions(
@@ -335,6 +339,7 @@ class Query(object):
     def resolve_teamCount(self, info, **kwargs):
         return resolve_count(TeamModel, TeamCount, info, **kwargs)
 
+    # pylint: disable=W0622
     def resolve_team(self, info, id):
         user = info.context.user
         return TeamModel.filter_permissions(
@@ -352,6 +357,7 @@ class Query(object):
     def resolve_userCount(self, info, **kwargs):
         return resolve_count(UserModel, UserCount, info, **kwargs)
 
+    # pylint: disable=W0622
     def resolve_user(self, info, id):
         user = info.context.user
         return UserModel.filter_permissions(
@@ -368,6 +374,7 @@ class Query(object):
     def resolve_fileCount(self, info, **kwargs):
         return resolve_count(FileModel, FileCount, info, **kwargs)
 
+    # pylint: disable=W0622
     def resolve_file(self, info, id):
         user = info.context.user
         return FileModel.filter_permissions(

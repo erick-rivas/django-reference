@@ -29,8 +29,8 @@ def get_user_serializer():
     return SeedSerializer.UserSerializer
 
 def get_file_serializer():
-    from seed.serializers.file import FileSerializer
-    return FileSerializer
+    import seed.serializers.file as SeedSerializer
+    return SeedSerializer.FileSerializer
 
 MatchSerializer = get_match_serializer()
 PlayerSerializer = get_player_serializer()

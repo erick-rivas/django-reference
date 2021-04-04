@@ -14,35 +14,35 @@ from app.models import Team
 from app.models import User
 from app.models import File
 
-class _Admin:
+class Admin:
 
-  @staticmethod
-  def register():
-      
-      class MatchAdmin(ModelAdminClass(Match)):
-          pass
-      
-      class PlayerAdmin(ModelAdminClass(Player)):
-          pass
-      
-      class PlayerPositionAdmin(ModelAdminClass(PlayerPosition)):
-          pass
-      
-      class ScoreAdmin(ModelAdminClass(Score)):
-          pass
-      
-      class TeamAdmin(ModelAdminClass(Team)):
-          pass
-      
-      class UserAdmin(ModelAdminClass(User)):
-          pass
-      
-      class FileAdmin(ModelAdminClass(File)):
-          pass
-      admin.site.register(Match, MatchAdmin)
-      admin.site.register(Player, PlayerAdmin)
-      admin.site.register(PlayerPosition, PlayerPositionAdmin)
-      admin.site.register(Score, ScoreAdmin)
-      admin.site.register(Team, TeamAdmin)
-      admin.site.register(User, UserAdmin)
-      admin.site.register(File, FileAdmin)
+    @staticmethod
+    def register():
+        
+        class MatchAdmin(ModelAdminClass(Match)):
+            pass
+        
+        class PlayerAdmin(ModelAdminClass(Player)):
+            pass
+        
+        class PlayerPositionAdmin(ModelAdminClass(PlayerPosition)):
+            pass
+        
+        class ScoreAdmin(ModelAdminClass(Score)):
+            pass
+        
+        class TeamAdmin(ModelAdminClass(Team)):
+            pass
+        
+        class UserAdmin(ModelAdminClass(User)):
+            pass
+        
+        class FileAdmin(ModelAdminClass(File)):
+            pass
+        admin.site.register(Match, MatchAdmin)
+        admin.site.register(Player, PlayerAdmin)
+        admin.site.register(PlayerPosition, PlayerPositionAdmin)
+        admin.site.register(Score, ScoreAdmin)
+        admin.site.register(Team, TeamAdmin)
+        admin.site.register(User, UserAdmin)
+        admin.site.register(File, FileAdmin)
