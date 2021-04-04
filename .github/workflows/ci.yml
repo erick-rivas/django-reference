@@ -40,6 +40,7 @@ jobs:
     - name: "Preconfiguring"
       run: |
         cp .env.example .env.dev
+        sed -i "s/SECRET_KEY=/SECRET_KEY=fupswltefA9efredrufihUSTOwamc/" ".env.dev"
         sed -i "s/DB_NAME=/DB_NAME=postgres/" ".env.dev"
         sed -i "s/DB_USER=/DB_USER=postgres/" ".env.dev"
         sed -i "s/DB_PASSWORD=/DB_PASSWORD=postgres/" ".env.dev"
