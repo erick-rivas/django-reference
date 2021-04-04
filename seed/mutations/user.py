@@ -34,8 +34,8 @@ class SaveUserMutation(graphene.Mutation):
         if "password" in kwargs: user.set_password(kwargs["password"])
         if "teams" in kwargs:
             user.teams.clear()
-            for id in kwargs["teams"]:
-                teams = Team.filter_permissions(Team.objects, Team.permission_filters(user)).get(pk = id)
+            for teams_id in kwargs["teams"]:
+                teams = Team.filter_permissions(Team.objects, Team.permission_filters(user)).get(pk=teams_id)
                 user.teams.add(teams)
         user.save()
     
@@ -66,8 +66,8 @@ class SetUserMutation(graphene.Mutation):
         if "password" in kwargs: user.set_password(kwargs["password"])
         if "teams" in kwargs:
             user.teams.clear()
-            for id in kwargs["teams"]:
-                teams = Team.objects.get(pk = id)
+            for teams_id in kwargs["teams"]:
+                teams = Team.objects.get(pk=teams_id)
                 user.teams.add(teams)
         user.save()
     
@@ -81,7 +81,7 @@ class DeleteUserMutation(graphene.Mutation):
         id = graphene.Int(required=True)
 
     def mutate(self, info, **kwargs):
-        id = kwargs["id"]
+        user_id = kwargs["id"]
         user = User.objects.get(pk=kwargs["id"])
         user.delete()
-        return DeleteUserMutation(id=id)
+        return DeleteUserMutation(id=user_id)

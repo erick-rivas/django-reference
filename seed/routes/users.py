@@ -14,7 +14,7 @@ from seed.routes.viewset import ViewSet
 from app.models import User
 from app.serializers import UserSerializer
 
-class _UserViewSet(
+class UserViewSet(
     ViewSet,
     mixins.RetrieveModelMixin,
     mixins.ListModelMixin,

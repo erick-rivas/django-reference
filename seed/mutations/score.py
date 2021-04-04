@@ -66,7 +66,7 @@ class DeleteScoreMutation(graphene.Mutation):
         id = graphene.Int(required=True)
 
     def mutate(self, info, **kwargs):
-        id = kwargs["id"]
+        score_id = kwargs["id"]
         score = Score.objects.get(pk=kwargs["id"])
         score.delete()
-        return DeleteScoreMutation(id=id)
+        return DeleteScoreMutation(id=score_id)

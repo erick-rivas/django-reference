@@ -8,7 +8,7 @@ from rest_framework import serializers
 from app.models import User
 from app.models import Team
 
-class _UserSerializer(serializers.ModelSerializer):
+class UserSerializer(serializers.ModelSerializer):
 
     team_ids = serializers.PrimaryKeyRelatedField(many=True, source='teams', queryset=Team.objects.all(), 
         required=True, allow_null=False)

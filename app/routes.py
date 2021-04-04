@@ -5,32 +5,32 @@ __Seed builder__v0.2.0
 """
 
 def get_match_viewset():
-    from seed.routes.matches import _MatchViewSet
-    return _MatchViewSet
+    import seed.routes.matches as SeedViewSet
+    return SeedViewSet.MatchViewSet
 
 def get_player_viewset():
-    from seed.routes.players import _PlayerViewSet
-    return _PlayerViewSet
+    import seed.routes.players as SeedViewSet
+    return SeedViewSet.PlayerViewSet
 
 def get_player_position_viewset():
-    from seed.routes.player_positions import _PlayerPositionViewSet
-    return _PlayerPositionViewSet
+    import seed.routes.player_positions as SeedViewSet
+    return SeedViewSet.PlayerPositionViewSet
 
 def get_score_viewset():
-    from seed.routes.scores import _ScoreViewSet
-    return _ScoreViewSet
+    import seed.routes.scores as SeedViewSet
+    return SeedViewSet.ScoreViewSet
 
 def get_team_viewset():
-    from seed.routes.teams import _TeamViewSet
-    return _TeamViewSet
+    import seed.routes.teams as SeedViewSet
+    return SeedViewSet.TeamViewSet
 
 def get_user_viewset():
-    from seed.routes.users import _UserViewSet
-    return _UserViewSet
+    import seed.routes.users as SeedViewSet
+    return SeedViewSet.UserViewSet
 
 def get_file_view():
-    from seed.routes.files import FileView
-    return FileView
+    import seed.routes.files as SeedView
+    return SeedView.FileView
 
 MatchViewSet = get_match_viewset()
 PlayerViewSet = get_player_viewset()

@@ -8,7 +8,7 @@ from rest_framework import serializers
 from app.models import Match
 from app.models import Team
 
-class _MatchSerializer(serializers.ModelSerializer):
+class MatchSerializer(serializers.ModelSerializer):
 
     score_ids = serializers.PrimaryKeyRelatedField(many=True, source='scores', read_only=True)
 

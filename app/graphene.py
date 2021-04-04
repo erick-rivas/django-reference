@@ -5,7 +5,7 @@ __Seed builder__v0.2.0
 """
 
 def get_schema():
-    from seed.schema.schema import schema
-    return schema
+    import seed.schema.schema as seed_schema
+    return seed_schema.schema
 
 schema = get_schema()

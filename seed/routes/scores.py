@@ -14,7 +14,7 @@ from seed.routes.viewset import ViewSet
 from app.models import Score
 from app.serializers import ScoreSerializer
 
-class _ScoreViewSet(
+class ScoreViewSet(
     ViewSet,
     mixins.RetrieveModelMixin,
     mixins.ListModelMixin,

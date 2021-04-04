@@ -9,7 +9,7 @@ from app.models import Score
 from app.models import Player
 from app.models import Match
 
-class _ScoreSerializer(serializers.ModelSerializer):
+class ScoreSerializer(serializers.ModelSerializer):
 
     player_id = serializers.PrimaryKeyRelatedField(source='player', queryset=Player.objects.all(), 
         required=True, allow_null=False)

@@ -9,7 +9,7 @@ from django.db.models import Q
 
 def multi_Q(query):
     """
-    | Return a Q Object base on multilevel query
+    | Return a Q Object base on a multilevel query
     | Example [{key_1: 1, key_2: 2}, {key_3: 3}] returns Q(OR(AND(key_1=1, key_2=2), key_3=3)
 
     :param query: query object
@@ -26,7 +26,7 @@ def multi_Q(query):
 
 def sql_alike_Q(query):
     """
-    | Return a Q Object base on a SQL alike query
+    | Return a Q Object base on an SQL alike query
     | Example \"(key_1=1 AND key_2=2) OR (key_3=3)\" returns Q(OR(AND(key_1=1, key_2=2), key_3=3)
 
     :param query: SQL alike query

@@ -3,7 +3,7 @@ __Seed builder__v0.2.0
   (Read_only) Builder helper
 """
 
-import random
+import secrets
 import time
 
 from app.settings import get_env
@@ -23,7 +23,7 @@ class Model(models.Model):
     def save(self, *args, **kwargs):
         pk = self.id
         if self.id is None:
-            pk = random.randint(1, 100000)
+            pk = int(''.join(secrets.choice("0123456789") for i in range(9)))
         self.hash = hash((pk, time.time()))
         super().save(*args, **kwargs)
 

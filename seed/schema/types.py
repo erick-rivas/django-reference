@@ -5,7 +5,7 @@ __Seed builder__v0.2.0
 """
 
 import graphene
-import random
+import secrets
 import math
 from graphene import ObjectType
 from graphene_django import DjangoListField
@@ -183,7 +183,7 @@ def resolve_pagination(model, modelName, paginationType, info, **kwargs):
     page = resolve_list(model, info, **kwargs)
 
     return paginationType(**{
-       "id": random.randint(0, 1000000),
+       "id": int(''.join(secrets.choice("0123456789") for i in range(9))),
        "pageNum": kwargs["pageNum"],
        "pageSize": kwargs["pageSize"],
        "totalPages": totalPages,
@@ -200,7 +200,7 @@ def resolve_count(model, countType, info, **kwargs):
     query = model.filter_permissions(query, model.permission_filters(user))
 
     return countType(
-        id=random.randint(0, 1000000),
+        id=int(''.join(secrets.choice("0123456789") for i in range(9))),
         count=len(query))
 
 class Query(object):

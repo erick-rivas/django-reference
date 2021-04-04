@@ -33,7 +33,7 @@ def save_file_obj(file):
     name = default_storage.save(filename, file)
     size = default_storage.size(name)
     url = default_storage.url(name)
-    host_url = os.getenv('HOST_URL')
+    host_url = os.getenv('SERVER_URL')
     if url.startswith("http"):
         u = urlparse(url)
         url = u.scheme + "://" + u.netloc + u.path

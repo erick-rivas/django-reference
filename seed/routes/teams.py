@@ -14,7 +14,7 @@ from seed.routes.viewset import ViewSet
 from app.models import Team
 from app.serializers import TeamSerializer
 
-class _TeamViewSet(
+class TeamViewSet(
     ViewSet,
     mixins.RetrieveModelMixin,
     mixins.ListModelMixin,

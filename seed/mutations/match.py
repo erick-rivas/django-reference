@@ -69,7 +69,7 @@ class DeleteMatchMutation(graphene.Mutation):
         id = graphene.Int(required=True)
 
     def mutate(self, info, **kwargs):
-        id = kwargs["id"]
+        match_id = kwargs["id"]
         match = Match.objects.get(pk=kwargs["id"])
         match.delete()
-        return DeleteMatchMutation(id=id)
+        return DeleteMatchMutation(id=match_id)

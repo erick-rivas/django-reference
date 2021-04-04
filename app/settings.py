@@ -21,7 +21,7 @@ dotenv.read_dotenv(os.path.join(os.path.dirname(os.path.dirname(__file__)), get_
 
 IS_PROD = get_environ('IS_PROD')
 DEBUG = not IS_PROD
-SECRET_KEY = 'fup+swltefA9efredrufihUSTO!wam?c'
+SECRET_KEY = os.getenv('SECRET_KEY')
 USE_AWS_S3 = get_env('USE_AWS_S3')
 SITE_ID = 1
 
@@ -103,8 +103,8 @@ if USE_AWS_S3:
 # Security settings
 
 REST_AUTH_SERIALIZERS = {'TOKEN_SERIALIZER': 'seed.serializers.helpers.token.TokenSerializer'}
-CORS_ORIGIN_WHITELIST = [os.getenv('APP_URL')]
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', '[::1]', urlparse(os.getenv('HOST_URL')).hostname] \
+CORS_ORIGIN_WHITELIST = [os.getenv('CLIENT_URL')]
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', '[::1]', urlparse(os.getenv('SERVER_URL')).hostname] \
 
 AUTH_PASSWORD_VALIDATORS = [
     {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator', },

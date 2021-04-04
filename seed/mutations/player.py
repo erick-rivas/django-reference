@@ -79,7 +79,7 @@ class DeletePlayerMutation(graphene.Mutation):
         id = graphene.Int(required=True)
 
     def mutate(self, info, **kwargs):
-        id = kwargs["id"]
+        player_id = kwargs["id"]
         player = Player.objects.get(pk=kwargs["id"])
         player.delete()
-        return DeletePlayerMutation(id=id)
+        return DeletePlayerMutation(id=player_id)

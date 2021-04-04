@@ -14,7 +14,7 @@ from seed.routes.viewset import ViewSet
 from app.models import PlayerPosition
 from app.serializers import PlayerPositionSerializer
 
-class _PlayerPositionViewSet(
+class PlayerPositionViewSet(
     ViewSet,
     mixins.RetrieveModelMixin,
     mixins.ListModelMixin,

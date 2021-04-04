@@ -5,32 +5,32 @@ __Seed builder__v0.2.0
 """
 
 def get_match():
-    from seed.models.match import Match
-    return Match
+    import seed.models.match as SeedModel
+    return SeedModel.Match
 
 def get_player():
-    from seed.models.player import Player
-    return Player
+    import seed.models.player as SeedModel
+    return SeedModel.Player
 
 def get_player_position():
-    from seed.models.player_position import PlayerPosition
-    return PlayerPosition
+    import seed.models.player_position as SeedModel
+    return SeedModel.PlayerPosition
 
 def get_score():
-    from seed.models.score import Score
-    return Score
+    import seed.models.score as SeedModel
+    return SeedModel.Score
 
 def get_team():
-    from seed.models.team import Team
-    return Team
+    import seed.models.team as SeedModel
+    return SeedModel.Team
 
 def get_user():
-    from seed.models.user import User
-    return User
+    import seed.models.user as SeedModel
+    return SeedModel.User
 
 def get_file():
-    from seed.models.file import File
-    return File
+    import seed.models.file as SeedFile
+    return SeedFile.File
 
 Match = get_match()
 Player = get_player()

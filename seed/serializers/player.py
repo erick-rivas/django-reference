@@ -11,7 +11,7 @@ from app.models import PlayerPosition
 from app.models import File
 from seed.serializers.file import FileSerializer
 
-class _PlayerSerializer(serializers.ModelSerializer):
+class PlayerSerializer(serializers.ModelSerializer):
     
     photo = FileSerializer(read_only=True)
 

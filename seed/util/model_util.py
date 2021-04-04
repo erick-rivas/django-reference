@@ -8,9 +8,8 @@ from seed.util.query_util import multi_Q
 
 def inherit_perms(parent_model, attr, user):
     """
-    Create a new permission collection in an specific attribute with parent_model perms
-    Ex. (Account, master_account) -> returs ["master_account__owner_id¨]
-    // In case Account Model has owner_id as perms
+    | Create a new permission collection in a specific attribute with parent_model perms
+    | Example (Account, master_account) -> returns ["master_account__owner_id¨]
 
     :param parent_model: Parent model where get perms (ej. app.models.Account)
     :param attr: Child attribute to include parent perms

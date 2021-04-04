@@ -9,7 +9,7 @@ from app.models import Team
 from app.models import File
 from seed.serializers.file import FileSerializer
 
-class _TeamSerializer(serializers.ModelSerializer):
+class TeamSerializer(serializers.ModelSerializer):
     
     logo = FileSerializer(read_only=True)
     identity_docs = FileSerializer(many=True, read_only=True)

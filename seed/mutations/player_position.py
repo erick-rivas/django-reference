@@ -48,7 +48,7 @@ class DeletePlayerPositionMutation(graphene.Mutation):
         id = graphene.Int(required=True)
 
     def mutate(self, info, **kwargs):
-        id = kwargs["id"]
+        player_position_id = kwargs["id"]
         player_position = PlayerPosition.objects.get(pk=kwargs["id"])
         player_position.delete()
-        return DeletePlayerPositionMutation(id=id)
+        return DeletePlayerPositionMutation(id=player_position_id)

@@ -3,7 +3,6 @@
 ./020_routes.md
 ./030_domain.md
 ./040_models.md
-{hidden} ./050_serializers.md
 ./060_seed_builder.md
 ./070_seed_commons.md
 ./080_deployment.md

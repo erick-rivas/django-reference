@@ -14,7 +14,7 @@ from seed.routes.viewset import ViewSet
 from app.models import Match
 from app.serializers import MatchSerializer
 
-class _MatchViewSet(
+class MatchViewSet(
     ViewSet,
     mixins.RetrieveModelMixin,
     mixins.ListModelMixin,

@@ -73,7 +73,7 @@ class DeleteTeamMutation(graphene.Mutation):
         id = graphene.Int(required=True)
 
     def mutate(self, info, **kwargs):
-        id = kwargs["id"]
+        team_id = kwargs["id"]
         team = Team.objects.get(pk=kwargs["id"])
         team.delete()
-        return DeleteTeamMutation(id=id)
+        return DeleteTeamMutation(id=team_id)
