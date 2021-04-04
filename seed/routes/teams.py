@@ -14,13 +14,14 @@ from seed.routes.viewset import ViewSet
 from app.models import Team
 from app.serializers import TeamSerializer
 
-class _TeamViewSet(ViewSet,
-                   mixins.RetrieveModelMixin,
-                   mixins.ListModelMixin,
-                   mixins.CreateModelMixin,
-                   mixins.UpdateModelMixin,
-                   mixins.DestroyModelMixin,
-                   GenericViewSet):
+class _TeamViewSet(
+    ViewSet,
+    mixins.RetrieveModelMixin,
+    mixins.ListModelMixin,
+    mixins.CreateModelMixin,
+    mixins.UpdateModelMixin,
+    mixins.DestroyModelMixin,
+    GenericViewSet):
     serializer_class = TeamSerializer
     queryset = Team.objects.all()
     def destroy(self, request, pk=None):

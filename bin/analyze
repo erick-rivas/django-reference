@@ -1,0 +1,3 @@
+codacy-analysis-cli analyze --tool pylint
+codacy-analysis-cli analyze --tool prospector
+codacy-analysis-cli analyze --tool bandit

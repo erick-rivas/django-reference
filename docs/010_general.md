@@ -20,6 +20,7 @@
 -   Download & Install [Docker Compose](https://docs.docker.com/compose/install/)
     >   For linux adjust docker for non-root user usage [guide](https://docs.docker.com/engine/install/linux-postinstall/#manage-docker-as-a-non-root-user)
 -   Download & install [PyCharm CE](https://www.jetbrains.com/pycharm/download/) (optional)
+-   Download & install [Codacity CLI](https://github.com/codacy/codacy-analysis-cli#install)
 
 ### Initial setup
 
@@ -84,5 +85,6 @@
 
 ### Testing
 
+-   Analyze code quality `bin/analyze`
 -   Test use cases `bin/test`
--   Analyze code coverage `bin/coverage`
+-   Generate code coverage report `bin/coverage`

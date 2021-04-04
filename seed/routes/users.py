@@ -14,13 +14,14 @@ from seed.routes.viewset import ViewSet
 from app.models import User
 from app.serializers import UserSerializer
 
-class _UserViewSet(ViewSet,
-                   mixins.RetrieveModelMixin,
-                   mixins.ListModelMixin,
-                   mixins.CreateModelMixin,
-                   mixins.UpdateModelMixin,
-                   mixins.DestroyModelMixin,
-                   GenericViewSet):
+class _UserViewSet(
+    ViewSet,
+    mixins.RetrieveModelMixin,
+    mixins.ListModelMixin,
+    mixins.CreateModelMixin,
+    mixins.UpdateModelMixin,
+    mixins.DestroyModelMixin,
+    GenericViewSet):
     serializer_class = UserSerializer
     queryset = User.objects.all()
     def destroy(self, request, pk=None):

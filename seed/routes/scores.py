@@ -14,13 +14,14 @@ from seed.routes.viewset import ViewSet
 from app.models import Score
 from app.serializers import ScoreSerializer
 
-class _ScoreViewSet(ViewSet,
-                   mixins.RetrieveModelMixin,
-                   mixins.ListModelMixin,
-                   mixins.CreateModelMixin,
-                   mixins.UpdateModelMixin,
-                   mixins.DestroyModelMixin,
-                   GenericViewSet):
+class _ScoreViewSet(
+    ViewSet,
+    mixins.RetrieveModelMixin,
+    mixins.ListModelMixin,
+    mixins.CreateModelMixin,
+    mixins.UpdateModelMixin,
+    mixins.DestroyModelMixin,
+    GenericViewSet):
     serializer_class = ScoreSerializer
     queryset = Score.objects.all()
     def destroy(self, request, pk=None):

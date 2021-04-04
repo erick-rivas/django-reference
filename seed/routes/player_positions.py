@@ -14,13 +14,14 @@ from seed.routes.viewset import ViewSet
 from app.models import PlayerPosition
 from app.serializers import PlayerPositionSerializer
 
-class _PlayerPositionViewSet(ViewSet,
-                   mixins.RetrieveModelMixin,
-                   mixins.ListModelMixin,
-                   mixins.CreateModelMixin,
-                   mixins.UpdateModelMixin,
-                   mixins.DestroyModelMixin,
-                   GenericViewSet):
+class _PlayerPositionViewSet(
+    ViewSet,
+    mixins.RetrieveModelMixin,
+    mixins.ListModelMixin,
+    mixins.CreateModelMixin,
+    mixins.UpdateModelMixin,
+    mixins.DestroyModelMixin,
+    GenericViewSet):
     serializer_class = PlayerPositionSerializer
     queryset = PlayerPosition.objects.all()
     def destroy(self, request, pk=None):

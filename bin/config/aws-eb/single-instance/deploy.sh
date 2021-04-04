@@ -1,7 +1,5 @@
+#!/bin/sh
 PWD=`pwd`
-activate () {
-    . $PWD/.venv/bin/activate
-}
-activate
+. $PWD/.venv/bin/activate
 python3 manage.py collectstatic
 eb deploy

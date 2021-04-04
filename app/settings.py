@@ -14,8 +14,7 @@ def get_env(key):
 def get_dotenv():
     if get_environ('USE_DOCKER'):
         return '.env.docker.prod' if get_environ('IS_PROD') else '.env.docker.dev'
-    else:
-        return '.env.prod' if get_environ('IS_PROD') else '.env.dev'
+    return '.env.prod' if get_environ('IS_PROD') else '.env.dev'
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 dotenv.read_dotenv(os.path.join(os.path.dirname(os.path.dirname(__file__)), get_dotenv()))
