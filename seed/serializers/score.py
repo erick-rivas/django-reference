@@ -11,9 +11,11 @@ from app.models import Match
 
 class ScoreSerializer(serializers.ModelSerializer):
 
-    player_id = serializers.PrimaryKeyRelatedField(source='player', queryset=Player.objects.all(), 
+    player_id = serializers.PrimaryKeyRelatedField(
+        source='player', queryset=Player.objects.all(),
         required=True, allow_null=False)
-    match_id = serializers.PrimaryKeyRelatedField(source='match', queryset=Match.objects.all(), 
+    match_id = serializers.PrimaryKeyRelatedField(
+        source='match', queryset=Match.objects.all(),
         required=True, allow_null=False)
 
     class Meta:

@@ -10,7 +10,8 @@ from app.models import Team
 
 class UserSerializer(serializers.ModelSerializer):
 
-    team_ids = serializers.PrimaryKeyRelatedField(many=True, source='teams', queryset=Team.objects.all(), 
+    team_ids = serializers.PrimaryKeyRelatedField(
+        many=True, source='teams', queryset=Team.objects.all(),
         required=True, allow_null=False)
 
     class Meta:

@@ -10,7 +10,8 @@ from seed.models.model import Model
 
 class User(AbstractUser, Model):
 
-    teams = models.ManyToManyField('models.Team', related_name='users', blank=False,
+    teams = models.ManyToManyField(
+        'models.Team', related_name='users', blank=False,
         db_table = '_user__teams', help_text="User team preferences")
 
     class Meta:

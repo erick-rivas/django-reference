@@ -28,13 +28,16 @@ class SavePlayerMutation(graphene.Mutation):
         if "name" in kwargs: player["name"] = kwargs["name"]
         if "isActive" in kwargs: player["is_active"] = kwargs["isActive"]
         if "photo" in kwargs:
-            photo = File.filter_permissions(File.objects, File.permission_filters(user)).get(pk = kwargs["photo"])
+            photo = File.filter_permissions(File.objects, File.permission_filters(user)) \
+                .get(pk=kwargs["photo"])
             player["photo"] = photo
         if "team" in kwargs:
-            team = Team.filter_permissions(Team.objects, Team.permission_filters(user)).get(pk = kwargs["team"])
+            team = Team.filter_permissions(Team.objects, Team.permission_filters(user)) \
+                .get(pk=kwargs["team"])
             player["team"] = team
         if "position" in kwargs:
-            position = PlayerPosition.filter_permissions(PlayerPosition.objects, PlayerPosition.permission_filters(user)).get(pk = kwargs["position"])
+            position = PlayerPosition.filter_permissions(PlayerPosition.objects, PlayerPosition.permission_filters(user)) \
+                .get(pk=kwargs["position"])
             player["position"] = position
         player = Player.objects.create(**player)
         player.save()
@@ -59,13 +62,13 @@ class SetPlayerMutation(graphene.Mutation):
         if "name" in kwargs: player.name = kwargs["name"]
         if "isActive" in kwargs: player.is_active = kwargs["isActive"]
         if "photo" in kwargs:
-            photo = File.objects.get(pk = kwargs["photo"])
+            photo = File.objects.get(pk=kwargs["photo"])
             player.photo = photo
         if "team" in kwargs:
-            team = Team.objects.get(pk = kwargs["team"])
+            team = Team.objects.get(pk=kwargs["team"])
             player.team = team
         if "position" in kwargs:
-            position = PlayerPosition.objects.get(pk = kwargs["position"])
+            position = PlayerPosition.objects.get(pk=kwargs["position"])
             player.position = position
         player.save()
     

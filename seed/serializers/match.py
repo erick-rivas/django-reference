@@ -10,11 +10,14 @@ from app.models import Team
 
 class MatchSerializer(serializers.ModelSerializer):
 
-    score_ids = serializers.PrimaryKeyRelatedField(many=True, source='scores', read_only=True)
+    score_ids = serializers.PrimaryKeyRelatedField(
+        many=True, source='scores', read_only=True)
 
-    local_id = serializers.PrimaryKeyRelatedField(source='local', queryset=Team.objects.all(), 
+    local_id = serializers.PrimaryKeyRelatedField(
+        source='local', queryset=Team.objects.all(),
         required=True, allow_null=False)
-    visitor_id = serializers.PrimaryKeyRelatedField(source='visitor', queryset=Team.objects.all(), 
+    visitor_id = serializers.PrimaryKeyRelatedField(
+        source='visitor', queryset=Team.objects.all(),
         required=True, allow_null=False)
 
     class Meta:

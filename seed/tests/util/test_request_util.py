@@ -1,7 +1,8 @@
 from unittest import TestCase
-from rest_framework.exceptions import ValidationError
 
+from rest_framework.exceptions import ValidationError
 from seed.util.request_util import has_fields_or_400
+
 
 class TestReqUtil(TestCase):
     def test_has_fields_or_400(self):

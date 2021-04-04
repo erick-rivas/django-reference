@@ -37,4 +37,5 @@ class UserViewSet(
 
     def get_queryset(self):
         user = self.request.user
-        return User.filter_permissions(super().get_queryset(), User.permission_filters(user))
+        return User.filter_permissions(
+            super().get_queryset(), User.permission_filters(user))

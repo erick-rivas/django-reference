@@ -15,11 +15,14 @@ class PlayerSerializer(serializers.ModelSerializer):
     
     photo = FileSerializer(read_only=True)
 
-    team_id = serializers.PrimaryKeyRelatedField(source='team', queryset=Team.objects.all(), 
+    team_id = serializers.PrimaryKeyRelatedField(
+        source='team', queryset=Team.objects.all(),
         required=True, allow_null=False)
-    position_id = serializers.PrimaryKeyRelatedField(source='position', queryset=PlayerPosition.objects.all(), 
+    position_id = serializers.PrimaryKeyRelatedField(
+        source='position', queryset=PlayerPosition.objects.all(),
         required=True, allow_null=False)
-    photo_id = serializers.PrimaryKeyRelatedField(source='photo', queryset=File.objects.all(), 
+    photo_id = serializers.PrimaryKeyRelatedField(
+        source='photo', queryset=File.objects.all(),
         required=True, allow_null=False)
 
     class Meta:

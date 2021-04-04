@@ -37,4 +37,5 @@ class TeamViewSet(
 
     def get_queryset(self):
         user = self.request.user
-        return Team.filter_permissions(super().get_queryset(), Team.permission_filters(user))
+        return Team.filter_permissions(
+            super().get_queryset(), Team.permission_filters(user))

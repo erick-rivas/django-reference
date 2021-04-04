@@ -37,4 +37,5 @@ class ScoreViewSet(
 
     def get_queryset(self):
         user = self.request.user
-        return Score.filter_permissions(super().get_queryset(), Score.permission_filters(user))
+        return Score.filter_permissions(
+            super().get_queryset(), Score.permission_filters(user))

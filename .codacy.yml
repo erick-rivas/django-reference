@@ -2,5 +2,7 @@
 exclude_paths:
   - "**.md"
   - "models/migrations/*"
+  - "tests/**/*"
+  - "seed/tests/**/*"
   - ".venv/**/*"
   - ".data/**/*"

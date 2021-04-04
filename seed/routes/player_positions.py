@@ -37,4 +37,5 @@ class PlayerPositionViewSet(
 
     def get_queryset(self):
         user = self.request.user
-        return PlayerPosition.filter_permissions(super().get_queryset(), PlayerPosition.permission_filters(user))
+        return PlayerPosition.filter_permissions(
+            super().get_queryset(), PlayerPosition.permission_filters(user))

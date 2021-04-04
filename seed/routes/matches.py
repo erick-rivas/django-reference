@@ -37,4 +37,5 @@ class MatchViewSet(
 
     def get_queryset(self):
         user = self.request.user
-        return Match.filter_permissions(super().get_queryset(), Match.permission_filters(user))
+        return Match.filter_permissions(
+            super().get_queryset(), Match.permission_filters(user))

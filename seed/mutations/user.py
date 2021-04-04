@@ -35,7 +35,8 @@ class SaveUserMutation(graphene.Mutation):
         if "teams" in kwargs:
             user.teams.clear()
             for teams_id in kwargs["teams"]:
-                teams = Team.filter_permissions(Team.objects, Team.permission_filters(user)).get(pk=teams_id)
+                teams = Team.filter_permissions(Team.objects, Team.permission_filters(user)) \
+                    .get(pk=teams_id)
                 user.teams.add(teams)
         user.save()
     

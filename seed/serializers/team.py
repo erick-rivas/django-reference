@@ -14,12 +14,16 @@ class TeamSerializer(serializers.ModelSerializer):
     logo = FileSerializer(read_only=True)
     identity_docs = FileSerializer(many=True, read_only=True)
 
-    player_ids = serializers.PrimaryKeyRelatedField(many=True, source='players', read_only=True)
-    identity_doc_ids = serializers.PrimaryKeyRelatedField(many=True, source='identity_docs', read_only=True)
+    player_ids = serializers.PrimaryKeyRelatedField(
+        many=True, source='players', read_only=True)
+    identity_doc_ids = serializers.PrimaryKeyRelatedField(
+        many=True, source='identity_docs', read_only=True)
 
-    rival_id = serializers.PrimaryKeyRelatedField(source='rival', queryset=Team.objects.all(), 
+    rival_id = serializers.PrimaryKeyRelatedField(
+        source='rival', queryset=Team.objects.all(),
         required=False, allow_null=True)
-    logo_id = serializers.PrimaryKeyRelatedField(source='logo', queryset=File.objects.all(), 
+    logo_id = serializers.PrimaryKeyRelatedField(
+        source='logo', queryset=File.objects.all(),
         required=True, allow_null=False)
 
     class Meta:
