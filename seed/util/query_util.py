@@ -78,35 +78,10 @@ def _get_query(data, hsh):
                 values.append(_get_sub_query(flt, hsh))
             else:
                 val_s = {}
-                opt = ('=', '')
-                if '>=' in flt:
-                    opt = ('>=', 'gte')
-                elif '<=' in flt:
-                    opt = ('<=', 'lte')
-                elif '>' in flt:
-                    opt = ('>', 'gt')
-                elif '<' in flt:
-                    opt = ('<', 'lt')
-                elif 'ILIKE' in flt:
-                    opt = ('ILIKE', 'icontains')
-                elif 'LIKE' in flt:
-                    opt = ('LIKE', 'contains')
-
+                opt = _get_opt(flt)
                 ele = flt.split(opt[0])
                 if len(ele) > 1:
-                    val_l = ele[1].strip()
-                    if ele[1].startswith('"') and ele[1].endswith('"') or \
-                            ele[1].startswith('\'') and ele[1].endswith('\''):
-                        val_l = str(ele[1][1:-1])
-                    elif ele[1].isdigit():
-                        val_l = int(ele[1])
-                    elif _is_float(ele[1]):
-                        val_l = float(ele[1])
-                    elif ele[1].strip().upper() == 'TRUE':
-                        val_l = True
-                    elif ele[1].strip().upper() == 'FALSE':
-                        val_l = False
-
+                    val_l = _get_value(ele)
                     val_k = _snake_case(ele[0].strip()).replace(".", "__")
                     if opt[0] == '=':
                         val_s[val_k] = val_l
@@ -117,6 +92,37 @@ def _get_query(data, hsh):
         res |= Q(*values)
     return res
 
+
+def _get_opt(flt):
+    opt = ('=', '')
+    if '>=' in flt:
+        opt = ('>=', 'gte')
+    elif '<=' in flt:
+        opt = ('<=', 'lte')
+    elif '>' in flt:
+        opt = ('>', 'gt')
+    elif '<' in flt:
+        opt = ('<', 'lt')
+    elif 'ILIKE' in flt:
+        opt = ('ILIKE', 'icontains')
+    elif 'LIKE' in flt:
+        opt = ('LIKE', 'contains')
+    return opt
+
+def _get_value(ele):
+    val_l = ele[1].strip()
+    if ele[1].startswith('"') and ele[1].endswith('"') or \
+            ele[1].startswith('\'') and ele[1].endswith('\''):
+        val_l = str(ele[1][1:-1])
+    elif ele[1].isdigit():
+        val_l = int(ele[1])
+    elif _is_float(ele[1]):
+        val_l = float(ele[1])
+    elif ele[1].strip().upper() == 'TRUE':
+        val_l = True
+    elif ele[1].strip().upper() == 'FALSE':
+        val_l = False
+    return val_l
 
 def _get_sub_query(sub_content, hsh):
     idx_ini = sub_content.find('[')

@@ -20,6 +20,8 @@
 # :C0411: Third party should be placed before ...
 # :R1705: Unnecessary else after return
 # :R0903: Too few public methods (let use single classes)
+# Noisy / Buggy
+# :R0801: Similar lines
 
 disable=W0232,
     C0111, C0115, C0116,
@@ -37,7 +39,8 @@ disable=W0232,
     C0304,
     C0411,
     R1705,
-    R0903
+    R0903,
+    R0801
 
 [SIMILARITIES]
 
