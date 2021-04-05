@@ -32,3 +32,6 @@ services:
     image: "redis:alpine"
     ports:
       - "${REDIS_PORT}:6379"
+
+  codacy-cli:
+    image: "codacy/codacy-analysis-cli"

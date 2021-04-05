@@ -22,17 +22,17 @@ dotenv.read_dotenv(os.path.join(os.path.dirname(os.path.dirname(__file__)), get_
 IS_PROD = get_environ('IS_PROD')
 DEBUG = not IS_PROD
 SECRET_KEY = os.getenv('SECRET_KEY')
-USE_AWS_S3 = get_env('USE_AWS_S3')
-SITE_ID = 1
 
 # General settings
 
 ROOT_URLCONF = 'app.urls'
 WSGI_APPLICATION = 'app.wsgi.application'
 AUTH_USER_MODEL = 'models.User'
+SITE_ID = 1
 
 # Files definitions
 
+USE_AWS_S3 = get_env('USE_AWS_S3')
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, "models", "fixtures", "media"), ]
@@ -104,7 +104,11 @@ if USE_AWS_S3:
 
 REST_AUTH_SERIALIZERS = {'TOKEN_SERIALIZER': 'seed.serializers.helpers.token.TokenSerializer'}
 CORS_ORIGIN_WHITELIST = [os.getenv('CLIENT_URL')]
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', '[::1]', urlparse(os.getenv('SERVER_URL')).hostname] \
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', '[::1]', urlparse(os.getenv('SERVER_URL')).hostname]
+if get_env('USE_HTTPS'):
+    SECURE_SSL_REDIRECT = True
+    SESSION_COOKIE_SECURE = True
+    CSRF_COOKIE_SECURE = True
 
 AUTH_PASSWORD_VALIDATORS = [
     {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator', },
@@ -139,14 +143,13 @@ TEMPLATES = [
 REST_FRAMEWORK = {
     'DEFAULT_RENDERER_CLASSES': [
         'rest_framework.renderers.JSONRenderer',
-    ],
-} if IS_PROD else {
-    'DEFAULT_RENDERER_CLASSES': [
-        'rest_framework.renderers.JSONRenderer',
         'rest_framework.renderers.BrowsableAPIRenderer'
     ],
+} if DEBUG else {
+    'DEFAULT_RENDERER_CLASSES': [
+        'seed.routes.helpers.rest_render.ProductionBrowsableAPIRenderer'
+    ],
 }
-
 
 GRAPHENE = {
     'SCHEMA': 'app.graphene.schema'

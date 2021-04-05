@@ -8,6 +8,7 @@
 .env.docker.prod
 .gitignore
 .seedignore
+bin/docker/.env
 LICENSE
 SeedManifest.json
 SeedExport.json

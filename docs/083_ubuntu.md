@@ -160,6 +160,7 @@ sudo certbot --nginx
 ```
 server {
     listen 443 ssl default_server;
+    ssl_protocols TLSv1.2 TLSv1.3;
     server_name #SERVER_NAME#;
     client_max_body_size 75M;
     fastcgi_read_timeout 3000;
