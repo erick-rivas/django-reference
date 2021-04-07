@@ -11,8 +11,13 @@ This repository holds a **reference** for the development of a **REST API with g
 -   Execute setup script `bin/setup`, for windows `bin/setup.bat`
 -   Run server `bin/start`
 
--   Open server [http://localhost:8008](http://localhost:8008)
+### Examples
 
+-   API browser: [http://localhost:8008/api](http://localhost:8008/api)
+-   Graphql browser: [http://localhost:8008/graphql](http://localhost:8008/graphql)
+-   Admin pane: [http://localhost:8008/admin](http://localhost:8008/admin)
+    >   user:admin@email.com, pass: 123
+    
 ## Documentation
 
 -   All documentation is in the `docs` directory

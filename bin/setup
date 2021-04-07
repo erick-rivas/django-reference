@@ -34,5 +34,8 @@ docker-compose -f bin/docker/docker-compose.dev.yml run django bin/docker/env-de
 # Execute entrypoint.sh (make & run migrations)
 docker-compose -f bin/docker/docker-compose.dev.yml run django bin/docker/entrypoint.sh
 
+# Load dev fixtures (admin)
+docker-compose -f bin/docker/docker-compose.dev.yml run django python manage.py loaddata bin/docker/fixtures-dev.yaml
+
 # Generate docs
 docker-compose -f bin/docker/docker-compose.dev.yml run django sphinx-build -E -b html ./docs ./.data/docs

@@ -20,7 +20,7 @@ urlpatterns = \
 
 if settings.DEBUG and os.path.exists((os.path.join(settings.DOCS_DIR, "index.html"))):
     urlpatterns += \
-        [url(r'^$', RedirectView.as_view(url='./docs/010_general.html'))] \
+        [url(r'^docs$', RedirectView.as_view(url='./docs/010_general.html'))] \
         + static("/docs", document_root=settings.DOCS_DIR)
 
 if os.path.exists((os.path.join(settings.REACTJS_DIR, "index.html"))):
