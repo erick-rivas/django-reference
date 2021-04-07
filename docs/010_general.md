@@ -40,4 +40,3 @@
 
 -   Analyze code quality `bin/analyze`
 -   Test use cases `bin/test`
--   Generate code coverage report `bin/coverage`
