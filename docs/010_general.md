@@ -33,10 +33,10 @@
     
 ### Database management
 
--   To update database (migration, fixtures) execute `./bin/update`
--   To open db manager (psql) execute `./bin/query`
+-   To update database (migration, fixtures) execute `bin/update.sh` (For windows `bin/update.bat`)
+-   To open db manager (psql) execute `bin/query.sh` (For windows `bin/query.bat`)
 
 ### Testing
 
--   Analyze code quality `bin/analyze`
--   Test use cases `bin/test`
+-   Analyze code quality `bin/analyze.sh` (For windows `bin/analyze.bat`)
+-   Test use cases `bin/test.sh` (For windows `bin/test.bat`)
