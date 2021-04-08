@@ -28,6 +28,7 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 ROOT_URLCONF = 'app.urls'
 WSGI_APPLICATION = 'app.wsgi.application'
 AUTH_USER_MODEL = 'models.User'
+DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 SITE_ID = 1
 
 # Files definitions

@@ -5,7 +5,9 @@ __Seed builder__v0.2.0
 """
 
 from django.contrib import admin
-from seed.models.helpers.model_admin import ModelAdminClass
+from djangoql.admin import DjangoQLSearchMixin
+from import_export import resources
+from import_export.admin import ImportExportModelAdmin
 from app.models import Match
 from app.models import Player
 from app.models import PlayerPosition
@@ -19,26 +21,101 @@ class Admin:
     @staticmethod
     def register():
         
-        class MatchAdmin(ModelAdminClass(Match)):
-            pass
+        class MatchResource(DjangoQLSearchMixin, resources.ModelResource):
+            class Meta:
+                model = Match
+                fields = (
+                    'id',
+                    'created_at',
+                    'date',
+                    'type',
+                    'local_id',
+                    'visitor_id',
+                    'score_ids',
+                )
+        class MatchAdmin(ImportExportModelAdmin):
+            resource_class = MatchResource
         
-        class PlayerAdmin(ModelAdminClass(Player)):
-            pass
+        class PlayerResource(DjangoQLSearchMixin, resources.ModelResource):
+            class Meta:
+                model = Player
+                fields = (
+                    'id',
+                    'created_at',
+                    'name',
+                    'photo',
+                    'is_active',
+                    'photo_id',
+                    'team_id',
+                    'position_id',
+                )
+        class PlayerAdmin(ImportExportModelAdmin):
+            resource_class = PlayerResource
         
-        class PlayerPositionAdmin(ModelAdminClass(PlayerPosition)):
-            pass
+        class PlayerPositionResource(DjangoQLSearchMixin, resources.ModelResource):
+            class Meta:
+                model = PlayerPosition
+                fields = (
+                    'id',
+                    'created_at',
+                    'name',
+                )
+        class PlayerPositionAdmin(ImportExportModelAdmin):
+            resource_class = PlayerPositionResource
         
-        class ScoreAdmin(ModelAdminClass(Score)):
-            pass
+        class ScoreResource(DjangoQLSearchMixin, resources.ModelResource):
+            class Meta:
+                model = Score
+                fields = (
+                    'id',
+                    'created_at',
+                    'min',
+                    'player_id',
+                    'match_id',
+                )
+        class ScoreAdmin(ImportExportModelAdmin):
+            resource_class = ScoreResource
         
-        class TeamAdmin(ModelAdminClass(Team)):
-            pass
+        class TeamResource(DjangoQLSearchMixin, resources.ModelResource):
+            class Meta:
+                model = Team
+                fields = (
+                    'id',
+                    'created_at',
+                    'name',
+                    'logo',
+                    'description',
+                    'market_value',
+                    'identity_docs',
+                    'logo_id',
+                    'identity_doc_ids',
+                    'rival_id',
+                    'player_ids',
+                )
+        class TeamAdmin(ImportExportModelAdmin):
+            resource_class = TeamResource
         
-        class UserAdmin(ModelAdminClass(User)):
-            pass
+        class UserResource(DjangoQLSearchMixin, resources.ModelResource):
+            class Meta:
+                model = User
+                fields = (
+                    'id',
+                    'created_at',
+                    'username',
+                    'first_name',
+                    'last_name',
+                    'email',
+                    'is_active',
+                    'team_ids',
+                )
+        class UserAdmin(ImportExportModelAdmin):
+            resource_class = UserResource
         
-        class FileAdmin(ModelAdminClass(File)):
-            pass
+        class FileResource(DjangoQLSearchMixin, resources.ModelResource):
+            class Meta:
+                model = File
+        class FileAdmin(ImportExportModelAdmin):
+            resource_class = FileResource
         admin.site.register(Match, MatchAdmin)
         admin.site.register(Player, PlayerAdmin)
         admin.site.register(PlayerPosition, PlayerPositionAdmin)
