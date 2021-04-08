@@ -4,7 +4,7 @@ bandit==1.7.0
 boto3==1.17.33
 celery==5.0.5
 coverage==5.5
-Django==3.1.7
+Django==3.1.8
 django-cors-headers==3.7.0
 django-dotenv==1.4.2
 django-filter==2.4.0
