@@ -17,7 +17,7 @@ echo DJANGO_PORT=%DJANGO_PORT% >> .\bin\docker\.env
 echo POSTGRES_PORT=%POSTGRES_PORT% >> .\bin\docker\.env
 echo REDIS_PORT=%REDIS_PORT% >> .\bin\docker\.env
 
-echo %$DJANGO_PORT% > .\bin\docker\.env-port
+echo %DJANGO_PORT% > .\bin\docker\.env-port
 
 echo == Deleting previous containers
 docker-compose -f bin/docker/docker-compose.dev.yml down
