@@ -14,12 +14,15 @@ if [ $# -ge 3 ]; then
   REDIS_PORT=$3
 fi
 sudo rm bin/docker/.env
-echo "# DOCKER PORTS" >> "bin/docker/.env"
+sudo rm bin/docker/.env-info
+echo "# DOCKER PORTS" > "bin/docker/.env"
 echo "### MODIFY WITH WITH $ bin/setup <DJANGO_PORT> <POSTGRES_PORT> <REDIS_PORT> ###" >> "bin/docker/.env"
 echo "" >> "bin/docker/.env"
 echo "DJANGO_PORT=$DJANGO_PORT" >> "bin/docker/.env"
 echo "POSTGRES_PORT=$POSTGRES_PORT" >> "bin/docker/.env"
 echo "REDIS_PORT=$REDIS_PORT" >> "bin/docker/.env"
+
+echo "$DJANGO_PORT" > "bin/docker/.env-port"
 
 echo "== Deleting previous containers"
 docker-compose -f bin/docker/docker-compose.dev.yml down
