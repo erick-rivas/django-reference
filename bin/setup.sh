@@ -28,16 +28,26 @@ echo "== Building project"
 docker-compose -f bin/docker/docker-compose.dev.yml build
 
 echo "== Setting execute permissions to bin"
-docker-compose -f bin/docker/docker-compose.dev.yml run django /bin/sh -c "django chmod +x bin/*;chmod +x bin/docker/*"
+docker-compose -f bin/docker/docker-compose.dev.yml run django /bin/sh -c "chmod +x bin/*.sh;chmod +x bin/docker/*.sh"
 
 echo "== Creating .env.devs"
 docker-compose -f bin/docker/docker-compose.dev.yml run django /bin/sh -c  "bin/docker/env-dev.sh $DJANGO_PORT $POSTGRES_PORT $REDIS_PORT"
 
+echo "== Starting services"
+docker-compose -f bin/docker/docker-compose.dev.yml up -d
+
 echo "== Executing entrypoint.sh (make & run migrations)"
-docker-compose -f bin/docker/docker-compose.dev.yml run django /bin/sh -c "bin/docker/entrypoint.sh"
+docker-compose -f bin/docker/docker-compose.dev.yml exec django /bin/sh -c "bin/docker/entrypoint.sh"
 
 echo "== Loading dev fixtures (admin)"
-docker-compose -f bin/docker/docker-compose.dev.yml run django /bin/sh -c "python manage.py loaddata bin/docker/fixtures-dev.yaml"
+docker-compose -f bin/docker/docker-compose.dev.yml exec django /bin/sh -c "python manage.py loaddata bin/docker/fixtures-dev.yaml"
 
 echo "== Generating docs"
-docker-compose -f bin/docker/docker-compose.dev.yml run django /bin/sh -c "sphinx-build -E -b html ./docs ./.data/docs"
+docker-compose -f bin/docker/docker-compose.dev.yml exec django /bin/sh -c "sphinx-build -E -b html ./docs ./.data/docs"
+
+echo "== Stopping services"
+docker-compose -f bin/docker/docker-compose.dev.yml stop
+
+echo ""
+echo "== Setup completed (Start server with bin/start.sh)"
+echo ""

@@ -9,7 +9,9 @@ This repository holds a **reference** for the development of a **REST API with g
 -   Clone this repository
 -   Set execute permissions to script (linux) `chmod +x bin/setup.sh`
 -   Execute setup script `bin/setup.sh` (For windows `bin/setup.bat`)
--   Run server `bin/start.sh` (For windows `bin/start.bat`)
+-   Run server with `bin/start.sh` (For windows `bin/start.bat`)
+    -   To show server logs execute `bin/logs.sh` (For windows `bin/logs.bat`)
+    -   To stop server execute `bin/stop.sh` (For windows `bin/stop.bat`)
 
 ### Examples
 
