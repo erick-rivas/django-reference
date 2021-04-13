@@ -36,8 +36,3 @@ services:
       driver: none
     ports:
       - "${REDIS_PORT}:6379"
-
-  codacy-cli:
-    image: "codacy/codacy-analysis-cli"
-    logging:
-      driver: none
