@@ -16,7 +16,7 @@ fi
 sudo rm bin/docker/.env
 sudo rm bin/docker/.env-info
 echo "# DOCKER PORTS" > "bin/docker/.env"
-echo "### MODIFY WITH WITH $ bin/setup <DJANGO_PORT> <POSTGRES_PORT> <REDIS_PORT> ###" >> "bin/docker/.env"
+echo "### MODIFY WITH WITH $ bin/setup DJANGO_PORT POSTGRES_PORT REDIS_PORT ###" >> "bin/docker/.env"
 echo "" >> "bin/docker/.env"
 echo "DJANGO_PORT=$DJANGO_PORT" >> "bin/docker/.env"
 echo "POSTGRES_PORT=$POSTGRES_PORT" >> "bin/docker/.env"
