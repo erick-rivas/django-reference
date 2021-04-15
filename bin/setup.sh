@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "== Configure docker .env"
+echo "== Configuring docker .env"
 DJANGO_PORT=8008
 POSTGRES_PORT=5435
 REDIS_PORT=6377
