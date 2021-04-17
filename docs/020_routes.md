@@ -27,7 +27,8 @@ class PlayerViewSet(_PlayerViewSet):
         players = get_top_players(category)
 
         # Return response (json)
-        return this.response(players, many=True)
+        serializer = PlayerSerializer(players, many=True)
+        return Response(serializer.data)
 ```
 
 Endpoint
@@ -52,7 +53,8 @@ class UserViewSet(_UserViewSet):
         create_project(user, "Demo project")
 
         # Return response (json)
-        return this.response(user, many=False)
+        serializer = UserSerializer(model, many=False)
+        return Response(serializer.data)
 ```
 
 Endpoint
