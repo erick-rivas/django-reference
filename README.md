@@ -4,6 +4,7 @@ This repository holds a **reference** for the development of a **REST API with g
 
 ## Quickstart
 
+-   Install [Python3](https://www.python.org/downloads/)
 -   Install [Docker Engine](https://docs.docker.com/engine/install/) & [Compose](https://docs.docker.com/compose/install/)
     >   For linux installation adjust docker permissions [guide](https://docs.docker.com/engine/install/linux-postinstall/#manage-docker-as-a-non-root-user)
 -   Clone this repository

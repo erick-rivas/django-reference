@@ -51,7 +51,13 @@ echo == Cleaning setup
 docker-compose -f bin/docker/docker-compose.dev.yml exec django /bin/sh -c "rm bin/docker/win-env-dev.sh"
 docker-compose -f bin/docker/docker-compose.dev.yml exec django /bin/sh -c "rm bin/docker/win-entrypoint.sh"
 
-echo == Stopping services
+echo == Installing local dependencies
+python -m venv .venv
+call ".\.venv\Scripts\activate"
+python -m pip install --upgrade pip
+pip install -r requirements.txt
+
+echo == Cleaning services
 docker-compose -f bin/docker/docker-compose.dev.yml stop
 
 echo.

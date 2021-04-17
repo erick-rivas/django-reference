@@ -11,25 +11,6 @@
     >   *These files are *read-only*, modifiable only through [seed-builder](./060_seed_builder.md)*
     
 ## Development
-
-### Dev environment
-
--   For enable a IDE interpreter for developing (e.g. lint, debug), create a python virtual environment and install requirements
-    -   Linux
-    ```shell
-    sudo apt update
-    sudo apt install python3.6
-    python3 -m venv .venv
-    . .venv/bin/activate
-    pip3 install -r requirements.txt
-    ```
-    -   Windows
-    ```shell
-    # Install python from https://www.python.org/downloads/
-    python -m venv .venv
-    . .venv/Script/activate
-    pip install -r requirements.txt
-    ```
     
 ### Database management
 

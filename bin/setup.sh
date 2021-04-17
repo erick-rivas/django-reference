@@ -48,7 +48,13 @@ docker-compose -f bin/docker/docker-compose.dev.yml exec django /bin/sh -c "pyth
 echo "== Generating docs"
 docker-compose -f bin/docker/docker-compose.dev.yml exec django /bin/sh -c "sphinx-build -E -b html ./docs ./.data/docs"
 
-echo "== Stopping services"
+echo "== Installing local dependencies"
+python3 -m venv .venv
+. "$(pwd)"/.venv/bin/activate
+python3 -m pip install --upgrade pip
+pip3 install -r requirements.txt
+
+echo "== Cleaning services"
 docker-compose -f bin/docker/docker-compose.dev.yml stop
 
 echo ""
