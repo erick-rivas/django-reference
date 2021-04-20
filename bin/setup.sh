@@ -48,6 +48,9 @@ docker-compose -f bin/docker/docker-compose.dev.yml exec django /bin/sh -c "pyth
 echo "== Generating docs"
 docker-compose -f bin/docker/docker-compose.dev.yml exec django /bin/sh -c "sphinx-build -E -b html ./docs ./.data/docs"
 
+echo "== Removing root permissions"
+sudo chown -R $(whoami) .
+
 echo "== Installing local dependencies"
 python3 -m venv .venv
 . "$(pwd)"/.venv/bin/activate

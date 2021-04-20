@@ -1,3 +1,8 @@
+"""
+__Seed builder__
+  (Read_only) Routes helper
+"""
+
 from rest_framework.renderers import BrowsableAPIRenderer
 
 

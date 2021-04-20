@@ -1,6 +1,6 @@
 """
-__Seed builder__v0.2.0
-  (Read_only) Builder helper
+__Seed builder__
+  (Read_only) Routes helper
 """
 
 from django.utils.deprecation import MiddlewareMixin

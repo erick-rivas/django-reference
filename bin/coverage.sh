@@ -5,5 +5,5 @@ if [ $RUNNING -z ]; then
   echo "ERROR: Before executing bin/coverage.sh, start server with bin/start.sh"
   exit 1
 fi
-docker-compose -f bin/docker/docker-compose.dev.yml exec django /bin/sh -c "coverage run --omit='.venv/*,bin/*,tests/*,*__init__*' manage.py test"
+docker-compose -f bin/docker/docker-compose.dev.yml exec django /bin/sh -c "coverage run --omit='.venv/*,bin/*,tests/*,*__init__*,seed/*, app/*' manage.py test"
 docker-compose -f bin/docker/docker-compose.dev.yml exec django /bin/sh -c "coverage report -m"
