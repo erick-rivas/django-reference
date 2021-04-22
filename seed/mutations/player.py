@@ -21,7 +21,8 @@ class SavePlayerMutation(graphene.Mutation):
         isActive = graphene.Boolean(required=True)
         team = graphene.Int(required=True)
         position = graphene.Int(required=True)
-
+        
+    # pylint: disable=R0912,W0622
     def mutate(self, info, **kwargs):
         user = info.context.user
         player = {}
@@ -58,7 +59,8 @@ class SetPlayerMutation(graphene.Mutation):
         isActive = graphene.Boolean(required=False)
         team = graphene.Int(required=False)
         position = graphene.Int(required=False)
-
+        
+    # pylint: disable=R0912,W0622
     def mutate(self, info, **kwargs):
         user = info.context.user
         player = Player.filter_permissions(

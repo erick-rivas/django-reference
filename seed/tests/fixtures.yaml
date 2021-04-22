@@ -15,8 +15,8 @@
   fields:
     date: "2020-01-01T12:00:00+00:00"
     type: "FRIENDSHIP"
-    local:  1
-    visitor:  1
+    local: 1
+    visitor: 1
 
 ## PLAYERS
 
@@ -26,8 +26,8 @@
     name: ""
     photo: 1
     is_active: false
-    team:  1
-    position:  1
+    team: 1
+    position: 1
 
 ## PLAYER_POSITIONS
 
@@ -42,8 +42,8 @@
   pk: 1
   fields:
     min: 128
-    player:  1
-    match:  1
+    player: 1
+    match: 1
 
 ## TEAMS
 
@@ -54,7 +54,7 @@
     logo: 1
     description: ""
     market_value: 128.0
-    rival:  1
+    rival: 1
 
 ## USERS
 

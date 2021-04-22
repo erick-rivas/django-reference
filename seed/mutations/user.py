@@ -21,7 +21,8 @@ class SaveUserMutation(graphene.Mutation):
         isActive = graphene.Boolean(required=True)
         password = graphene.String(required=True)
         teams = graphene.List(graphene.Int)
-
+        
+    # pylint: disable=R0912,W0622
     def mutate(self, info, **kwargs):
         user = info.context.user
         user = {}
@@ -56,7 +57,8 @@ class SetUserMutation(graphene.Mutation):
         isActive = graphene.Boolean(required=False)
         password = graphene.String(required=False)
         teams = graphene.List(graphene.Int)
-
+        
+    # pylint: disable=R0912,W0622
     def mutate(self, info, **kwargs):
         user = info.context.user
         user = User.filter_permissions(

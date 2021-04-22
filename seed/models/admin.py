@@ -18,6 +18,7 @@ from app.models import File
 
 class Admin:
 
+    # pylint: disable=R0914
     @staticmethod
     def register():
         

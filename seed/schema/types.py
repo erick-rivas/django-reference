@@ -207,7 +207,8 @@ def resolve_count(model, count_type, info, **kwargs):
 class Query(object):
     
     matches = graphene.List(
-        Match, query=graphene.String(), orderBy=graphene.String(), limit=graphene.Int())
+        Match, query=graphene.String(),
+        orderBy=graphene.String(), limit=graphene.Int())
     matchPagination = graphene.Field(
         MatchPagination,
         pageNum=graphene.Int(required=True), pageSize=graphene.Int(required=True),
@@ -215,7 +216,8 @@ class Query(object):
     matchCount = graphene.Field(MatchCount, query=graphene.String())
     match = graphene.Field(Match, id=graphene.Int(required=True))
     players = graphene.List(
-        Player, query=graphene.String(), orderBy=graphene.String(), limit=graphene.Int())
+        Player, query=graphene.String(),
+        orderBy=graphene.String(), limit=graphene.Int())
     playerPagination = graphene.Field(
         PlayerPagination,
         pageNum=graphene.Int(required=True), pageSize=graphene.Int(required=True),
@@ -223,7 +225,8 @@ class Query(object):
     playerCount = graphene.Field(PlayerCount, query=graphene.String())
     player = graphene.Field(Player, id=graphene.Int(required=True))
     playerPositions = graphene.List(
-        PlayerPosition, query=graphene.String(), orderBy=graphene.String(), limit=graphene.Int())
+        PlayerPosition, query=graphene.String(),
+        orderBy=graphene.String(), limit=graphene.Int())
     playerPositionPagination = graphene.Field(
         PlayerPositionPagination,
         pageNum=graphene.Int(required=True), pageSize=graphene.Int(required=True),
@@ -231,7 +234,8 @@ class Query(object):
     playerPositionCount = graphene.Field(PlayerPositionCount, query=graphene.String())
     playerPosition = graphene.Field(PlayerPosition, id=graphene.Int(required=True))
     scores = graphene.List(
-        Score, query=graphene.String(), orderBy=graphene.String(), limit=graphene.Int())
+        Score, query=graphene.String(),
+        orderBy=graphene.String(), limit=graphene.Int())
     scorePagination = graphene.Field(
         ScorePagination,
         pageNum=graphene.Int(required=True), pageSize=graphene.Int(required=True),
@@ -239,7 +243,8 @@ class Query(object):
     scoreCount = graphene.Field(ScoreCount, query=graphene.String())
     score = graphene.Field(Score, id=graphene.Int(required=True))
     teams = graphene.List(
-        Team, query=graphene.String(), orderBy=graphene.String(), limit=graphene.Int())
+        Team, query=graphene.String(),
+        orderBy=graphene.String(), limit=graphene.Int())
     teamPagination = graphene.Field(
         TeamPagination,
         pageNum=graphene.Int(required=True), pageSize=graphene.Int(required=True),
@@ -247,7 +252,8 @@ class Query(object):
     teamCount = graphene.Field(TeamCount, query=graphene.String())
     team = graphene.Field(Team, id=graphene.Int(required=True))
     users = graphene.List(
-        User, query=graphene.String(), orderBy=graphene.String(), limit=graphene.Int())
+        User, query=graphene.String(),
+        orderBy=graphene.String(), limit=graphene.Int())
     userPagination = graphene.Field(
         UserPagination,
         pageNum=graphene.Int(required=True), pageSize=graphene.Int(required=True),
@@ -272,7 +278,8 @@ class Query(object):
     # pylint: disable=C0103
     def resolve_matchPagination(self, info, **kwargs):
         return resolve_pagination(
-            MatchModel, 'matches', MatchPagination, info, **kwargs)
+            MatchModel, 'matches',
+            MatchPagination, info, **kwargs)
 
     # pylint: disable=C0103
     def resolve_matchCount(self, info, **kwargs):
@@ -282,7 +289,8 @@ class Query(object):
     def resolve_match(self, info, id):
         user = info.context.user
         return MatchModel.filter_permissions(
-            MatchModel.objects, MatchModel.permission_filters(user)).get(pk=id)
+            MatchModel.objects,
+            MatchModel.permission_filters(user)).get(pk=id)
     
     # pylint: disable=C0103
     def resolve_players(self, info, **kwargs):
@@ -293,7 +301,8 @@ class Query(object):
     # pylint: disable=C0103
     def resolve_playerPagination(self, info, **kwargs):
         return resolve_pagination(
-            PlayerModel, 'players', PlayerPagination, info, **kwargs)
+            PlayerModel, 'players',
+            PlayerPagination, info, **kwargs)
 
     # pylint: disable=C0103
     def resolve_playerCount(self, info, **kwargs):
@@ -303,7 +312,8 @@ class Query(object):
     def resolve_player(self, info, id):
         user = info.context.user
         return PlayerModel.filter_permissions(
-            PlayerModel.objects, PlayerModel.permission_filters(user)).get(pk=id)
+            PlayerModel.objects,
+            PlayerModel.permission_filters(user)).get(pk=id)
     
     # pylint: disable=C0103
     def resolve_playerPositions(self, info, **kwargs):
@@ -314,7 +324,8 @@ class Query(object):
     # pylint: disable=C0103
     def resolve_playerPositionPagination(self, info, **kwargs):
         return resolve_pagination(
-            PlayerPositionModel, 'playerPositions', PlayerPositionPagination, info, **kwargs)
+            PlayerPositionModel, 'playerPositions',
+            PlayerPositionPagination, info, **kwargs)
 
     # pylint: disable=C0103
     def resolve_playerPositionCount(self, info, **kwargs):
@@ -324,7 +335,8 @@ class Query(object):
     def resolve_playerPosition(self, info, id):
         user = info.context.user
         return PlayerPositionModel.filter_permissions(
-            PlayerPositionModel.objects, PlayerPositionModel.permission_filters(user)).get(pk=id)
+            PlayerPositionModel.objects,
+            PlayerPositionModel.permission_filters(user)).get(pk=id)
     
     # pylint: disable=C0103
     def resolve_scores(self, info, **kwargs):
@@ -335,7 +347,8 @@ class Query(object):
     # pylint: disable=C0103
     def resolve_scorePagination(self, info, **kwargs):
         return resolve_pagination(
-            ScoreModel, 'scores', ScorePagination, info, **kwargs)
+            ScoreModel, 'scores',
+            ScorePagination, info, **kwargs)
 
     # pylint: disable=C0103
     def resolve_scoreCount(self, info, **kwargs):
@@ -345,7 +358,8 @@ class Query(object):
     def resolve_score(self, info, id):
         user = info.context.user
         return ScoreModel.filter_permissions(
-            ScoreModel.objects, ScoreModel.permission_filters(user)).get(pk=id)
+            ScoreModel.objects,
+            ScoreModel.permission_filters(user)).get(pk=id)
     
     # pylint: disable=C0103
     def resolve_teams(self, info, **kwargs):
@@ -356,7 +370,8 @@ class Query(object):
     # pylint: disable=C0103
     def resolve_teamPagination(self, info, **kwargs):
         return resolve_pagination(
-            TeamModel, 'teams', TeamPagination, info, **kwargs)
+            TeamModel, 'teams',
+            TeamPagination, info, **kwargs)
 
     # pylint: disable=C0103
     def resolve_teamCount(self, info, **kwargs):
@@ -366,7 +381,8 @@ class Query(object):
     def resolve_team(self, info, id):
         user = info.context.user
         return TeamModel.filter_permissions(
-            TeamModel.objects, TeamModel.permission_filters(user)).get(pk=id)
+            TeamModel.objects,
+            TeamModel.permission_filters(user)).get(pk=id)
     
     # pylint: disable=C0103
     def resolve_users(self, info, **kwargs):
@@ -377,7 +393,8 @@ class Query(object):
     # pylint: disable=C0103
     def resolve_userPagination(self, info, **kwargs):
         return resolve_pagination(
-            UserModel, 'users', UserPagination, info, **kwargs)
+            UserModel, 'users',
+            UserPagination, info, **kwargs)
 
     # pylint: disable=C0103
     def resolve_userCount(self, info, **kwargs):
@@ -387,7 +404,8 @@ class Query(object):
     def resolve_user(self, info, id):
         user = info.context.user
         return UserModel.filter_permissions(
-            UserModel.objects, UserModel.permission_filters(user)).get(pk=id)
+            UserModel.objects,
+            UserModel.permission_filters(user)).get(pk=id)
     
     def resolve_files(self, info, **kwargs):
         if "limit" in kwargs:

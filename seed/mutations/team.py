@@ -19,7 +19,8 @@ class SaveTeamMutation(graphene.Mutation):
         description = graphene.String(required=True)
         marketValue = graphene.Float(required=True)
         rival = graphene.Int(required=False)
-
+        
+    # pylint: disable=R0912,W0622
     def mutate(self, info, **kwargs):
         user = info.context.user
         team = {}
@@ -52,7 +53,8 @@ class SetTeamMutation(graphene.Mutation):
         description = graphene.String(required=False)
         marketValue = graphene.Float(required=False)
         rival = graphene.Int(required=False)
-
+        
+    # pylint: disable=R0912,W0622
     def mutate(self, info, **kwargs):
         user = info.context.user
         team = Team.filter_permissions(

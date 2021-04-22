@@ -18,7 +18,8 @@ class SaveScoreMutation(graphene.Mutation):
         min = graphene.Int(required=True)
         player = graphene.Int(required=True)
         match = graphene.Int(required=True)
-
+        
+    # pylint: disable=R0912,W0622
     def mutate(self, info, **kwargs):
         user = info.context.user
         score = {}
@@ -47,7 +48,8 @@ class SetScoreMutation(graphene.Mutation):
         min = graphene.Int(required=False)
         player = graphene.Int(required=False)
         match = graphene.Int(required=False)
-
+        
+    # pylint: disable=R0912,W0622
     def mutate(self, info, **kwargs):
         user = info.context.user
         score = Score.filter_permissions(

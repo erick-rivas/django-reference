@@ -14,7 +14,8 @@ class SavePlayerPositionMutation(graphene.Mutation):
     
     class Arguments:
         name = graphene.String(required=True)
-
+        
+    # pylint: disable=R0912,W0622
     def mutate(self, info, **kwargs):
         user = info.context.user
         player_position = {}
@@ -31,7 +32,8 @@ class SetPlayerPositionMutation(graphene.Mutation):
     class Arguments:
         id = graphene.Int(required=True)
         name = graphene.String(required=False)
-
+        
+    # pylint: disable=R0912,W0622
     def mutate(self, info, **kwargs):
         user = info.context.user
         player_position = PlayerPosition.filter_permissions(

@@ -15,8 +15,8 @@
   fields:
     date: "2020-01-01T12:00:00+00:00"
     type: "FRIENDSHIP|LEAGUE|CUP|"
-    local:  0
-    visitor:  0
+    local: 0
+    visitor: 0
 
 ## PLAYERS
 
@@ -26,8 +26,8 @@
     name: ""
     photo: 0
     is_active: false
-    team:  0
-    position:  0
+    team: 0
+    position: 0
 
 ## PLAYER_POSITIONS
 
@@ -42,8 +42,8 @@
   pk: 1
   fields:
     min: 0
-    player:  0
-    match:  0
+    player: 0
+    match: 0
 
 ## TEAMS
 
@@ -54,7 +54,7 @@
     logo: 0
     description: ""
     market_value: 0
-    rival:  0
+    rival: 0
 
 ## USERS
 

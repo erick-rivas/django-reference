@@ -18,7 +18,8 @@ class SaveMatchMutation(graphene.Mutation):
         type = graphene.String(required=True)
         local = graphene.Int(required=True)
         visitor = graphene.Int(required=True)
-
+        
+    # pylint: disable=R0912,W0622
     def mutate(self, info, **kwargs):
         user = info.context.user
         match = {}
@@ -49,7 +50,8 @@ class SetMatchMutation(graphene.Mutation):
         type = graphene.String(required=False)
         local = graphene.Int(required=False)
         visitor = graphene.Int(required=False)
-
+        
+    # pylint: disable=R0912,W0622
     def mutate(self, info, **kwargs):
         user = info.context.user
         match = Match.filter_permissions(
