@@ -8,10 +8,19 @@
 #      - Run with > python3 manage.py loaddata fixtures/*.yaml
 #
 
+## FILES
+
+- model: models.File
+  pk: 10000
+  fields:
+    url: "https://st-listas.20minutos.es/images/2010-01/177732/1966423_640px.jpg?1518458710"
+    size: 0
+    name: "file"
+
 ## USERS
 
 - model: models.user
-  pk: 1
+  pk: 10000
   fields:
     username: "admin@email.com"
     first_name: "Admin"
@@ -24,12 +33,3 @@
     last_login: "2020-01-01T12:00:00+00:00"
     date_joined: "2020-01-01T12:00:00+00:00"
     teams: []
-
-## FILES
-
-- model: models.File
-  pk: 1
-  fields:
-    url: "https://st-listas.20minutos.es/images/2010-01/177732/1966423_640px.jpg?1518458710"
-    size: 0
-    name: "file"
