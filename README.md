@@ -21,4 +21,4 @@ This repository holds a **reference** for the development of a **REST API with g
     
 ## Documentation
 
--   All documentation is in the `docs` directory
+-   All documentation is in the [docs](./docs/010_general.md) directory and in the server path [http://localhost:8008/docs](http://localhost:8008/docs)
