@@ -6,6 +6,7 @@
 .env.prod
 .env.docker.dev
 .env.docker.prod
+.dev.pem
 .gitignore
 .seedignore
 bin/docker/.env

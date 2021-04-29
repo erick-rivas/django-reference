@@ -3,12 +3,12 @@
 # AUTO_GENERATED (Read only)
 
 KEY=0
-HOST="dev.seed-project.com.mx"
+HOST=dev.seed-project.com.mx
 
 if [ $# -ge 1 ]; then
   KEY=$1;
 else
-  echo "ERROR: Include deploy key (port) e.g $ bin/deploy.sh 10120"
+  echo "ERROR: Include deploy key-port e.g $ bin/deploy.sh 10120"
   exit 1
 fi
 if [ $# -ge 2 ]; then HOST=$2; fi

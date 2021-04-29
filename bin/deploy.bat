@@ -3,10 +3,10 @@
 # AUTO_GENERATED (Read only)
 
 set /A KEY=0
-set /A HOST="dev.seed-project.com.mx"
+set /A HOST=dev.seed-project.com.mx
 
 IF NOT "%~1" == "" set KEY=%1
-IF "%~1" == "" echo ERROR: Include deploy key (port) e.g $ bin/deploy.sh 10120
+IF "%~1" == "" echo ERROR: Include deploy key-port e.g $ bin/deploy.sh 10120
 IF "%~1" == "" exit 1
 IF NOT "%~2" == "" set HOST=%2
 
