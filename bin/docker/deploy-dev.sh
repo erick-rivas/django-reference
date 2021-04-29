@@ -1,0 +1,39 @@
+#!/bin/sh
+
+KEY=$1
+HOST=$2
+GIT_URL=$3
+GIT_BRANCH=$4
+CLIENT_PORT=$(python -c "print($KEY + 0)")
+DJANGO_PORT=$(python -c "print($KEY + 1)")
+POSTGRES_PORT=$(python -c "print($KEY + 2)")
+REDIS_PORT=$(python -c "print($KEY + 3)")
+SERVER_URL="http://$HOST:$DJANGO_PORT"
+CLIENT_URL="http://$HOST:$CLIENT_PORT"
+
+sudo chmod 400 .dev.pem
+echo "== Updating project"
+ssh -t -i .dev.pem ubuntu@$HOST "git clone $GIT_URL $KEY/api"
+ssh -t -i .dev.pem ubuntu@$HOST "cd $KEY/api;git reset --hard"
+ssh -t -i .dev.pem ubuntu@$HOST "cd $KEY/api;git clean -f -d"
+ssh -t -i .dev.pem ubuntu@$HOST "cd $KEY/api;git checkout $GIT_BRANCH"
+ssh -t -i .dev.pem ubuntu@$HOST "cd $KEY/api;git pull"
+
+echo "== Configuring docker"
+ssh -t -i .dev.pem ubuntu@$HOST "cd $KEY/api;sed -i \"s/run django/run django-$KEY/\" \"bin/setup.sh\""
+ssh -t -i .dev.pem ubuntu@$HOST "cd $KEY/api;sed -i \"s/exec django/exec django-$KEY/\" \"bin/setup.sh\""
+ssh -t -i .dev.pem ubuntu@$HOST "cd $KEY/api;sed -i \"s/ django:/ django-$KEY:/\" \"bin/docker/docker-compose.dev.yml\""
+ssh -t -i .dev.pem ubuntu@$HOST "cd $KEY/api;sed -i \"s/ postgres:/ postgres-$KEY:/\" \"bin/docker/docker-compose.dev.yml\""
+ssh -t -i .dev.pem ubuntu@$HOST "cd $KEY/api;sed -i \"s/ redis:/ redis-$KEY:/\" \"bin/docker/docker-compose.dev.yml\""
+ssh -t -i .dev.pem ubuntu@$HOST "cd $KEY/api;sed -i \"s/- postgres/- postgres-$KEY/\" \"bin/docker/docker-compose.dev.yml\""
+ssh -t -i .dev.pem ubuntu@$HOST "cd $KEY/api;sed -i \"s/- redis/- redis-$KEY/\" \"bin/docker/docker-compose.dev.yml\""
+ssh -t -i .dev.pem ubuntu@$HOST "cd $KEY/api;sed -i \"s/DB_HOST=postgres/DB_HOST=postgres-$KEY/\" \"bin/docker/env-dev.sh\""
+ssh -t -i .dev.pem ubuntu@$HOST "cd $KEY/api;sed -i \"s/REDIS_HOST=redis/REDIS_HOST=redis-$KEY/\" \"bin/docker/env-dev.sh\""
+
+echo "== Updating django server"
+ssh -t -i .dev.pem ubuntu@$HOST "cd $KEY/api;bin/setup.sh $DJANGO_PORT $POSTGRES_PORT $REDIS_PORT $SERVER_URL $CLIENT_URL"
+ssh -t -i .dev.pem ubuntu@$HOST "cd $KEY/api;bin/start.sh"
+
+echo ""
+echo "== Deployment completed (http://$HOST:$DJANGO_PORT)"
+echo ""
