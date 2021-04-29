@@ -28,7 +28,6 @@ domain/*
 models/*.py
 models/*.md
 models/fixtures/*.yaml
-models/fixtures/media/*
 models/migrations/*
 mutations
 schema

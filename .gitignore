@@ -3,6 +3,7 @@
 .env.dev
 .env.docker.dev
 .env.docker.prod
+.dev.pem
 bin/docker/.env
 bin/docker/.env-port
 static
