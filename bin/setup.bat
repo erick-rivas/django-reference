@@ -6,8 +6,8 @@ echo == Configuring docker .env
 set /A DJANGO_PORT=8008
 set /A POSTGRES_PORT=5435
 set /A REDIS_PORT=6377
-set /A SERVER_URL=http://localhost:8008
-set /A CLIENT_URL=http://localhost:3003
+set /A SERVER_URL="http://localhost:8008"
+set /A CLIENT_URL="http://localhost:3003"
 
 IF NOT "%~1" == "" set DJANGO_PORT=%1
 IF NOT "%~2" == "" set POSTGRES_PORT=%2
