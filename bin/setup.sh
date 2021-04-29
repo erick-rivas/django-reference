@@ -10,7 +10,7 @@ SERVER_URL=http://localhost:8008
 CLIENT_URL=http://localhost:3003
 
 if [ $# -ge 1 ]; then DJANGO_PORT=$1; fi
-if [ $# -ge 2 ]; then DB_PORT=$2; fi
+if [ $# -ge 2 ]; then POSTGRES_PORT=$2; fi
 if [ $# -ge 3 ]; then REDIS_PORT=$3; fi
 if [ $# -ge 4 ]; then SERVER_URL=$4; fi
 if [ $# -ge 5 ]; then CLIENT_URL=$5; fi

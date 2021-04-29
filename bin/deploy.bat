@@ -6,7 +6,7 @@ set /A KEY=0
 set /A HOST=dev.seed-project.com.mx
 
 IF NOT "%~1" == "" set KEY=%1
-IF "%~1" == "" echo ERROR: Include deploy key-port e.g $ bin/deploy.sh 10120
+IF "%~1" == "" echo ERROR: Include deploy port-key e.g $ bin/deploy.sh 7120
 IF "%~1" == "" exit 1
 IF NOT "%~2" == "" set HOST=%2
 
@@ -24,9 +24,24 @@ echo == NOTE: BEFORE START paste .dev.pem in root dir
 
 echo == Updating project
 ssh -t -i .dev.pem ubuntu@%HOST% "git clone %git_url% %KEY%"
+ssh -t -i .dev.pem ubuntu@%HOST% "cd %KEY%;git reset --hard"
+ssh -t -i .dev.pem ubuntu@%HOST% "cd %KEY%;git clean -f -d"
 ssh -t -i .dev.pem ubuntu@%HOST% "cd %KEY%;git checkout %git_branch%"
 ssh -t -i .dev.pem ubuntu@%HOST% "cd %KEY%;git pull"
+
+echo == Configuring docker
+ssh -t -i .dev.pem ubuntu@%HOST% "cd %KEY%;sed -i \"s/run django/run django-%KEY%/\" \"bin/setup.sh\""
+ssh -t -i .dev.pem ubuntu@%HOST% "cd %KEY%;sed -i \"s/exec django/exec django-%KEY%/\" \"bin/setup.sh\""
+ssh -t -i .dev.pem ubuntu@%HOST% "cd %KEY%;sed -i \"s/ django:/ django-%KEY%:/\" \"bin/docker/docker-compose.dev.yml\""
+ssh -t -i .dev.pem ubuntu@%HOST% "cd %KEY%;sed -i \"s/ postgres:/ postgres-%KEY%:/\" \"bin/docker/docker-compose.dev.yml\""
+ssh -t -i .dev.pem ubuntu@%HOST% "cd %KEY%;sed -i \"s/ redis:/ redis-%KEY%:/\" \"bin/docker/docker-compose.dev.yml\""
+ssh -t -i .dev.pem ubuntu@%HOST% "cd %KEY%;sed -i \"s/- postgres/- postgres-%KEY%/\" \"bin/docker/docker-compose.dev.yml\""
+ssh -t -i .dev.pem ubuntu@%HOST% "cd %KEY%;sed -i \"s/- redis/- redis-%KEY%/\" \"bin/docker/docker-compose.dev.yml\""
 
 echo == Updating django server
 ssh -t -i .dev.pem ubuntu@%HOST% "cd %KEY%;bin/setup.sh %django_port% %postgres_port% %redis_port% %server_url% %client_url%"
 ssh -t -i .dev.pem ubuntu@%HOST% "cd %KEY%;bin/start.sh"
+
+echo.
+echo == Deployment completed (http://%HOST%:%django_port%)
+echo.

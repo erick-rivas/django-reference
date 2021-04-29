@@ -35,6 +35,9 @@ schema
 serializers
 routes
 ?.env.example
+?.dockerignore
+?.pylintrc
+?Dockerfile
 ?README.md
 ?requirements.txt
 ?manage.py
