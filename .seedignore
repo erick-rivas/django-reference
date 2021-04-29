@@ -41,6 +41,7 @@ routes
 ?app/settings.py
 ?app/urls.py
 ?app/wsgi.py
+?bin/docker/custom-setup.sh
 !*__init__.py
 !seed/models/model.py
 !seed/models/file.py

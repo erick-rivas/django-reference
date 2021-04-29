@@ -1,7 +1,10 @@
 #!/bin/sh
+# Seed builder
+# AUTO_GENERATED (Read only)
+
 echo "== Creating & configuring env.docker.dev file"
 cp .env.example .env.docker.dev
-sed -i "s/SERVER_URL=http:\/\/localhost:8000/SERVER_URL=http:\/\/localhost:$1/" ".env.docker.dev"
+sed -i "s/SERVER_URL=http:\/\/localhost:8000/SERVER_URL=$3/" ".env.docker.dev"
 sed -i "s/CLIENT_URL=http:\/\/localhost:3000/CLIENT_URL=http:\/\/localhost:3003/" ".env.docker.dev"
 sed -i "s/DB_NAME=/DB_NAME=postgres/" ".env.docker.dev"
 sed -i "s/DB_USER=/DB_USER=postgres/" ".env.docker.dev"
@@ -12,7 +15,8 @@ sed -i "s/SECRET_KEY=/SECRET_KEY=fupswltefA9efredrufihUSTOwamc/" ".env.docker.de
 
 echo "== Creating & configuring env.dev file"
 cp .env.example .env.dev
-sed -i "s/CLIENT_URL=http:\/\/localhost:3000/CLIENT_URL=http:\/\/localhost:3003/" ".env.dev"
+sed -i "s/SERVER_URL=http:\/\/localhost:8000/SERVER_URL=http:\/\/localhost:8000/" ".env.dev"
+sed -i "s/CLIENT_URL=http:\/\/localhost:3000/CLIENT_URL=$4/" ".env.dev"
 sed -i "s/DB_NAME=/DB_NAME=postgres/" ".env.dev"
 sed -i "s/DB_USER=/DB_USER=postgres/" ".env.dev"
 sed -i "s/DB_PASSWORD=/DB_PASSWORD=postgres/" ".env.dev"

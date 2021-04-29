@@ -120,13 +120,13 @@ AUTH_PASSWORD_VALIDATORS = [
 
 # Templates settings
 
-TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
+TEMPLATES_DIRS = [os.path.join(BASE_DIR, 'templates'), os.path.join(BASE_DIR, 'seed', 'templates')]
 DOCS_DIR = os.path.join(BASE_DIR, ".data", "docs")
 REACTJS_DIR = os.path.join(BASE_DIR, "reactjs")
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [TEMPLATES_DIR, REACTJS_DIR],
+        'DIRS': TEMPLATES_DIRS + [REACTJS_DIR, ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

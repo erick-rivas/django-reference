@@ -1,4 +1,7 @@
 #!/bin/bash
+# Seed builder
+# AUTO_GENERATED (Read only)
+
 echo "== Opening psql console"
 RUNNING=$(docker-compose -f bin/docker/docker-compose.dev.yml ps --services --filter "status=running")
 if [ $RUNNING -z ]; then

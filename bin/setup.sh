@@ -1,18 +1,20 @@
 #!/bin/bash
+# Seed builder
+# AUTO_GENERATED (Read only)
 
 echo "== Configuring docker .env"
 DJANGO_PORT=8008
 POSTGRES_PORT=5435
 REDIS_PORT=6377
-if [ $# -ge 1 ]; then
-  DJANGO_PORT=$1
-fi
-if [ $# -ge 2 ]; then
-  DB_PORT=$2
-fi
-if [ $# -ge 3 ]; then
-  REDIS_PORT=$3
-fi
+SERVER_URL="http://localhost:8008"
+CLIENT_URL="http://localhost:3003"
+
+if [ $# -ge 1 ]; then DJANGO_PORT=$1; fi
+if [ $# -ge 2 ]; then DB_PORT=$2; fi
+if [ $# -ge 3 ]; then REDIS_PORT=$3; fi
+if [ $# -ge 4 ]; then SERVER_URL=$4; fi
+if [ $# -ge 5 ]; then CLIENT_URL=$5; fi
+
 sudo rm bin/docker/.env
 sudo rm bin/docker/.env-info
 echo "# DOCKER PORTS" > "bin/docker/.env"
@@ -34,10 +36,13 @@ echo "== Setting execute permissions to bin"
 sudo docker-compose -f bin/docker/docker-compose.dev.yml run django /bin/sh -c "chmod +x bin/*.sh;chmod +x bin/docker/*.sh"
 
 echo "== Creating .env.devs"
-sudo docker-compose -f bin/docker/docker-compose.dev.yml run django /bin/sh -c  "bin/docker/env-dev.sh $DJANGO_PORT $POSTGRES_PORT $REDIS_PORT"
+sudo docker-compose -f bin/docker/docker-compose.dev.yml run django /bin/sh -c  "bin/docker/env-dev.sh $DJANGO_PORT $POSTGRES_PORT $REDIS_PORT $SERVER_URL $CLIENT_URL"
 
 echo "== Starting services"
 sudo docker-compose -f bin/docker/docker-compose.dev.yml up -d
+
+echo "== Executing custom setup scripts"
+sudo docker-compose -f bin/docker/docker-compose.dev.yml exec django /bin/sh -c  "bin/docker/custom-setup.sh"
 
 echo "== Executing entrypoint.sh (make & run migrations)"
 sudo docker-compose -f bin/docker/docker-compose.dev.yml exec django /bin/sh -c "bin/docker/entrypoint.sh"
