@@ -11,7 +11,7 @@ REDIS_PORT=$(python -c "print($KEY + 3)")
 SERVER_URL="http://$HOST:$DJANGO_PORT"
 CLIENT_URL="http://$HOST:$CLIENT_PORT"
 
-sudo chmod 400 .dev.pem
+chmod 400 .dev.pem
 echo "== Updating project"
 ssh -t -i .dev.pem ubuntu@$HOST "git clone $GIT_URL $KEY/api"
 ssh -t -i .dev.pem ubuntu@$HOST "cd $KEY/api;git reset --hard"
