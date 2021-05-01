@@ -4,5 +4,6 @@ exclude_paths:
   - "models/migrations/*"
   - "seed/tests/**"
   - "tests/**"
+  - ".git/**"
   - ".venv/**"
   - ".data/**"

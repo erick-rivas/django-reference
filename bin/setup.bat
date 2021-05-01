@@ -6,12 +6,12 @@ echo == Configuring docker .env
 set /A DJANGO_PORT=8008
 set /A POSTGRES_PORT=5435
 set /A REDIS_PORT=6377
-set /A SERVER_URL="http://localhost:8008"
-set /A CLIENT_URL="http://localhost:3003"
+set SERVER_URL=http://localhost:8008
+set CLIENT_URL=http://localhost:3003
 
-IF NOT "%~1" == "" set DJANGO_PORT=%1
-IF NOT "%~2" == "" set POSTGRES_PORT=%2
-IF NOT "%~3" == "" set REDIS_PORT=%3
+IF NOT "%~1" == "" set /A DJANGO_PORT=%1
+IF NOT "%~2" == "" set /A POSTGRES_PORT=%2
+IF NOT "%~3" == "" set /A REDIS_PORT=%3
 IF NOT "%~4" == "" set SERVER_URL=%4
 IF NOT "%~5" == "" set CLIENT_URL=%5
 
@@ -37,7 +37,7 @@ docker-compose -f bin/docker/docker-compose-dev.yml run django_reference_django 
 echo == Creating .env.devs
 docker-compose -f bin/docker/docker-compose-dev.yml run django_reference_django /bin/sh -c "cp bin/docker/env-dev.sh bin/docker/win-env-dev.sh"
 docker-compose -f bin/docker/docker-compose-dev.yml run django_reference_django /bin/sh -c "sed -i 's/\r$//g' bin/docker/win-env-dev.sh"
-docker-compose -f bin/docker/docker-compose-dev.yml run django_reference_django /bin/sh -c "bin/docker/win-env-dev.sh %DJANGO_PORT% %POSTGRES_PORT% %REDIS_PORT% %HOST%"
+docker-compose -f bin/docker/docker-compose-dev.yml run django_reference_django /bin/sh -c "bin/docker/win-env-dev.sh %DJANGO_PORT% %POSTGRES_PORT% %REDIS_PORT% %SERVER_URL% %CLIENT_URL%"
 
 echo == Starting services
 docker-compose -f bin/docker/docker-compose-dev.yml up -d
