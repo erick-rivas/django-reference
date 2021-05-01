@@ -1,4 +1,6 @@
 #!/bin/sh
+# Seed builder
+# AUTO_GENERATED (Read only)
 
 KEY=$1
 HOST=$2
@@ -31,8 +33,8 @@ ssh -t -i .dev.pem ubuntu@$HOST "cd $KEY/api;sed -i \"s/DB_HOST=postgres/DB_HOST
 ssh -t -i .dev.pem ubuntu@$HOST "cd $KEY/api;sed -i \"s/REDIS_HOST=redis/REDIS_HOST=redis-$KEY/\" \"bin/docker/env-dev.sh\""
 
 echo "== Updating django server"
-ssh -t -i .dev.pem ubuntu@$HOST "cd $KEY/api;bin/setup.sh $DJANGO_PORT $POSTGRES_PORT $REDIS_PORT $SERVER_URL $CLIENT_URL"
-ssh -t -i .dev.pem ubuntu@$HOST "cd $KEY/api;bin/start.sh"
+ssh -t -i .dev.pem ubuntu@$HOST "cd $KEY/api;sudo bin/setup.sh $DJANGO_PORT $POSTGRES_PORT $REDIS_PORT $SERVER_URL $CLIENT_URL"
+ssh -t -i .dev.pem ubuntu@$HOST "cd $KEY/api;sudo bin/start.sh"
 
 echo ""
 echo "== Deployment completed (http://$HOST:$DJANGO_PORT)"

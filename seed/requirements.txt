@@ -1,0 +1,30 @@
+#
+# __Seed builder__
+#   AUTO_GENERATED (Read only)
+#   Modify via builder
+#
+
+wheel==0.36.2
+boto3==1.17.62
+celery==5.0.5
+coverage==5.5
+Django==3.2
+django-cors-headers==3.7.0
+django-dotenv==1.4.2
+django-filter==2.4.0
+djangoql==0.14.5
+django-import-export==2.5.0
+django-rest-auth==0.9.5
+django-storages==1.11.1
+djangorestframework==3.12.4
+furo==2021.3.20b30
+graphene-django==2.15.0
+gunicorn==20.1.0
+myst-parser==0.13.7
+pip==21.1
+psycopg2-binary==2.8.6
+pylint==2.8.2
+PyYAML==5.4.1
+setuptools==56.0.0
+six==1.15.0
+Sphinx==3.5.4
