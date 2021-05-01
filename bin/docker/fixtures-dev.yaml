@@ -9,7 +9,7 @@
 - model: models.File
   pk: 10000
   fields:
-    url: "https://st-listas.20minutos.es/images/2010-01/177732/1966423_640px.jpg?1518458710"
+    url: "https://seedb.s3.amazonaws.com/dummy.jpg"
     size: 0
     name: "file"
 

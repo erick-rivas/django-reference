@@ -5,7 +5,7 @@
 KEY=0
 HOST="dev.seed-project.com.mx"
 
-RUNNING=$(docker-compose -f bin/docker/docker-compose.dev.yml ps --services --filter "status=running")
+RUNNING=$(docker-compose -f bin/docker/docker-compose-dev.yml ps --services --filter "status=running")
 if [ $RUNNING -z ]; then
   echo "ERROR: Before executing deploy.sh, start server with bin/start.sh"
   exit 1
@@ -28,4 +28,4 @@ GIT_URL=$(git config --get remote.origin.url)
 GIT_BRANCH=$(git branch --show-current)
 
 echo "== NOTE: BEFORE START paste .dev.pem in root dir"
-sudo docker-compose -f bin/docker/docker-compose.dev.yml exec django /bin/sh -c "bin/docker/deploy-dev.sh $KEY $HOST $GIT_URL $GIT_BRANCH"
+sudo docker-compose -f bin/docker/docker-compose-dev.yml exec django_reference_django /bin/sh -c "bin/docker/deploy-dev.sh $KEY $HOST $GIT_URL $GIT_BRANCH"

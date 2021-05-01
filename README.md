@@ -1,4 +1,4 @@
-# Django Reference
+# Django reference
 
 This repository holds a **reference** for the development of a **REST API with graphql support** based on Django framework
 
@@ -18,7 +18,7 @@ This repository holds a **reference** for the development of a **REST API with g
 -   Graphql browser: [http://localhost:8008/graphql](http://localhost:8008/graphql)
 -   Admin pane: [http://localhost:8008/admin](http://localhost:8008/admin)
     >   user:admin@email.com, pass: 123
-    
+
 ## Documentation
 
 -   All documentation is in the [docs](./docs/010_general.md) directory and in the server path [http://localhost:8008/docs](http://localhost:8008/docs)

@@ -34,11 +34,11 @@ mutations
 schema
 serializers
 routes
+README.md
 ?.env.example
 ?.dockerignore
 ?.pylintrc
 ?Dockerfile
-?README.md
 ?requirements.txt
 ?manage.py
 ?app/settings.py

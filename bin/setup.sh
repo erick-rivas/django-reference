@@ -27,31 +27,28 @@ echo "REDIS_PORT=$REDIS_PORT" >> "bin/docker/.env"
 echo "$DJANGO_PORT" > "bin/docker/.env-port"
 
 echo "== Deleting previous containers"
-sudo docker-compose -f bin/docker/docker-compose.dev.yml down
+sudo docker-compose -f bin/docker/docker-compose-dev.yml down
 
 echo "== Building project"
-sudo docker-compose -f bin/docker/docker-compose.dev.yml build
+sudo docker-compose -f bin/docker/docker-compose-dev.yml build
 
 echo "== Setting execute permissions to bin"
-sudo docker-compose -f bin/docker/docker-compose.dev.yml run django /bin/sh -c "chmod +x bin/*.sh;chmod +x bin/docker/*.sh"
+sudo docker-compose -f bin/docker/docker-compose-dev.yml run django_reference_django /bin/sh -c "chmod +x bin/*.sh;chmod +x bin/docker/*.sh"
 
 echo "== Creating .env.devs"
-sudo docker-compose -f bin/docker/docker-compose.dev.yml run django /bin/sh -c  "bin/docker/env-dev.sh $DJANGO_PORT $POSTGRES_PORT $REDIS_PORT $SERVER_URL $CLIENT_URL"
+sudo docker-compose -f bin/docker/docker-compose-dev.yml run django_reference_django /bin/sh -c  "bin/docker/env-dev.sh $DJANGO_PORT $POSTGRES_PORT $REDIS_PORT $SERVER_URL $CLIENT_URL"
 
 echo "== Starting services"
-sudo docker-compose -f bin/docker/docker-compose.dev.yml up -d
+sudo docker-compose -f bin/docker/docker-compose-dev.yml up -d
 
-echo "== Executing custom setup scripts"
-sudo docker-compose -f bin/docker/docker-compose.dev.yml exec django /bin/sh -c  "bin/docker/custom-setup.sh"
-
-echo "== Executing entrypoint.sh (make & run migrations)"
-sudo docker-compose -f bin/docker/docker-compose.dev.yml exec django /bin/sh -c "bin/docker/entrypoint.sh"
+echo "== Executing db update (make & run migrations)"
+sudo docker-compose -f bin/docker/docker-compose-dev.yml exec django_reference_django /bin/sh -c "bin/docker/db-update.sh"
 
 echo "== Loading dev fixtures (admin)"
-sudo docker-compose -f bin/docker/docker-compose.dev.yml exec django /bin/sh -c "python manage.py loaddata bin/docker/fixtures-dev.yaml"
+sudo docker-compose -f bin/docker/docker-compose-dev.yml exec django_reference_django /bin/sh -c "python manage.py loaddata bin/docker/fixtures-dev.yaml"
 
 echo "== Generating docs"
-sudo docker-compose -f bin/docker/docker-compose.dev.yml exec django /bin/sh -c "sphinx-build -E -b html ./docs ./.data/docs"
+sudo docker-compose -f bin/docker/docker-compose-dev.yml exec django_reference_django /bin/sh -c "sphinx-build -E -b html ./docs ./.data/docs"
 
 echo "== Removing root permissions"
 sudo chown -R $(whoami) .
@@ -63,7 +60,7 @@ python3 -m pip install --upgrade pip
 pip3 install -r requirements.txt
 
 echo "== Cleaning services"
-sudo docker-compose -f bin/docker/docker-compose.dev.yml stop
+sudo docker-compose -f bin/docker/docker-compose-dev.yml stop
 
 echo ""
 echo "== Setup completed (Start server with bin/start.sh)"
