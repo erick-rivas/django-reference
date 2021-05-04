@@ -50,3 +50,28 @@ class Model(models.Model):
 
     class Meta:
         abstract = True
+
+
+class ModelRails(models.Model):
+
+    created_at = models.DateTimeField(
+        auto_now_add=True, null=True, help_text="Indicates the date on which the model was created")
+    updated_at = models.DateTimeField(
+        auto_now=True, null=True, help_text="Indicates the date it was last updated")
+
+    @staticmethod
+    def filter_permissions(queryset, filters):
+        if get_env('ENABLE_AUTH'):
+            return filter_perms(queryset, filters)
+        return queryset
+
+    @staticmethod
+    def permission_filters(user):
+        return None
+
+    @staticmethod
+    def inherit_permissions(model, attr, user):
+        return inherit_perms(model, attr, user)
+
+    class Meta:
+        abstract = True
