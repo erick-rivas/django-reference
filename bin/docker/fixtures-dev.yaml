@@ -9,6 +9,7 @@
 - model: models.File
   pk: 10000
   fields:
+    created_at: "2020-01-01"
     url: "https://seedb.s3.amazonaws.com/dummy.jpg"
     size: 0
     name: "file"
@@ -18,6 +19,7 @@
 - model: models.user
   pk: 10000
   fields:
+    created_at: "2020-01-01"
     username: "admin@email.com"
     first_name: "Admin"
     last_name: "Django"
@@ -26,6 +28,6 @@
     is_active: true
     is_superuser: true
     is_staff: true
-    last_login: "2020-01-01T12:00:00+00:00"
-    date_joined: "2020-01-01T12:00:00+00:00"
+    last_login: "2020-01-01"
+    date_joined: "2020-01-01"
     teams: []
