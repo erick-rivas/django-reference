@@ -45,7 +45,6 @@ README.md
 ?app/urls.py
 ?app/wsgi.py
 ?bin/docker/custom-setup.sh
-?.github/workflows/ci.yml
 !*__init__.py
 !seed/models/model.py
 !seed/models/file.py
@@ -56,4 +55,3 @@ README.md
 !*helpers
 !*util
 !.keep
-!.github

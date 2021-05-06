@@ -1,4 +1,4 @@
-name: Django API
+name: django_reference
 
 on:
   push:
@@ -27,7 +27,7 @@ jobs:
         with:
           tool: bandit
           force-file-permissions: true
-
+  
   build-test:
     runs-on: ubuntu-latest
 
