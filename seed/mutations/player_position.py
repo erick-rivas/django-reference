@@ -14,16 +14,20 @@ class SavePlayerPositionMutation(graphene.Mutation):
     
     class Arguments:
         name = graphene.String(required=True)
+        pass
         
     # pylint: disable=R0912,W0622
     def mutate(self, info, **kwargs):
         user = info.context.user
         player_position = {}
-        if "name" in kwargs: player_position["name"] = kwargs["name"]
-        player_position = PlayerPosition.objects.create(**player_position)
+        if "name" in kwargs:
+            player_position["name"] = kwargs["name"]
+        player_position = \
+            PlayerPosition.objects.create(**player_position)
         player_position.save()
     
-        return SavePlayerPositionMutation(playerPosition=player_position)
+        return SavePlayerPositionMutation(
+            playerPosition=player_position)
 
 class SetPlayerPositionMutation(graphene.Mutation):
     
@@ -37,12 +41,15 @@ class SetPlayerPositionMutation(graphene.Mutation):
     def mutate(self, info, **kwargs):
         user = info.context.user
         player_position = PlayerPosition.filter_permissions(
-            PlayerPosition.objects, PlayerPosition.permission_filters(user))\
+            PlayerPosition.objects,
+            PlayerPosition.permission_filters(user)) \
             .get(pk=kwargs["id"])
-        if "name" in kwargs: player_position.name = kwargs["name"]
+        if "name" in kwargs:
+            player_position.name = kwargs["name"]
         player_position.save()
     
-        return SetPlayerPositionMutation(playerPosition=player_position)
+        return SetPlayerPositionMutation(
+            playerPosition=player_position)
 
 class DeletePlayerPositionMutation(graphene.Mutation):
     
@@ -55,4 +62,5 @@ class DeletePlayerPositionMutation(graphene.Mutation):
         player_position_id = kwargs["id"]
         player_position = PlayerPosition.objects.get(pk=kwargs["id"])
         player_position.delete()
-        return DeletePlayerPositionMutation(id=player_position_id)
+        return DeletePlayerPositionMutation(
+            id=player_position_id)

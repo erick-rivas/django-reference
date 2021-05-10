@@ -4,6 +4,7 @@ __Seed builder__
   Modify via builder
 """
 
+# pylint: disable=C0302
 import graphene
 import secrets
 import math
@@ -213,8 +214,10 @@ class Query(object):
         MatchPagination,
         pageNum=graphene.Int(required=True), pageSize=graphene.Int(required=True),
         query=graphene.String(), orderBy=graphene.String())
-    matchCount = graphene.Field(MatchCount, query=graphene.String())
-    match = graphene.Field(Match, id=graphene.Int(required=True))
+    matchCount = graphene.Field(
+        MatchCount, query=graphene.String())
+    match = graphene.Field(
+        Match, id=graphene.Int(required=True))
     players = graphene.List(
         Player, query=graphene.String(),
         orderBy=graphene.String(), limit=graphene.Int())
@@ -222,8 +225,10 @@ class Query(object):
         PlayerPagination,
         pageNum=graphene.Int(required=True), pageSize=graphene.Int(required=True),
         query=graphene.String(), orderBy=graphene.String())
-    playerCount = graphene.Field(PlayerCount, query=graphene.String())
-    player = graphene.Field(Player, id=graphene.Int(required=True))
+    playerCount = graphene.Field(
+        PlayerCount, query=graphene.String())
+    player = graphene.Field(
+        Player, id=graphene.Int(required=True))
     playerPositions = graphene.List(
         PlayerPosition, query=graphene.String(),
         orderBy=graphene.String(), limit=graphene.Int())
@@ -231,8 +236,10 @@ class Query(object):
         PlayerPositionPagination,
         pageNum=graphene.Int(required=True), pageSize=graphene.Int(required=True),
         query=graphene.String(), orderBy=graphene.String())
-    playerPositionCount = graphene.Field(PlayerPositionCount, query=graphene.String())
-    playerPosition = graphene.Field(PlayerPosition, id=graphene.Int(required=True))
+    playerPositionCount = graphene.Field(
+        PlayerPositionCount, query=graphene.String())
+    playerPosition = graphene.Field(
+        PlayerPosition, id=graphene.Int(required=True))
     scores = graphene.List(
         Score, query=graphene.String(),
         orderBy=graphene.String(), limit=graphene.Int())
@@ -240,8 +247,10 @@ class Query(object):
         ScorePagination,
         pageNum=graphene.Int(required=True), pageSize=graphene.Int(required=True),
         query=graphene.String(), orderBy=graphene.String())
-    scoreCount = graphene.Field(ScoreCount, query=graphene.String())
-    score = graphene.Field(Score, id=graphene.Int(required=True))
+    scoreCount = graphene.Field(
+        ScoreCount, query=graphene.String())
+    score = graphene.Field(
+        Score, id=graphene.Int(required=True))
     teams = graphene.List(
         Team, query=graphene.String(),
         orderBy=graphene.String(), limit=graphene.Int())
@@ -249,8 +258,10 @@ class Query(object):
         TeamPagination,
         pageNum=graphene.Int(required=True), pageSize=graphene.Int(required=True),
         query=graphene.String(), orderBy=graphene.String())
-    teamCount = graphene.Field(TeamCount, query=graphene.String())
-    team = graphene.Field(Team, id=graphene.Int(required=True))
+    teamCount = graphene.Field(
+        TeamCount, query=graphene.String())
+    team = graphene.Field(
+        Team, id=graphene.Int(required=True))
     users = graphene.List(
         User, query=graphene.String(),
         orderBy=graphene.String(), limit=graphene.Int())
@@ -258,8 +269,10 @@ class Query(object):
         UserPagination,
         pageNum=graphene.Int(required=True), pageSize=graphene.Int(required=True),
         query=graphene.String(), orderBy=graphene.String())
-    userCount = graphene.Field(UserCount, query=graphene.String())
-    user = graphene.Field(User, id=graphene.Int(required=True))
+    userCount = graphene.Field(
+        UserCount, query=graphene.String())
+    user = graphene.Field(
+        User, id=graphene.Int(required=True))
     files = graphene.List(
         File, query=graphene.String(), orderBy=graphene.String(), limit=graphene.Int())
     filePagination = graphene.Field(
@@ -283,7 +296,8 @@ class Query(object):
 
     # pylint: disable=C0103
     def resolve_matchCount(self, info, **kwargs):
-        return resolve_count(MatchModel, MatchCount, info, **kwargs)
+        return resolve_count(
+          MatchModel, MatchCount, info, **kwargs)
 
     # pylint: disable=C0103,W0622
     def resolve_match(self, info, id):
@@ -306,7 +320,8 @@ class Query(object):
 
     # pylint: disable=C0103
     def resolve_playerCount(self, info, **kwargs):
-        return resolve_count(PlayerModel, PlayerCount, info, **kwargs)
+        return resolve_count(
+          PlayerModel, PlayerCount, info, **kwargs)
 
     # pylint: disable=C0103,W0622
     def resolve_player(self, info, id):
@@ -329,7 +344,8 @@ class Query(object):
 
     # pylint: disable=C0103
     def resolve_playerPositionCount(self, info, **kwargs):
-        return resolve_count(PlayerPositionModel, PlayerPositionCount, info, **kwargs)
+        return resolve_count(
+          PlayerPositionModel, PlayerPositionCount, info, **kwargs)
 
     # pylint: disable=C0103,W0622
     def resolve_playerPosition(self, info, id):
@@ -352,7 +368,8 @@ class Query(object):
 
     # pylint: disable=C0103
     def resolve_scoreCount(self, info, **kwargs):
-        return resolve_count(ScoreModel, ScoreCount, info, **kwargs)
+        return resolve_count(
+          ScoreModel, ScoreCount, info, **kwargs)
 
     # pylint: disable=C0103,W0622
     def resolve_score(self, info, id):
@@ -375,7 +392,8 @@ class Query(object):
 
     # pylint: disable=C0103
     def resolve_teamCount(self, info, **kwargs):
-        return resolve_count(TeamModel, TeamCount, info, **kwargs)
+        return resolve_count(
+          TeamModel, TeamCount, info, **kwargs)
 
     # pylint: disable=C0103,W0622
     def resolve_team(self, info, id):
@@ -398,7 +416,8 @@ class Query(object):
 
     # pylint: disable=C0103
     def resolve_userCount(self, info, **kwargs):
-        return resolve_count(UserModel, UserCount, info, **kwargs)
+        return resolve_count(
+          UserModel, UserCount, info, **kwargs)
 
     # pylint: disable=C0103,W0622
     def resolve_user(self, info, id):

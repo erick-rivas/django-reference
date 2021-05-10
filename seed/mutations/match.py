@@ -18,27 +18,34 @@ class SaveMatchMutation(graphene.Mutation):
         type = graphene.String(required=True)
         local = graphene.Int(required=True)
         visitor = graphene.Int(required=True)
+        pass
         
     # pylint: disable=R0912,W0622
     def mutate(self, info, **kwargs):
         user = info.context.user
         match = {}
-        if "date" in kwargs: match["date"] = kwargs["date"]
-        if "type" in kwargs: match["type"] = kwargs["type"]
+        if "date" in kwargs:
+            match["date"] = kwargs["date"]
+        if "type" in kwargs:
+            match["type"] = kwargs["type"]
         if "local" in kwargs:
             local = Team.filter_permissions(
-                Team.objects, Team.permission_filters(user))\
+                Team.objects,
+                Team.permission_filters(user)) \
                 .get(pk=kwargs["local"])
             match["local"] = local
         if "visitor" in kwargs:
             visitor = Team.filter_permissions(
-                Team.objects, Team.permission_filters(user))\
+                Team.objects,
+                Team.permission_filters(user)) \
                 .get(pk=kwargs["visitor"])
             match["visitor"] = visitor
-        match = Match.objects.create(**match)
+        match = \
+            Match.objects.create(**match)
         match.save()
     
-        return SaveMatchMutation(match=match)
+        return SaveMatchMutation(
+            match=match)
 
 class SetMatchMutation(graphene.Mutation):
     
@@ -55,19 +62,25 @@ class SetMatchMutation(graphene.Mutation):
     def mutate(self, info, **kwargs):
         user = info.context.user
         match = Match.filter_permissions(
-            Match.objects, Match.permission_filters(user))\
+            Match.objects,
+            Match.permission_filters(user)) \
             .get(pk=kwargs["id"])
-        if "date" in kwargs: match.date = kwargs["date"]
-        if "type" in kwargs: match.type = kwargs["type"]
+        if "date" in kwargs:
+            match.date = kwargs["date"]
+        if "type" in kwargs:
+            match.type = kwargs["type"]
         if "local" in kwargs:
-            local = Team.objects.get(pk=kwargs["local"])
+            local = Team.objects \
+                .get(pk=kwargs["local"])
             match.local = local
         if "visitor" in kwargs:
-            visitor = Team.objects.get(pk=kwargs["visitor"])
+            visitor = Team.objects \
+                .get(pk=kwargs["visitor"])
             match.visitor = visitor
         match.save()
     
-        return SetMatchMutation(match=match)
+        return SetMatchMutation(
+            match=match)
 
 class DeleteMatchMutation(graphene.Mutation):
     
@@ -80,4 +93,5 @@ class DeleteMatchMutation(graphene.Mutation):
         match_id = kwargs["id"]
         match = Match.objects.get(pk=kwargs["id"])
         match.delete()
-        return DeleteMatchMutation(id=match_id)
+        return DeleteMatchMutation(
+            id=match_id)

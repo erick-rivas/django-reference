@@ -17,8 +17,7 @@ from app.models import User
 from app.models import File
 
 class Admin:
-
-    # pylint: disable=R0914
+    # pylint: disable=R0914,R0915
     @staticmethod
     def register():
         
@@ -34,6 +33,7 @@ class Admin:
                     'visitor_id',
                     'score_ids',
                 )
+
         class MatchAdmin(ImportExportModelAdmin):
             resource_class = MatchResource
         
@@ -50,6 +50,7 @@ class Admin:
                     'team_id',
                     'position_id',
                 )
+
         class PlayerAdmin(ImportExportModelAdmin):
             resource_class = PlayerResource
         
@@ -61,6 +62,7 @@ class Admin:
                     'created_at',
                     'name',
                 )
+
         class PlayerPositionAdmin(ImportExportModelAdmin):
             resource_class = PlayerPositionResource
         
@@ -74,6 +76,7 @@ class Admin:
                     'player_id',
                     'match_id',
                 )
+
         class ScoreAdmin(ImportExportModelAdmin):
             resource_class = ScoreResource
         
@@ -93,6 +96,7 @@ class Admin:
                     'rival_id',
                     'player_ids',
                 )
+
         class TeamAdmin(ImportExportModelAdmin):
             resource_class = TeamResource
         
@@ -109,6 +113,7 @@ class Admin:
                     'is_active',
                     'team_ids',
                 )
+
         class UserAdmin(ImportExportModelAdmin):
             resource_class = UserResource
         

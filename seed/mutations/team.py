@@ -19,28 +19,36 @@ class SaveTeamMutation(graphene.Mutation):
         description = graphene.String(required=True)
         marketValue = graphene.Float(required=True)
         rival = graphene.Int(required=False)
+        pass
         
     # pylint: disable=R0912,W0622
     def mutate(self, info, **kwargs):
         user = info.context.user
         team = {}
-        if "name" in kwargs: team["name"] = kwargs["name"]
-        if "description" in kwargs: team["description"] = kwargs["description"]
-        if "marketValue" in kwargs: team["market_value"] = kwargs["marketValue"]
+        if "name" in kwargs:
+            team["name"] = kwargs["name"]
+        if "description" in kwargs:
+            team["description"] = kwargs["description"]
+        if "marketValue" in kwargs:
+            team["market_value"] = kwargs["marketValue"]
         if "logo" in kwargs:
             logo = File.filter_permissions(
-                File.objects, File.permission_filters(user))\
+                File.objects,
+                File.permission_filters(user)) \
                 .get(pk=kwargs["logo"])
             team["logo"] = logo
         if "rival" in kwargs:
             rival = Team.filter_permissions(
-                Team.objects, Team.permission_filters(user))\
+                Team.objects,
+                Team.permission_filters(user)) \
                 .get(pk=kwargs["rival"])
             team["rival"] = rival
-        team = Team.objects.create(**team)
+        team = \
+            Team.objects.create(**team)
         team.save()
     
-        return SaveTeamMutation(team=team)
+        return SaveTeamMutation(
+            team=team)
 
 class SetTeamMutation(graphene.Mutation):
     
@@ -58,20 +66,27 @@ class SetTeamMutation(graphene.Mutation):
     def mutate(self, info, **kwargs):
         user = info.context.user
         team = Team.filter_permissions(
-            Team.objects, Team.permission_filters(user))\
+            Team.objects,
+            Team.permission_filters(user)) \
             .get(pk=kwargs["id"])
-        if "name" in kwargs: team.name = kwargs["name"]
-        if "description" in kwargs: team.description = kwargs["description"]
-        if "marketValue" in kwargs: team.market_value = kwargs["marketValue"]
+        if "name" in kwargs:
+            team.name = kwargs["name"]
+        if "description" in kwargs:
+            team.description = kwargs["description"]
+        if "marketValue" in kwargs:
+            team.market_value = kwargs["marketValue"]
         if "logo" in kwargs:
-            logo = File.objects.get(pk=kwargs["logo"])
+            logo = File.objects \
+                .get(pk=kwargs["logo"])
             team.logo = logo
         if "rival" in kwargs:
-            rival = Team.objects.get(pk=kwargs["rival"])
+            rival = Team.objects \
+                .get(pk=kwargs["rival"])
             team.rival = rival
         team.save()
     
-        return SetTeamMutation(team=team)
+        return SetTeamMutation(
+            team=team)
 
 class DeleteTeamMutation(graphene.Mutation):
     
@@ -84,4 +99,5 @@ class DeleteTeamMutation(graphene.Mutation):
         team_id = kwargs["id"]
         team = Team.objects.get(pk=kwargs["id"])
         team.delete()
-        return DeleteTeamMutation(id=team_id)
+        return DeleteTeamMutation(
+            id=team_id)

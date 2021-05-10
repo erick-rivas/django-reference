@@ -21,28 +21,37 @@ class SaveUserMutation(graphene.Mutation):
         isActive = graphene.Boolean(required=True)
         password = graphene.String(required=True)
         teams = graphene.List(graphene.Int)
+        pass
         
     # pylint: disable=R0912,W0622
     def mutate(self, info, **kwargs):
         user = info.context.user
         user = {}
-        if "userName" in kwargs: user["user_name"] = kwargs["userName"]
-        if "firstName" in kwargs: user["first_name"] = kwargs["firstName"]
-        if "lastName" in kwargs: user["last_name"] = kwargs["lastName"]
-        if "email" in kwargs: user["email"] = kwargs["email"]
-        if "isActive" in kwargs: user["is_active"] = kwargs["isActive"]
-        user = User.objects.create(**user)
+        if "userName" in kwargs:
+            user["user_name"] = kwargs["userName"]
+        if "firstName" in kwargs:
+            user["first_name"] = kwargs["firstName"]
+        if "lastName" in kwargs:
+            user["last_name"] = kwargs["lastName"]
+        if "email" in kwargs:
+            user["email"] = kwargs["email"]
+        if "isActive" in kwargs:
+            user["is_active"] = kwargs["isActive"]
+        user = \
+            User.objects.create(**user)
         if "password" in kwargs: user.set_password(kwargs["password"])
         if "teams" in kwargs:
             user.teams.clear()
             for teams_id in kwargs["teams"]:
                 teams = Team.filter_permissions(
-                    Team.objects, Team.permission_filters(user))\
+                    Team.objects,
+                    Team.permission_filters(user)) \
                     .get(pk=teams_id)
                 user.teams.add(teams)
         user.save()
     
-        return SaveUserMutation(user=user)
+        return SaveUserMutation(
+            user=user)
 
 class SetUserMutation(graphene.Mutation):
     
@@ -62,14 +71,21 @@ class SetUserMutation(graphene.Mutation):
     def mutate(self, info, **kwargs):
         user = info.context.user
         user = User.filter_permissions(
-            User.objects, User.permission_filters(user))\
+            User.objects,
+            User.permission_filters(user)) \
             .get(pk=kwargs["id"])
-        if "userName" in kwargs: user.user_name = kwargs["userName"]
-        if "firstName" in kwargs: user.first_name = kwargs["firstName"]
-        if "lastName" in kwargs: user.last_name = kwargs["lastName"]
-        if "email" in kwargs: user.email = kwargs["email"]
-        if "isActive" in kwargs: user.is_active = kwargs["isActive"]
-        if "password" in kwargs: user.set_password(kwargs["password"])
+        if "userName" in kwargs:
+            user.user_name = kwargs["userName"]
+        if "firstName" in kwargs:
+            user.first_name = kwargs["firstName"]
+        if "lastName" in kwargs:
+            user.last_name = kwargs["lastName"]
+        if "email" in kwargs:
+            user.email = kwargs["email"]
+        if "isActive" in kwargs:
+            user.is_active = kwargs["isActive"]
+        if "password" in kwargs:
+            user.set_password(kwargs["password"])
         if "teams" in kwargs:
             user.teams.clear()
             for teams_id in kwargs["teams"]:
@@ -77,7 +93,8 @@ class SetUserMutation(graphene.Mutation):
                 user.teams.add(teams)
         user.save()
     
-        return SetUserMutation(user=user)
+        return SetUserMutation(
+            user=user)
 
 class DeleteUserMutation(graphene.Mutation):
     
@@ -90,4 +107,5 @@ class DeleteUserMutation(graphene.Mutation):
         user_id = kwargs["id"]
         user = User.objects.get(pk=kwargs["id"])
         user.delete()
-        return DeleteUserMutation(id=user_id)
+        return DeleteUserMutation(
+            id=user_id)

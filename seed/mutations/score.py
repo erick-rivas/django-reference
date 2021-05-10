@@ -18,26 +18,32 @@ class SaveScoreMutation(graphene.Mutation):
         min = graphene.Int(required=True)
         player = graphene.Int(required=True)
         match = graphene.Int(required=True)
+        pass
         
     # pylint: disable=R0912,W0622
     def mutate(self, info, **kwargs):
         user = info.context.user
         score = {}
-        if "min" in kwargs: score["min"] = kwargs["min"]
+        if "min" in kwargs:
+            score["min"] = kwargs["min"]
         if "player" in kwargs:
             player = Player.filter_permissions(
-                Player.objects, Player.permission_filters(user))\
+                Player.objects,
+                Player.permission_filters(user)) \
                 .get(pk=kwargs["player"])
             score["player"] = player
         if "match" in kwargs:
             match = Match.filter_permissions(
-                Match.objects, Match.permission_filters(user))\
+                Match.objects,
+                Match.permission_filters(user)) \
                 .get(pk=kwargs["match"])
             score["match"] = match
-        score = Score.objects.create(**score)
+        score = \
+            Score.objects.create(**score)
         score.save()
     
-        return SaveScoreMutation(score=score)
+        return SaveScoreMutation(
+            score=score)
 
 class SetScoreMutation(graphene.Mutation):
     
@@ -53,18 +59,23 @@ class SetScoreMutation(graphene.Mutation):
     def mutate(self, info, **kwargs):
         user = info.context.user
         score = Score.filter_permissions(
-            Score.objects, Score.permission_filters(user))\
+            Score.objects,
+            Score.permission_filters(user)) \
             .get(pk=kwargs["id"])
-        if "min" in kwargs: score.min = kwargs["min"]
+        if "min" in kwargs:
+            score.min = kwargs["min"]
         if "player" in kwargs:
-            player = Player.objects.get(pk=kwargs["player"])
+            player = Player.objects \
+                .get(pk=kwargs["player"])
             score.player = player
         if "match" in kwargs:
-            match = Match.objects.get(pk=kwargs["match"])
+            match = Match.objects \
+                .get(pk=kwargs["match"])
             score.match = match
         score.save()
     
-        return SetScoreMutation(score=score)
+        return SetScoreMutation(
+            score=score)
 
 class DeleteScoreMutation(graphene.Mutation):
     
@@ -77,4 +88,5 @@ class DeleteScoreMutation(graphene.Mutation):
         score_id = kwargs["id"]
         score = Score.objects.get(pk=kwargs["id"])
         score.delete()
-        return DeleteScoreMutation(id=score_id)
+        return DeleteScoreMutation(
+            id=score_id)
