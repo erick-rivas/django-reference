@@ -102,6 +102,7 @@ class TestRest(APITestCase):
     def test_post_player_position(self):
         data = {
             "name": "",
+            "details": "{}",
         }
         response = self.client.post('/api/player_positions/', data)
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
@@ -109,6 +110,7 @@ class TestRest(APITestCase):
     def test_put_player_position(self):
         data = {
             "name": "",
+            "details": "{}",
         }
         response = self.client.put('/api/player_positions/1/', data)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
@@ -210,6 +212,7 @@ class TestRest(APITestCase):
             "password": "pbkdf2_sha256$150000$jMOqkdOUpor5$kU/QofjBsopM+CdCnU2+pROhtnxd5CZc7NhUiXNTMc0=",
             "is_active": False,
             "team_ids": [1],
+            "profile_image_id": 1,
         }
         response = self.client.post('/api/users/', data)
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
@@ -223,6 +226,7 @@ class TestRest(APITestCase):
             "password": "pbkdf2_sha256$150000$jMOqkdOUpor5$kU/QofjBsopM+CdCnU2+pROhtnxd5CZc7NhUiXNTMc0=",
             "is_active": False,
             "team_ids": [1],
+            "profile_image_id": 1,
         }
         response = self.client.put('/api/users/1/', data)
         self.assertEqual(response.status_code, status.HTTP_200_OK)

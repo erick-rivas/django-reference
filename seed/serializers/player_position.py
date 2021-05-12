@@ -14,5 +14,6 @@ class PlayerPositionSerializer(serializers.ModelSerializer):
         fields = (
             'id',
             'hash',
-            'name',  
+            'name',
+            'details',  
         )

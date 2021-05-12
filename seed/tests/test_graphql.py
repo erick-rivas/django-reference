@@ -369,6 +369,7 @@ class TestGraphql(GraphQLTestCase):
                 playerPositions(query: "id=1", orderBy: "id", limit: 1){
                     id
                     name
+                    details
                 }
             }
             ''')
@@ -436,6 +437,7 @@ class TestGraphql(GraphQLTestCase):
                 playerPosition(id: 1){
                     id
                     name
+                    details
                 }
             }
             ''')
@@ -449,10 +451,12 @@ class TestGraphql(GraphQLTestCase):
             mutation {
                 savePlayerPosition(
                     name: "",
+                    details: "{}",
                 ) {
                     playerPosition {
                         id
                         name
+                        details
                     }
                 }
             }
@@ -468,11 +472,13 @@ class TestGraphql(GraphQLTestCase):
             mutation {
                 setPlayerPosition(id:1
                     name: "",
+                    details: "{}",
 
                 ) {
                     playerPosition {
                         id
                         name
+                        details
                     }
                 }
             }
@@ -840,6 +846,9 @@ class TestGraphql(GraphQLTestCase):
                     teams {
                       id
                     }
+                    profileImage {
+                      id
+                    }
                 }
             }
             ''')
@@ -914,6 +923,9 @@ class TestGraphql(GraphQLTestCase):
                     teams {
                       id
                     }
+                    profileImage {
+                      id
+                    }
                 }
             }
             ''')
@@ -933,6 +945,7 @@ class TestGraphql(GraphQLTestCase):
                     password: "pbkdf2_sha256$150000$jMOqkdOUpor5$kU/QofjBsopM+CdCnU2+pROhtnxd5CZc7NhUiXNTMc0=",
                     isActive: true,
                     teams: [1],
+                    profileImage: 1,
                 ) {
                     user {
                         id
@@ -942,6 +955,9 @@ class TestGraphql(GraphQLTestCase):
                         email
                         isActive
                         teams {
+                          id
+                        }
+                        profileImage {
                           id
                         }
                     }
@@ -965,6 +981,7 @@ class TestGraphql(GraphQLTestCase):
                     password: "pbkdf2_sha256$150000$jMOqkdOUpor5$kU/QofjBsopM+CdCnU2+pROhtnxd5CZc7NhUiXNTMc0=",
                     isActive: true,
                     teams: [1],
+                    profileImage: 1,
 
                 ) {
                     user {
@@ -975,6 +992,9 @@ class TestGraphql(GraphQLTestCase):
                         email
                         isActive
                         teams {
+                          id
+                        }
+                        profileImage {
                           id
                         }
                     }

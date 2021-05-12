@@ -6,6 +6,7 @@ __Seed builder__
 
 import graphene
 from app.models import PlayerPosition
+from graphene.types.generic import GenericScalar
 from seed.schema.types import PlayerPosition as PlayerPositionType
 
 class SavePlayerPositionMutation(graphene.Mutation):
@@ -14,6 +15,7 @@ class SavePlayerPositionMutation(graphene.Mutation):
     
     class Arguments:
         name = graphene.String(required=True)
+        details = GenericScalar(required=True)
         pass
         
     # pylint: disable=R0912,W0622
@@ -22,6 +24,8 @@ class SavePlayerPositionMutation(graphene.Mutation):
         player_position = {}
         if "name" in kwargs:
             player_position["name"] = kwargs["name"]
+        if "details" in kwargs:
+            player_position["details"] = kwargs["details"]
         player_position = \
             PlayerPosition.objects.create(**player_position)
         player_position.save()
@@ -36,6 +40,7 @@ class SetPlayerPositionMutation(graphene.Mutation):
     class Arguments:
         id = graphene.Int(required=True)
         name = graphene.String(required=False)
+        details = GenericScalar(required=False)
         
     # pylint: disable=R0912,W0622
     def mutate(self, info, **kwargs):
@@ -46,6 +51,8 @@ class SetPlayerPositionMutation(graphene.Mutation):
             .get(pk=kwargs["id"])
         if "name" in kwargs:
             player_position.name = kwargs["name"]
+        if "details" in kwargs:
+            player_position.details = kwargs["details"]
         player_position.save()
     
         return SetPlayerPositionMutation(

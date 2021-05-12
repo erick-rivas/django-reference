@@ -61,6 +61,7 @@ class Admin:
                     'id',
                     'created_at',
                     'name',
+                    'details',
                 )
 
         class PlayerPositionAdmin(ImportExportModelAdmin):
@@ -111,6 +112,8 @@ class Admin:
                     'last_name',
                     'email',
                     'is_active',
+                    'profile_image',
+                    'profile_image_id',
                     'team_ids',
                 )
 

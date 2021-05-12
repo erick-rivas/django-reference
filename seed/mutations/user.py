@@ -7,6 +7,7 @@ __Seed builder__
 import graphene
 from app.models import User
 from app.models import Team
+from app.models import File
 from seed.schema.types import User as UserType
 
 class SaveUserMutation(graphene.Mutation):
@@ -20,6 +21,7 @@ class SaveUserMutation(graphene.Mutation):
         email = graphene.String(required=True)
         isActive = graphene.Boolean(required=True)
         password = graphene.String(required=True)
+        profileImage = graphene.Int(required=True)
         teams = graphene.List(graphene.Int)
         pass
         
@@ -37,6 +39,12 @@ class SaveUserMutation(graphene.Mutation):
             user["email"] = kwargs["email"]
         if "isActive" in kwargs:
             user["is_active"] = kwargs["isActive"]
+        if "profileImage" in kwargs:
+            profile_image = File.filter_permissions(
+                File.objects,
+                File.permission_filters(user)) \
+                .get(pk=kwargs["profileImage"])
+            user["profile_image"] = profile_image
         user = \
             User.objects.create(**user)
         if "password" in kwargs: user.set_password(kwargs["password"])
@@ -65,6 +73,7 @@ class SetUserMutation(graphene.Mutation):
         email = graphene.String(required=False)
         isActive = graphene.Boolean(required=False)
         password = graphene.String(required=False)
+        profileImage = graphene.Int(required=False)
         teams = graphene.List(graphene.Int)
         
     # pylint: disable=R0912,W0622
@@ -86,6 +95,10 @@ class SetUserMutation(graphene.Mutation):
             user.is_active = kwargs["isActive"]
         if "password" in kwargs:
             user.set_password(kwargs["password"])
+        if "profileImage" in kwargs:
+            profile_image = File.objects \
+                .get(pk=kwargs["profileImage"])
+            user.profile_image = profile_image
         if "teams" in kwargs:
             user.teams.clear()
             for teams_id in kwargs["teams"]:
