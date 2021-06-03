@@ -4,8 +4,8 @@ This repository holds a **reference** for the development of a **REST API with g
 
 ## Quickstart
 
--   Install [Python3](https://www.python.org/downloads/)
--   Install [Docker Engine](https://docs.docker.com/engine/install/) & [Compose](https://docs.docker.com/compose/install/)
+-   Install [Python 3.6+](https://www.python.org/downloads/)
+-   Install [Docker Engine 20.10+](https://docs.docker.com/engine/install/) & [Compose 1.28.5+](https://docs.docker.com/compose/install/)
 -   Clone this repository
 -   Execute setup script `bin/setup.sh` (For windows `bin/setup.bat`)
 -   Run server with `bin/start.sh` (For windows `bin/start.bat`)
