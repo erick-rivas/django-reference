@@ -22,11 +22,11 @@
 ### Pre-configuration
 
 -   Create and configure *.env.prod* file
--   Create a `.ebextensions` folder in project root and copy inside
+-   Create a `.ebextensions` folder in the root directory of the project and copy inside
     -   `bin/config/aws-eb/single-instance/apache-settings.config`
     -   `bin/config/aws-eb/single-instance/db.config`
     -   `bin/config/aws-eb/single-instance/django.config`
--   Copy `bin/config/aws-eb/single-instance/.ebignore` in project root folder
+-   Copy `bin/config/aws-eb/single-instance/.ebignore` in the root directory of the project
 -   Copy `bin/config/aws-eb/single-instance/deploy.sh` in `/bin` folder
 
 ### SSL
