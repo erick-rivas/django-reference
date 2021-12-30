@@ -4,14 +4,12 @@ Represents API routes (endpoints)
 
 ## Description
 
-The routes are the responsible to handle all the http requests corresponding to a particular model
-
 By default, the seed-builder generate the endpoints related to CRUD operations of a model. In case of extension new endpoints may be included in `routes/*py` files
 >   *For more information see [seed-builder docs](060_seed_builder.md)*
 
-## Extension examples
+## Custom route examples (Route extensions)
 
-### GET example
+### GET /players/top_10
 
 ```python
 class PlayerViewSet(_PlayerViewSet):
@@ -31,12 +29,8 @@ class PlayerViewSet(_PlayerViewSet):
         return Response(serializer.data)
 ```
 
-Endpoint
-```bash
-GET http://localhost:8000/players/top_10
-```
 
-### POST example
+### POST /users/1/create_profile
 
 ```python
 class UserViewSet(_UserViewSet):
@@ -57,10 +51,6 @@ class UserViewSet(_UserViewSet):
         return Response(serializer.data)
 ```
 
-Endpoint
-```bash
-POST http://localhost:8000/users/1/create_profile
-```
 
 ## References
 

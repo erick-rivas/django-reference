@@ -1,6 +1,6 @@
 # Domains
 
-Represents the methods that handle business logic
+Represents the methods that handle business logic, it includes database queries, algorithm implementation and 3rd party integrations
 
 ## Examples
 
