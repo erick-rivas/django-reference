@@ -78,17 +78,14 @@ sudo ./certbot-auto certonly --debug
 ```
 -    **Important:** Copy the certificate and private key paths for later
 -    Remove /etc/httpd/conf.d/temp.conf and exit server
--    Copy `bin/aws-eb/config/single-instance/https-instance.config` into `.ebextensions folder
+-    Copy `bin/aws-eb/config/single-instance/https-instance.config` into `.ebextensions` folder
 -    Configure the *SSLCertificateFile* and *SSLCertificateKeyFile* keys with the files created by certbot
--    Deploy again "eb deploy"
+-    Deploy again `eb deploy`
 
 
 ### Deployment
 
--   Run script
-```bash
-.bin/deploy.sh
-```
+-   Run script `./bin/config/aws-eb/deploy.sh`
 
 ### References
 -   AWS reference [https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/create-deploy-python-django.html](https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/create-deploy-python-django.html)

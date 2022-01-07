@@ -54,14 +54,11 @@ To enable a https connection
 
 #### Enable application settings
 
--    Copy `bin/config/aws-eb/https-reencrypt-alb.config into `.ebextensions` folder
+-    Copy `bin/config/aws-eb/https-reencrypt-alb.config` into `.ebextensions` folder
 
 ### Deployment
 
--   Run script
-```bash
-./bin/deploy.sh
-```
+-   Run script `./bin/config/aws-eb/deploy.sh`
 
 ### References
 -   AWS reference [https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/create-deploy-python-django.html](https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/create-deploy-python-django.html)

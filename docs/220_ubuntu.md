@@ -6,12 +6,6 @@ This file contains guides to deploy project to a (Ubuntu Server)
 
 #### Dependencies
 
-- Connect to server
-
-```bash
-ssh <USER@SERVER_URL>
-```
-
 - Install general dependencies
 ```bash
 sudo apt update
@@ -36,17 +30,36 @@ sudo apt update
 sudo apt install postgresql postgresql-contrib libpq-dev
 ```
 
--  Create user and database
+-  Create user
 ```bash
 sudo -u postgres psql
-postgres=# create user admin with encrypted password 'password';
-postgres=# ALTER ROLE admin WITH SUPERUSER;
+postgres=# create user #DB_USER# with encrypted password '#DB_PASSWORD#';
+postgres=# ALTER ROLE #DB_USER# WITH SUPERUSER;
+postgres=# exit;
 ```
+
+### Production environment
+
+-  For  production set the environment variable IS_PROD=true
+```bash
+vim ~/.bash_profile
+export IS_PROD=true
+```
+
 
 #### Project installation
 
--   Clone repository and follow installation steps in [general docs](./010_general.md)
-
+-   Clone repository
+-   Execute setup script ```./bin/config/ubuntu/setup.sh #DB_NAME# #DB_USER# #DB_PASSWORD#```
+-   Adjust .env.dev or .env.prod for production environment and setup the project variables
+```
+# Important settings
+SERVER_URL=#SERVER_URL#
+CLIENT_URL=#CLIENT_URL#
+SECRET_KEY=#ANY_SECRET_KEY#
+ENABLE_AUTH=true/false
+```
+		
 
 #### Gunicorn configuration
 
@@ -83,23 +96,17 @@ ExecStart=#PROJECT_DIR#/.venv/bin/gunicorn \
 [Install]
 WantedBy=multi-user.target
 ```
->  *To check os user and group user id command (For aws-ec2=ubuntu,ubuntu)*
-> 
--  Init gunicorn socket
+>   *To obtain the user and group of OS, use ```id``` command (For aws-ec2=ubuntu,ubuntu)*
+
+-   Init gunicorn socket
 ``` bash
 sudo systemctl start gunicorn.socket
 sudo systemctl enable gunicorn.socket
 ```
 
--  Check gunicorn status
-``` bash
-sudo systemctl status gunicorn
-```
+-   Check gunicorn status `sudo systemctl status gunicorn`
 
--  Restart gunicorn
-``` bash
-sudo systemctl restart gunicorn
-```
+-   Restart gunicorn `sudo systemctl restart gunicorn`
 
 
 #### Nginx configuration
@@ -125,15 +132,9 @@ server {
 sudo ln -s /etc/nginx/sites-available/app /etc/nginx/sites-enabled
 ```
 
--  Check nginx status
-``` bash
-sudo nginx -t
-```
+-   Check nginx status `sudo nginx -t`
 
--  Restart nginx
-``` bash
-sudo systemctl restart nginx
-```
+-   Restart nginx `sudo systemctl restart nginx`
 
 ### SSL
 
@@ -149,14 +150,11 @@ sudo snap install --classic certbot
 sudo ln -s /snap/bin/certbot /usr/bin/certbot
 ```
 
--   Request a certificate
-```bash
-sudo certbot --nginx
-```
+-   Request a certificate `sudo certbot --nginx`
 
 #### Configure nginx
 
--  Modify /etc/nginx/sites-available/app with the following structure
+-   Modify /etc/nginx/sites-available/app with the following structure
 ```
 server {
     listen 443 ssl default_server;
@@ -183,24 +181,17 @@ server {
 }
 ```
 
--  Restart nginx
-``` bash
-sudo systemctl restart nginx
-```
+-   Restart nginx `sudo systemctl restart nginx`
 
 ### Deployment
 
-- Connect to server
-```bash
-ssh #USER@SERVER_URL#
-```
+-   Paste `bin/config/ubuntu/deploy.sh` in server root folder
 
--   Paste `bin/config/ubuntu/deploy.sh` in `bin` folder
+-   Run deployment script `./deploy.sh`
 
--   Run deployment script
-```bash
-./bin/deploy.sh
-```
+#### Server logs
+
+-  To watch server logs `tail -f /var/log/nginx/error.log`
 
 ### References
 

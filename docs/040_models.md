@@ -6,7 +6,7 @@ Represents project data entities (Database models)
 ## Description
 
 By default, the seed-builder generate the models based on SeedManifest.json structure. In case of extension new attributes it may be included in `models/*.py` files
->   *For more information see [seed-builder docs](060_seed_builder.md)*
+>   *For more information see [seed-builder docs](110_seed_builder.md)*
 
 
 ## Extension Example
