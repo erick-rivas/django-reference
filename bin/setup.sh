@@ -15,6 +15,7 @@ if [ $# -ge 3 ]; then REDIS_PORT=$3; fi
 if [ $# -ge 4 ]; then SERVER_URL=$4; fi
 if [ $# -ge 5 ]; then CLIENT_URL=$5; fi
 
+echo "== Creating docker .envs"
 sudo rm bin/docker/.env
 sudo rm bin/docker/.env-info
 echo "# DOCKER PORTS" > "bin/docker/.env"

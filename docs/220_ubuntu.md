@@ -38,6 +38,16 @@ postgres=# ALTER ROLE #DB_USER# WITH SUPERUSER;
 postgres=# exit;
 ```
 
+-   To enable remote access, open 5432 port and configure postgres files
+```bash
+sudo vim /etc/postgresql/<PG_VERSION>/main/postgresql.conf
+-- Add or change
+-- listen_addresses = '*'
+sudo vim /etc/postgresql/<PG_VERSION>/main/pg_hba.conf
+-- host    all             all             0.0.0.0/0          md5
+sudo service postgresql restart
+```
+
 ### Production environment
 
 -  For  production set the environment variable IS_PROD=true

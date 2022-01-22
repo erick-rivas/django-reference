@@ -15,8 +15,11 @@
 
 ### Project variables
 
--  To change project variables (db_credentials, email, etc) adjust .env.docker.dev or .env.dev in case of native implementation
-	>   Tip: For common NOT SECRET variables, it is recommended to modify .env.example for reuse in future implementations
+- To change project variables (db_credentials, email, etc) adjust `.env.docker.dev` or in case of native implementation modify `.env.dev`
+    >   Tip: For common variables values that ARE NOT SECRET, it is recommended to modify .env.example for reuse values in future implementations
+
+- To modify system variables of docker (e.g. IS_PROD) adjust `./bin/docker/docker.env` and then execute `./bin/setup`.
+    >   In case of require native modifications, check O.S. specification (e.g. For ubuntu 18.04 modify `~/.bash_profile`)
 
 ### Database management
 
