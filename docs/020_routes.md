@@ -4,14 +4,16 @@ Represents API routes (endpoints)
 
 ## Description
 
-By default, the seed-builder generate the endpoints related to CRUD operations of a model. In case of extension new endpoints may be included in `routes/*py` files
+By default, the seed-builder generates the endpoints related to CRUD operations of a model. 
+-   In case of need custom endpoints, execute seed-builder command `seed-builder extend -m routes:<model_name>` and modify the generated file in `routes/<model_name>.py`
 >   *For more information see [seed-builder docs](110_seed_builder.md)*
 
-## Custom route examples (Route extensions)
+## Examples
 
 ### GET /players/top_10
 
 ```python
+# routes/players.py
 class PlayerViewSet(_PlayerViewSet):
     
     @action(detail=False, methods=['get'])
@@ -33,6 +35,7 @@ class PlayerViewSet(_PlayerViewSet):
 ### POST /users/1/create_profile
 
 ```python
+# routes/users.py
 class UserViewSet(_UserViewSet):
     
     @action(detail=True, methods=['post'])

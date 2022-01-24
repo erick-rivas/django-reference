@@ -5,6 +5,7 @@ Represents the methods that handle business logic, it includes database queries,
 ## Examples
 
 ```python
+# domain/create_project.py
 def create_project(user, project_name):  #
 
     bmc_type = CanvasType.objects.get(CanvasType, type="BMC")

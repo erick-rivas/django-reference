@@ -6,6 +6,7 @@ Represents the model mappers to REST outputs (e.g. models to json)
 ## Example
 
 ```python
+# serializers/team.py
 class TeamSerializer(_TeamSerializer):
     
     class Meta(_TeamSerializer.Meta):
