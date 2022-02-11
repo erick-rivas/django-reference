@@ -6,13 +6,15 @@ This file contains guides to deploy project to a (Ubuntu Server)
 
 #### Dependencies
 
-- Install general dependencies
+-   Install general dependencies
 ```bash
 sudo apt update
 sudo apt install curl git-core zlib1g-dev build-essential libssl-dev libreadline-dev libyaml-dev libsqlite3-dev sqlite3 libxml2-dev libxslt1-dev libcurl4-openssl-dev software-properties-common libffi-dev nodejs yarn
 ```
 
--   Install python and django
+-   Install python and server tools
+>   Recommended version python 3.8.10
+
 ```bash
 sudo apt update
 sudo apt install python3-pip python3-dev python3-venv libpq-dev postgresql postgresql-contrib nginx curl
@@ -20,7 +22,8 @@ sudo apt install python3-pip python3-dev python3-venv libpq-dev postgresql postg
 
 ##### Postgresql
 
-- Install dependencies
+-   Install dependencies
+>   Recommended version PostgreSQL 14
 ```bash
 sudo apt install wget ca-certificates
 wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
@@ -30,7 +33,7 @@ sudo apt update
 sudo apt install postgresql postgresql-contrib libpq-dev
 ```
 
--  Create user
+-   Create user
 ```bash
 sudo -u postgres psql
 postgres=# create user #DB_USER# with encrypted password '#DB_PASSWORD#';

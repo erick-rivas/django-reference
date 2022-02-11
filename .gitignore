@@ -5,7 +5,7 @@
 .env.docker.prod
 .dev.pem
 bin/docker/.env
-bin/docker/.env-port
+bin/docker/.port
 static
 reactjs
 .data

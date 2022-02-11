@@ -2,4 +2,4 @@
 :: Seed builder
 :: AUTO_GENERATED (Read only)
 
-docker-compose -f bin/docker/docker-compose-dev.yml logs --follow --tail 100 django_reference_django
+docker-compose -f bin/docker/docker-compose-dev.yml logs --follow --tail 250 django_reference_django

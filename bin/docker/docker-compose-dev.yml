@@ -12,7 +12,7 @@ services:
     environment:
       - USE_DOCKER=true
     env_file:
-      - docker.env
+      - .env
     ports:
       - "${DJANGO_PORT}:${DJANGO_PORT}"
     depends_on:
