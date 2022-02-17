@@ -13,7 +13,7 @@ sudo apt install curl git-core zlib1g-dev build-essential libssl-dev libreadline
 ```
 
 -   Install python and server tools
->   Recommended version python 3.8.10
+>   Recommended version python 3.8.x
 
 ```bash
 sudo apt update
