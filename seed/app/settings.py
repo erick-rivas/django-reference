@@ -128,6 +128,9 @@ AUTH_PASSWORD_VALIDATORS = [
 TEMPLATES_DIRS = [os.path.join(BASE_DIR, 'templates'), os.path.join(BASE_DIR, 'seed', 'templates')]
 DOCS_DIR = os.path.join(BASE_DIR, ".data", "docs")
 REACTJS_DIR = os.path.join(BASE_DIR, "reactjs")
+if os.path.exists((os.path.join(REACTJS_DIR, "index.html"))):
+    STATICFILES_DIRS += [os.path.join(REACTJS_DIR, "static"), ]
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -165,8 +168,8 @@ GRAPHENE = {
 
 # CELERY
 
-BROKER_URL = 'redis://localhost:6379'
-CELERY_RESULT_BACKEND = 'redis://localhost:6379'
+CELERY_BROKER_URL = 'redis://' + os.getenv("REDIS_HOST") + ':' + os.getenv("REDIS_PORT")
+CELERY_RESULT_BACKEND = CELERY_BROKER_URL
 CELERY_ACCEPT_CONTENT = ['application/json']
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'

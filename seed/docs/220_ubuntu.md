@@ -1,4 +1,4 @@
-## Ubuntu Server - 18.04
+## Ubuntu Server - 20.04
 
 This file contains guides to deploy project to a (Ubuntu Server)
 
@@ -59,7 +59,6 @@ vim ~/.bash_profile
 export IS_PROD=true
 ```
 
-
 #### Project installation
 
 -   Clone repository
@@ -103,6 +102,7 @@ WorkingDirectory=#PROJECT_DIR#
 ExecStart=#PROJECT_DIR#/.venv/bin/gunicorn \
           --access-logfile - \
           --workers 3 \
+          --error-logfile /var/log/gunicorn.error.log \
           --bind unix:/run/gunicorn.sock \
           app.wsgi:application
 
@@ -120,7 +120,6 @@ sudo systemctl enable gunicorn.socket
 -   Check gunicorn status `sudo systemctl status gunicorn`
 
 -   Restart gunicorn `sudo systemctl restart gunicorn`
-
 
 #### Nginx configuration
 
@@ -204,7 +203,8 @@ server {
 
 #### Server logs
 
--  To watch server logs `tail -f /var/log/nginx/error.log`
+-  To watch nginx logs `tail -f /var/log/nginx/error.log`
+-  To watch gunicorn logs `tail -f /var/log/gunicorn.error.log`
 
 ### References
 

@@ -2,7 +2,6 @@
 
 Represents the model mappers to REST outputs (e.g. models to json)
 
-
 ## Example
 
 ```python

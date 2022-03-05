@@ -31,7 +31,6 @@ class PlayerViewSet(_PlayerViewSet):
         return Response(serializer.data)
 ```
 
-
 ### POST /users/1/create_profile
 
 ```python
@@ -53,7 +52,6 @@ class UserViewSet(_UserViewSet):
         serializer = UserSerializer(model, many=False)
         return Response(serializer.data)
 ```
-
 
 ## References
 

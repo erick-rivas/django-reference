@@ -1,6 +1,6 @@
 #   Deployment
 
-```{include} ./220_ubuntu_.md
+```{include} ./220_ubuntu.md
 ```
 ```{include} ./230_eb_single_instance.md
 ```

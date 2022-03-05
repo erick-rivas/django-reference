@@ -22,7 +22,7 @@ urlpatterns = \
         url(r'^graphql$', graphene_view()),
         url(r'^admin/', admin.site.urls),
     ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) \
-    + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+      + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 if settings.DEBUG and os.path.exists((os.path.join(settings.DOCS_DIR, "index.html"))):
     urlpatterns += \
@@ -31,5 +31,5 @@ if settings.DEBUG and os.path.exists((os.path.join(settings.DOCS_DIR, "index.htm
 
 if os.path.exists((os.path.join(settings.REACTJS_DIR, "index.html"))):
     urlpatterns += \
-        [url(r'^.*', never_cache(TemplateView.as_view(template_name='index.html')))] \
-        + static(settings.STATIC_URL, document_root=settings.REACTJS_DIR)
+        static("/theme", document_root=os.path.join(settings.REACTJS_DIR, "theme")) \
+        + [url(r'^.*', never_cache(TemplateView.as_view(template_name='index.html')))]

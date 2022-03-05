@@ -10,8 +10,8 @@ This repository holds a **reference** for the development of a **REST API with g
 -   Execute setup script `bin/setup`
     -   For unix systems execute shell file `*.sh` and for windows batch `.bat` (e.g `bin/setup.sh` or `bin/setup.bat`)
     >   Warning: Don't execute any script with sudo
--   Run server with `bin/run`
-    -   To start server in background execute `bin/start`
+-   Start server with `bin/start`
+    -   To run server in foreground execute `bin/run`
 
 ### Examples
 
@@ -22,4 +22,4 @@ This repository holds a **reference** for the development of a **REST API with g
 
 ## Documentation
 
--   All documentation is in the [docs](./docs/010_general.md) directory and in the server path [http://localhost:8008/docs](http://localhost:8008/docs)
+-   All documentation is in the [docs](./seed/docs/010_general.md) directory and in the server path [http://localhost:8008/docs](http://localhost:8008/docs)

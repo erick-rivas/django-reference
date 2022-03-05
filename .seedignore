@@ -11,6 +11,7 @@
 .seedignore
 bin/docker/.env
 bin/docker/.port
+bin/docker/docker.env
 LICENSE
 SeedManifest.json
 SeedExport.json

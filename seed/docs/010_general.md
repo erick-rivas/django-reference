@@ -1,4 +1,4 @@
-# Django Reference
+# Django reference
 
 ## Project structure
 
@@ -35,6 +35,7 @@
 
 ### Docker
 
+-   Open docker terminal (ubuntu bash) `bin/terminal`
 -   Clean unused docker resources `bin/clean`
 
 ## Other resources

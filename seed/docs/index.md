@@ -3,7 +3,7 @@
 ./020_routes.md
 ./030_domain.md
 ./040_models.md
-./060_seed_builder.md
-./070_seed_commons.md
-./080_deployment.md
+./110_seed_builder.md
+./120_seed_commons.md
+./210_deployment.md
 ```

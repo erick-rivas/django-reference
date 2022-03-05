@@ -6,6 +6,7 @@
 .dev.pem
 bin/docker/.env
 bin/docker/.port
+bin/docker/docker.env
 static
 reactjs
 .data
