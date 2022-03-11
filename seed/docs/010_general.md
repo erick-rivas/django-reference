@@ -44,3 +44,4 @@
 -   [Domain docs](./030_domain.md)
 -   [Models docs](./040_models.md)
 -   [Seed builder](./110_seed_builder.md)
+-   [Seed commons](./120_seed_commons.md)

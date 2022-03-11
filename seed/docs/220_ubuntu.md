@@ -51,6 +51,15 @@ sudo vim /etc/postgresql/<PG_VERSION>/main/pg_hba.conf
 sudo service postgresql restart
 ```
 
+##### Redis (celery-optional)
+-   Install dependencies
+>   Recommended version PostgreSQL 14
+```bash
+sudo apt-get install redis-server supervisor
+redis-cli ping
+sudo systemctl enable redis-server.service
+```
+
 ### Production environment
 
 -  For  production set the environment variable IS_PROD=true
@@ -147,6 +156,40 @@ sudo ln -s /etc/nginx/sites-available/app /etc/nginx/sites-enabled
 -   Check nginx status `sudo nginx -t`
 
 -   Restart nginx `sudo systemctl restart nginx`
+
+#### Supervisor configuration (celery-optional)
+
+-   Modify /etc/supervisor/celery_worker.conf with the following structure
+```
+[program:celery]
+directory=#PROJECT_DIR#
+command=#PROJECT_DIR#/.venv/bin/celery -A app worker -l INFO
+
+user=ubuntu
+numprocs=1
+stdout_logfile=/var/log/celery.access.log
+stderr_logfile=/var/log/celery.error.log
+stdout_logfile_maxbytes=50
+stderr_logfile_maxbytes=50
+stdout_logfile_backups=10
+stderr_logfile_backups=10 
+autostart=true
+autorestart=true
+startsecs=10
+
+stopwaitsecs = 600
+stopasgroup=true
+priority=1000
+```
+
+-   Restart supervisor
+``` bash
+sudo supervisorctl reread
+sudo supervisorctl update
+sudo supervisorctl start all
+```
+
+-   Check supervisor status `sudo supervisorctl status all`
 
 ### SSL
 

@@ -1,5 +1,6 @@
 # pylint: disable=W0401
 from seed.app.celery import *
+from celery import shared_task
 
 #  Include custom tasks
 #  Example:
@@ -8,3 +9,6 @@ from seed.app.celery import *
 #         print("hello word")
 #
 #  Run in code with task_name.delay(args)
+
+# Pre-build async tasks
+# - send_mail_async(**kwargs)
