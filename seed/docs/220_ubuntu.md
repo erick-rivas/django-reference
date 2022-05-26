@@ -120,6 +120,8 @@ WantedBy=multi-user.target
 ```
 >   *To obtain the user and group of OS, use ```id``` command (For aws-ec2=ubuntu,ubuntu)*
 
+-   Create gunicorn.error.log file ```sudo touch /var/log/gunicorn.error.log```
+
 -   Init gunicorn socket
 ``` bash
 sudo systemctl start gunicorn.socket

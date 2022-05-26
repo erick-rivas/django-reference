@@ -1,9 +1,3 @@
-"""
-__Seed builder__
-  AUTO_GENERATED (Read only)
-  Modify via builder
-"""
-
 import os
 
 from celery import Celery
@@ -21,3 +15,5 @@ app.autodiscover_tasks()
 @shared_task
 def send_email_async(**kwargs):
     send_mail(**kwargs)
+
+# Custom tasks
