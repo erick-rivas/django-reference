@@ -8,25 +8,29 @@ set /A POSTGRES_PORT=5435
 set /A REDIS_PORT=6377
 set SERVER_URL=http://localhost:8008
 set CLIENT_URL=http://localhost:3003
+set IS_PROD=false
 
 IF NOT "%~1" == "" set /A DJANGO_PORT=%1
 IF NOT "%~2" == "" set /A POSTGRES_PORT=%2
 IF NOT "%~3" == "" set /A REDIS_PORT=%3
 IF NOT "%~4" == "" set SERVER_URL=%4
 IF NOT "%~5" == "" set CLIENT_URL=%5
+IF NOT "%~6" == "" set IS_PROD=%6
 
 echo == Creating docker .envs
 del .\bin\docker\.env
 echo # DOCKER PORTS > .\bin\docker\.env
-echo ### MODIFY WITH WITH $ bin/setup.bat DJANGO_PORT POSTGRES_PORT REDIS_PORT ### >> .\bin\docker\.env
+echo ### MODIFY WITH WITH $ bin/setup.bat DJANGO_PORT POSTGRES_PORT REDIS_PORT IS_PROD ### >> .\bin\docker\.env
 echo _ >> .\bin\docker\.env
 echo DJANGO_PORT=%DJANGO_PORT% >> .\bin\docker\.env
 echo POSTGRES_PORT=%POSTGRES_PORT% >> .\bin\docker\.env
 echo REDIS_PORT=%REDIS_PORT% >> .\bin\docker\.env
 
-echo ### MODIFY WITH WITH $ bin/setup.bat DJANGO_PORT ### >> .\bin\docker\.port
 del .\bin\docker\.port
 echo %DJANGO_PORT% > .\bin\docker\.port
+
+del .\bin\docker\docker.env
+echo IS_PROD=%IS_PROD%  > .\bin\docker\.port
 
 echo == Deleting previous containers
 docker-compose -f bin/docker/docker-compose.yml down
@@ -60,7 +64,7 @@ echo == Installing local dependencies
 python -m venv .venv
 call ".\.venv\Scripts\activate"
 python -m pip install --upgrade pip
-pip install -r requirements.txt
+python -m pip install -r requirements.txt
 
 echo == Cleaning setup
 docker-compose -f bin/docker/docker-compose.yml exec django_reference_django /bin/sh -c "rm bin/docker/win-env-dev.sh"
