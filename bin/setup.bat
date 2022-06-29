@@ -30,7 +30,7 @@ del .\bin\docker\.port
 echo %DJANGO_PORT% > .\bin\docker\.port
 
 del .\bin\docker\docker.env
-echo IS_PROD=%IS_PROD%  > .\bin\docker\.port
+echo IS_PROD=%IS_PROD%  > .\bin\docker\docker.env
 
 echo == Deleting previous containers
 docker-compose -f bin/docker/docker-compose.yml down

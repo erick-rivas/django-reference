@@ -17,7 +17,7 @@ sudo apt install curl git-core zlib1g-dev build-essential libssl-dev libreadline
 
 ```bash
 sudo apt update
-sudo apt install python3-pip python3-dev python3-venv libpq-dev postgresql postgresql-contrib nginx curl
+sudo apt install python3-pip python3-dev python3-venv libpq-dev postgresql postgresql-contrib nginx curl nginx-extras
 ```
 
 ##### Postgresql
@@ -215,12 +215,14 @@ sudo ln -s /snap/bin/certbot /usr/bin/certbot
 ```
 server {
     listen 443 ssl default_server;
-    ssl_protocols TLSv1.2 TLSv1.3;
     server_name #SERVER_NAME#;
     client_max_body_size 75M;
     fastcgi_read_timeout 3000;
-    proxy_read_timeout 3000;   
+    proxy_read_timeout 3000;
+    more_clear_headers Server;
+    server_tokens off;
 
+    ssl_protocols TLSv1.2 TLSv1.3;
     ssl_certificate /etc/letsencrypt/live/#SERVER_NAME#/fullchain.pem;
     ssl_certificate_key /etc/letsencrypt/live/#SERVER_NAME#/privkey.pem;
     include /etc/letsencrypt/options-ssl-nginx.conf;
