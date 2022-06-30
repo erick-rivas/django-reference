@@ -32,6 +32,9 @@ echo %DJANGO_PORT% > .\bin\docker\.port
 del .\bin\docker\docker.env
 echo IS_PROD=%IS_PROD%  > .\bin\docker\docker.env
 
+del .\debug_.py
+echo # Temporary file for debugging, run with bin/debug.bat > .\debug_.py
+
 echo == Deleting previous containers
 docker-compose -f bin/docker/docker-compose.yml down
 

@@ -24,10 +24,12 @@
 ### Database management
 
 -   To update database (make/execute migrations and run fixtures) execute `bin/update`
+-   To dump database in .yaml format execute `bin/dump MODEL_NAME`
 -   To open db manager (psql) execute `bin/query`
 
 ### Testing & QA
 
+-   Run code from debug_.py file `bin/debug`
 -   Test use cases `bin/test`
 -   Review code quality `bin/review`
     >   To run review command, install [Codacy CLI](https://github.com/codacy/codacy-analysis-cli)

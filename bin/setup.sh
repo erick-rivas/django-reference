@@ -32,6 +32,9 @@ echo "$DJANGO_PORT" > "bin/docker/.port"
 sudo rm bin/docker/docker.env
 echo "IS_PROD=$IS_PROD" > "bin/docker/docker.env"
 
+sudo rm debug_.py
+echo "# Temporary file for debugging, run with bin/debug.sh" > "debug_.py"
+
 echo "== Deleting previous containers"
 sudo docker-compose -f bin/docker/docker-compose.yml down
 

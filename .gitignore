@@ -9,6 +9,8 @@ bin/docker/.port
 bin/docker/docker.env
 static
 reactjs
+debug_.py
+dump.yaml
 .data
 
 ### Django ###
