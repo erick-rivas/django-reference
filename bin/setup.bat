@@ -43,12 +43,12 @@ echo == Building project
 docker-compose -f bin/docker/docker-compose.yml build
 
 echo == Setting execute permissions to bin
-docker-compose -f bin/docker/docker-compose.yml run django /bin/sh -c "chmod +x bin/docker/*.sh"
+docker-compose -f bin/docker/docker-compose.yml run --rm django /bin/sh -c "chmod +x bin/docker/*.sh"
 
 echo == Creating .env.devs
-docker-compose -f bin/docker/docker-compose.yml run django /bin/sh -c "cp bin/docker/env-dev.sh bin/docker/win-env-dev.sh"
-docker-compose -f bin/docker/docker-compose.yml run django /bin/sh -c "sed -i 's/\r$//g' bin/docker/win-env-dev.sh"
-docker-compose -f bin/docker/docker-compose.yml run django /bin/sh -c "bin/docker/win-env-dev.sh %DJANGO_PORT% %POSTGRES_PORT% %REDIS_PORT% %SERVER_URL% %CLIENT_URL%"
+docker-compose -f bin/docker/docker-compose.yml run --rm django /bin/sh -c "cp bin/docker/env-dev.sh bin/docker/win-env-dev.sh"
+docker-compose -f bin/docker/docker-compose.yml run --rm django /bin/sh -c "sed -i 's/\r$//g' bin/docker/win-env-dev.sh"
+docker-compose -f bin/docker/docker-compose.yml run --rm django /bin/sh -c "bin/docker/win-env-dev.sh %DJANGO_PORT% %POSTGRES_PORT% %REDIS_PORT% %SERVER_URL% %CLIENT_URL%"
 
 echo == Starting services
 docker-compose -f bin/docker/docker-compose.yml up -d

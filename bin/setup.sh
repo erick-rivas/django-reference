@@ -43,10 +43,10 @@ echo "== Building project"
 sudo docker-compose -f bin/docker/docker-compose.yml build
 
 echo "== Setting execute permissions to bin"
-sudo docker-compose -f bin/docker/docker-compose.yml run django /bin/sh -c "chmod +x bin/*.sh;chmod +x bin/docker/*.sh"
+sudo docker-compose -f bin/docker/docker-compose.yml run --rm django /bin/sh -c "chmod +x bin/*.sh;chmod +x bin/docker/*.sh"
 
 echo "== Creating .env.devs"
-sudo docker-compose -f bin/docker/docker-compose.yml run django /bin/sh -c  "bin/docker/env-dev.sh $DJANGO_PORT $POSTGRES_PORT $REDIS_PORT $SERVER_URL $CLIENT_URL"
+sudo docker-compose -f bin/docker/docker-compose.yml run --rm django /bin/sh -c  "bin/docker/env-dev.sh $DJANGO_PORT $POSTGRES_PORT $REDIS_PORT $SERVER_URL $CLIENT_URL"
 
 echo "== Starting services"
 sudo docker-compose -f bin/docker/docker-compose.yml up -d
