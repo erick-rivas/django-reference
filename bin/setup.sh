@@ -22,6 +22,7 @@ sudo rm bin/docker/.env
 echo "# DOCKER PORTS" > "bin/docker/.env"
 echo "### MODIFY WITH WITH $ bin/setup DJANGO_PORT POSTGRES_PORT REDIS_PORT IS_PROD ###" >> "bin/docker/.env"
 echo "" >> "bin/docker/.env"
+echo "COMPOSE_PROJECT_NAME=django_reference_backend" >> "bin/docker/.env"
 echo "DJANGO_PORT=$DJANGO_PORT" >> "bin/docker/.env"
 echo "POSTGRES_PORT=$POSTGRES_PORT" >> "bin/docker/.env"
 echo "REDIS_PORT=$REDIS_PORT" >> "bin/docker/.env"
