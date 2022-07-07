@@ -9,4 +9,4 @@ if [ $RUNNING -z ]; then
 fi
 
 echo "== Opening terminal"
-sudo docker-compose -f bin/docker/docker-compose.yml exec django_reference_django /bin/sh
+sudo docker-compose -f bin/docker/docker-compose.yml exec django /bin/sh

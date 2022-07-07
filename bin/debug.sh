@@ -8,4 +8,4 @@ if [ $RUNNING -z ]; then
   exit 1
 fi
 
-sudo docker-compose -f bin/docker/docker-compose.yml exec django_reference_django /bin/sh -c "python ./bin/django/debug.py"
+sudo docker-compose -f bin/docker/docker-compose.yml exec django /bin/sh -c "python ./bin/django/debug.py"

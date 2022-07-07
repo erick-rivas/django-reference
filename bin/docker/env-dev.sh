@@ -15,8 +15,8 @@ sed -i "s/CLIENT_URL=http:\/\/localhost:3000/CLIENT_URL=$CLIENT_URL/" ".env.dock
 sed -i "s/DB_NAME=/DB_NAME=postgres/" ".env.docker.dev"
 sed -i "s/DB_USER=/DB_USER=postgres/" ".env.docker.dev"
 sed -i "s/DB_PASSWORD=/DB_PASSWORD=postgres/" ".env.docker.dev"
-sed -i "s/DB_HOST=/DB_HOST=django_reference_postgres/" ".env.docker.dev"
-sed -i "s/REDIS_HOST=/REDIS_HOST=django_reference_redis/" ".env.docker.dev"
+sed -i "s/DB_HOST=/DB_HOST=postgres/" ".env.docker.dev"
+sed -i "s/REDIS_HOST=/REDIS_HOST=redis/" ".env.docker.dev"
 sed -i "s/SECRET_KEY=/SECRET_KEY=fupswltefA9efredrufihUSTOwamc/" ".env.docker.dev"
 
 echo "== Creating & configuring env.dev file"

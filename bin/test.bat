@@ -7,4 +7,4 @@ IF "%RUNNING%" == "" echo ERROR: Before executing bin/test.bat, start server wit
 IF "%RUNNING%" == "" exit 1
 
 echo == Executing test cases
-docker-compose -f bin/docker/docker-compose.yml exec django_reference_django /bin/sh -c "python manage.py test"
+docker-compose -f bin/docker/docker-compose.yml exec django /bin/sh -c "python manage.py test"

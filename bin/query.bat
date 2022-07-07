@@ -7,4 +7,4 @@ IF "%RUNNING%" == "" echo ERROR: Before executing bin/query.bat, start server wi
 IF "%RUNNING%" == "" exit 1
 
 echo == Opening psql console
-docker-compose -f bin/docker/docker-compose.yml exec django_reference_django /bin/sh -c "python manage.py dbshell"
+docker-compose -f bin/docker/docker-compose.yml exec django /bin/sh -c "python manage.py dbshell"

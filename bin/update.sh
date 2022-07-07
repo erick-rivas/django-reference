@@ -9,4 +9,4 @@ if [ $RUNNING -z ]; then
 fi
 
 echo "== Updating database"
-sudo docker-compose -f bin/docker/docker-compose.yml exec django_reference_django /bin/sh -c "bin/docker/update.sh"
+sudo docker-compose -f bin/docker/docker-compose.yml exec django /bin/sh -c "bin/docker/update.sh"

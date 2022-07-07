@@ -9,4 +9,4 @@ if [ $RUNNING -z ]; then
 fi
 
 echo "== Executing test cases"
-sudo docker-compose -f bin/docker/docker-compose.yml exec django_reference_django /bin/sh -c "python manage.py test"
+sudo docker-compose -f bin/docker/docker-compose.yml exec django /bin/sh -c "python manage.py test"

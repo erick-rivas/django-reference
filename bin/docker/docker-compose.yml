@@ -2,7 +2,7 @@ version: "3.7"
 
 services:
 
-  django_reference_postgres:
+  postgres:
     image: postgres
     volumes:
       - ../../.data/postgres:/var/lib/postgresql/data
@@ -15,14 +15,14 @@ services:
     ports:
       - "${POSTGRES_PORT}:5432"
 
-  django_reference_redis:
+  redis:
     image: "redis:alpine"
     logging:
       driver: none
     ports:
       - "${REDIS_PORT}:6379"
 
-  django_reference_django:
+  django:
     build:
       context: ../../.
       dockerfile: Dockerfile
@@ -36,10 +36,10 @@ services:
     ports:
       - "${DJANGO_PORT}:${DJANGO_PORT}"
     depends_on:
-      - django_reference_postgres
-      - django_reference_redis
+      - postgres
+      - redis
 
-  django_reference_celery:
+  celery:
     build:
       context: ../../.
       dockerfile: Dockerfile
@@ -51,5 +51,9 @@ services:
     env_file:
       - docker.env
     depends_on:
-      - django_reference_postgres
-      - django_reference_redis
+      - postgres
+      - redis
+
+networks:
+  default:
+    name: django_reference_backend
