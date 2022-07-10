@@ -30,9 +30,9 @@
 ### Testing & QA
 
 -   Run code from debug_.py file `bin/debug`
--   Test use cases `bin/test`
 -   Review code quality `bin/review`
     >   To run review command, install [Codacy CLI](https://github.com/codacy/codacy-analysis-cli)
+-   Test use cases `bin/test`
 -   Generate code coverage report `bin/coverage`
 
 ### Docker

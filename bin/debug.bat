@@ -2,8 +2,8 @@
 :: Seed builder
 :: AUTO_GENERATED (Read only)
 
-for /f "delims=" %%i in ('docker-compose -f bin/docker/docker-compose.yml ps --services --filter "status=running"') do set RUNNING=%%i
+for /f "delims=" %%i in ('docker compose -f bin/docker/docker-compose.yml ps --services --filter "status=running"') do set RUNNING=%%i
 IF "%RUNNING%" == "" echo ERROR: Before executing bin/debug.bat, start server with bin/start.bat
 IF "%RUNNING%" == "" exit 1
 
-docker-compose -f bin/docker/docker-compose.yml exec django /bin/sh -c "python ./bin/django/debug.py"
+docker compose -f bin/docker/docker-compose.yml exec django /bin/sh -c "python ./bin/django/debug.py"

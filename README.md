@@ -5,7 +5,7 @@ This repository holds a **reference** for the development of a **REST API with g
 ## Quickstart
 
 -   Install [Python 3.8.x](https://www.python.org/downloads/)
--   Install [Docker Engine 20.10+](https://docs.docker.com/engine/install/) & [Compose 1.28.5+](https://docs.docker.com/compose/install/)
+-   Install [Docker Desktop 4.10.x](https://docs.docker.com/desktop/)
 -   Clone this repository
 -   Execute setup script `bin/setup`
     -   For unix systems execute shell file `*.sh` and for windows batch `.bat` (e.g `bin/setup.sh` or `bin/setup.bat`)
@@ -15,10 +15,10 @@ This repository holds a **reference** for the development of a **REST API with g
 
 ### Examples
 
--   API browser: [http://localhost:8008/api](http://localhost:8008/api)
--   Graphql browser: [http://localhost:8008/graphql](http://localhost:8008/graphql)
 -   Admin pane: [http://localhost:8008/admin](http://localhost:8008/admin)
     >   user:admin@email.com, pass: 123
+-   API browser: [http://localhost:8008/api](http://localhost:8008/api)
+-   Graphql browser: [http://localhost:8008/graphql](http://localhost:8008/graphql)
 
 ## Documentation
 

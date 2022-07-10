@@ -37,28 +37,28 @@ sudo rm debug_.py
 echo "# Temporary file for debugging, run with bin/debug.sh" > "debug_.py"
 
 echo "== Deleting previous containers"
-sudo docker-compose -f bin/docker/docker-compose.yml down
+sudo docker compose -f bin/docker/docker-compose.yml down
 
 echo "== Building project"
-sudo docker-compose -f bin/docker/docker-compose.yml build
+sudo docker compose -f bin/docker/docker-compose.yml build
 
 echo "== Setting execute permissions to bin"
-sudo docker-compose -f bin/docker/docker-compose.yml run --rm django /bin/sh -c "chmod +x bin/*.sh;chmod +x bin/docker/*.sh"
+sudo docker compose -f bin/docker/docker-compose.yml run --rm django /bin/sh -c "chmod +x bin/*.sh;chmod +x bin/docker/*.sh"
 
 echo "== Creating .env.devs"
-sudo docker-compose -f bin/docker/docker-compose.yml run --rm django /bin/sh -c  "bin/docker/env-dev.sh $DJANGO_PORT $POSTGRES_PORT $REDIS_PORT $SERVER_URL $CLIENT_URL"
+sudo docker compose -f bin/docker/docker-compose.yml run --rm django /bin/sh -c  "bin/docker/env-dev.sh $DJANGO_PORT $POSTGRES_PORT $REDIS_PORT $SERVER_URL $CLIENT_URL"
 
 echo "== Starting services"
-sudo docker-compose -f bin/docker/docker-compose.yml up -d
+sudo docker compose -f bin/docker/docker-compose.yml up -d
 
 echo "== Executing db update (make & run migrations)"
-sudo docker-compose -f bin/docker/docker-compose.yml exec django /bin/sh -c "bin/docker/update.sh"
+sudo docker compose -f bin/docker/docker-compose.yml exec django /bin/sh -c "bin/docker/update.sh"
 
 echo "== Loading dev fixtures (admin)"
-sudo docker-compose -f bin/docker/docker-compose.yml exec django /bin/sh -c "python manage.py loaddata bin/docker/fixtures-dev.yaml"
+sudo docker compose -f bin/docker/docker-compose.yml exec django /bin/sh -c "python manage.py loaddata bin/docker/fixtures-dev.yaml"
 
 echo "== Generating docs"
-sudo docker-compose -f bin/docker/docker-compose.yml exec django /bin/sh -c "sphinx-build -E -b html ./seed/docs ./.data/docs"
+sudo docker compose -f bin/docker/docker-compose.yml exec django /bin/sh -c "sphinx-build -E -b html ./seed/docs ./.data/docs"
 
 echo "== Removing root permissions"
 sudo chown -R $(whoami) .
@@ -70,7 +70,7 @@ python3 -m pip install --upgrade pip
 pip3 install -r requirements.txt
 
 echo "== Cleaning services"
-sudo docker-compose -f bin/docker/docker-compose.yml stop
+sudo docker compose -f bin/docker/docker-compose.yml stop
 
 echo ""
 echo "== Setup completed (Start server with bin/start.sh)"
