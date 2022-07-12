@@ -12,7 +12,7 @@ def handle(model_str, file_path="./dump.yaml"):
     except:
         print("Invalid model: " + model_str + ", execute with bin/dump MODEL_NAME")
         return
-    data = serializers.serialize("yaml", model.objects.all())
+    data = serializers.serialize("yaml", model.objects.all().order_by("id"))
     out = open(file_path, "w")
     out.write(data)
     out.close()

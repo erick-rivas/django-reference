@@ -5,7 +5,7 @@
 #
 
 wheel==0.37.1
-boto3==1.24.26
+boto3==1.24.27
 celery==5.2.7
 coverage==6.4.1
 Django==3.2.14
