@@ -43,7 +43,7 @@ services:
     build:
       context: ../../.
       dockerfile: Dockerfile
-    command: "celery -A app worker -l INFO"
+    command: "celery -A seed.app worker -l INFO"
     volumes:
       - ../../.:/app
     environment:
