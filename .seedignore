@@ -8,7 +8,9 @@
 .env.docker.prod
 .dev.pem
 .gitignore
+.dockerignore
 .seedignore
+Dockerfile
 bin/docker/.env
 bin/docker/.port
 bin/docker/docker.env
@@ -37,9 +39,7 @@ serializers
 routes
 README.md
 ?.env.example
-?.dockerignore
 ?.pylintrc
-?Dockerfile
 ?requirements.txt
 ?manage.py
 ?app/celery.py
