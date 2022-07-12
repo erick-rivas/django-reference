@@ -12,4 +12,4 @@ set FILE_PATH=./dump.yaml
 IF NOT "%~1" == "" set MODEL_NAME=%1
 IF NOT "%~2" == "" set FILE_PATH=%2
 
-docker compose -f bin/docker/docker-compose.yml exec django /bin/sh -c "python ./bin/django/dump.py %MODEL_NAME% %FILE_PATH%"
+docker compose -f bin/docker/docker-compose.yml exec django /bin/sh -c "python ./bin/scripts/dump.py %MODEL_NAME% %FILE_PATH%"

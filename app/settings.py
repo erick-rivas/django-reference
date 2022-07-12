@@ -4,3 +4,4 @@ from seed.app.settings import *
 #  Include custom settings
 #  Examples:
 #     INSTALLED_APPS += ["new_apps"]
+#     ALLOWED_HOSTS = ["*",]

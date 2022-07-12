@@ -24,6 +24,7 @@ class MatchSerializer(serializers.ModelSerializer):
         model = Match
         fields = (
             'id',
+            'created_at',
             'hash',
             'date',
             'type',

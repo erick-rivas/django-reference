@@ -29,6 +29,7 @@ class PlayerSerializer(serializers.ModelSerializer):
         model = Player
         fields = (
             'id',
+            'created_at',
             'hash',
             'name',
             'photo',

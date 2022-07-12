@@ -30,6 +30,7 @@ class TeamSerializer(serializers.ModelSerializer):
         model = Team
         fields = (
             'id',
+            'created_at',
             'hash',
             'name',
             'logo',

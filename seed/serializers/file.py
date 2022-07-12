@@ -13,6 +13,7 @@ class FileSerializer(serializers.ModelSerializer):
         model = File
         fields = (
             'id',
+            'created_at',
             'hash',
             'url',
             'name',

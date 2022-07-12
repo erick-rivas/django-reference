@@ -11,4 +11,4 @@ from celery import shared_task
 #  Run in code with task_name.delay(args)
 
 # Pre-build async tasks
-# - send_mail_async(**kwargs)
+#  - send_mail_async(**kwargs)

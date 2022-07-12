@@ -18,7 +18,6 @@ from seed.routes.helpers.graphene_view import graphene_view
 urlpatterns = \
     [
         url(r'^api/', include('seed.app.api')),
-        url(r'^api/', include('app.api')),
         url(r'^graphql$', graphene_view()),
         url(r'^admin/', admin.site.urls),
     ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) \

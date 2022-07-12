@@ -71,7 +71,7 @@ export IS_PROD=true
 #### Project installation
 
 -   Clone repository
--   Execute setup script ```./bin/config/ubuntu/setup.sh #DB_NAME# #DB_USER# #DB_PASSWORD#```
+-   Execute setup script ```./seed/docs/210_assets/ubuntu/setup.sh #DB_NAME# #DB_USER# #DB_PASSWORD#```
 -   Adjust .env.dev or .env.prod for production environment and setup the project variables
 ```
 # Important settings
@@ -244,7 +244,7 @@ server {
 
 ### Deployment
 
--   Paste `bin/config/ubuntu/deploy.sh` in server root folder
+-   Paste `seed/docs/210_assets/ubuntu/deploy.sh` in server root folder
 
 -   Run deployment script `./deploy.sh`
 

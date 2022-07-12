@@ -1,6 +1,6 @@
 """
 __Seed builder__
-  AUTO_GENERATED (Read only)
+  AUTO_GENERATED Proxy (Read only)
   Modify via builder
 """
 

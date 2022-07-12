@@ -5,5 +5,7 @@ from django.urls import include, path
 from seed.app.urls import *
 
 #  Include custom urls
-#  Examples:
-#     urlpatterns += [url(r'^debug', ... ]
+#  Example: /debug
+#     urlpatterns += [
+#       path('debug/', DebugView.as_view()
+#     ]

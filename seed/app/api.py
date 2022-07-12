@@ -8,13 +8,13 @@ from django.urls import path, include
 from django.conf.urls import url
 from rest_framework.routers import DefaultRouter
 
-from app.routes import MatchViewSet
-from app.routes import PlayerViewSet
-from app.routes import PlayerPositionViewSet
-from app.routes import ScoreViewSet
-from app.routes import TeamViewSet
-from app.routes import UserViewSet
-from app.routes import FileView
+from seed.app.routes import MatchViewSet
+from seed.app.routes import PlayerViewSet
+from seed.app.routes import PlayerPositionViewSet
+from seed.app.routes import ScoreViewSet
+from seed.app.routes import TeamViewSet
+from seed.app.routes import UserViewSet
+from seed.app.routes import FileView
 
 router = DefaultRouter()
 router.register(r'matches', MatchViewSet)

@@ -22,6 +22,7 @@ class ScoreSerializer(serializers.ModelSerializer):
         model = Score
         fields = (
             'id',
+            'created_at',
             'hash',
             'min',
             'player_id',

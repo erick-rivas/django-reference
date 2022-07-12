@@ -50,6 +50,7 @@ README.md
 ?bin/docker/custom-setup.sh
 ?bin/docker/docker.env
 !*__init__.py
+!seed/docs/210_assets/*
 !seed/models/model.py
 !seed/models/file.py
 !seed/routes/viewset.py

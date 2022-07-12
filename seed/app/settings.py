@@ -31,7 +31,7 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 # General settings
 
 ROOT_URLCONF = 'app.urls'
-WSGI_APPLICATION = 'app.wsgi.application'
+WSGI_APPLICATION = 'seed.app.wsgi.application'
 AUTH_USER_MODEL = 'models.User'
 DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 SITE_ID = 1
@@ -163,7 +163,7 @@ REST_FRAMEWORK['DEFAULT_AUTHENTICATION_CLASSES'] = \
     ['rest_framework.authentication.TokenAuthentication',]
 
 GRAPHENE = {
-    'SCHEMA': 'app.graphene.schema'
+    'SCHEMA': 'seed.app.graphene.schema'
 }
 
 # CELERY

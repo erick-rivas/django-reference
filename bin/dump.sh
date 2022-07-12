@@ -14,4 +14,4 @@ FILE_PATH="./dump.yaml"
 if [ $# -ge 1 ]; then MODEL_NAME=$1; fi
 if [ $# -ge 2 ]; then FILE_PATH=$2; fi
 
-sudo docker compose -f bin/docker/docker-compose.yml exec django /bin/sh -c "python ./bin/django/dump.py $MODEL_NAME $FILE_PATH"
+sudo docker compose -f bin/docker/docker-compose.yml exec django /bin/sh -c "python ./bin/scripts/dump.py $MODEL_NAME $FILE_PATH"
