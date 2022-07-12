@@ -5,16 +5,19 @@ __Seed builder__
 """
 
 import json
-
 from graphene_django.utils.testing import GraphQLTestCase
-
 from seed.tests.util_test import fill_test_database
+from rest_auth.models import TokenModel
+from app.models import User
 
 class TestGraphql(GraphQLTestCase):
     GRAPHQL_URL = "/graphql"
 
     def setUp(self):
         fill_test_database()
+        user = User.objects.all().first()
+        token, created = TokenModel.objects.get_or_create(user=user)
+        self.headers = {"HTTP_AUTHORIZATION": 'Token ' + token.key}
     
     def test_query_matches(self):
         response_01 = self.query(
@@ -32,7 +35,7 @@ class TestGraphql(GraphQLTestCase):
                     }
                 }
             }
-            ''')
+            ''', headers=self.headers)
         res_01 = json.loads(response_01.content)["data"]
         self.assertResponseNoErrors(response_01)
         with self.subTest():
@@ -43,7 +46,7 @@ class TestGraphql(GraphQLTestCase):
             {
                 matches{ id }
             }
-            ''')
+            ''', headers=self.headers)
         res_02 = json.loads(response_02.content)["data"]
         self.assertResponseNoErrors(response_02)
         with self.subTest():
@@ -60,7 +63,7 @@ class TestGraphql(GraphQLTestCase):
                     matches { id }
                 }
             }
-            ''')
+            ''', headers=self.headers)
         res_03 = json.loads(response_03.content)["data"]
         self.assertResponseNoErrors(response_03)
         with self.subTest():
@@ -73,7 +76,7 @@ class TestGraphql(GraphQLTestCase):
             {
                 matchCount(query: "id=1"){ count }
             }
-            ''')
+            ''', headers=self.headers)
         res_04 = json.loads(response_04.content)["data"]
         self.assertResponseNoErrors(response_04)
         with self.subTest():
@@ -84,7 +87,7 @@ class TestGraphql(GraphQLTestCase):
             {
                 matchCount { count }
             }
-            ''')
+            ''', headers=self.headers)
         res_05 = json.loads(response_05.content)["data"]
         self.assertResponseNoErrors(response_05)
         with self.subTest():
@@ -106,7 +109,7 @@ class TestGraphql(GraphQLTestCase):
                     }
                 }
             }
-            ''')
+            ''', headers=self.headers)
         res = json.loads(response.content)["data"]
         self.assertResponseNoErrors(response)
         self.assertEqual(res["match"]["id"], 1)
@@ -134,8 +137,7 @@ class TestGraphql(GraphQLTestCase):
                     }
                 }
             }
-            '''
-        )
+            ''', headers=self.headers)
         res = json.loads(response.content)["data"]
         self.assertResponseNoErrors(response)
         self.assertEqual(res["saveMatch"]["match"]["id"], 2)
@@ -164,8 +166,7 @@ class TestGraphql(GraphQLTestCase):
                     }
                 }
             }
-            '''
-        )
+            ''', headers=self.headers)
         res = json.loads(response.content)["data"]
         self.assertResponseNoErrors(response)
         self.assertEqual(res["setMatch"]["match"]["id"], 1)
@@ -176,8 +177,7 @@ class TestGraphql(GraphQLTestCase):
             mutation {
                 deleteMatch(id:1) { id }
             }
-            '''
-        )
+            ''', headers=self.headers)
         res = json.loads(response.content)["data"]
         self.assertResponseNoErrors(response)
         self.assertEqual(res["deleteMatch"]["id"], 1)
@@ -201,7 +201,7 @@ class TestGraphql(GraphQLTestCase):
                     }
                 }
             }
-            ''')
+            ''', headers=self.headers)
         res_01 = json.loads(response_01.content)["data"]
         self.assertResponseNoErrors(response_01)
         with self.subTest():
@@ -212,7 +212,7 @@ class TestGraphql(GraphQLTestCase):
             {
                 players{ id }
             }
-            ''')
+            ''', headers=self.headers)
         res_02 = json.loads(response_02.content)["data"]
         self.assertResponseNoErrors(response_02)
         with self.subTest():
@@ -229,7 +229,7 @@ class TestGraphql(GraphQLTestCase):
                     players { id }
                 }
             }
-            ''')
+            ''', headers=self.headers)
         res_03 = json.loads(response_03.content)["data"]
         self.assertResponseNoErrors(response_03)
         with self.subTest():
@@ -242,7 +242,7 @@ class TestGraphql(GraphQLTestCase):
             {
                 playerCount(query: "id=1"){ count }
             }
-            ''')
+            ''', headers=self.headers)
         res_04 = json.loads(response_04.content)["data"]
         self.assertResponseNoErrors(response_04)
         with self.subTest():
@@ -253,7 +253,7 @@ class TestGraphql(GraphQLTestCase):
             {
                 playerCount { count }
             }
-            ''')
+            ''', headers=self.headers)
         res_05 = json.loads(response_05.content)["data"]
         self.assertResponseNoErrors(response_05)
         with self.subTest():
@@ -278,7 +278,7 @@ class TestGraphql(GraphQLTestCase):
                     }
                 }
             }
-            ''')
+            ''', headers=self.headers)
         res = json.loads(response.content)["data"]
         self.assertResponseNoErrors(response)
         self.assertEqual(res["player"]["id"], 1)
@@ -310,8 +310,7 @@ class TestGraphql(GraphQLTestCase):
                     }
                 }
             }
-            '''
-        )
+            ''', headers=self.headers)
         res = json.loads(response.content)["data"]
         self.assertResponseNoErrors(response)
         self.assertEqual(res["savePlayer"]["player"]["id"], 2)
@@ -344,8 +343,7 @@ class TestGraphql(GraphQLTestCase):
                     }
                 }
             }
-            '''
-        )
+            ''', headers=self.headers)
         res = json.loads(response.content)["data"]
         self.assertResponseNoErrors(response)
         self.assertEqual(res["setPlayer"]["player"]["id"], 1)
@@ -356,8 +354,7 @@ class TestGraphql(GraphQLTestCase):
             mutation {
                 deletePlayer(id:1) { id }
             }
-            '''
-        )
+            ''', headers=self.headers)
         res = json.loads(response.content)["data"]
         self.assertResponseNoErrors(response)
         self.assertEqual(res["deletePlayer"]["id"], 1)
@@ -372,7 +369,7 @@ class TestGraphql(GraphQLTestCase):
                     details
                 }
             }
-            ''')
+            ''', headers=self.headers)
         res_01 = json.loads(response_01.content)["data"]
         self.assertResponseNoErrors(response_01)
         with self.subTest():
@@ -383,7 +380,7 @@ class TestGraphql(GraphQLTestCase):
             {
                 playerPositions{ id }
             }
-            ''')
+            ''', headers=self.headers)
         res_02 = json.loads(response_02.content)["data"]
         self.assertResponseNoErrors(response_02)
         with self.subTest():
@@ -400,7 +397,7 @@ class TestGraphql(GraphQLTestCase):
                     playerPositions { id }
                 }
             }
-            ''')
+            ''', headers=self.headers)
         res_03 = json.loads(response_03.content)["data"]
         self.assertResponseNoErrors(response_03)
         with self.subTest():
@@ -413,7 +410,7 @@ class TestGraphql(GraphQLTestCase):
             {
                 playerPositionCount(query: "id=1"){ count }
             }
-            ''')
+            ''', headers=self.headers)
         res_04 = json.loads(response_04.content)["data"]
         self.assertResponseNoErrors(response_04)
         with self.subTest():
@@ -424,7 +421,7 @@ class TestGraphql(GraphQLTestCase):
             {
                 playerPositionCount { count }
             }
-            ''')
+            ''', headers=self.headers)
         res_05 = json.loads(response_05.content)["data"]
         self.assertResponseNoErrors(response_05)
         with self.subTest():
@@ -440,7 +437,7 @@ class TestGraphql(GraphQLTestCase):
                     details
                 }
             }
-            ''')
+            ''', headers=self.headers)
         res = json.loads(response.content)["data"]
         self.assertResponseNoErrors(response)
         self.assertEqual(res["playerPosition"]["id"], 1)
@@ -460,8 +457,7 @@ class TestGraphql(GraphQLTestCase):
                     }
                 }
             }
-            '''
-        )
+            ''', headers=self.headers)
         res = json.loads(response.content)["data"]
         self.assertResponseNoErrors(response)
         self.assertEqual(res["savePlayerPosition"]["playerPosition"]["id"], 2)
@@ -482,8 +478,7 @@ class TestGraphql(GraphQLTestCase):
                     }
                 }
             }
-            '''
-        )
+            ''', headers=self.headers)
         res = json.loads(response.content)["data"]
         self.assertResponseNoErrors(response)
         self.assertEqual(res["setPlayerPosition"]["playerPosition"]["id"], 1)
@@ -494,8 +489,7 @@ class TestGraphql(GraphQLTestCase):
             mutation {
                 deletePlayerPosition(id:1) { id }
             }
-            '''
-        )
+            ''', headers=self.headers)
         res = json.loads(response.content)["data"]
         self.assertResponseNoErrors(response)
         self.assertEqual(res["deletePlayerPosition"]["id"], 1)
@@ -515,7 +509,7 @@ class TestGraphql(GraphQLTestCase):
                     }
                 }
             }
-            ''')
+            ''', headers=self.headers)
         res_01 = json.loads(response_01.content)["data"]
         self.assertResponseNoErrors(response_01)
         with self.subTest():
@@ -526,7 +520,7 @@ class TestGraphql(GraphQLTestCase):
             {
                 scores{ id }
             }
-            ''')
+            ''', headers=self.headers)
         res_02 = json.loads(response_02.content)["data"]
         self.assertResponseNoErrors(response_02)
         with self.subTest():
@@ -543,7 +537,7 @@ class TestGraphql(GraphQLTestCase):
                     scores { id }
                 }
             }
-            ''')
+            ''', headers=self.headers)
         res_03 = json.loads(response_03.content)["data"]
         self.assertResponseNoErrors(response_03)
         with self.subTest():
@@ -556,7 +550,7 @@ class TestGraphql(GraphQLTestCase):
             {
                 scoreCount(query: "id=1"){ count }
             }
-            ''')
+            ''', headers=self.headers)
         res_04 = json.loads(response_04.content)["data"]
         self.assertResponseNoErrors(response_04)
         with self.subTest():
@@ -567,7 +561,7 @@ class TestGraphql(GraphQLTestCase):
             {
                 scoreCount { count }
             }
-            ''')
+            ''', headers=self.headers)
         res_05 = json.loads(response_05.content)["data"]
         self.assertResponseNoErrors(response_05)
         with self.subTest():
@@ -588,7 +582,7 @@ class TestGraphql(GraphQLTestCase):
                     }
                 }
             }
-            ''')
+            ''', headers=self.headers)
         res = json.loads(response.content)["data"]
         self.assertResponseNoErrors(response)
         self.assertEqual(res["score"]["id"], 1)
@@ -614,8 +608,7 @@ class TestGraphql(GraphQLTestCase):
                     }
                 }
             }
-            '''
-        )
+            ''', headers=self.headers)
         res = json.loads(response.content)["data"]
         self.assertResponseNoErrors(response)
         self.assertEqual(res["saveScore"]["score"]["id"], 2)
@@ -642,8 +635,7 @@ class TestGraphql(GraphQLTestCase):
                     }
                 }
             }
-            '''
-        )
+            ''', headers=self.headers)
         res = json.loads(response.content)["data"]
         self.assertResponseNoErrors(response)
         self.assertEqual(res["setScore"]["score"]["id"], 1)
@@ -654,8 +646,7 @@ class TestGraphql(GraphQLTestCase):
             mutation {
                 deleteScore(id:1) { id }
             }
-            '''
-        )
+            ''', headers=self.headers)
         res = json.loads(response.content)["data"]
         self.assertResponseNoErrors(response)
         self.assertEqual(res["deleteScore"]["id"], 1)
@@ -677,7 +668,7 @@ class TestGraphql(GraphQLTestCase):
                     }
                 }
             }
-            ''')
+            ''', headers=self.headers)
         res_01 = json.loads(response_01.content)["data"]
         self.assertResponseNoErrors(response_01)
         with self.subTest():
@@ -688,7 +679,7 @@ class TestGraphql(GraphQLTestCase):
             {
                 teams{ id }
             }
-            ''')
+            ''', headers=self.headers)
         res_02 = json.loads(response_02.content)["data"]
         self.assertResponseNoErrors(response_02)
         with self.subTest():
@@ -705,7 +696,7 @@ class TestGraphql(GraphQLTestCase):
                     teams { id }
                 }
             }
-            ''')
+            ''', headers=self.headers)
         res_03 = json.loads(response_03.content)["data"]
         self.assertResponseNoErrors(response_03)
         with self.subTest():
@@ -718,7 +709,7 @@ class TestGraphql(GraphQLTestCase):
             {
                 teamCount(query: "id=1"){ count }
             }
-            ''')
+            ''', headers=self.headers)
         res_04 = json.loads(response_04.content)["data"]
         self.assertResponseNoErrors(response_04)
         with self.subTest():
@@ -729,7 +720,7 @@ class TestGraphql(GraphQLTestCase):
             {
                 teamCount { count }
             }
-            ''')
+            ''', headers=self.headers)
         res_05 = json.loads(response_05.content)["data"]
         self.assertResponseNoErrors(response_05)
         with self.subTest():
@@ -752,7 +743,7 @@ class TestGraphql(GraphQLTestCase):
                     }
                 }
             }
-            ''')
+            ''', headers=self.headers)
         res = json.loads(response.content)["data"]
         self.assertResponseNoErrors(response)
         self.assertEqual(res["team"]["id"], 1)
@@ -782,8 +773,7 @@ class TestGraphql(GraphQLTestCase):
                     }
                 }
             }
-            '''
-        )
+            ''', headers=self.headers)
         res = json.loads(response.content)["data"]
         self.assertResponseNoErrors(response)
         self.assertEqual(res["saveTeam"]["team"]["id"], 2)
@@ -814,8 +804,7 @@ class TestGraphql(GraphQLTestCase):
                     }
                 }
             }
-            '''
-        )
+            ''', headers=self.headers)
         res = json.loads(response.content)["data"]
         self.assertResponseNoErrors(response)
         self.assertEqual(res["setTeam"]["team"]["id"], 1)
@@ -826,8 +815,7 @@ class TestGraphql(GraphQLTestCase):
             mutation {
                 deleteTeam(id:1) { id }
             }
-            '''
-        )
+            ''', headers=self.headers)
         res = json.loads(response.content)["data"]
         self.assertResponseNoErrors(response)
         self.assertEqual(res["deleteTeam"]["id"], 1)
@@ -851,7 +839,7 @@ class TestGraphql(GraphQLTestCase):
                     }
                 }
             }
-            ''')
+            ''', headers=self.headers)
         res_01 = json.loads(response_01.content)["data"]
         self.assertResponseNoErrors(response_01)
         with self.subTest():
@@ -862,7 +850,7 @@ class TestGraphql(GraphQLTestCase):
             {
                 users{ id }
             }
-            ''')
+            ''', headers=self.headers)
         res_02 = json.loads(response_02.content)["data"]
         self.assertResponseNoErrors(response_02)
         with self.subTest():
@@ -879,7 +867,7 @@ class TestGraphql(GraphQLTestCase):
                     users { id }
                 }
             }
-            ''')
+            ''', headers=self.headers)
         res_03 = json.loads(response_03.content)["data"]
         self.assertResponseNoErrors(response_03)
         with self.subTest():
@@ -892,7 +880,7 @@ class TestGraphql(GraphQLTestCase):
             {
                 userCount(query: "id=1"){ count }
             }
-            ''')
+            ''', headers=self.headers)
         res_04 = json.loads(response_04.content)["data"]
         self.assertResponseNoErrors(response_04)
         with self.subTest():
@@ -903,7 +891,7 @@ class TestGraphql(GraphQLTestCase):
             {
                 userCount { count }
             }
-            ''')
+            ''', headers=self.headers)
         res_05 = json.loads(response_05.content)["data"]
         self.assertResponseNoErrors(response_05)
         with self.subTest():
@@ -928,7 +916,7 @@ class TestGraphql(GraphQLTestCase):
                     }
                 }
             }
-            ''')
+            ''', headers=self.headers)
         res = json.loads(response.content)["data"]
         self.assertResponseNoErrors(response)
         self.assertEqual(res["user"]["id"], 1)
@@ -963,8 +951,7 @@ class TestGraphql(GraphQLTestCase):
                     }
                 }
             }
-            '''
-        )
+            ''', headers=self.headers)
         res = json.loads(response.content)["data"]
         self.assertResponseNoErrors(response)
         self.assertEqual(res["saveUser"]["user"]["id"], 2)
@@ -1000,8 +987,7 @@ class TestGraphql(GraphQLTestCase):
                     }
                 }
             }
-            '''
-        )
+            ''', headers=self.headers)
         res = json.loads(response.content)["data"]
         self.assertResponseNoErrors(response)
         self.assertEqual(res["setUser"]["user"]["id"], 1)
@@ -1012,8 +998,7 @@ class TestGraphql(GraphQLTestCase):
             mutation {
                 deleteUser(id:1) { id }
             }
-            '''
-        )
+            ''', headers=self.headers)
         res = json.loads(response.content)["data"]
         self.assertResponseNoErrors(response)
         self.assertEqual(res["deleteUser"]["id"], 1)

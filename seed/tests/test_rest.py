@@ -5,15 +5,18 @@ __Seed builder__
 """
 
 import json
-
 from rest_framework import status
 from rest_framework.test import APITestCase
-
 from seed.tests.util_test import fill_test_database
+from rest_auth.models import TokenModel
+from app.models import User
 
 class TestRest(APITestCase):
     def setUp(self):
         fill_test_database()
+        user = User.objects.all().first()
+        token, created = TokenModel.objects.get_or_create(user=user)
+        self.client.credentials(HTTP_AUTHORIZATION='Token ' + token.key)
     
     def test_get_matches(self):
         response = self.client.get('/api/matches/')
