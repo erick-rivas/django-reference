@@ -113,7 +113,7 @@ ExecStart=#PROJECT_DIR#/.venv/bin/gunicorn \
           --workers 3 \
           --error-logfile /var/log/gunicorn.error.log \
           --bind unix:/run/gunicorn.sock \
-          app.wsgi:application
+          seed.app.wsgi:application
 
 [Install]
 WantedBy=multi-user.target
@@ -121,6 +121,8 @@ WantedBy=multi-user.target
 >   *To obtain the user and group of OS, use ```id``` command (For aws-ec2=ubuntu,ubuntu)*
 
 -   Create gunicorn.error.log file ```sudo touch /var/log/gunicorn.error.log```
+
+-   Set read/write permissions to .error.log file ``sudo chmod 666 /var/log/gunicorn.error.log```
 
 -   Init gunicorn socket
 ``` bash
@@ -193,6 +195,10 @@ sudo supervisorctl start all
 
 -   Check supervisor status `sudo supervisorctl status all`
 
+#### ReactJS configuration (optional)
+
+-   Check reference [documentation](https://github.com/erick-rivas/reactjs-reference/blob/master/src/seed/docs/220_ubuntu.md)
+
 ### SSL
 
 To enable a https connection
@@ -250,8 +256,8 @@ server {
 
 #### Server logs
 
--  To watch nginx logs `tail -f /var/log/nginx/error.log`
--  To watch gunicorn logs `tail -f /var/log/gunicorn.error.log`
+-   To watch nginx logs `tail -f /var/log/nginx/error.log`
+-   To watch gunicorn logs `tail -f /var/log/gunicorn.error.log`
 
 ### References
 

@@ -99,6 +99,8 @@ def _get_opt(flt):
         opt = ('>=', 'gte')
     elif '<=' in flt:
         opt = ('<=', 'lte')
+    elif '<>' in flt:
+        opt = ('<>', 'ne')
     elif '>' in flt:
         opt = ('>', 'gt')
     elif '<' in flt:

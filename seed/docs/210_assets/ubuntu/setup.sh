@@ -23,6 +23,7 @@ sed -i "s/DB_NAME=/DB_NAME=$1/" ".env.dev"
 sed -i "s/DB_USER=/DB_USER=$2/" ".env.dev"
 sed -i "s/DB_PASSWORD=/DB_PASSWORD=$3/" ".env.dev"
 sed -i "s/DB_HOST=/DB_HOST=localhost/" ".env.dev"
+sed -i "s/SECRET_KEY=/SECRET_KEY=fupswltefA9efredrufihUSTOwamc/" ".env.dev"
 
 echo "== Making & executing migrations"
 python3 manage.py makemigrations
