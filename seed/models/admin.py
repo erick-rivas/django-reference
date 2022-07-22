@@ -29,9 +29,8 @@ class Admin:
                     'created_at',
                     'date',
                     'type',
-                    'local_id',
-                    'visitor_id',
-                    'score_ids',
+                    'local',
+                    'visitor',
                 )
 
         class MatchAdmin(ImportExportModelAdmin):
@@ -46,9 +45,9 @@ class Admin:
                     'name',
                     'photo',
                     'is_active',
-                    'photo_id',
-                    'team_id',
-                    'position_id',
+                    'photo',
+                    'team',
+                    'position',
                 )
 
         class PlayerAdmin(ImportExportModelAdmin):
@@ -74,8 +73,8 @@ class Admin:
                     'id',
                     'created_at',
                     'min',
-                    'player_id',
-                    'match_id',
+                    'player',
+                    'match',
                 )
 
         class ScoreAdmin(ImportExportModelAdmin):
@@ -92,10 +91,8 @@ class Admin:
                     'description',
                     'market_value',
                     'identity_docs',
-                    'logo_id',
-                    'identity_doc_ids',
-                    'rival_id',
-                    'player_ids',
+                    'logo',
+                    'rival',
                 )
 
         class TeamAdmin(ImportExportModelAdmin):
@@ -113,8 +110,7 @@ class Admin:
                     'email',
                     'is_active',
                     'profile_image',
-                    'profile_image_id',
-                    'team_ids',
+                    'profile_image',
                 )
 
         class UserAdmin(ImportExportModelAdmin):

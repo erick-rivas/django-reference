@@ -15,8 +15,8 @@
       "*": "*"
     }
   },
-  "last_build_date": "2022-07-14 19:02:15.730067",
-  "last_build_version": "0.5.34",
+  "last_build_date": "2022-07-22 03:04:18.200964",
+  "last_build_version": "0.5.35",
   "platform": "django",
   "project_description": "This repository holds a **reference** for the development of a **REST API with graphql support** based on Django framework",
   "project_name": "Django Reference"

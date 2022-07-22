@@ -5,7 +5,10 @@ from django.urls import include, path
 from seed.app.urls import *
 
 #  Include custom urls
-#  Example: /debug
+#  Example: /debug/test
+#     router = DefaultRouter()
+#     # TestView as rest_framework.viewsets.ViewSet Class
+#     router.register(r'test', TestViewSet, basename='test')
 #     urlpatterns += [
-#       path('debug/', DebugView.as_view()
+#       path('debug/', include(debug_router.urls))
 #     ]
