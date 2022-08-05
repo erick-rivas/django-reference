@@ -31,6 +31,7 @@ class Admin:
                     'type',
                     'local',
                     'visitor',
+                    'scores',
                 )
 
         class MatchAdmin(ImportExportModelAdmin):
@@ -92,7 +93,9 @@ class Admin:
                     'market_value',
                     'identity_docs',
                     'logo',
+                    'identity_docs',
                     'rival',
+                    'players',
                 )
 
         class TeamAdmin(ImportExportModelAdmin):
@@ -111,6 +114,7 @@ class Admin:
                     'is_active',
                     'profile_image',
                     'profile_image',
+                    'teams',
                 )
 
         class UserAdmin(ImportExportModelAdmin):
