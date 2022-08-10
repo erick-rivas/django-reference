@@ -3,13 +3,15 @@ from channels.routing import ProtocolTypeRouter, URLRouter
 from channels.security.websocket import AllowedHostsOriginValidator
 from channels.generic.websocket import WebsocketConsumer
 from asgiref.sync import async_to_sync
+from urllib.parse import parse_qs
 
 class BaseSocket(WebsocketConsumer):
 
-    url = r"^ws_global/$"
-    room = "ws_global"
+    url = r'^ws/(?P<room>[^/]+)/$'
 
     def connect(self):
+        self.room = self.scope['url_route']['kwargs']['room']
+        self.params = parse_qs(self.scope['query_string'].decode('utf8'))
         async_to_sync(self.channel_layer.group_add)(
             self.room,
             self.channel_name
@@ -21,9 +23,6 @@ class BaseSocket(WebsocketConsumer):
             self.room,
             self.channel_name
         )
-
-    # async def receive(self, text_data = None, bytes_data = None):
-    #     pass
 
     def send_message(self, data):
         self.send(text_data=data["message"])
