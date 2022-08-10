@@ -7,6 +7,8 @@
 wheel==0.37.1
 boto3==1.24.46
 celery==5.2.7
+channels==3.0.5
+channels-redis==3.4.1
 coverage==6.4.2
 Django==3.2.14
 django-cors-headers==3.13.0

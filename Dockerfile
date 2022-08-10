@@ -7,7 +7,7 @@ WORKDIR /app
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED=1
 RUN pip install --upgrade pip==22.2.2
-RUN apk update && apk add gcc postgresql-dev postgresql-client python3-dev musl-dev openssh-client
+RUN apk update && apk add gcc postgresql-dev postgresql-client python3-dev musl-dev openssh-client libffi-dev
 COPY requirements.txt .
 COPY seed/requirements.txt seed/
 RUN pip install -r requirements.txt
