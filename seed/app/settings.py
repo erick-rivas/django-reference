@@ -32,6 +32,7 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 
 ROOT_URLCONF = 'app.urls'
 WSGI_APPLICATION = 'seed.app.wsgi.application'
+ASGI_APPLICATION = 'seed.app.asgi.application'
 AUTH_USER_MODEL = 'models.User'
 DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 SITE_ID = 1
@@ -61,6 +62,9 @@ INSTALLED_APPS = [
     'djangoql',
     'corsheaders',
     'graphene_django',
+
+    # Websockets
+    'channels',
 
     'django.contrib.admin',
     'django.contrib.auth',
@@ -92,6 +96,17 @@ DATABASES = {
         'PASSWORD': os.getenv('DB_PASSWORD'),
         'HOST': os.getenv('DB_HOST'),
         'PORT': os.getenv('DB_PORT')
+    }
+}
+
+# Channels
+
+CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": "channels_redis.core.RedisChannelLayer",
+        "CONFIG": {
+            "hosts": [(os.getenv("REDIS_HOST"), os.getenv("REDIS_PORT"))],
+        }
     }
 }
 
