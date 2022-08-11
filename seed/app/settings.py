@@ -62,8 +62,6 @@ INSTALLED_APPS = [
     'djangoql',
     'corsheaders',
     'graphene_django',
-
-    # Websockets
     'channels',
 
     'django.contrib.admin',
@@ -96,17 +94,6 @@ DATABASES = {
         'PASSWORD': os.getenv('DB_PASSWORD'),
         'HOST': os.getenv('DB_HOST'),
         'PORT': os.getenv('DB_PORT')
-    }
-}
-
-# Channels
-
-CHANNEL_LAYERS = {
-    "default": {
-        "BACKEND": "channels_redis.core.RedisChannelLayer",
-        "CONFIG": {
-            "hosts": [(os.getenv("REDIS_HOST"), os.getenv("REDIS_PORT"))],
-        }
     }
 }
 
@@ -181,7 +168,7 @@ GRAPHENE = {
     'SCHEMA': 'seed.app.graphene.schema'
 }
 
-# CELERY
+# Celery
 
 CELERY_BROKER_URL = 'redis://' + os.getenv("REDIS_HOST") + ':' + os.getenv("REDIS_PORT")
 CELERY_RESULT_BACKEND = CELERY_BROKER_URL
@@ -190,7 +177,18 @@ CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
 CELERY_TIMEZONE = 'America/Mexico_City'
 
-# EMAIL
+# Channels
+
+CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": "channels_redis.core.RedisChannelLayer",
+        "CONFIG": {
+            "hosts": [(os.getenv("REDIS_HOST"), os.getenv("REDIS_PORT"))],
+        }
+    }
+}
+
+# Email
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST_USER = os.getenv('SMTP_EMAIL')

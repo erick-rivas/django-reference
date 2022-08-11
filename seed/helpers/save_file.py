@@ -4,6 +4,7 @@ __Seed builder__
 """
 
 import os
+import re
 import uuid
 from django.core.files.storage import default_storage
 from urllib.parse import urlparse
@@ -29,7 +30,7 @@ def save_file_obj(file):
     :param file: File object in r mode
     :return: File model (app.models.File)
     """
-    filename = uuid.uuid4().hex + "_" + file.name
+    filename = uuid.uuid4().hex + "_" + re.sub('[^A-Za-z0-9.]+', '', file.name)
     name = default_storage.save(filename, file)
     size = default_storage.size(name)
     url = default_storage.url(name)

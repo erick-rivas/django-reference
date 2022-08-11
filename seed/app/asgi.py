@@ -1,3 +1,9 @@
+"""
+__Seed builder__
+  AUTO_GENERATED (Read only)
+  Modify via builder
+"""
+
 from django.conf.urls import url
 from channels.routing import ProtocolTypeRouter, URLRouter
 from channels.security.websocket import AllowedHostsOriginValidator
@@ -6,7 +12,6 @@ from asgiref.sync import async_to_sync
 from urllib.parse import parse_qs
 
 class BaseSocket(WebsocketConsumer):
-
     url = r'^ws/(?P<room>[^/]+)/$'
 
     def connect(self):
@@ -28,11 +33,11 @@ class BaseSocket(WebsocketConsumer):
         self.send(text_data=data["message"])
 
 application = ProtocolTypeRouter({
-  'websocket': AllowedHostsOriginValidator(
-    URLRouter(
-      [
-        url(BaseSocket.url, BaseSocket.as_asgi())
-      ]
+    'websocket': AllowedHostsOriginValidator(
+        URLRouter(
+            [
+                url(BaseSocket.url, BaseSocket.as_asgi())
+            ]
+        )
     )
-  )
 })
