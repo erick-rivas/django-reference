@@ -33,8 +33,9 @@ echo "$DJANGO_PORT" > "bin/docker/.port"
 sudo rm bin/docker/docker.env
 echo "IS_PROD=$IS_PROD" > "bin/docker/docker.env"
 
-sudo rm debug_.py
-echo "# Temporary file for debugging, run with bin/debug.sh" > "debug_.py"
+if [ ! -f debug_.py ]; then
+    echo "# Temporary file for debugging, run with bin/debug.sh" > "debug_.py"
+fi
 
 echo "== Deleting previous containers"
 sudo docker compose -f bin/docker/docker-compose.yml down
@@ -43,19 +44,21 @@ echo "== Building project"
 sudo docker compose -f bin/docker/docker-compose.yml build
 
 echo "== Setting execute permissions to bin"
-sudo docker compose -f bin/docker/docker-compose.yml run --rm django /bin/sh -c "chmod +x bin/*.sh;chmod +x bin/docker/*.sh"
+sudo docker compose -f bin/docker/docker-compose.yml run --rm django /bin/sh -c "chmod +x bin/*.sh;chmod +x bin/docker/*.sh;chmod +x bin/scripts/*.sh"
 
-echo "== Creating .env.devs"
-sudo docker compose -f bin/docker/docker-compose.yml run --rm django /bin/sh -c  "bin/docker/env-dev.sh $DJANGO_PORT $POSTGRES_PORT $REDIS_PORT $SERVER_URL $CLIENT_URL"
+echo "== Initializing .env.devs"
+sudo docker compose -f bin/docker/docker-compose.yml run --rm django /bin/sh -c  "bin/scripts/init_envs.sh $DJANGO_PORT $POSTGRES_PORT $REDIS_PORT $SERVER_URL $CLIENT_URL"
 
 echo "== Starting services"
 sudo docker compose -f bin/docker/docker-compose.yml up -d
 
 echo "== Executing db update (make & run migrations)"
-sudo docker compose -f bin/docker/docker-compose.yml exec django /bin/sh -c "bin/docker/update.sh"
+sudo docker compose -f bin/docker/docker-compose.yml exec django /bin/sh -c "bin/scripts/update_db.sh"
 
-echo "== Loading dev fixtures (admin)"
-sudo docker compose -f bin/docker/docker-compose.yml exec django /bin/sh -c "python manage.py loaddata bin/docker/fixtures-dev.yaml"
+if [ $IS_PROD = false ]; then
+    echo "== Loading dev fixtures (admin)"
+    sudo docker compose -f bin/docker/docker-compose.yml exec django /bin/sh -c "python manage.py loaddata models/fixtures/.dev.yaml"
+fi
 
 echo "== Generating docs"
 sudo docker compose -f bin/docker/docker-compose.yml exec django /bin/sh -c "sphinx-build -E -b html ./seed/docs ./.data/docs"

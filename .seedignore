@@ -47,8 +47,6 @@ README.md
 ?app/settings.py
 ?app/urls.py
 ?app/wsgi.py
-?bin/docker/custom-setup.sh
-?bin/docker/docker.env
 !*__init__.py
 !seed/docs/210_assets/*
 !seed/models/model.py

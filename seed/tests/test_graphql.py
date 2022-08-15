@@ -6,7 +6,7 @@ __Seed builder__
 
 import json
 from graphene_django.utils.testing import GraphQLTestCase
-from seed.tests.util_test import fill_test_database
+from seed.util.test_util import fill_test_database
 from rest_auth.models import TokenModel
 from app.models import User
 

@@ -11,6 +11,7 @@ from channels.generic.websocket import WebsocketConsumer
 from asgiref.sync import async_to_sync
 from urllib.parse import parse_qs
 
+# pylint: disable=W0201
 class BaseSocket(WebsocketConsumer):
     url = r'^ws/(?P<room>[^/]+)/$'
 

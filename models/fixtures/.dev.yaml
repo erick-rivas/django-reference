@@ -4,16 +4,6 @@
 #   Modify via builder
 #
 
-## FILES
-
-- model: models.File
-  pk: 10000
-  fields:
-    created_at: "2020-01-01"
-    url: "https://seedb.s3.amazonaws.com/dummy.jpg"
-    size: 0
-    name: "file"
-
 ## USERS
 
 - model: models.user
@@ -32,3 +22,13 @@
     date_joined: "2020-01-01"
     teams: []
     profile_image: 10000
+
+## FILES
+
+- model: models.File
+  pk: 10000
+  fields:
+    created_at: "2020-01-01"
+    url: "https://seedb.s3.amazonaws.com/dummy.jpg"
+    size: 0
+    name: "file"

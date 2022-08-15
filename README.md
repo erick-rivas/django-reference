@@ -8,10 +8,8 @@ This repository holds a **reference** for the development of a **REST API with g
 -   Install [Docker Desktop 4.10.x](https://docs.docker.com/desktop/)
 -   Clone this repository
 -   Execute setup script `bin/setup`
-    -   For unix systems execute shell file `*.sh` and for windows batch `.bat` (e.g `bin/setup.sh` or `bin/setup.bat`)
-    >   Warning: Don't execute any script with sudo
+    >  For unix systems execute shell file `*.sh` (without sudo) and for windows batch `.bat` (e.g `bin/setup.sh` or `bin/setup.bat`)
 -   Start server with `bin/start`
-    -   To run server in foreground execute `bin/run`
 
 ### Examples
 
@@ -22,4 +20,4 @@ This repository holds a **reference** for the development of a **REST API with g
 
 ## Documentation
 
--   All documentation is in the [docs](./seed/docs/010_general.md) directory and in the server path [http://localhost:8008/docs](http://localhost:8008/docs)
+-   All documentation is in the [docs](./seed/docs/010_general.md) directory

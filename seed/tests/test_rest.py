@@ -7,7 +7,7 @@ __Seed builder__
 import json
 from rest_framework import status
 from rest_framework.test import APITestCase
-from seed.tests.util_test import fill_test_database
+from seed.util.test_util import fill_test_database
 from rest_auth.models import TokenModel
 from app.models import User
 
