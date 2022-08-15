@@ -40,7 +40,7 @@ jobs:
           tool: bandit
           force-file-permissions: true
 
-  build-test:
+  test:
     runs-on: ubuntu-latest
 
     services:
