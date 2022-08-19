@@ -9,7 +9,6 @@
 - model: models.match
   pk: 1
   fields:
-    created_at: "2020-01-01"
     date: "2020-01-01"
     type: "FRIENDSHIP|LEAGUE|CUP|"
     local: 0
@@ -20,7 +19,6 @@
 - model: models.player
   pk: 1
   fields:
-    created_at: "2020-01-01"
     name: ""
     photo: 0
     is_active: false
@@ -32,7 +30,6 @@
 - model: models.playerPosition
   pk: 1
   fields:
-    created_at: "2020-01-01"
     name: ""
     details: "{}"
 
@@ -41,7 +38,6 @@
 - model: models.score
   pk: 1
   fields:
-    created_at: "2020-01-01"
     min: 0
     player: 0
     match: 0
@@ -51,7 +47,6 @@
 - model: models.team
   pk: 1
   fields:
-    created_at: "2020-01-01"
     name: ""
     logo: 0
     description: ""
@@ -63,7 +58,6 @@
 - model: models.user
   pk: 1
   fields:
-    created_at: "2020-01-01"
     username: ""
     first_name: ""
     last_name: ""
@@ -72,8 +66,6 @@
     is_active: true
     is_superuser: false
     is_staff: false
-    last_login: "2020-01-01"
-    date_joined: "2020-01-01"
     teams: []
     profile_image: 0
 
@@ -82,7 +74,4 @@
 - model: models.File
   pk: 1
   fields:
-    created_at: "2020-01-01"
     url: "https://seedb.s3.amazonaws.com/dummy.jpg"
-    size: 0
-    name: "file"

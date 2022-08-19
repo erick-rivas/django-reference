@@ -19,5 +19,5 @@ app.autodiscover_tasks()
 # Common shared tasks
 
 @shared_task
-def send_email_async(**kwargs):
-    send_mail(**kwargs)
+def send_mail_async(subject, plain_text, from_email, to_email, **kwargs):
+    send_mail(subject, plain_text, from_email, to_email, **kwargs)

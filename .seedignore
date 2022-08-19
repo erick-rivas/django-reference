@@ -25,10 +25,11 @@ seed/serializers/*
 seed/mutations/*
 seed/schema/*
 seed/routes/*
-app/api.py
+app/celery.py
 app/models.py
 app/serializers.py
-app/routes.py
+app/settings.py
+app/urls.py
 domain/*
 models/*.py
 models/*.md
@@ -43,10 +44,6 @@ README.md
 ?.pylintrc
 ?requirements.txt
 ?manage.py
-?app/celery.py
-?app/settings.py
-?app/urls.py
-?app/wsgi.py
 !*__init__.py
 !seed/docs/210_assets/*
 !seed/models/model.py
