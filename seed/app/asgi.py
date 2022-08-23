@@ -4,6 +4,7 @@ __Seed builder__
   Modify via builder
 """
 
+import json
 from django.conf.urls import url
 from channels.routing import ProtocolTypeRouter, URLRouter
 from channels.security.websocket import AllowedHostsOriginValidator
@@ -31,7 +32,7 @@ class BaseSocket(WebsocketConsumer):
         )
 
     def send_message(self, data):
-        self.send(text_data=data["message"])
+        self.send(text_data=json.dumps(data["message"]))
 
 application = ProtocolTypeRouter({
     'websocket': AllowedHostsOriginValidator(

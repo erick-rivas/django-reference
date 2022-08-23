@@ -122,7 +122,7 @@ WantedBy=multi-user.target
 
 -   Create gunicorn.error.log file ```sudo touch /var/log/gunicorn.error.log```
 
--   Set read/write permissions to .error.log file ``sudo chmod 666 /var/log/gunicorn.error.log```
+-   Set read/write permissions to .error.log file `sudo chmod 666 /var/log/gunicorn.error.log`
 
 -   Init gunicorn socket
 ``` bash
@@ -142,8 +142,8 @@ server {
     listen 80;
     server_name #SERVER_NAME#;
     client_max_body_size 75M;
-    fastcgi_read_timeout 3000;
-    proxy_read_timeout 3000;
+    fastcgi_read_timeout 5000;
+    proxy_read_timeout 5000;
 
     location / {
         include proxy_params;
@@ -167,7 +167,7 @@ sudo ln -s /etc/nginx/sites-available/app /etc/nginx/sites-enabled
 ```
 [program:celery]
 directory=#PROJECT_DIR#
-command=#PROJECT_DIR#/.venv/bin/celery -A app worker -l INFO
+command=#PROJECT_DIR#/.venv/bin/celery -A app worker -l INFO -B
 
 user=ubuntu
 numprocs=1
@@ -250,7 +250,7 @@ server {
 
 ### Deployment
 
--   Paste `seed/docs/210_assets/ubuntu/deploy.sh` in server root folder
+-   Copy `seed/docs/210_assets/ubuntu/deploy.sh` in server root folder
 
 -   Run deployment script `./deploy.sh`
 
@@ -262,3 +262,8 @@ server {
 ### References
 
 -   Gunicorn-nginx tutorial [https://www.digitalocean.com/community/tutorials/how-to-set-up-django-with-postgres-nginx-and-gunicorn-on-ubuntu-18-04#creating-systemd-socket-and-service-files-for-gunicorn](https://www.digitalocean.com/community/tutorials/how-to-set-up-django-with-postgres-nginx-and-gunicorn-on-ubuntu-18-04#creating-systemd-socket-and-service-files-for-gunicorn)
+
+### See also
+
+-   [Deployment - AWS ElasticBeanstalk single instance](./230_eb_single_instance.md)
+-   [Deployment - AWS ElasticBeanstalk load balanced](./240_eb_load_balanced.md)

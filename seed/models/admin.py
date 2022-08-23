@@ -21,7 +21,11 @@ class Admin:
     @staticmethod
     def register():
         
-        class MatchResource(DjangoQLSearchMixin, resources.ModelResource):
+        class MatchResource(resources.ModelResource):
+            pass
+
+        class MatchAdmin(DjangoQLSearchMixin, ImportExportModelAdmin):
+            resource_class = MatchResource
             class Meta:
                 model = Match
                 fields = (
@@ -33,11 +37,12 @@ class Admin:
                     'visitor',
                     'scores',
                 )
-
-        class MatchAdmin(ImportExportModelAdmin):
-            resource_class = MatchResource
         
-        class PlayerResource(DjangoQLSearchMixin, resources.ModelResource):
+        class PlayerResource(resources.ModelResource):
+            pass
+
+        class PlayerAdmin(DjangoQLSearchMixin, ImportExportModelAdmin):
+            resource_class = PlayerResource
             class Meta:
                 model = Player
                 fields = (
@@ -50,11 +55,12 @@ class Admin:
                     'team',
                     'position',
                 )
-
-        class PlayerAdmin(ImportExportModelAdmin):
-            resource_class = PlayerResource
         
-        class PlayerPositionResource(DjangoQLSearchMixin, resources.ModelResource):
+        class PlayerPositionResource(resources.ModelResource):
+            pass
+
+        class PlayerPositionAdmin(DjangoQLSearchMixin, ImportExportModelAdmin):
+            resource_class = PlayerPositionResource
             class Meta:
                 model = PlayerPosition
                 fields = (
@@ -63,11 +69,12 @@ class Admin:
                     'name',
                     'details',
                 )
-
-        class PlayerPositionAdmin(ImportExportModelAdmin):
-            resource_class = PlayerPositionResource
         
-        class ScoreResource(DjangoQLSearchMixin, resources.ModelResource):
+        class ScoreResource(resources.ModelResource):
+            pass
+
+        class ScoreAdmin(DjangoQLSearchMixin, ImportExportModelAdmin):
+            resource_class = ScoreResource
             class Meta:
                 model = Score
                 fields = (
@@ -77,11 +84,12 @@ class Admin:
                     'player',
                     'match',
                 )
-
-        class ScoreAdmin(ImportExportModelAdmin):
-            resource_class = ScoreResource
         
-        class TeamResource(DjangoQLSearchMixin, resources.ModelResource):
+        class TeamResource(resources.ModelResource):
+            pass
+
+        class TeamAdmin(DjangoQLSearchMixin, ImportExportModelAdmin):
+            resource_class = TeamResource
             class Meta:
                 model = Team
                 fields = (
@@ -97,11 +105,12 @@ class Admin:
                     'rival',
                     'players',
                 )
-
-        class TeamAdmin(ImportExportModelAdmin):
-            resource_class = TeamResource
         
-        class UserResource(DjangoQLSearchMixin, resources.ModelResource):
+        class UserResource(resources.ModelResource):
+            pass
+
+        class UserAdmin(DjangoQLSearchMixin, ImportExportModelAdmin):
+            resource_class = UserResource
             class Meta:
                 model = User
                 fields = (
@@ -116,15 +125,21 @@ class Admin:
                     'profile_image',
                     'teams',
                 )
-
-        class UserAdmin(ImportExportModelAdmin):
-            resource_class = UserResource
         
-        class FileResource(DjangoQLSearchMixin, resources.ModelResource):
+        class FileResource(resources.ModelResource):
+            pass
+
+        class FileAdmin(DjangoQLSearchMixin, ImportExportModelAdmin):
+            resource_class = FileResource
             class Meta:
                 model = File
-        class FileAdmin(ImportExportModelAdmin):
-            resource_class = FileResource
+                fields = (
+                    'id',
+                    'created_at',
+                    'name',
+                    'url',
+                    'size'
+                )
         admin.site.register(Match, MatchAdmin)
         admin.site.register(Player, PlayerAdmin)
         admin.site.register(PlayerPosition, PlayerPositionAdmin)

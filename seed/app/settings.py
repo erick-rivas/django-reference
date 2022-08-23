@@ -195,7 +195,8 @@ EMAIL_HOST_USER = os.getenv('SMTP_EMAIL')
 EMAIL_HOST_PASSWORD = os.getenv('SMTP_PASSWORD')
 EMAIL_HOST = os.getenv('SMTP_HOST')
 EMAIL_PORT = os.getenv('SMTP_PORT')
-EMAIL_USE_SSL = True
+EMAIL_USE_SSL = False
+EMAIL_USE_TLS = True
 
 # Internationalization
 
