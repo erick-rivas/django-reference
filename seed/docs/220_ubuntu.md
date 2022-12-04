@@ -133,8 +133,8 @@ After=network.target
 [Service]
 User=#SO_USER#
 Group=#SO_USER#
-WorkingDirectory=#PROJECT_DIR#
-ExecStart=#PROJECT_DIR#/.venv/bin/gunicorn \
+WorkingDirectory=#API_DIR#
+ExecStart=#API_DIR#/.venv/bin/gunicorn \
           --log-level debug \
           --access-logfile /var/log/gunicorn.access.log \
           --workers 3 \
@@ -194,8 +194,8 @@ sudo ln -s /etc/nginx/sites-available/app /etc/nginx/sites-enabled
 -   Modify /etc/supervisor/conf.d/celery_worker.conf with the following structure
 ```
 [program:celery]
-directory=#PROJECT_DIR#
-command=#PROJECT_DIR#/.venv/bin/celery -A seed.app worker -l INFO -B
+directory=#API_DIR#
+command=#API_DIR#/.venv/bin/celery -A seed.app worker -l INFO -B
 
 user=ubuntu
 numprocs=1

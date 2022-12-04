@@ -2,6 +2,10 @@
 :: Seed builder
 :: AUTO_GENERATED (Read only)
 
+echo == Restarting celery & redis
+docker compose -f bin/docker/docker-compose.yml exec celery /bin/sh -c "celery -A seed.app purge"
+docker compose -f bin/docker/docker-compose.yml exec redis /bin/sh -c "redis-cli flushall"
+
 echo == Stopping server
 docker compose -f bin/docker/docker-compose.yml stop
 
