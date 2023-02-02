@@ -60,6 +60,14 @@ min-similarity-lines=4
 good-names=i,j,k,n,ex,Run,_,id,pk,setUp,assertJson
 const-rgx=(([A-Z][A-Z0-9_]*)|([a-z_][a-z0-9_]*)|(__.*__))$
 
+[FORMAT]
+
+max-line-length=240
+max-module-lines=1000
+max-args=7
+max-branchs=21
+max-statements=50
+
 # https://github.com/bueda/django-boilerplate/blob/master/.pylintrc
 # https://www.getcodeflow.com/pylint-configuration.html
 

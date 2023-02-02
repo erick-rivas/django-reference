@@ -53,7 +53,9 @@ echo "== Starting services"
 sudo docker compose -f bin/docker/docker-compose.yml up -d
 
 echo "== Executing db update (make & run migrations)"
-sudo docker compose -f bin/docker/docker-compose.yml exec django /bin/sh -c "bin/scripts/update_db.sh"
+sudo docker compose -f bin/docker/docker-compose.yml exec django /bin/sh -c "python manage.py makemigrations"
+sudo docker compose -f bin/docker/docker-compose.yml exec django /bin/sh -c "python manage.py migrate"
+sudo docker compose -f bin/docker/docker-compose.yml exec django /bin/sh -c "python manage.py loaddata models/fixtures/*.yaml"
 
 if [ $IS_PROD = false ]; then
     echo "== Loading dev fixtures (admin)"

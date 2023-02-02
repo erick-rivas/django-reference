@@ -55,9 +55,9 @@ echo == Starting services
 docker compose -f bin/docker/docker-compose.yml up -d
 
 echo == Executing db setup (make & run migrations)
-docker compose -f bin/docker/docker-compose.yml exec django /bin/sh -c "cp bin/scripts/update_db.sh bin/scripts/win_update_db.sh"
-docker compose -f bin/docker/docker-compose.yml exec django /bin/sh -c "sed -i 's/\r$//g' bin/scripts/win_update_db.sh"
-docker compose -f bin/docker/docker-compose.yml exec django /bin/sh -c "bin/scripts/win_update_db.sh"
+docker compose -f bin/docker/docker-compose.yml exec django /bin/sh -c "python manage.py makemigrations"
+docker compose -f bin/docker/docker-compose.yml exec django /bin/sh -c "python manage.py migrate"
+docker compose -f bin/docker/docker-compose.yml exec django /bin/sh -c "python manage.py loaddata models/fixtures/*.yaml"
 
 IF "%IS_PROD%" == "false" (
     echo == Loading dev fixtures (admin)
@@ -75,7 +75,6 @@ python -m pip install -r requirements.txt
 
 echo == Cleaning setup
 docker compose -f bin/docker/docker-compose.yml exec django /bin/sh -c "rm bin/scripts/win_init_envs.sh"
-docker compose -f bin/docker/docker-compose.yml exec django /bin/sh -c "rm bin/scripts/win_update_db.sh"
 
 echo == Cleaning services
 docker compose -f bin/docker/docker-compose.yml stop

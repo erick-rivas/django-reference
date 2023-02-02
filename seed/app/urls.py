@@ -31,4 +31,5 @@ if settings.DEBUG and os.path.exists((os.path.join(settings.DOCS_DIR, "index.htm
 if os.path.exists((os.path.join(settings.REACTJS_DIR, "index.html"))):
     urlpatterns += \
         static("/theme", document_root=os.path.join(settings.REACTJS_DIR, "theme")) \
+        + static("/resources", document_root=os.path.join(settings.REACTJS_DIR, "resources")) \
         + [url(r'^.*', never_cache(TemplateView.as_view(template_name='index.html')))]

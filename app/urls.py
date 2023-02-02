@@ -1,13 +1,14 @@
 """
 __Seed builder__
   Custom urls
-  Example: /debug/test
-      router = DefaultRouter()
-      # TestView as rest_framework.viewsets.ViewSet Class
-      router.register(r'test', TestViewSet, basename='test')
-      urlpatterns += [
+  Example: /debug/example/:actions
+      from routes.debug.example import DebugViewSet
+      ...
+      debug_router = DefaultRouter()
+      debug_router.register(r'example', DebugViewSet, basename='example')
+      urlpatterns = [
           path('debug/', include(debug_router.urls))
-      ]
+      ] + urlpatterns
 """
 
 from django.conf.urls import url
