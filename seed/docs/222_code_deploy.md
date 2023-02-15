@@ -1,85 +1,39 @@
 ## AWS Code Deploy
 
-### Create role IAM
+### Install AWS CLI
 
-In order to connect repositories with Code Deploy, is necessary create two roles, for this
--   Go to IAM >> Roles pane
--   Create new Role with trusted entity AWS Service for CodeDeploy
-    -   Select AWSCodeDeployRole (default)
--   Create new Role with trusted entity AWS Service for EC2
-    -   Select AmazonS3ReadOnlyAccess in policies
-
-Add EC2-S3 role to the instance (EC2 pane >> Actions >> Instance settings >> Attach/Replace IAM role)
-Once this roles were created, you can use it if any policy specific is not required
-
-### Install AWS Agent CodeDeploy in server
-
--   Install dependencies
+Execute the followings commands:
 
 ```bash
-sudo apt update
-sudo apt install ruby-full
-sudo apt install wget
+sudo apt install unzip
+curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+unzip awscliv2.zip
+sudo ./aws/install
 ```
 
--   Install agent (get bucket-name and region identifier from [https://docs.aws.amazon.com/codedeploy/latest/userguide/resource-kit.html#resource-kit-bucket-names](https://docs.aws.amazon.com/codedeploy/latest/userguide/resource-kit.html#resource-kit-bucket-names))
+Add secret AWS keys in bin/aws/files/.aws.env (you can create an IAM user or get them from Account >> Security Credentials)
+- AWS_ACCESS_KEY_ID
+- AWS_SECRET_ACCESS_KEY
 
-```bash
-wget https://<bucket-name>.s3.<region-identifier>.amazonaws.com/latest/install
-chmod +x ./install
-sudo ./install auto > /tmp/logfile
-```
+Note: if you need to specify a region, modify also REGION and BUCKET_NAME (get BUCKET_NAME and region identifier from [https://docs.aws.amazon.com/codedeploy/latest/userguide/resource-kit.html#resource-kit-bucket-names](https://docs.aws.amazon.com/codedeploy/latest/userguide/resource-kit.html#resource-kit-bucket-names))
 
--   Check agent status `sudo service codedeploy-agent status`
--   Start agent `sudo service codedeploy-agent start`
+Then execute `bin/aws/configure.sh` to set cli keys
 
-### Create CodeDeploy Implementation
+### Configure CodeDeploy
 
--   Open aws console in [aws.amazon.com](https://aws.amazon.com),
--   Go to Code Deploy pane
+Modify next variables in bin/aws/files/.aws.env
+- ARN_CONNECTION # CodeStar GitHub connection
+- REPOSITORY # Repository id (for example, <user>/<repository_name>)
+- PROJECT_NAME # Custom name (like reference-api)
+- INSTANCE_ID # Server instance id
+- INSTANCE_NAME # Server instance name
+- ARN_ROLE_CD # ARN of CodeDeploy IAM role 
+- ARN_ROLE_PL # ARN of CodePipeline IAM role
+- ARTIFACT_BUCKET # S3 bucket for pipeline
 
--   Create a new aplication
-    -   Select EC2 platform
-
--   Create a new deployment group
-    -   Select CodeDeploy-EC2 service role created
-    -   Select deployment type In-place (default)
-    -   Select EC2 instances environment and add it
-    -   Select never install AWS Agent CD
-    -   Select implementation config CodeDeployDefault.AllAtOnce (default)
-    -   Disable load balance
-
-### Create CodePipeline
-
--   Go to CodePipeline pane
--   Create a new pipeline
-    -   Select new service role (default)
-    -   Select Github Version 2 in source provider
-        -   Create a new GitHub connection
-        -   Select repository and branch
-        -   Check start the pipeline on source code change and output artifact format as CodePipeline default
-    -   Skip build stage
-    -   Select AWS CodeDeploy as deploy provider and same region of EC2 instance
-    -   Select the application and deployment group created
-
-### Configure files
-
--   Copy seed/docs/210_assets/aws-code-deploy/appspec.yml to root project and modify it as you need.
-	-	version: current version of the spec file
-	-	os: environment operating system
-	-	files: location of the project (this will be join with hooks location param)
-	-	permissions: specification of file access
-	-	hooks: execution of scripts before each lifecycle stage of codedeploy, these are
-		-	BeforeInstall
-		-	AfterInstall
-		-	ApplicationStart
-		-	ApplicationStop
-		Note: inside these stages you can specify the location of script, timeout and user who run it.
-
-	For more specification, you can visit the reference below.
-
-### References
-
--   CodeDeploy [https://docs.aws.amazon.com/codedeploy/latest/userguide/welcome.html](https://docs.aws.amazon.com/codedeploy/latest/userguide/welcome.html)
--   AIM roles [https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles.html](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles.html)
--   Appspec file [https://docs.aws.amazon.com/codedeploy/latest/userguide/reference-appspec-file.html](https://docs.aws.amazon.com/codedeploy/latest/userguide/reference-appspec-file.html)
+Follow next steps:
+- Create and associate roles: `bin/aws/codedeploy.sh --config`
+- Install AWS Agent: `bin/aws/codedeploy.sh --install` (to check status use `sudo service codedeploy-agent status`)
+- Create CodeDeploy application: `bin/aws/codedeploy.sh --create-app`
+- Create a Deployment Group: `bin/aws/codedeploy.sh --create-dg`
+- Create new pipeline: `bin/aws/codedeploy.sh --create-pl`
