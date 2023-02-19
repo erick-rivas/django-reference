@@ -1,4 +1,4 @@
-source bin/aws/files/.aws.env
+source .aws.env
 
 mkdir -p ~/.aws
 

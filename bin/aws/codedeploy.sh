@@ -1,4 +1,4 @@
-source bin/aws/files/.aws.env
+source .aws.env
 
 if [ "$1" == "--config" ]; then
 
@@ -35,23 +35,51 @@ fi
 
 if [ "$1" == "--install" ]; then
 
-    echo Creating script file
+    if ["$2" == "22"]; then
+        
+        sudo apt-get install ruby-full ruby-webrick wget -y
+        mkdir /tmp && cd /tmp
+        wget https://$BUCKET_NAME.s3.$REGION.amazonaws.com/releases/codedeploy-agent_1.3.2-1902_all.deb
 
-    echo sudo apt update -y > bin/aws/files/aws_agent_installer.sh
-    echo sudo apt install ruby-full -y >> bin/aws/files/aws_agent_installer.sh
-    echo sudo apt install wget  >> bin/aws/files/aws_agent_installer.sh
+        mkdir codedeploy-agent_1.3.2-1902_ubuntu22
+        dpkg-deb -R codedeploy-agent_1.3.2-1902_all.deb codedeploy-agent_1.3.2-1902_ubuntu22
+        sed 's/Depends:.*/Depends:ruby3.0/' -i ./codedeploy-agent_1.3.2-1902_ubuntu22/DEBIAN/control
+        dpkg-deb -b codedeploy-agent_1.3.2-1902_ubuntu22/
+        sudo dpkg -i codedeploy-agent_1.3.2-1902_ubuntu22.deb
 
-    echo wget https://$BUCKET_NAME.s3.$REGION.amazonaws.com/latest/install >> bin/aws/files/aws_agent_installer.sh
-    echo chmod +x ./install >> bin/aws/files/aws_agent_installer.sh
-    echo "sudo ./install auto > /tmp/logfile" >> bin/aws/files/aws_agent_installer.sh
-    echo sudo service codedeploy-agent status >> bin/aws/files/aws_agent_installer.sh
+        sudo systemctl list-units --type=service | grep codedeploy
+        sudo service codedeploy-agent status
 
-    sudo chmod +x bin/aws/files/aws_agent_installer.sh
-    source bin/aws/files/aws_agent_installer.sh
+        cd .. && rm -rf /tmp
+        exit
 
-    rm ./install
-    cp seed/docs/assets/aws-code-deploy/appspec.yml ./appspec.yml
+    fi
 
+    if ["$2" == "20"]; then
+        
+        echo Creating script file
+
+        echo sudo apt update -y > bin/aws/files/aws_agent_installer.sh
+        echo sudo apt install ruby-full -y >> bin/aws/files/aws_agent_installer.sh
+        echo sudo apt install wget  >> bin/aws/files/aws_agent_installer.sh
+
+        echo wget https://$BUCKET_NAME.s3.$REGION.amazonaws.com/latest/install >> bin/aws/files/aws_agent_installer.sh
+        echo chmod +x ./install >> bin/aws/files/aws_agent_installer.sh
+        echo "sudo ./install auto > /tmp/logfile" >> bin/aws/files/aws_agent_installer.sh
+        echo sudo service codedeploy-agent status >> bin/aws/files/aws_agent_installer.sh
+
+        sudo chmod +x bin/aws/files/aws_agent_installer.sh
+        source bin/aws/files/aws_agent_installer.sh
+
+        sudo service codedeploy-agent status
+
+        rm ./install
+        cp seed/docs/assets/aws-code-deploy/appspec.yml ./appspec.yml
+        exit
+        
+    fi
+
+    echo "Unkonwn Ubuntu version, available options are: 22, 20"    
     exit
 
 fi
@@ -62,38 +90,38 @@ if [ "$1" == "--create-app" ]; then
     CDAPP_NAME=$(echo "$INFO" | grep -oP '"applicationId": "\K[^"]+')
     CDAPP_NAME=app_$PROJECT_NAME
 
-    echo "# AWS" > bin/aws/files/.aws.env
-    echo BUCKET_NAME=$BUCKET_NAME >> bin/aws/files/.aws.env
-    echo REGION=$REGION >> bin/aws/files/.aws.env
-    echo OUTPUT=$OUTPUT >> bin/aws/files/.aws.env
-    echo AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID >> bin/aws/files/.aws.env
-    echo AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY >> bin/aws/files/.aws.env
-    echo "" >> bin/aws/files/.aws.env
+    echo "# AWS" > .aws.env
+    echo BUCKET_NAME=$BUCKET_NAME >> .aws.env
+    echo REGION=$REGION >> .aws.env
+    echo OUTPUT=$OUTPUT >> .aws.env
+    echo AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID >> .aws.env
+    echo AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY >> .aws.env
+    echo "" >> .aws.env
 
-    echo "# Github" >> bin/aws/files/.aws.env
-    echo ARN_CONNECTION=$ARN_CONNECTION >> bin/aws/files/.aws.env
-    echo REPOSITORY=$REPOSITORY >> bin/aws/files/.aws.env
-    echo "" >> bin/aws/files/.aws.env
+    echo "# Github" >> .aws.env
+    echo ARN_CONNECTION=$ARN_CONNECTION >> .aws.env
+    echo REPOSITORY=$REPOSITORY >> .aws.env
+    echo "" >> .aws.env
 
-    echo "# Globals" >> bin/aws/files/.aws.env
-    echo PROJECT_NAME=$PROJECT_NAME >> bin/aws/files/.aws.env
-    echo "" >> bin/aws/files/.aws.env
+    echo "# Globals" >> .aws.env
+    echo PROJECT_NAME=$PROJECT_NAME >> .aws.env
+    echo "" >> .aws.env
 
-    echo "# Instance" >> bin/aws/files/.aws.env
-    echo INSTANCE_ID=$INSTANCE_ID >> bin/aws/files/.aws.env
-    echo INSTANCE_NAME=$INSTANCE_NAME >> bin/aws/files/.aws.env
-    echo "" >> bin/aws/files/.aws.env
+    echo "# Instance" >> .aws.env
+    echo INSTANCE_ID=$INSTANCE_ID >> .aws.env
+    echo INSTANCE_NAME=$INSTANCE_NAME >> .aws.env
+    echo "" >> .aws.env
 
-    echo "# CodeDeploy" >> bin/aws/files/.aws.env
-    echo CDAPP_NAME=$CDAPP_NAME >> bin/aws/files/.aws.env
-    echo CDDG_NAME=$CDDG_NAME >> bin/aws/files/.aws.env
-    echo ARN_ROLE_CD=$ARN_ROLE_CD >> bin/aws/files/.aws.env
-    echo "" >> bin/aws/files/.aws.env
+    echo "# CodeDeploy" >> .aws.env
+    echo CDAPP_NAME=$CDAPP_NAME >> .aws.env
+    echo CDDG_NAME=$CDDG_NAME >> .aws.env
+    echo ARN_ROLE_CD=$ARN_ROLE_CD >> .aws.env
+    echo "" >> .aws.env
 
-    echo "# CodePipeline" >> bin/aws/files/.aws.env
-    echo ARN_ROLE_PL=$ARN_ROLE_PL >> bin/aws/files/.aws.env
-    echo ARTIFACT_BUCKET=$ARTIFACT_BUCKET >> bin/aws/files/.aws.env
-    echo CDPL_NAME=$CDPL_NAME >> bin/aws/files/.aws.env
+    echo "# CodePipeline" >> .aws.env
+    echo ARN_ROLE_PL=$ARN_ROLE_PL >> .aws.env
+    echo ARTIFACT_BUCKET=$ARTIFACT_BUCKET >> .aws.env
+    echo CDPL_NAME=$CDPL_NAME >> .aws.env
 
     exit
 
@@ -106,38 +134,38 @@ if [ "$1" == "--create-dg" ]; then
     CDDG_NAME=$(echo "$INFO" | grep -oP '"deploymentGroupId": "\K[^"]+')
     CDDG_NAME=dg_$PROJECT_NAME
 
-    echo "# AWS" > bin/aws/files/.aws.env
-    echo BUCKET_NAME=$BUCKET_NAME >> bin/aws/files/.aws.env
-    echo REGION=$REGION >> bin/aws/files/.aws.env
-    echo OUTPUT=$OUTPUT >> bin/aws/files/.aws.env
-    echo AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID >> bin/aws/files/.aws.env
-    echo AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY >> bin/aws/files/.aws.env
-    echo "" >> bin/aws/files/.aws.env
+    echo "# AWS" > .aws.env
+    echo BUCKET_NAME=$BUCKET_NAME >> .aws.env
+    echo REGION=$REGION >> .aws.env
+    echo OUTPUT=$OUTPUT >> .aws.env
+    echo AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID >> .aws.env
+    echo AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY >> .aws.env
+    echo "" >> .aws.env
 
-    echo "# Github" >> bin/aws/files/.aws.env
-    echo ARN_CONNECTION=$ARN_CONNECTION >> bin/aws/files/.aws.env
-    echo REPOSITORY=$REPOSITORY >> bin/aws/files/.aws.env
-    echo "" >> bin/aws/files/.aws.env
+    echo "# Github" >> .aws.env
+    echo ARN_CONNECTION=$ARN_CONNECTION >> .aws.env
+    echo REPOSITORY=$REPOSITORY >> .aws.env
+    echo "" >> .aws.env
 
-    echo "# Globals" >> bin/aws/files/.aws.env
-    echo PROJECT_NAME=$PROJECT_NAME >> bin/aws/files/.aws.env
-    echo "" >> bin/aws/files/.aws.env
+    echo "# Globals" >> .aws.env
+    echo PROJECT_NAME=$PROJECT_NAME >> .aws.env
+    echo "" >> .aws.env
 
-    echo "# Instance" >> bin/aws/files/.aws.env
-    echo INSTANCE_ID=$INSTANCE_ID >> bin/aws/files/.aws.env
-    echo INSTANCE_NAME=$INSTANCE_NAME >> bin/aws/files/.aws.env
-    echo "" >> bin/aws/files/.aws.env
+    echo "# Instance" >> .aws.env
+    echo INSTANCE_ID=$INSTANCE_ID >> .aws.env
+    echo INSTANCE_NAME=$INSTANCE_NAME >> .aws.env
+    echo "" >> .aws.env
 
-    echo "# CodeDeploy" >> bin/aws/files/.aws.env
-    echo CDAPP_NAME=$CDAPP_NAME >> bin/aws/files/.aws.env
-    echo CDDG_NAME=$CDDG_NAME >> bin/aws/files/.aws.env
-    echo ARN_ROLE_CD=$ARN_ROLE_CD >> bin/aws/files/.aws.env
-    echo "" >> bin/aws/files/.aws.env
+    echo "# CodeDeploy" >> .aws.env
+    echo CDAPP_NAME=$CDAPP_NAME >> .aws.env
+    echo CDDG_NAME=$CDDG_NAME >> .aws.env
+    echo ARN_ROLE_CD=$ARN_ROLE_CD >> .aws.env
+    echo "" >> .aws.env
 
-    echo "# CodePipeline" >> bin/aws/files/.aws.env
-    echo ARN_ROLE_PL=$ARN_ROLE_PL >> bin/aws/files/.aws.env
-    echo ARTIFACT_BUCKET=$ARTIFACT_BUCKET >> bin/aws/files/.aws.env
-    echo CDPL_NAME=$CDPL_NAME >> bin/aws/files/.aws.env
+    echo "# CodePipeline" >> .aws.env
+    echo ARN_ROLE_PL=$ARN_ROLE_PL >> .aws.env
+    echo ARTIFACT_BUCKET=$ARTIFACT_BUCKET >> .aws.env
+    echo CDPL_NAME=$CDPL_NAME >> .aws.env
 
     exit
 

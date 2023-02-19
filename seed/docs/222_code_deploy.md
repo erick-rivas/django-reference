@@ -11,7 +11,7 @@ unzip awscliv2.zip
 sudo ./aws/install
 ```
 
-Add secret AWS keys in bin/aws/files/.aws.env (you can create an IAM user or get them from Account >> Security Credentials)
+Copy bin/aws/files/.aws.env to root project and add secret AWS keys (you can create an IAM user or get them from Account >> Security Credentials)
 -   AWS_ACCESS_KEY_ID
 -   AWS_SECRET_ACCESS_KEY
 
@@ -21,7 +21,7 @@ Then execute `bin/aws/configure.sh` to set cli keys
 
 ### Configure CodeDeploy
 
-Modify next variables in bin/aws/files/.aws.env
+Modify next variables in .aws.env located at root project:
 -   ARN_CONNECTION # CodeStar GitHub connection
 -   REPOSITORY # Repository id (for example, <user>/<repository_name>)
 -   PROJECT_NAME # Custom name (like reference-api)
@@ -33,7 +33,7 @@ Modify next variables in bin/aws/files/.aws.env
 
 Follow next steps:
 -   Create and associate roles: `bin/aws/codedeploy.sh --config`
--   Install AWS Agent: `bin/aws/codedeploy.sh --install` (to check status use `sudo service codedeploy-agent status`)
+-   Install AWS Agent: `bin/aws/codedeploy.sh --install <version>` (available versions are 20 and 22). Note, to check status use `sudo service codedeploy-agent status`
 -   Create CodeDeploy application: `bin/aws/codedeploy.sh --create-app`
 -   Create a Deployment Group: `bin/aws/codedeploy.sh --create-dg`
 -   Create new pipeline: `bin/aws/codedeploy.sh --create-pl`
