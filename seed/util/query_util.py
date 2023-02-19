@@ -6,7 +6,6 @@ import re
 
 from django.db.models import Q
 
-
 def multi_q(query):
     """
     | Return a Q Object base on a multilevel query
@@ -22,7 +21,6 @@ def multi_q(query):
         for sub in query:
             res |= multi_q(sub)
         return res
-
 
 def sql_alike_q(query):
     """
@@ -53,11 +51,9 @@ def sql_alike_q(query):
     res = _get_query(query, hsh)
     return res
 
-
 def _snake_case(name):
     s_1 = re.sub('(.)([A-Z][a-z]+)', r'\1_\2', name)
     return re.sub('([a-z0-9])([A-Z])', r'\1_\2', s_1).lower()
-
 
 def _is_float(val):
     try:
@@ -65,7 +61,6 @@ def _is_float(val):
         return True
     except ValueError:
         return False
-
 
 def _get_query(data, hsh):
     res = Q()
@@ -91,7 +86,6 @@ def _get_query(data, hsh):
                     values.append(q_s)
         res |= Q(*values)
     return res
-
 
 def _get_opt(flt):
     opt = ('=', '')

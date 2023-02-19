@@ -10,7 +10,6 @@ from django.core.files.storage import default_storage
 from urllib.parse import urlparse
 from app.models import File
 
-
 def save_file(path, mode="rb"):
     """
    Saves a local file in media/static folder and in file model (database) based on server settings
@@ -21,7 +20,6 @@ def save_file(path, mode="rb"):
    """
     with open(path, mode=mode) as file:
         return save_file_obj(file)
-
 
 def save_file_obj(file):
     """

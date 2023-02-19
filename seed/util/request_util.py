@@ -5,7 +5,6 @@ __Seed builder__
 
 from rest_framework.exceptions import ValidationError
 
-
 def has_fields_or_400(request_data, *required_fields):
     """
     Returns 400 exception if a field is missing in request

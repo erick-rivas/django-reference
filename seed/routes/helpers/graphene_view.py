@@ -10,7 +10,6 @@ from rest_framework.decorators import authentication_classes, permission_classes
 from django.views.decorators.csrf import csrf_exempt
 from app.settings import get_env
 
-
 class AuthGraphQLView(GraphQLView):
     @classmethod
     def as_view(cls, *args, **kwargs):
@@ -19,7 +18,6 @@ class AuthGraphQLView(GraphQLView):
         view = authentication_classes((TokenAuthentication,))(view)
         view = api_view(['POST'])(view)
         return view
-
 
 def graphene_view():
     if get_env('ENABLE_AUTH'):

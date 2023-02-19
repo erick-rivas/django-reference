@@ -5,7 +5,6 @@ __Seed builder__
 
 from seed.util.query_util import multi_q
 
-
 def inherit_perms(parent_model, attr, user):
     """
     | Create a new permission collection in a specific attribute with parent_model perms
@@ -19,7 +18,6 @@ def inherit_perms(parent_model, attr, user):
     permissions = parent_model.permission_filters(user)
     return _inherit_permissions_query(permissions, attr)
 
-
 def _inherit_permissions_query(permissions, attr):
     if isinstance(permissions, dict):  # Single filter (ands)
         new_permissions = {}
@@ -31,7 +29,6 @@ def _inherit_permissions_query(permissions, attr):
         for permission in permissions:
             new_permissions.append(_inherit_permissions_query(permission, attr))
         return new_permissions
-
 
 def filter_perms(queryset, filters):
     """

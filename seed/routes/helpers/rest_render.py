@@ -5,7 +5,6 @@ __Seed builder__
 
 from rest_framework.renderers import BrowsableAPIRenderer
 
-
 class ProductionBrowsableAPIRenderer(BrowsableAPIRenderer):
 
     def get_context(self, *args, **kwargs):

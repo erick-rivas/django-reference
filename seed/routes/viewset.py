@@ -10,7 +10,6 @@ from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 
-
 class ViewSet:
     if get_env('ENABLE_AUTH'):
         authentication_classes = (TokenAuthentication,)

@@ -3,7 +3,6 @@ from unittest import TestCase
 from django.db.models import Q
 from seed.util.query_util import multi_q, sql_alike_q
 
-
 class TestQueryUtil(TestCase):
     def test_multi_q(self):
         input_01 = [{"key_01": "val_01"}, [{"key_02": "val_02"}, {"key_03": "val_03"}]]

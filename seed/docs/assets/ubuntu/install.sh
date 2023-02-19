@@ -11,7 +11,6 @@ DB_USER=$3
 DB_PASSWORD=$4
 API_DIR=$(pwd)
 
-
 #####
 echo "== Installing dependencies"
 ####
@@ -36,7 +35,6 @@ sudo apt-get install redis-server supervisor
 redis-cli ping
 sudo systemctl enable redis-server.service
 
-
 #####
 echo "== Database setup"
 #####
@@ -50,14 +48,12 @@ sudo sed -i "s/#listen_addresses = 'localhost'/listen_addresses = '*'/" "/etc/po
 sudo sh -c 'echo "host    all             all             0.0.0.0/0          md5" >> "/etc/postgresql/15/main/pg_hba.conf"'
 sudo service postgresql restart
 
-
 #####
 echo "== Project setup"
 #####
 
 chmod 777 $API_DIR/seed/docs/assets/ubuntu/setup.sh
 $API_DIR/seed/docs/assets/ubuntu/setup.sh $DB_NAME $DB_USER $DB_PASSWORD
-
 
 #####
 echo "== Gunicorn setup"
@@ -109,7 +105,6 @@ sudo systemctl status gunicorn --no-pager
 echo "Wait 10 seconds and check that gunicorn service works..."
 sleep 10
 
-
 #####
 echo "== Nginx setup"
 #####
@@ -135,7 +130,6 @@ sudo systemctl restart nginx
 
 sleep 4
 sudo nginx -t
-
 
 #####
 echo "== Supervisor setup"
@@ -174,7 +168,6 @@ sudo supervisorctl restart celery
 
 sleep 4
 sudo supervisorctl status all
-
 
 echo ""
 echo "== Installation completed (Continue with .envs adjustments)"

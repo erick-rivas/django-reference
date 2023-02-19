@@ -6,7 +6,6 @@ __Seed builder__
 from rest_framework import serializers
 from seed.models.file import File
 
-
 class FileSerializer(serializers.ModelSerializer):
 
     class Meta:

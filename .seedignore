@@ -19,12 +19,7 @@ LICENSE
 SeedManifest.json
 SeedExport.json
 SeedModeling.mdj
-seed/app/*
-seed/models/*
-seed/serializers/*
-seed/mutations/*
-seed/schema/*
-seed/routes/*
+seed
 app/celery.py
 app/models.py
 app/serializers.py
@@ -45,13 +40,5 @@ README.md
 ?requirements.txt
 ?manage.py
 !*__init__.py
-!seed/docs/assets/*
-!seed/models/model.py
-!seed/models/file.py
-!seed/routes/viewset.py
-!seed/routes/files.py
-!seed/serializers/file.py
 !docs/*.md
-!*helpers
-!*util
 !.keep

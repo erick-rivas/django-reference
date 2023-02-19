@@ -2,7 +2,6 @@ from unittest import TestCase
 
 from seed.util.model_util import _inherit_permissions_query
 
-
 class TestModelUtil(TestCase):
     def test_inherit_permissions_query(self):
         attr = "attr"

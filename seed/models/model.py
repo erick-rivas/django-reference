@@ -14,7 +14,6 @@ from django.db.models import Field
 from seed.util.model_util import filter_perms
 from seed.util.model_util import inherit_perms
 
-
 class NotEqual(Lookup):
     lookup_name = 'ne'
 
@@ -23,7 +22,6 @@ class NotEqual(Lookup):
         rhs, rhs_params = self.process_rhs(compiler, connection)
         params = lhs_params + rhs_params
         return '%s <> %s' % (lhs, rhs), params
-
 
 class Model(models.Model):
     created_at = models.DateTimeField(
@@ -64,7 +62,6 @@ class Model(models.Model):
 
     class Meta:
         abstract = True
-
 
 class ModelRails(models.Model):
     created_at = models.DateTimeField(

@@ -6,7 +6,6 @@ __Seed builder__
 from django.db import models
 from seed.models.model import Model
 
-
 class File(Model):
 
     url = models.URLField(
