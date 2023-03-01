@@ -12,6 +12,7 @@ reactjs
 debug_.py
 dump.yaml
 .data
+.aws.env
 
 ## Django
 .vscode
