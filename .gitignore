@@ -14,9 +14,14 @@ bin/docker/docker.env
 static
 reactjs
 debug_.py
+deploy.sh
 dump.yaml
 .data
+
+## AWS
 .aws.env
+.aws.pipeline.json
+.aws.agent_installer.sh
 
 ## Django
 .vscode

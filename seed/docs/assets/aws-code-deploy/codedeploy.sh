@@ -8,7 +8,7 @@ if [ "$1" == "--config" ]; then
         if [ "$STATUS" == "running" ] || [ "$STATUS" == "stoppped" ]; then
 
             echo Creating role
-            ROLE_INFO=$(aws iam create-role --role-name role_$PROJECT_NAME --assume-role-policy-document file://bin/aws/files/trust_policy.json)
+            ROLE_INFO=$(aws iam create-role --role-name role_$PROJECT_NAME --assume-role-policy-document file://seed/docs/assets/aws-code-deploy/trust_policy.json)
             ATTACH_INFO=$(aws iam attach-role-policy --role-name role_$PROJECT_NAME --policy-arn arn:aws:iam::aws:policy/AmazonS3ReadOnlyAccess)
 
             echo Attaching to IAM
@@ -59,17 +59,17 @@ if [ "$1" == "--install" ]; then
         
         echo Creating script file
 
-        echo sudo apt update -y > bin/aws/files/aws_agent_installer.sh
-        echo sudo apt install ruby-full -y >> bin/aws/files/aws_agent_installer.sh
-        echo sudo apt install wget  >> bin/aws/files/aws_agent_installer.sh
+        echo sudo apt update -y > .aws.agent_installer.sh
+        echo sudo apt install ruby-full -y >> .aws.agent_installer.sh
+        echo sudo apt install wget  >> .aws.agent_installer.sh
 
-        echo wget https://$BUCKET_NAME.s3.$REGION.amazonaws.com/latest/install >> bin/aws/files/aws_agent_installer.sh
-        echo chmod +x ./install >> bin/aws/files/aws_agent_installer.sh
-        echo "sudo ./install auto > /tmp/logfile" >> bin/aws/files/aws_agent_installer.sh
-        echo sudo service codedeploy-agent status >> bin/aws/files/aws_agent_installer.sh
+        echo wget https://$BUCKET_NAME.s3.$REGION.amazonaws.com/latest/install >> .aws.agent_installer.sh
+        echo chmod +x ./install >> .aws.agent_installer.sh
+        echo "sudo ./install auto > /tmp/logfile" >> .aws.agent_installer.sh
+        echo sudo service codedeploy-agent status >> .aws.agent_installer.sh
 
-        sudo chmod +x bin/aws/files/aws_agent_installer.sh
-        source bin/aws/files/aws_agent_installer.sh
+        sudo chmod +x .aws.agent_installer.sh
+        source .aws.agent_installer.sh
 
         sudo service codedeploy-agent status
 
@@ -247,10 +247,10 @@ if [ "$1" == "--create-pl" ]; then
         }
     "
 
-    echo $PIPELINE > bin/aws/files/pipeline.json
+    echo $PIPELINE > .aws.pipeline.json
 
     echo Creating pipeline
-    INFO=$(aws codepipeline create-pipeline --cli-input-json file://bin/aws/files/pipeline.json)
+    INFO=$(aws codepipeline create-pipeline --cli-input-json file://.aws.pipeline.json)
 
     exit
 

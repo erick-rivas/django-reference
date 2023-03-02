@@ -7,11 +7,12 @@ IF "%RUNNING%" == "" echo ERROR: Before executing bin/fixtures.bat, start server
 IF "%RUNNING%" == "" exit 1
 
 set /A SUB_PATH=None
-IF NOT "%~1" == "" set /A SUB_PATH=%1
+IF NOT "%~1" == "" set SUB_PATH=%1
 
-echo == Executing fixtures
 IF "%SUB_PATH%" == "None" (
+    echo == Running models/fixtures/*.yaml
     docker compose -f bin/docker/docker-compose.yml exec django /bin/sh -c "python manage.py loaddata models/fixtures/*.yaml"
 ) ELSE (
+    echo == Running models/fixtures/%SUB_PATH%/*.yaml
     docker compose -f bin/docker/docker-compose.yml exec django /bin/sh -c "python manage.py loaddata models/fixtures/%SUB_PATH%/*.yaml"
 )

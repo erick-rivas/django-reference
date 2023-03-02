@@ -58,7 +58,7 @@ To enable a https connection
 
 ### Deployment
 
--   Run script `./seed/docs/assets/aws-eb/deploy.sh`
+-   Run script `seed/docs/assets/aws-eb/deploy.sh`
 
 ### References
 -   AWS reference [https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/create-deploy-python-django.html](https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/create-deploy-python-django.html)

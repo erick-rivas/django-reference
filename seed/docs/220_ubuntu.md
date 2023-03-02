@@ -5,9 +5,9 @@ This file contains guides to deploy project to a (Ubuntu Server)
 ### Server installation
 
 -   Clone repository
--   Execute installation script ```./seed/docs/assets/ubuntu/install.sh #SERVER_NAME# #DB_NAME# #DB_USER# #DB_PASSWORD#```
-    >  Example: ```./seed/docs/assets/ubuntu/install.sh seed-project.com db admin 123```
--   In case of require ssl execute ```./seed/docs/assets/ubuntu/install-ssl.sh #SERVER_NAME#```
+-   Execute installation script ```seed/docs/assets/ubuntu/install.sh #SERVER_NAME# #DB_NAME# #DB_USER# #DB_PASSWORD#```
+    >  Example: ```seed/docs/assets/ubuntu/install.sh seed-project.com db admin 123```
+-   In case of require ssl execute ```seed/docs/assets/ubuntu/install-ssl.sh #SERVER_NAME#```
 
 ### Project settings
 
@@ -40,15 +40,15 @@ export IS_PROD=true
 
 ### Deployment
 
--   Copy `seed/docs/assets/ubuntu/deploy.sh` in server root folder
+-   Copy `seed/docs/assets/ubuntu/deploy.sh` in project root folder
 -   Modify deploy.sh settings
 ```
 API_DIR="###"
 WEB_DIR="###"
 ```
 
--   Run deployment script `./deploy.sh`
-    > For automatic deployment check [AW Code Deploy documentation](./230_eb_single_instance.md)
+-   Run deployment script `deploy.sh`
+    > For automatic deployment check [AW Code Deploy documentation](230_eb_single_instance.md)
 
 ### Server logs
 
@@ -63,5 +63,5 @@ WEB_DIR="###"
 
 ### See also
 
--   [Ubuntu extras](./221_ubuntu_extras.md)
--   [AWS Code Deploy](./222_code_deploy.md)
+-   [Ubuntu extras](221_ubuntu_extras.md)
+-   [AWS Code Deploy](222_code_deploy.md)

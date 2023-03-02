@@ -1,5 +1,9 @@
 ## AWS Code Deploy
 
+### Before start
+
+Before start implementing, check [ubuntu setup](220_ubuntu.md)
+
 ### Install AWS CLI
 
 Execute the followings commands:
@@ -11,13 +15,14 @@ unzip awscliv2.zip
 sudo ./aws/install
 ```
 
-Copy bin/aws/files/.aws.env to root project and add secret AWS keys (you can create an IAM user or get them from Account >> Security Credentials)
+Copy seed/docs/assets/aws-code-deploy/.env.example to root project and rename to **.aws.env**. 
+Then add secret AWS keys (you can create an IAM user or get them from Account >> Security Credentials)
 -   AWS_ACCESS_KEY_ID
 -   AWS_SECRET_ACCESS_KEY
 
 Note: if you need to specify a region, modify also REGION and BUCKET_NAME (get BUCKET_NAME and region identifier from [https://docs.aws.amazon.com/codedeploy/latest/userguide/resource-kit.html#resource-kit-bucket-names](https://docs.aws.amazon.com/codedeploy/latest/userguide/resource-kit.html#resource-kit-bucket-names))
 
-Then execute `bin/aws/configure.sh` to set cli keys
+Then execute `seed/docs/assets/aws-code-deploy/configure.sh` to set cli keys
 
 ### Configure CodeDeploy
 
@@ -32,11 +37,11 @@ Modify next variables in .aws.env located at root project:
 -   ARTIFACT_BUCKET # S3 bucket for pipeline
 
 Follow next steps:
--   Create and associate roles: `bin/aws/codedeploy.sh --config`
--   Install AWS Agent: `bin/aws/codedeploy.sh --install <version>` (available versions are 20 and 22). Note, to check status use `sudo service codedeploy-agent status`
--   Create CodeDeploy application: `bin/aws/codedeploy.sh --create-app`
--   Create a Deployment Group: `bin/aws/codedeploy.sh --create-dg`
--   Create new pipeline: `bin/aws/codedeploy.sh --create-pl`
+-   Create and associate roles: `seed/docs/assets/aws-code-deploy/codedeploy.sh --config`
+-   Install AWS Agent: `seed/docs/assets/aws-code-deploy/codedeploy.sh --install <version>` (available versions are 20 and 22). Note, to check status use `sudo service codedeploy-agent status`
+-   Create CodeDeploy application: `seed/docs/assets/aws-code-deploy/codedeploy.sh --create-app`
+-   Create a Deployment Group: `seed/docs/assets/aws-code-deploy/codedeploy.sh --create-dg`
+-   Create new pipeline: `seed/docs/assets/aws-code-deploy/codedeploy.sh --create-pl`
 
 ### Configure file
 
