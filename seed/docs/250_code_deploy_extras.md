@@ -2,9 +2,8 @@
 
 ### From GoDaddy
 
-* Go to Amazon Route53 service and create a hosted zone with your domain name. Then click on NS record and copy all of them.
-* In GoDaddy, go to Nanage DNS in your domain and change Nameservers with Route53 instead.
-* Create a subdomain, typing `www` in subdomain and `<domain>` in ip fields, and selecting CNAME in record type.
+* Go to Amazon Route53 service and create a hosted zone with your domain name. Then click on NS record and copy all of them. Looks like: ns-xxxx.awsdns-xx.org. ns-xxxx.awsdns-xx.co.uk. ns-xxx.awsdns-xx.com. ns-xxx.awsdns-xx.net.
+* In GoDaddy, go to Nanage DNS in your domain and click in Change Nameservers button, select "Enter my own nameservers (advanced)" and paste all Route53 NS copied previously.
 
 ### Subdomain creation
 
