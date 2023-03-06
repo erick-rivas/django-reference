@@ -19,6 +19,7 @@ dump.yaml
 .data
 
 ## AWS
+appspec.yml
 .aws.env
 .aws.pipeline.json
 .aws.agent_installer.sh
