@@ -22,7 +22,7 @@ dump.yaml
 appspec.yml
 .aws.env
 .aws.pipeline.json
-.aws.agent_installer.sh
+.aws.subdomain.json
 
 ## Django
 .vscode
