@@ -7,9 +7,9 @@ Before start implementing, check [ubuntu setup](220_ubuntu.md) and also [ec2 set
 ### Configure CodeDeploy
 
 Modify next variables in .aws.env located at root project:
--   ARN_CONNECTION # CodeStar GitHub connection
--   REPOSITORY # Repository id (for example, <user>/<repository_name>)
--   ARTIFACT_BUCKET # S3 bucket name for pipeline
+-   ARN_CONNECTION # CodeStar GitHub connection (get it from CodeDeploy >> Connections panel) 
+-   REPOSITORY # Repository id (user/repository_name), example: `erick-rivas/django-reference`
+-   ARTIFACT_BUCKET # S3 bucket name for pipeline (get it from S3 panel)
 
 Follow next steps:
 -   Create and associate roles: `seed/docs/assets/aws-code-deploy/codedeploy.sh config`
