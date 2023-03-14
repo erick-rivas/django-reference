@@ -4,21 +4,29 @@
 
 Before start implementing, check [ubuntu setup](220_ubuntu.md) and also [ec2 setup](222_ec2.md)
 
+### Create GitHub connection (admin only)
+
+Go to CodeDeploy panel and in sidenav click on Settings >> Connections. Then click on Create connection and select GitHub. Then follow the steps to create a connection.
+
+### Create S3 bucket (admin only)
+
+Go to S3 panel and click on Create bucket. Then follow the default steps to create a bucket.
+
 ### Configure CodeDeploy
 
-Modify next variables in .aws.env located at root project:
--   ARN_CONNECTION # CodeStar GitHub connection (get it from CodeDeploy >> Connections panel) 
+Request to admin arn connection and s3 bucket name, and modify next variables in .aws.env located at root project:
+-   ARN_CONNECTION # CodeStar GitHub connection
 -   REPOSITORY # Repository id (user/repository_name), example: `erick-rivas/django-reference`
--   ARTIFACT_BUCKET # S3 bucket name for pipeline (get it from S3 panel)
+-   ARTIFACT_BUCKET # S3 bucket name for pipeline
 
 Follow next steps:
 -   Create and associate roles: `seed/docs/assets/aws-code-deploy/codedeploy.sh config`
--   Install AWS Agent: `seed/docs/assets/aws-code-deploy/codedeploy.sh install-<version>` (available versions are 20 and 22). Note, to check status use `sudo service codedeploy-agent status`
+-   Install AWS Agent: `seed/docs/assets/aws-code-deploy/codedeploy.sh install-<version>` (ubuntu version, availables are 20 and 22). Note, to check status use `sudo service codedeploy-agent status`
 -   Create CodeDeploy application: `seed/docs/assets/aws-code-deploy/codedeploy.sh create-app`
 -   Create a Deployment Group: `seed/docs/assets/aws-code-deploy/codedeploy.sh create-dg`
 -   Create new pipeline: `seed/docs/assets/aws-code-deploy/codedeploy.sh create-pl`
 
-### Configure file
+### Configure file (optional)
 
 -   Modify appspec.yml in root project as you need.
 	-	version: current version of the spec file
