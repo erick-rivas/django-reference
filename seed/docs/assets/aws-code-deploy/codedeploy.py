@@ -2,14 +2,16 @@ import os
 import sys
 import subprocess
 import json
+import random
 from time import sleep
 
 class CodeDeploy:
 
-    def __init__(self, cdapp_name, cddg_name, cdpl_name):
+    def __init__(self, cdapp_name, cddg_name, cdpl_name, artifact_bucket):
         self.cdapp_name = cdapp_name
         self.cddg_name = cddg_name
         self.cdpl_name = cdpl_name
+        self.artifact_bucket = artifact_bucket
 
     def __str__(self):
         return self.instance_id
@@ -101,7 +103,14 @@ class CodeDeploy:
         info_result = json.loads(info_result)
         self.cddg_name = f"dg_{project_name}"
    
-    def create_pl(self, region, project_name, artifact_bucket, arn_connection, repository):
+    def create_pl(self, region, project_name, arn_connection, repository):
+
+        print("Creating S3 bucket")
+        s3_name = f"{project_name}-seed-{random.randint(100000, 999999)}"
+        s3_result = subprocess.check_output(f"aws s3api create-bucket --bucket {s3_name} --region {region} --create-bucket-configuration LocationConstraint={region}", shell=True)
+        self.artifact_bucket = s3_name
+
+        sleep(20)
 
         print("Creating CodePipeline role")
         result = subprocess.check_output(f"aws iam create-role --role-name cp_role_{project_name} --assume-role-policy-document file://seed/docs/assets/aws-code-deploy/policies/cp_trust_policy.json", shell=True)
@@ -117,7 +126,7 @@ class CodeDeploy:
                 "roleArn": arn_role_pl,
                 "artifactStore": {
                     "type": "S3",
-                    "location": artifact_bucket
+                    "location": s3_name
                 },
                 "stages": [
                     {
@@ -195,7 +204,8 @@ class CodeDeploy:
         return {
             "CDAPP_NAME": self.cdapp_name,
             "CDDG_NAME": self.cddg_name,
-            "CDPL_NAME": self.cdpl_name
+            "CDPL_NAME": self.cdpl_name,
+            "ARTIFACT_BUCKET": self.artifact_bucket
         }
     
 env = {}
@@ -265,7 +275,7 @@ def replace_env(data):
         env[key] = data[key]
 
 load_env_file()
-codedeploy_instance = CodeDeploy(env["CDAPP_NAME"], env["CDDG_NAME"], env["CDPL_NAME"])
+codedeploy_instance = CodeDeploy(env["CDAPP_NAME"], env["CDDG_NAME"], env["CDPL_NAME"], env["ARTIFACT_BUCKET"])
 
 if command == "config": codedeploy_instance.config(env["INSTANCE_ID"], env["PROJECT_NAME"])
 elif command == "install-22": codedeploy_instance.install22(env["BUCKET_NAME"], env["REGION"])
