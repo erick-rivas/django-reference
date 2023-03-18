@@ -282,7 +282,7 @@ elif command == "install-22": codedeploy_instance.install22(env["BUCKET_NAME"], 
 elif command == "install-20": codedeploy_instance.install20(env["BUCKET_NAME"], env["REGION"])
 elif command == "create-app": codedeploy_instance.create_app(env["PROJECT_NAME"])
 elif command == "create-dg": codedeploy_instance.create_dg(env["INSTANCE_NAME"], env["PROJECT_NAME"])
-elif command == "create-pl": codedeploy_instance.create_pl(env["REGION"], env["PROJECT_NAME"], env["ARTIFACT_BUCKET"], env["ARN_CONNECTION"], env["REPOSITORY"])
+elif command == "create-pl": codedeploy_instance.create_pl(env["REGION"], env["PROJECT_NAME"], env["ARN_CONNECTION"], env["REPOSITORY"])
 else: print("Invalid command, available commands: config, install-22, install-20, create-app, create-dg, create-pl")
 
 replace_env(codedeploy_instance.get_env())

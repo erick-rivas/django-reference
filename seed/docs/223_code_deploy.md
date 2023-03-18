@@ -17,7 +17,6 @@ Go to S3 panel and click on Create bucket. Then follow the default steps to crea
 Request to admin arn connection and s3 bucket name, and modify next variables in .aws.env located at root project:
 -   ARN_CONNECTION # CodeStar GitHub connection
 -   REPOSITORY # Repository id (user/repository_name), example: `erick-rivas/django-reference`
--   ARTIFACT_BUCKET # S3 bucket name for pipeline
 
 Follow next steps:
 -   Create and associate roles: `seed/docs/assets/aws-code-deploy/codedeploy.sh config`
