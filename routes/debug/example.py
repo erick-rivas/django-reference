@@ -1,5 +1,6 @@
 """
 __Seed builder__
+  AUTO_GENERATED (Read only)
   Example Viewset
   To include in project modify app.urls
 """

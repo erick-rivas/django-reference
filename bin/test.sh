@@ -8,5 +8,13 @@ if [ $RUNNING -z ]; then
   exit 1
 fi
 
-echo "== Executing test cases"
-sudo docker compose -f bin/docker/docker-compose.yml exec django /bin/sh -c "python manage.py test"
+SUB_PATH="None"
+if [ $# -ge 1 ]; then SUB_PATH=$1; fi
+
+if [ $SUB_PATH = "None" ]; then
+  echo "== Executing all test cases"
+  sudo docker compose -f bin/docker/docker-compose.yml exec django /bin/sh -c "python manage.py test"
+else
+  echo "== Executing /$SUB_PATH test cases"
+  sudo docker compose -f bin/docker/docker-compose.yml exec django /bin/sh -c "python manage.py test $SUB_PATH/ "
+fi

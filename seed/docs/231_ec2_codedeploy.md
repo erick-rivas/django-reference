@@ -1,8 +1,8 @@
-## AWS Code Deploy
+## AWS EC2 CodeDeploy
 
 ### Before start
 
-Before start implementing, check [ubuntu setup](220_ubuntu.md) and also [ec2 setup](222_ec2.md)
+Complete [AWS EC2 setup](230_ec2.md)
 
 ### Create GitHub connection (admin only)
 

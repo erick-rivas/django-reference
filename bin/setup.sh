@@ -62,8 +62,8 @@ if [ $IS_PROD = false ]; then
     sudo docker compose -f bin/docker/docker-compose.yml exec django /bin/sh -c "python manage.py loaddata models/fixtures/.dev.yaml"
 fi
 
-echo "== Generating docs"
-sudo docker compose -f bin/docker/docker-compose.yml exec django /bin/sh -c "sphinx-build -E -b html ./seed/docs ./.data/docs"
+# echo "== Generating docs"
+# sudo docker compose -f bin/docker/docker-compose.yml exec django /bin/sh -c "sphinx-build -E -b html ./seed/docs ./.data/docs"
 
 echo "== Removing root permissions"
 sudo chown -R $(whoami) .

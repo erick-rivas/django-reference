@@ -1,17 +1,19 @@
-## Route53 migration
+## AWS EC2 (Extras)
 
-### From GoDaddy
+### Migrate a domain from goddady to ROute53
+
+#### From GoDaddy
 
 * Go to Amazon Route53 service and create a hosted zone with your domain name. Then click on NS record and copy all of them. Looks like: ns-xxxx.awsdns-xx.org. ns-xxxx.awsdns-xx.co.uk. ns-xxx.awsdns-xx.com. ns-xxx.awsdns-xx.net.
 * In GoDaddy, go to Nanage DNS in your domain and click in Change Nameservers button, select "Enter my own nameservers (advanced)" and paste all Route53 NS copied previously.
 
-### Manual subdomain
+#### Manual subdomain
 
 * Click on Create Record.
 * Select Record Type (A for IPV4, AAAA for IPV6, CNAME for domains, etc.).
 * In value, type ip or domain you want to redirect.
 
-### Automatic subdomain
+#### Automatic subdomain
 
 Before this, it's required to have an allocated ip.
 

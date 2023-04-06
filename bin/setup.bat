@@ -64,8 +64,8 @@ IF "%IS_PROD%" == "false" (
     docker compose -f bin/docker/docker-compose.yml exec django /bin/sh -c "python manage.py loaddata models/fixtures/.dev.yaml"
 )
 
-echo == Generating docs
-docker compose -f bin/docker/docker-compose.yml exec django /bin/sh -c "sphinx-build -E -b html ./seed/docs ./.data/docs"
+:: echo == Generating docs
+:: docker compose -f bin/docker/docker-compose.yml exec django /bin/sh -c "sphinx-build -E -b html ./seed/docs ./.data/docs"
 
 echo == Installing local dependencies
 python -m venv .venv
