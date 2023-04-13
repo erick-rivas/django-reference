@@ -47,21 +47,27 @@ def clean_files():
     from seed.models.file import File
     from seed.app.settings import MEDIA_ROOT
 
-    try:
-        file_names = os.listdir(MEDIA_ROOT)
-        for file_name in file_names:
+    ENABLE_CLEANING = os.getenv('ENABLE_CLEANING')
 
-            if not File.objects.filter(name=file_name).exists():
-                timestamp = os.path.getctime(MEDIA_ROOT)
-                created_at = datetime.fromtimestamp(timestamp)
+    if not ENABLE_CLEANING: return 
+    if not os.path.exists(MEDIA_ROOT): return
 
-                difference = datetime.now() - created_at
-                seconds = difference.total_seconds()
-                minutes = seconds / 60
-                hours = minutes / 60
+    file_names = os.listdir(MEDIA_ROOT)
+    for file_name in file_names:
 
-                if hours > 24:
-                    os.remove(os.path.join(MEDIA_ROOT, file_name))
+        file_path = os.path.join(MEDIA_ROOT, file_name)
+        if not os.path.isfile(file_path): continue
 
-    except Exception: 
-        pass
+        if not File.objects.filter(name=file_name).exists():
+            timestamp = os.path.getctime(file_path)
+            created_at = datetime.fromtimestamp(timestamp)
+
+            difference = datetime.now() - created_at
+            seconds = difference.total_seconds()
+            minutes = seconds / 60
+            hours = minutes / 60
+
+            if hours > 24:
+                os.remove(file_path)
+
+
