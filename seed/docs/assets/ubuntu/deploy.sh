@@ -4,6 +4,7 @@ API_DIR="###"
 WEB_DIR="###"
 # Update project
 cd $API_DIR
+sudo git pull origin dev
 # shellcheck disable=SC1090
 . "$(pwd)"/.venv/bin/activate
 pip3 install -r requirements.txt

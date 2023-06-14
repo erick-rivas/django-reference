@@ -20,7 +20,7 @@ class Match(Model):
         blank=False, null=False, default=datetime.now)
     type = models.CharField(
         max_length=64, choices=TYPES,
-        blank=False, help_text="Match type (eg. cup)")
+        blank=False, null=False, help_text="Match type (eg. cup)")
 
     local = models.ForeignKey(
         'models.Team', related_name='local_matches',

@@ -97,6 +97,10 @@ DATABASES = {
     }
 }
 
+REQUIRE_SSLMODE = get_env("DB_SSL")
+if REQUIRE_SSLMODE:
+    DATABASES['default']['OPTIONS'] = {'sslmode': 'require'}
+
 # S3 Settings
 
 if USE_AWS_S3:

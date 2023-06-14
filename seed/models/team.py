@@ -9,11 +9,13 @@ from seed.models.model import Model
 
 class Team(Model):
 
-    name = models.CharField(max_length=256, blank=True)
+    name = models.CharField(max_length=256,
+        blank=True, null=False)
     logo = models.ForeignKey(
         'models.File', related_name='team_logos',
         blank=False, null=False, on_delete=models.PROTECT)
-    description = models.TextField(blank=True, default="No description available")
+    description = models.TextField(
+        blank=True, null=False, default="No description available")
     market_value = models.FloatField(
         default=0, help_text="Market value of the team in USD")
     identity_docs = models.ManyToManyField(

@@ -1,5 +1,5 @@
 #!/bin/bash
-if [ $# -lt 5 ]; then
+if [ $# -lt 4 ]; then
   echo "Missing params"
   echo "Call $ ./bin/install.sh <server_name> <db_name> <db_user> <db_password>"
   exit 1

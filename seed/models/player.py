@@ -9,7 +9,8 @@ from seed.models.model import Model
 
 class Player(Model):
 
-    name = models.CharField(max_length=256, blank=True)
+    name = models.CharField(max_length=256,
+        blank=True, null=False)
     photo = models.ForeignKey(
         'models.File', related_name='player_photos',
         blank=False, null=False, on_delete=models.PROTECT)
