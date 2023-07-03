@@ -31,7 +31,8 @@
 
 ### Testing & QA
 
--   Show server logs `bin/logs <?Max_Lines> <?Scope (django|celery)>`
+-   Show server logs `bin/logs`
+    - To show specific logs `bin/logs <?Scope (django|celery)> <?Max_Lines>`
 -   Run code from debug_.py file `bin/debug`
 -   Review code quality `bin/review`
     >   To run review command, install [Codacy CLI](https://github.com/codacy/codacy-analysis-cli)

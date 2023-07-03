@@ -50,10 +50,28 @@ WEB_DIR="###"
 -   Run deployment script `deploy.sh`
     > For automatic deployment check [AW Code Deploy documentation](230_eb_single_instance.md)
 
+### Server configuration files
+
+-   To open gunicorn configuration files `sudo vim /etc/systemd/system/gunicorn.service`
+    -   To update files
+    ```
+    sudo systemctl start gunicorn.socket
+    sudo systemctl enable gunicorn.socket
+    sudo systemctl restart gunicorn
+    sudo systemctl status gunicorn --no-pager
+    ```
+
+-   To open nginx configuration files `sudo vim /etc/nginx/sites-available/app`
+    -   To update files
+    ```
+    sudo nginx -t
+    sudo systemctl restart nginx
+    ```
+
 ### Server logs
 
 -   To watch gunicorn logs (main) `tail -f /var/log/gunicorn.access.log`
--   To watch nginx logs `tail -f /var/log/nginx/access.log`
+-   To watch nginx logs `tail -f /var/log/nginx/access.log` or `tail -f /var/log/nginx/error.log`
 
 ### References
 

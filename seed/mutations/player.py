@@ -9,11 +9,11 @@ from app.models import Player
 from app.models import Team
 from app.models import PlayerPosition
 from app.models import File
-from seed.schema.types import Player as PlayerType
+from seed.schema.types import Player as PlayerTypeField
 
 class SavePlayerMutation(graphene.Mutation):
     
-    player = graphene.Field(PlayerType)
+    player = graphene.Field(PlayerTypeField)
     
     class Arguments:
         name = graphene.String(required=True)
@@ -58,7 +58,7 @@ class SavePlayerMutation(graphene.Mutation):
 
 class SetPlayerMutation(graphene.Mutation):
     
-    player = graphene.Field(PlayerType)
+    player = graphene.Field(PlayerTypeField)
     
     class Arguments:
         id = graphene.Int(required=True)

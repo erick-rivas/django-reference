@@ -85,6 +85,7 @@ ExecStart=$API_DIR/.venv/bin/gunicorn \
           --log-level debug \
           --access-logfile /var/log/gunicorn.access.log \
           --workers 3 \
+          --timeout 3000 \
           --error-logfile /var/log/gunicorn.error.log \
           --capture-output \
           --bind unix:/run/gunicorn.sock \
@@ -114,8 +115,8 @@ server {
     listen 80;
     server_name $SERVER_NAME;
     client_max_body_size 75M;
-    fastcgi_read_timeout 5000;
-    proxy_read_timeout 5000;
+    fastcgi_read_timeout 3000;
+    proxy_read_timeout 3000;
 
     location / {
         include proxy_params;

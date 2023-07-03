@@ -7,11 +7,11 @@ __Seed builder__
 import graphene
 from app.models import Match
 from app.models import Team
-from seed.schema.types import Match as MatchType
+from seed.schema.types import Match as MatchTypeField
 
 class SaveMatchMutation(graphene.Mutation):
     
-    match = graphene.Field(MatchType)
+    match = graphene.Field(MatchTypeField)
     
     class Arguments:
         date = graphene.DateTime(required=True)
@@ -49,7 +49,7 @@ class SaveMatchMutation(graphene.Mutation):
 
 class SetMatchMutation(graphene.Mutation):
     
-    match = graphene.Field(MatchType)
+    match = graphene.Field(MatchTypeField)
     
     class Arguments:
         id = graphene.Int(required=True)

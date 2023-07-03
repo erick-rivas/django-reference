@@ -2,10 +2,10 @@
 # Seed builder
 # AUTO_GENERATED (Read only)
 
-MAX_LINES=250
 SCOPE="None"
-if [ $# -ge 1 ]; then MAX_LINES=$1; fi
-if [ $# -ge 2 ]; then SCOPE=$2; fi
+MAX_LINES=250
+if [ $# -ge 1 ]; then SCOPE=$1; fi
+if [ $# -ge 2 ]; then MAX_LINES=$2; fi
 
 if [ $SCOPE = "None" ]; then
   sudo docker compose -f bin/docker/docker-compose.yml logs --follow --tail $MAX_LINES django celery

@@ -7,11 +7,11 @@ __Seed builder__
 import graphene
 from app.models import Team
 from app.models import File
-from seed.schema.types import Team as TeamType
+from seed.schema.types import Team as TeamTypeField
 
 class SaveTeamMutation(graphene.Mutation):
     
-    team = graphene.Field(TeamType)
+    team = graphene.Field(TeamTypeField)
     
     class Arguments:
         name = graphene.String(required=True)
@@ -52,7 +52,7 @@ class SaveTeamMutation(graphene.Mutation):
 
 class SetTeamMutation(graphene.Mutation):
     
-    team = graphene.Field(TeamType)
+    team = graphene.Field(TeamTypeField)
     
     class Arguments:
         id = graphene.Int(required=True)

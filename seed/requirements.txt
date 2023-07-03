@@ -5,8 +5,8 @@
 #
 
 wheel==0.40.0
-boto3==1.26.153
-celery==5.3.0
+boto3==1.26.165
+celery==5.3.1
 channels==4.0.0
 channels-redis==4.1.0
 coverage==7.2.7
@@ -20,14 +20,14 @@ django-rest-auth==0.9.5
 django-storages==1.13.2
 djangorestframework==3.14.0
 furo==2023.5.20
-graphene-django==3.1.1
+graphene-django==3.1.2
 gunicorn==20.1.0
 myst-parser==2.0.0
 psycopg2-binary==2.9.6
 pylint==2.17.4
 PyYAML==6.0
-redis==4.5.5
+redis==4.6.0
 requests==2.31.0
-setuptools==67.8.0
+setuptools==68.0.0
 six==1.16.0
 Sphinx==7.0.1

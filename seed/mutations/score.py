@@ -8,11 +8,11 @@ import graphene
 from app.models import Score
 from app.models import Player
 from app.models import Match
-from seed.schema.types import Score as ScoreType
+from seed.schema.types import Score as ScoreTypeField
 
 class SaveScoreMutation(graphene.Mutation):
     
-    score = graphene.Field(ScoreType)
+    score = graphene.Field(ScoreTypeField)
     
     class Arguments:
         min = graphene.Int(required=True)
@@ -47,7 +47,7 @@ class SaveScoreMutation(graphene.Mutation):
 
 class SetScoreMutation(graphene.Mutation):
     
-    score = graphene.Field(ScoreType)
+    score = graphene.Field(ScoreTypeField)
     
     class Arguments:
         id = graphene.Int(required=True)

@@ -7,11 +7,11 @@ __Seed builder__
 import graphene
 from app.models import PlayerPosition
 from graphene.types.generic import GenericScalar
-from seed.schema.types import PlayerPosition as PlayerPositionType
+from seed.schema.types import PlayerPosition as PlayerPositionTypeField
 
 class SavePlayerPositionMutation(graphene.Mutation):
     
-    playerPosition = graphene.Field(PlayerPositionType)
+    playerPosition = graphene.Field(PlayerPositionTypeField)
     
     class Arguments:
         name = graphene.String(required=True)
@@ -35,7 +35,7 @@ class SavePlayerPositionMutation(graphene.Mutation):
 
 class SetPlayerPositionMutation(graphene.Mutation):
     
-    playerPosition = graphene.Field(PlayerPositionType)
+    playerPosition = graphene.Field(PlayerPositionTypeField)
     
     class Arguments:
         id = graphene.Int(required=True)

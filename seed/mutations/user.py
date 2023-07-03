@@ -8,11 +8,11 @@ import graphene
 from app.models import User
 from app.models import Team
 from app.models import File
-from seed.schema.types import User as UserType
+from seed.schema.types import User as UserTypeField
 
 class SaveUserMutation(graphene.Mutation):
     
-    user = graphene.Field(UserType)
+    user = graphene.Field(UserTypeField)
     
     class Arguments:
         username = graphene.String(required=True)
@@ -63,7 +63,7 @@ class SaveUserMutation(graphene.Mutation):
 
 class SetUserMutation(graphene.Mutation):
     
-    user = graphene.Field(UserType)
+    user = graphene.Field(UserTypeField)
     
     class Arguments:
         id = graphene.Int(required=True)
