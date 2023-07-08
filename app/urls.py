@@ -11,8 +11,7 @@ __Seed builder__
       ] + urlpatterns
 """
 
-from django.conf.urls import url
-from django.urls import include, path
+from django.urls import include, path, re_path
 
 # pylint: disable=W0401
 from seed.app.urls import *

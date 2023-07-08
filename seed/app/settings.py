@@ -56,13 +56,13 @@ INSTALLED_APPS = [
     # Libs
     'rest_framework',
     'rest_framework.authtoken',
-    'rest_auth',
     'django_filters',
     'import_export',
     'djangoql',
     'corsheaders',
     'graphene_django',
     'channels',
+    'dj_rest_auth',
 
     'django.contrib.admin',
     'django.contrib.auth',

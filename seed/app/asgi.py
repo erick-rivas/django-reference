@@ -5,7 +5,7 @@ __Seed builder__
 """
 
 import json
-from django.conf.urls import url
+from django.urls import re_path
 from channels.routing import ProtocolTypeRouter, URLRouter
 from channels.security.websocket import AllowedHostsOriginValidator
 from channels.generic.websocket import WebsocketConsumer
@@ -38,7 +38,7 @@ application = ProtocolTypeRouter({
     'websocket': AllowedHostsOriginValidator(
         URLRouter(
             [
-                url(BaseSocket.url, BaseSocket.as_asgi())
+                re_path(BaseSocket.url, BaseSocket.as_asgi())
             ]
         )
     )

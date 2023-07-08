@@ -4,7 +4,7 @@ __Seed builder__
 """
 
 from rest_framework import serializers
-from rest_auth.models import TokenModel
+from dj_rest_auth.models import TokenModel
 
 class TokenSerializer(serializers.ModelSerializer):
 
