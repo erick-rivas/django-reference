@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 # Seed builder
 # AUTO_GENERATED (Read only)
 
