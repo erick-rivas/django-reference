@@ -6,7 +6,7 @@ FROM python:3.8.10
 WORKDIR /app
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED=1
-RUN pip install --upgrade pip==23.1.2
+RUN pip install --upgrade pip==23.2
 RUN apt update
 RUN apt install -y zlib1g-dev build-essential libssl-dev libreadline-dev libyaml-dev libxml2-dev libxslt1-dev libcurl4-openssl-dev software-properties-common libffi-dev yarn
 ENV TZ=America/Mexico_City

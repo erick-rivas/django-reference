@@ -114,7 +114,7 @@ if USE_AWS_S3:
 
 # Security settings
 
-REST_AUTH_SERIALIZERS = {'TOKEN_SERIALIZER': 'seed.serializers.helpers.token.TokenSerializer'}
+REST_AUTH = {'TOKEN_SERIALIZER': 'seed.serializers.helpers.token.TokenSerializer'}
 CORS_ORIGIN_WHITELIST = [os.getenv('CLIENT_URL')]
 ALLOWED_HOSTS = ['localhost', '127.0.0.1', '[::1]', urlparse(os.getenv('SERVER_URL')).hostname]
 if get_env('USE_HTTPS'):
