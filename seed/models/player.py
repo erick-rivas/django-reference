@@ -16,6 +16,8 @@ class Player(Model):
         blank=False, null=False, on_delete=models.PROTECT)
     is_active = models.BooleanField(
         default=True, help_text="Indicates whether the player is active or retired")
+    salary = models.FloatField(
+        default=0)
 
     team = models.ForeignKey(
         'models.Team', related_name='players',

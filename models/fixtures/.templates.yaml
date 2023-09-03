@@ -22,6 +22,7 @@
     name: ""
     photo: 0
     is_active: false
+    salary: 0
     team: 0
     position: 0
 
@@ -62,7 +63,7 @@
     first_name: ""
     last_name: ""
     email: ""
-    password: "pbkdf2_sha256$150000$jMOqkdOUpor5$kU/QofjBsopM+CdCnU2+pROhtnxd5CZc7NhUiXNTMc0="
+    password: "pbkdf2_sha256$600000$awdNOcgfYeqTueeZucUPOi$ZPd0Itzv68u6F7cF96O1LAluH3eWelgqJ3WzmhKhlPg="
     is_active: true
     is_superuser: false
     is_staff: false

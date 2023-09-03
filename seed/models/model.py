@@ -48,9 +48,7 @@ class Model(models.Model):
 
     @staticmethod
     def filter_permissions(queryset, filters):
-        if get_env('ENABLE_AUTH'):
-            return filter_perms(queryset, filters)
-        return queryset
+        return filter_perms(queryset, filters)
 
     @staticmethod
     def permission_filters(user):
@@ -71,9 +69,7 @@ class ModelRails(models.Model):
 
     @staticmethod
     def filter_permissions(queryset, filters):
-        if get_env('ENABLE_AUTH'):
-            return filter_perms(queryset, filters)
-        return queryset
+        return filter_perms(queryset, filters)
 
     @staticmethod
     def permission_filters(user):

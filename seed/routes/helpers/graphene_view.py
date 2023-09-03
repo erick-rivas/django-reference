@@ -14,12 +14,8 @@ class AuthGraphQLView(GraphQLView):
     @classmethod
     def as_view(cls, *args, **kwargs):
         view = super(AuthGraphQLView, cls).as_view(*args, **kwargs)
-        view = permission_classes((IsAuthenticated,))(view)
-        view = authentication_classes((TokenAuthentication,))(view)
-        view = api_view(['POST'])(view)
+        view = api_view(['POST', 'GET'])(view)
         return view
 
 def graphene_view():
-    if get_env('ENABLE_AUTH'):
-        return csrf_exempt(AuthGraphQLView.as_view(graphiql=True))
-    return csrf_exempt(GraphQLView.as_view(graphiql=True))
+    return csrf_exempt(AuthGraphQLView.as_view(graphiql=True))

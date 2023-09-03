@@ -19,5 +19,7 @@ app.autodiscover_tasks()
 # Common shared tasks
 
 @shared_task
-def send_mail_async(subject, plain_text, from_email, to_email, **kwargs):
-    send_mail(subject, plain_text, from_email, to_email, **kwargs)
+def send_mail_async(**kwargs):
+    if "from_email" not in kwargs:
+        kwargs["from_email"] = os.getenv('SMTP_EMAIL')
+    send_mail(**kwargs)

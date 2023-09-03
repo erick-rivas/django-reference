@@ -19,11 +19,11 @@ Request to admin arn connection and s3 bucket name, and modify next variables in
 -   REPOSITORY # Repository id (user/repository_name), example: `erick-rivas/django-reference`
 
 Follow next steps:
--   Create and associate roles: `seed/docs/assets/aws-code-deploy/codedeploy.sh config`
--   Install AWS Agent: `seed/docs/assets/aws-code-deploy/codedeploy.sh install-<version>` (ubuntu version, availables are 20 and 22). Note, to check status use `sudo service codedeploy-agent status`
--   Create CodeDeploy application: `seed/docs/assets/aws-code-deploy/codedeploy.sh create-app`
--   Create a Deployment Group: `seed/docs/assets/aws-code-deploy/codedeploy.sh create-dg`
--   Create new pipeline: `seed/docs/assets/aws-code-deploy/codedeploy.sh create-pl`
+-   Create and associate roles: `seed/docs/extras/assets/aws-code-deploy/codedeploy.sh config`
+-   Install AWS Agent: `seed/docs/extras/assets/aws-code-deploy/codedeploy.sh install-<version>` (ubuntu version, availables are 20 and 22). Note, to check status use `sudo service codedeploy-agent status`
+-   Create CodeDeploy application: `seed/docs/extras/assets/aws-code-deploy/codedeploy.sh create-app`
+-   Create a Deployment Group: `seed/docs/extras/assets/aws-code-deploy/codedeploy.sh create-dg`
+-   Create new pipeline: `seed/docs/extras/assets/aws-code-deploy/codedeploy.sh create-pl`
 
 ### Configure file (optional)
 

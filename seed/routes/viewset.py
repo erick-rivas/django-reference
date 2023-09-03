@@ -11,9 +11,6 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 
 class ViewSet:
-    if get_env('ENABLE_AUTH'):
-        authentication_classes = (TokenAuthentication,)
-        permission_classes = (IsAuthenticated,)
 
     def destroy(self, request, pk=None):
         model = get_object_or_404(self.queryset, pk=pk)

@@ -1,4 +1,4 @@
-## Ubuntu Server - 20.04
+## Ubuntu Server - 22.04
 
 This file contains guides to deploy project to a (Ubuntu Server)
 
@@ -17,7 +17,6 @@ This file contains guides to deploy project to a (Ubuntu Server)
 SERVER_URL=#SERVER_URL#
 CLIENT_URL=#CLIENT_URL#
 SECRET_KEY=#ANY_SECRET_KEY#
-ENABLE_AUTH=true/false
 ```
 -   To update variables execute
 ```
@@ -50,6 +49,13 @@ WEB_DIR="###"
 -   Run deployment script `deploy.sh`
     > For automatic deployment check [AW Code Deploy documentation](230_eb_single_instance.md)
 
+#### Deploy on reboot
+
+-   Copy `seed/docs/assets/ubuntu/reboot.sh` in project root folder
+-   Execute `crontab -e`
+-   Include `@reboot <root_path>/reboot.sh`
+    -   Example `/home/ubuntu/reboot.sh`
+
 ### Server configuration files
 
 -   To open gunicorn configuration files `sudo vim /etc/systemd/system/gunicorn.service`
@@ -81,5 +87,4 @@ WEB_DIR="###"
 
 ### See also
 
--   [Ubuntu extras](221_ubuntu_extras.md)
--   [AWS Code Deploy](222_code_deploy.md)
+-   [Ubuntu extras](./extras/211_deploy_ubuntu_extras.md)

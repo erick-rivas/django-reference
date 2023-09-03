@@ -1,3 +1,8 @@
+"""
+__Seed builder__
+  (Read_only) Util test
+"""
+
 from unittest import TestCase
 
 from django.db.models import Q
@@ -11,6 +16,7 @@ class TestQueryUtil(TestCase):
         self.assertEqual(test_01, output_01)
 
     def test_sql_alike_q(self):
+
         input_01 = "key_01=val_01 AND key_02=val_02 OR key_03=val_03"
         test_01 = sql_alike_q(input_01)
         output_01 = Q(Q(key_01="val_01"), Q(key_02="val_02")) | Q(Q(key_03="val_03"))
@@ -52,3 +58,9 @@ class TestQueryUtil(TestCase):
         output_07 = Q(Q(Q(key_01="val_01")) | Q(Q(key_02="val_02"), Q(key_03="val_03")), Q(key_04="val_04"))
         with self.subTest():
             self.assertEqual(test_07, output_07)
+
+        input_08 = "key_01=\"(AND)\" AND key_02=\'(OR\' AND key_03=`\")`"
+        test_08 = sql_alike_q(input_08)
+        output_08 = Q(Q(key_01="(AND)"), Q(key_02="(OR"), Q(key_03="\")"))
+        with self.subTest():
+            self.assertEqual(test_08, output_08)

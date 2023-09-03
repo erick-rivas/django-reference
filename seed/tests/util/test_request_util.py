@@ -1,3 +1,8 @@
+"""
+__Seed builder__
+  (Read_only) Util test
+"""
+
 from unittest import TestCase
 
 from rest_framework.exceptions import ValidationError

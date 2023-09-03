@@ -16,5 +16,5 @@ if [ $SUB_PATH = "None" ]; then
   sudo docker compose -f bin/docker/docker-compose.yml exec django /bin/sh -c "python manage.py loaddata models/fixtures/*.yaml"
 else
   echo "== Executing fixtures in Running models/fixtures/$SUB_PATH/*.yaml"
-  sudo docker compose -f bin/docker/docker-compose.yml exec django /bin/sh -c "python manage.py models/fixtures/$SUB_PATH/*.yaml"
+  sudo docker compose -f bin/docker/docker-compose.yml exec django /bin/sh -c "python manage.py loaddata models/fixtures/$SUB_PATH/*.yaml"
 fi

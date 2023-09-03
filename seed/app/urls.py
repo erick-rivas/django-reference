@@ -22,10 +22,8 @@ urlpatterns = \
     ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) \
       + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
-if settings.DEBUG and os.path.exists((os.path.join(settings.DOCS_DIR, "index.html"))):
-    urlpatterns += \
-        [re_path(r'^docs$', RedirectView.as_view(url='./docs/010_general.html'))] \
-        + static("/docs", document_root=settings.DOCS_DIR)
+if settings.DEBUG:
+    urlpatterns += [re_path("drf_auth/", include("rest_framework.urls")), ]
 
 if os.path.exists((os.path.join(settings.REACTJS_DIR, "index.html"))):
     urlpatterns += \

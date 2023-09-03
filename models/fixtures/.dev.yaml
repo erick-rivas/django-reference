@@ -13,7 +13,7 @@
     first_name: "Admin"
     last_name: "Django"
     email: "admin@email.com"
-    password: "pbkdf2_sha256$150000$jMOqkdOUpor5$kU/QofjBsopM+CdCnU2+pROhtnxd5CZc7NhUiXNTMc0="
+    password: "pbkdf2_sha256$600000$awdNOcgfYeqTueeZucUPOi$ZPd0Itzv68u6F7cF96O1LAluH3eWelgqJ3WzmhKhlPg="
     is_active: true
     is_superuser: true
     is_staff: true

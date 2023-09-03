@@ -32,7 +32,7 @@
 ### Testing & QA
 
 -   Show server logs `bin/logs`
-    - To show specific logs `bin/logs <Scope (django|celery)> <Max_Lines>`
+    - To show specific logs `bin/logs <Scope (all|django|celery)> <Only_Latest> <Max_Lines>`
 -   Test use cases `bin/test`
     - To test specific folder `bin/test <Folder_Name>`
 -   Run code from debug_.py file `bin/debug`
@@ -52,4 +52,4 @@
 -   [Models docs](040_models.md)
 -   [Seed builder](110_seed_builder.md)
 -   [Seed commons](120_seed_commons.md)
--   [Deployment - Ubuntu](220_ubuntu.md)
+-   [Deploy - Ubuntu](210_deploy_ubuntu.md)

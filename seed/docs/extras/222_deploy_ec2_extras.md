@@ -21,4 +21,4 @@ Before this, it's required to have an allocated ip.
 - Modify next variables in .aws.env located at root project:
     -   DOMAIN # Registered domain in hosted zone (get it from Route53 panel)
     -   HOSTED_ZONE_ID # ID of hosted zone previously copied (get it from Route53 panel)
-- Then execute `seed/docs/assets/aws-ec2/ec2.sh create-subdomain` which create a subdomain like <PROJECT_NAME>.<HOSTED_ZONE_DOMAIN>
+- Then execute `seed/docs/extras/assets/aws-ec2/ec2.sh create-subdomain` which create a subdomain like <PROJECT_NAME>.<HOSTED_ZONE_DOMAIN>

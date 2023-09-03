@@ -165,8 +165,14 @@ REST_FRAMEWORK = {
         'seed.routes.helpers.rest_render.ProductionBrowsableAPIRenderer'
     ],
 }
-REST_FRAMEWORK['DEFAULT_AUTHENTICATION_CLASSES'] = \
-    ['rest_framework.authentication.TokenAuthentication',]
+REST_FRAMEWORK['DEFAULT_AUTHENTICATION_CLASSES'] = [
+    'rest_framework.authentication.TokenAuthentication',
+    'rest_framework.authentication.SessionAuthentication',
+]
+
+REST_FRAMEWORK['DEFAULT_PERMISSION_CLASSES'] = [
+    'rest_framework.permissions.IsAuthenticated',
+]
 
 GRAPHENE = {
     'SCHEMA': 'seed.app.graphene.schema'

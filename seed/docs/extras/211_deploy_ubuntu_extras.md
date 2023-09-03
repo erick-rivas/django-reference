@@ -1,6 +1,4 @@
-## Ubuntu Server - 20.04 (Extras)
-
-This file contains guides to deploy project to a (Ubuntu Server)
+## Ubuntu Server - 22.04 (Extras)
 
 ### Enable remote access to database via SSL
 

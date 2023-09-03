@@ -9,7 +9,7 @@ from rest_framework.decorators import action
 from rest_framework.response import Response
 from rest_framework.viewsets import ViewSet
 
-class DebugViewSet(ViewSet):
+class ExampleViewSet(ViewSet):
 
     @action(detail=False, methods=['get'])
     def test(self, request):

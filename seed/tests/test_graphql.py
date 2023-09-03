@@ -190,6 +190,7 @@ class TestGraphql(GraphQLTestCase):
                     id
                     name
                     isActive
+                    salary
                     photo {
                       id
                     }
@@ -267,6 +268,7 @@ class TestGraphql(GraphQLTestCase):
                     id
                     name
                     isActive
+                    salary
                     photo {
                       id
                     }
@@ -291,6 +293,7 @@ class TestGraphql(GraphQLTestCase):
                     name: "",
                     photo: 1,
                     isActive: false,
+                    salary: 128.0,
                     team:  1,
                     position:  1,
                 ) {
@@ -298,6 +301,7 @@ class TestGraphql(GraphQLTestCase):
                         id
                         name
                         isActive
+                        salary
                         photo {
                           id
                         }
@@ -323,6 +327,7 @@ class TestGraphql(GraphQLTestCase):
                     name: "",
                     photo: 1,
                     isActive: false,
+                    salary: 128.0,
                     team:  1,
                     position:  1,
 
@@ -331,6 +336,7 @@ class TestGraphql(GraphQLTestCase):
                         id
                         name
                         isActive
+                        salary
                         photo {
                           id
                         }

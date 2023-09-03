@@ -22,128 +22,315 @@ class Admin:
     def register():
         
         class MatchResource(resources.ModelResource):
-            pass
-
-        class MatchAdmin(DjangoQLSearchMixin, ImportExportModelAdmin):
-            resource_class = MatchResource
             class Meta:
                 model = Match
                 fields = (
                     'id',
-                    'created_at',
                     'date',
                     'type',
                     'local',
                     'visitor',
-                    'scores',
                 )
+        @admin.register(Match)
+        class MatchAdmin(DjangoQLSearchMixin, ImportExportModelAdmin):
+            resource_class = MatchResource
+            fields = (
+                'id',
+                'created_at',
+                'date',
+                'type',
+                'local',
+                'visitor',
+            )
+
+            list_display = ("id", "_name", "created_at")
+            list_filter = ("id", "created_at")
+            list_display_links = ("id", "_name",)
+            ordering = ("-created_at",)
+
+            readonly_fields = (
+                'id',
+                'created_at',
+            )
+
+            @admin.display(description="created_at")
+            def created_at(self, instance):
+                return instance.created_at
+
+            def _name(self, obj):
+                return str(obj)
+
+            class Meta:
+                model = Match
         
         class PlayerResource(resources.ModelResource):
-            pass
-
-        class PlayerAdmin(DjangoQLSearchMixin, ImportExportModelAdmin):
-            resource_class = PlayerResource
             class Meta:
                 model = Player
                 fields = (
                     'id',
-                    'created_at',
                     'name',
                     'photo',
                     'is_active',
-                    'photo',
+                    'salary',
                     'team',
                     'position',
                 )
+        @admin.register(Player)
+        class PlayerAdmin(DjangoQLSearchMixin, ImportExportModelAdmin):
+            resource_class = PlayerResource
+            fields = (
+                'id',
+                'created_at',
+                'name',
+                'photo',
+                'is_active',
+                'team',
+                'position',
+            )
+
+            list_display = ("id", "_name", "created_at")
+            list_filter = ("id", "created_at")
+            list_display_links = ("id", "_name",)
+            ordering = ("-created_at",)
+
+            readonly_fields = (
+                'id',
+                'created_at',
+            )
+
+            @admin.display(description="created_at")
+            def created_at(self, instance):
+                return instance.created_at
+
+            def _name(self, obj):
+                return str(obj)
+
+            class Meta:
+                model = Player
         
         class PlayerPositionResource(resources.ModelResource):
-            pass
-
-        class PlayerPositionAdmin(DjangoQLSearchMixin, ImportExportModelAdmin):
-            resource_class = PlayerPositionResource
             class Meta:
                 model = PlayerPosition
                 fields = (
                     'id',
-                    'created_at',
                     'name',
                     'details',
                 )
+        @admin.register(PlayerPosition)
+        class PlayerPositionAdmin(DjangoQLSearchMixin, ImportExportModelAdmin):
+            resource_class = PlayerPositionResource
+            fields = (
+                'id',
+                'created_at',
+                'name',
+                'details',
+            )
+
+            list_display = ("id", "_name", "created_at")
+            list_filter = ("id", "created_at")
+            list_display_links = ("id", "_name",)
+            ordering = ("-created_at",)
+
+            readonly_fields = (
+                'id',
+                'created_at',
+            )
+
+            @admin.display(description="created_at")
+            def created_at(self, instance):
+                return instance.created_at
+
+            def _name(self, obj):
+                return str(obj)
+
+            class Meta:
+                model = PlayerPosition
         
         class ScoreResource(resources.ModelResource):
-            pass
-
-        class ScoreAdmin(DjangoQLSearchMixin, ImportExportModelAdmin):
-            resource_class = ScoreResource
             class Meta:
                 model = Score
                 fields = (
                     'id',
-                    'created_at',
                     'min',
                     'player',
                     'match',
                 )
+        @admin.register(Score)
+        class ScoreAdmin(DjangoQLSearchMixin, ImportExportModelAdmin):
+            resource_class = ScoreResource
+            fields = (
+                'id',
+                'created_at',
+                'min',
+                'player',
+                'match',
+            )
+
+            list_display = ("id", "_name", "created_at")
+            list_filter = ("id", "created_at")
+            list_display_links = ("id", "_name",)
+            ordering = ("-created_at",)
+
+            readonly_fields = (
+                'id',
+                'created_at',
+            )
+
+            @admin.display(description="created_at")
+            def created_at(self, instance):
+                return instance.created_at
+
+            def _name(self, obj):
+                return str(obj)
+
+            class Meta:
+                model = Score
         
         class TeamResource(resources.ModelResource):
-            pass
-
-        class TeamAdmin(DjangoQLSearchMixin, ImportExportModelAdmin):
-            resource_class = TeamResource
             class Meta:
                 model = Team
                 fields = (
                     'id',
-                    'created_at',
                     'name',
                     'logo',
                     'description',
                     'market_value',
-                    'identity_docs',
-                    'logo',
-                    'identity_docs',
                     'rival',
-                    'players',
                 )
+        @admin.register(Team)
+        class TeamAdmin(DjangoQLSearchMixin, ImportExportModelAdmin):
+            resource_class = TeamResource
+            fields = (
+                'id',
+                'created_at',
+                'name',
+                'logo',
+                'description',
+                'market_value',
+                'identity_docs',
+                'rival',
+            )
+
+            list_display = ("id", "_name", "created_at")
+            list_filter = ("id", "created_at")
+            list_display_links = ("id", "_name",)
+            ordering = ("-created_at",)
+
+            readonly_fields = (
+                'id',
+                'created_at',
+                'identity_docs',
+            )
+
+            @admin.display(description="created_at")
+            def created_at(self, instance):
+                return instance.created_at
+
+            def _name(self, obj):
+                return str(obj)
+
+            class Meta:
+                model = Team
         
         class UserResource(resources.ModelResource):
-            pass
-
-        class UserAdmin(DjangoQLSearchMixin, ImportExportModelAdmin):
-            resource_class = UserResource
             class Meta:
                 model = User
                 fields = (
                     'id',
-                    'created_at',
                     'username',
                     'first_name',
                     'last_name',
                     'email',
                     'is_active',
                     'profile_image',
-                    'profile_image',
                     'teams',
                 )
+        from django.contrib.auth.admin import UserAdmin as UserAdminRoot
+        @admin.register(User)
+        class UserAdmin(UserAdminRoot, DjangoQLSearchMixin, ImportExportModelAdmin):
+            resource_class = UserResource
+            fieldsets = [(None, {"fields": (
+                'id',
+                'created_at',
+                'last_login',
+                'username',
+                'password',
+                'first_name',
+                'last_name',
+                'email',
+                'is_staff',
+                'is_active',
+                'profile_image',
+            )})]
+
+            add_fieldsets = [(None, {"classes": ("wide",), "fields": (
+                'username',
+                'password1',
+                'password2',
+                'first_name',
+                'last_name',
+                'email',
+                'is_staff',
+                'is_active',
+                'profile_image',
+            )})]
+
+            list_display = ("id", "username", "first_name", "last_name", "last_login")
+            list_filter = ("id", "username", "first_name", "last_name", "last_login")
+            list_display_links = ("id", "username",)
+            ordering = ("-created_at",)
+
+            readonly_fields = (
+                'id',
+                'created_at',
+                'last_login',
+            )
+
+            @admin.display(description="created_at")
+            def created_at(self, instance):
+                return instance.created_at
+
+            def _name(self, obj):
+                return str(obj)
+
+            class Meta:
+                model = User
         
         class FileResource(resources.ModelResource):
-            pass
-
-        class FileAdmin(DjangoQLSearchMixin, ImportExportModelAdmin):
-            resource_class = FileResource
             class Meta:
                 model = File
                 fields = (
                     'id',
-                    'created_at',
                     'name',
                     'url',
-                    'size'
+                    'size',
                 )
-        admin.site.register(Match, MatchAdmin)
-        admin.site.register(Player, PlayerAdmin)
-        admin.site.register(PlayerPosition, PlayerPositionAdmin)
-        admin.site.register(Score, ScoreAdmin)
-        admin.site.register(Team, TeamAdmin)
-        admin.site.register(User, UserAdmin)
-        admin.site.register(File, FileAdmin)
+        @admin.register(File)
+        class FileAdmin(DjangoQLSearchMixin, ImportExportModelAdmin):
+            resource_class = FileResource
+            fields = (
+                'id',
+                'created_at',
+                'name',
+                'url',
+                'size',
+            )
+
+            list_display = ("id", "name", "url", "size")
+            list_filter = ("id", "name", "url", "size")
+            ordering = ("-created_at",)
+
+            readonly_fields = (
+                'id',
+                'created_at',
+            )
+
+            @admin.display(description="created_at")
+            def created_at(self, instance):
+                return instance.created_at
+
+            def _name(self, obj):
+                return str(obj)
+
+            class Meta:
+                model = File

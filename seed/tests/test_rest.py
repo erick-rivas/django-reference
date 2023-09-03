@@ -69,6 +69,7 @@ class TestRest(APITestCase):
             "name": "",
             "photo_id": 1,
             "is_active": False,
+            "salary": 128.0,
             "team_id":  1,
             "position_id":  1,
         }
@@ -80,6 +81,7 @@ class TestRest(APITestCase):
             "name": "",
             "photo_id": 1,
             "is_active": False,
+            "salary": 128.0,
             "team_id":  1,
             "position_id":  1,
         }

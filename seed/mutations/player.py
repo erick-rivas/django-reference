@@ -19,6 +19,7 @@ class SavePlayerMutation(graphene.Mutation):
         name = graphene.String(required=True)
         photo = graphene.Int(required=True)
         isActive = graphene.Boolean(required=True)
+        salary = graphene.Float(required=True)
         team = graphene.Int(required=True)
         position = graphene.Int(required=True)
         pass
@@ -31,6 +32,8 @@ class SavePlayerMutation(graphene.Mutation):
             player["name"] = kwargs["name"]
         if "isActive" in kwargs:
             player["is_active"] = kwargs["isActive"]
+        if "salary" in kwargs:
+            player["salary"] = kwargs["salary"]
         if "photo" in kwargs:
             photo = File.filter_permissions(
                 File.objects,
@@ -65,6 +68,7 @@ class SetPlayerMutation(graphene.Mutation):
         name = graphene.String(required=False)
         photo = graphene.Int(required=False)
         isActive = graphene.Boolean(required=False)
+        salary = graphene.Float(required=False)
         team = graphene.Int(required=False)
         position = graphene.Int(required=False)
         
@@ -79,6 +83,8 @@ class SetPlayerMutation(graphene.Mutation):
             player.name = kwargs["name"]
         if "isActive" in kwargs:
             player.is_active = kwargs["isActive"]
+        if "salary" in kwargs:
+            player.salary = kwargs["salary"]
         if "photo" in kwargs:
             photo = File.objects \
                 .get(pk=kwargs["photo"])

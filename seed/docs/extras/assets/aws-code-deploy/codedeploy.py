@@ -30,7 +30,7 @@ class CodeDeploy:
             return
         
         print("Creating role")
-        subprocess.check_output(f"aws iam create-role --role-name role_{project_name} --assume-role-policy-document file://seed/docs/assets/aws-code-deploy/policies/ec2_trust_policy.json", shell=True)
+        subprocess.check_output(f"aws iam create-role --role-name role_{project_name} --assume-role-policy-document file://seed/docs/extras/assets/aws-code-deploy/policies/ec2_trust_policy.json", shell=True)
         subprocess.check_output(f"aws iam attach-role-policy --role-name role_{project_name} --policy-arn arn:aws:iam::aws:policy/AmazonS3ReadOnlyAccess", shell=True)
 
         print("Attaching to IAM")
@@ -72,7 +72,7 @@ class CodeDeploy:
         subprocess.check_output(f"sudo ./install auto > /tmp/logfile", shell=True)
         subprocess.check_output(f"sudo service codedeploy-agent status", shell=True)
         subprocess.check_output(f"rm ./install", shell=True)
-        subprocess.check_output(f"cp seed/docs/assets/aws-code-deploy/appspec.yml ./appspec.yml", shell=True)
+        subprocess.check_output(f"cp seed/docs/extras/assets/aws-code-deploy/appspec.yml ./appspec.yml", shell=True)
 
         print("CodeDeploy installed")
 
@@ -86,7 +86,7 @@ class CodeDeploy:
     def create_dg(self, instance_name, project_name):
 
         print("Creating CD role")
-        result = subprocess.check_output(f"aws iam create-role --role-name cd_role_{project_name} --assume-role-policy-document file://seed/docs/assets/aws-code-deploy/policies/cd_trust_policy.json", shell=True)
+        result = subprocess.check_output(f"aws iam create-role --role-name cd_role_{project_name} --assume-role-policy-document file://seed/docs/extras/assets/aws-code-deploy/policies/cd_trust_policy.json", shell=True)
         result = json.loads(result)
         arn_role_cd = result["Role"]["Arn"]
 
@@ -113,12 +113,12 @@ class CodeDeploy:
         sleep(20)
 
         print("Creating CodePipeline role")
-        result = subprocess.check_output(f"aws iam create-role --role-name cp_role_{project_name} --assume-role-policy-document file://seed/docs/assets/aws-code-deploy/policies/cp_trust_policy.json", shell=True)
+        result = subprocess.check_output(f"aws iam create-role --role-name cp_role_{project_name} --assume-role-policy-document file://seed/docs/extras/assets/aws-code-deploy/policies/cp_trust_policy.json", shell=True)
         result = json.loads(result)
         arn_role_pl = result["Role"]["Arn"]
 
         print("Attaching policies to CodePipeline role")
-        subprocess.check_output(f"aws iam put-role-policy --role-name cp_role_{project_name} --policy-name policy_{project_name} --policy-document file://seed/docs/assets/aws-code-deploy/policies/cp_policy.json", shell=True)     
+        subprocess.check_output(f"aws iam put-role-policy --role-name cp_role_{project_name} --policy-name policy_{project_name} --policy-document file://seed/docs/extras/assets/aws-code-deploy/policies/cp_policy.json", shell=True)
         
         pipeline_json = {
             "pipeline": {

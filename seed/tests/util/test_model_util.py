@@ -1,3 +1,8 @@
+"""
+__Seed builder__
+  (Read_only) Util test
+"""
+
 from unittest import TestCase
 
 from seed.util.model_util import _inherit_permissions_query

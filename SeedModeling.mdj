@@ -279,7 +279,7 @@
 									"font": "Arial;13;1",
 									"left": 520,
 									"top": 101,
-									"width": 182.470703125,
+									"width": 183.14990234375,
 									"height": 13,
 									"text": "PLAYER"
 								},
@@ -305,7 +305,7 @@
 											"font": "Arial;13;0",
 											"left": 525,
 											"top": 124,
-											"width": 172.470703125,
+											"width": 173.14990234375,
 											"height": 13
 										},
 										{
@@ -320,7 +320,7 @@
 											"font": "Arial;13;0",
 											"left": 525,
 											"top": 139,
-											"width": 172.470703125,
+											"width": 173.14990234375,
 											"height": 13
 										},
 										{
@@ -335,7 +335,22 @@
 											"font": "Arial;13;0",
 											"left": 525,
 											"top": 154,
-											"width": 172.470703125,
+											"width": 173.14990234375,
+											"height": 13
+										},
+										{
+											"_type": "ERDColumnView",
+											"_id": "AAAAAAGKWRcMlBx7wzM=",
+											"_parent": {
+												"$ref": "AAAAAAFp1c9Yyb9R9ac="
+											},
+											"model": {
+												"$ref": "AAAAAAGKWRcMihx4CAk="
+											},
+											"font": "Arial;13;0",
+											"left": 525,
+											"top": 169,
+											"width": 173.14990234375,
 											"height": 13
 										},
 										{
@@ -349,8 +364,8 @@
 											},
 											"font": "Arial;13;0",
 											"left": 525,
-											"top": 169,
-											"width": 172.470703125,
+											"top": 184,
+											"width": 173.14990234375,
 											"height": 13
 										},
 										{
@@ -364,23 +379,23 @@
 											},
 											"font": "Arial;13;0",
 											"left": 525,
-											"top": 184,
-											"width": 172.470703125,
+											"top": 199,
+											"width": 173.14990234375,
 											"height": 13
 										}
 									],
 									"font": "Arial;13;0",
 									"left": 520,
 									"top": 119,
-									"width": 182.470703125,
-									"height": 83
+									"width": 183.14990234375,
+									"height": 98
 								}
 							],
 							"font": "Arial;13;0",
 							"left": 520,
 							"top": 96,
-							"width": 182.470703125,
-							"height": 106,
+							"width": 183.14990234375,
+							"height": 121,
 							"nameLabel": {
 								"$ref": "AAAAAAFp1c9Yyb9QOfo="
 							},
@@ -876,7 +891,7 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"left": 585,
-									"top": 213,
+									"top": 221,
 									"height": 13,
 									"alpha": 1.5707963267948966,
 									"distance": 15,
@@ -893,7 +908,7 @@
 									},
 									"font": "Arial;13;0",
 									"left": 586,
-									"top": 220,
+									"top": 235,
 									"height": 13,
 									"alpha": 0.5235987755982988,
 									"distance": 30,
@@ -927,7 +942,7 @@
 								"$ref": "AAAAAAFp1c9Yyb9P+JE="
 							},
 							"lineStyle": 2,
-							"points": "571:201;571:240",
+							"points": "571:216;571:240",
 							"nameLabel": {
 								"$ref": "AAAAAAFp5Pw4GhVidu4="
 							},
@@ -1568,6 +1583,17 @@
 							"name": "is_active",
 							"documentation": "default: true\ndescription:  Indicates whether the player is active or retired",
 							"type": "boolean",
+							"length": 0
+						},
+						{
+							"_type": "ERDColumn",
+							"_id": "AAAAAAGKWRcMihx4CAk=",
+							"_parent": {
+								"$ref": "AAAAAAFp1c9Yyb9NIQc="
+							},
+							"name": "salary",
+							"documentation": "read: false",
+							"type": "float",
 							"length": 0
 						},
 						{

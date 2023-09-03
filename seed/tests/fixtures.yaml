@@ -24,6 +24,7 @@
     name: ""
     photo: 1
     is_active: false
+    salary: 128.0
     team: 1
     position: 1
 
