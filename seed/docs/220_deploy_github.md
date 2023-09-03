@@ -1,4 +1,4 @@
-## Github workflows to deployment
+## Github Actions - Deployment
 
 ### Description
 
@@ -16,4 +16,4 @@ This workflow will execute a deployment using an ssh connection with a server, t
     -   **SERVER** refers to the server that will be connected to execute the deployment.
     -   **USER** refers to the user that will be connected to execute the deployment.
 
--   If you have problems trouble finding the **Secrets** section, you can go to (https://github.com/&lt;user>/&lt;repository>/settings/secrets/actions), remember to change &lt;user> for your github username and &lt;repository> for your repository name. 
+-   If you have problems trouble finding the **Secrets** section, you can go to (https://github.com/&lt;user>/&lt;repository>/settings/secrets/actions), remember to change &lt;user> for your github username and &lt;repository> for your repository name.

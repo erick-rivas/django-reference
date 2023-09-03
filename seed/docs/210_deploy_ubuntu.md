@@ -87,4 +87,5 @@ WEB_DIR="###"
 
 ### See also
 
--   [Ubuntu extras](./extras/211_deploy_ubuntu_extras.md)
+-   [Github actions](220_deploy_github.md)
+-   [Ubuntu extras](extras/211_deploy_ubuntu_extras.md)

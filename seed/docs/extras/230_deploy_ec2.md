@@ -45,5 +45,5 @@ Available options are:
 
 ### See also
 
--   [EC2 Codedeploy](231_ec2_codedeploy.md)
--   [EC2 Extras](232_ec2_extras.md)
+-   [EC2 Codedeploy](231_deploy_ec2_codedeploy.md)
+-   [EC2 Extras](232_deploy_ec2_extras.md)

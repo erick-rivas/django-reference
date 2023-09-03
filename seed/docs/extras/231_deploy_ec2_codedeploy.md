@@ -2,7 +2,7 @@
 
 ### Before start
 
-Complete [AWS EC2 setup](230_ec2.md)
+Complete [AWS EC2 setup](230_deploy_ec2.md)
 
 ### Create GitHub connection (admin only)
 
