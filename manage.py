@@ -1,10 +1,12 @@
 #!/usr/bin/env python
 import os
 import sys
+
 import dotenv
 
 if __name__ == "__main__":
-    from app.settings import get_dotenv
+    from seed.util.env_util import get_dotenv
+
     dotenv.read_dotenv(os.path.join(os.path.dirname(__file__), get_dotenv()))
     os.environ.setdefault("DJANGO_SETTINGS_MODULE", "app.settings")
     try:
@@ -12,6 +14,7 @@ if __name__ == "__main__":
     except ImportError:
         try:
             import django
+
             print(django.VERSION)
         except ImportError:
             raise ImportError(

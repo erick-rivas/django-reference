@@ -43,6 +43,7 @@ class Admin:
                 'visitor',
             )
 
+            list_select_related = True
             list_display = ("id", "_name", "created_at")
             list_filter = ("id", "created_at")
             list_display_links = ("id", "_name",)
@@ -88,6 +89,7 @@ class Admin:
                 'position',
             )
 
+            list_select_related = True
             list_display = ("id", "_name", "created_at")
             list_filter = ("id", "created_at")
             list_display_links = ("id", "_name",)
@@ -126,6 +128,7 @@ class Admin:
                 'details',
             )
 
+            list_select_related = True
             list_display = ("id", "_name", "created_at")
             list_filter = ("id", "created_at")
             list_display_links = ("id", "_name",)
@@ -166,6 +169,7 @@ class Admin:
                 'match',
             )
 
+            list_select_related = True
             list_display = ("id", "_name", "created_at")
             list_filter = ("id", "created_at")
             list_display_links = ("id", "_name",)
@@ -211,6 +215,7 @@ class Admin:
                 'rival',
             )
 
+            list_select_related = True
             list_display = ("id", "_name", "created_at")
             list_filter = ("id", "created_at")
             list_display_links = ("id", "_name",)
@@ -316,6 +321,7 @@ class Admin:
                 'size',
             )
 
+            list_select_related = True
             list_display = ("id", "name", "url", "size")
             list_filter = ("id", "name", "url", "size")
             ordering = ("-created_at",)

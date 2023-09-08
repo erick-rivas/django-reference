@@ -9,7 +9,7 @@ __Seed builder__
   Run in code with task_name.delay(args)
 
   Pre-build async tasks (seed.app.celery)
-    - send_mail_async(subject, plain_text, from_email, to_email, **kwargs)
+    - send_mail_async(**kwargs) # See django send_mail docs https://docs.djangoproject.com/en/4.2/topics/email/
 """
 
 # pylint: disable=W0401

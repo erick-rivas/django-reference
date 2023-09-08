@@ -64,3 +64,9 @@ class TestQueryUtil(TestCase):
         output_08 = Q(Q(key_01="(AND)"), Q(key_02="(OR"), Q(key_03="\")"))
         with self.subTest():
             self.assertEqual(test_08, output_08)
+
+        input_09 = "key_01=\"(A\\\"ND)\""
+        test_09 = sql_alike_q(input_09)
+        output_09 = Q(Q(key_01="(A\"ND)"), )
+        with self.subTest():
+            self.assertEqual(test_09, output_09)

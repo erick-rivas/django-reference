@@ -5,10 +5,8 @@ __Seed builder__
 
 from graphene_django.views import GraphQLView
 from rest_framework.authentication import TokenAuthentication
-from rest_framework.permissions import IsAuthenticated
-from rest_framework.decorators import authentication_classes, permission_classes, api_view
+from rest_framework.decorators import api_view
 from django.views.decorators.csrf import csrf_exempt
-from app.settings import get_env
 
 class AuthGraphQLView(GraphQLView):
     @classmethod
@@ -16,6 +14,12 @@ class AuthGraphQLView(GraphQLView):
         view = super(AuthGraphQLView, cls).as_view(*args, **kwargs)
         view = api_view(['POST', 'GET'])(view)
         return view
+
+    @classmethod
+    def can_display_graphiql(cls, request, data):
+        raw = "raw" in request.GET or "raw" in data
+        is_dev_user = bool(request.user and request.user.is_superuser)
+        return not raw and cls.request_wants_html(request) and is_dev_user
 
 def graphene_view():
     return csrf_exempt(AuthGraphQLView.as_view(graphiql=True))

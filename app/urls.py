@@ -9,10 +9,9 @@ __Seed builder__
 
       # Special condition to prevent leaks in production,
       # it can be omitted for non-debug viewsets
-      if settings.DEBUG:
-          urlpatterns = [
-              re_path('^debug/', include(debug_router.urls))
-          ] + urlpatterns
+      urlpatterns = [
+          re_path('^debug/', include(debug_router.urls))
+      ] + urlpatterns
 """
 
 from rest_framework.routers import DefaultRouter

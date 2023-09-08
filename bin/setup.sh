@@ -46,8 +46,8 @@ sudo docker compose -f bin/docker/docker-compose.yml build
 echo "== Setting execute permissions to bin"
 sudo docker compose -f bin/docker/docker-compose.yml run --rm django /bin/sh -c "chmod +x bin/*.sh;chmod +x bin/docker/*.sh;chmod +x bin/scripts/*.sh"
 
-echo "== Initializing .env.devs"
-sudo docker compose -f bin/docker/docker-compose.yml run --rm django /bin/sh -c  "bin/scripts/init_envs.sh $DJANGO_PORT $POSTGRES_PORT $REDIS_PORT $SERVER_URL $CLIENT_URL"
+echo "== Initializing .envs"
+sudo docker compose -f bin/docker/docker-compose.yml run --rm django /bin/sh -c  "bin/scripts/init_envs.sh $DJANGO_PORT $POSTGRES_PORT $REDIS_PORT $SERVER_URL $CLIENT_URL $IS_PROD"
 
 echo "== Starting services"
 sudo docker compose -f bin/docker/docker-compose.yml up -d
@@ -57,10 +57,8 @@ sudo docker compose -f bin/docker/docker-compose.yml exec django /bin/sh -c "pyt
 sudo docker compose -f bin/docker/docker-compose.yml exec django /bin/sh -c "python manage.py migrate"
 sudo docker compose -f bin/docker/docker-compose.yml exec django /bin/sh -c "python manage.py loaddata models/fixtures/*.yaml"
 
-if [ $IS_PROD = false ]; then
-    echo "== Loading dev fixtures (admin)"
-    sudo docker compose -f bin/docker/docker-compose.yml exec django /bin/sh -c "python manage.py loaddata models/fixtures/.dev.yaml"
-fi
+echo "== Loading base fixtures (admin)"
+sudo docker compose -f bin/docker/docker-compose.yml exec django /bin/sh -c "python manage.py loaddata models/fixtures/.base.yaml"
 
 echo "== Removing root permissions"
 sudo chown -R $(whoami) .
@@ -71,9 +69,21 @@ python3 -m venv .venv
 python3 -m pip install --upgrade pip
 pip3 install -r requirements.txt
 
+if [ $IS_PROD = true ]; then
+    echo "== Exporting prod statics"
+    sudo docker compose -f bin/docker/docker-compose.yml exec django /bin/sh -c "python manage.py collectstatic"
+fi
+
 echo "== Cleaning services"
 sudo docker compose -f bin/docker/docker-compose.yml stop
 
 echo ""
 echo "== Setup completed (Start server with bin/start.sh)"
 echo ""
+
+if [ $IS_PROD = true ]; then
+    echo "***"
+    echo "*** IMPORTANT: FOR SECURITY, CHANGE THE ADMIN PASSWORD IMMEDIATELY"
+    echo "***"
+    echo ""
+fi

@@ -46,10 +46,10 @@ docker compose -f bin/docker/docker-compose.yml build
 echo == Setting execute permissions to bin
 docker compose -f bin/docker/docker-compose.yml run --rm django /bin/sh -c "chmod +x bin/*.sh;chmod +x bin/docker/*.sh;chmod +x bin/scripts/*.sh"
 
-echo == Initializing .env.devs
+echo == Initializing .envs
 docker compose -f bin/docker/docker-compose.yml run --rm django /bin/sh -c "cp bin/scripts/init_envs.sh bin/scripts/win_init_envs.sh"
 docker compose -f bin/docker/docker-compose.yml run --rm django /bin/sh -c "sed -i 's/\r$//g' bin/scripts/win_init_envs.sh"
-docker compose -f bin/docker/docker-compose.yml run --rm django /bin/sh -c "bin/scripts/win_init_envs.sh %DJANGO_PORT% %POSTGRES_PORT% %REDIS_PORT% %SERVER_URL% %CLIENT_URL%"
+docker compose -f bin/docker/docker-compose.yml run --rm django /bin/sh -c "bin/scripts/win_init_envs.sh %DJANGO_PORT% %POSTGRES_PORT% %REDIS_PORT% %SERVER_URL% %CLIENT_URL% %IS_PROD%"
 
 echo == Starting services
 docker compose -f bin/docker/docker-compose.yml up -d
@@ -59,16 +59,19 @@ docker compose -f bin/docker/docker-compose.yml exec django /bin/sh -c "python m
 docker compose -f bin/docker/docker-compose.yml exec django /bin/sh -c "python manage.py migrate"
 docker compose -f bin/docker/docker-compose.yml exec django /bin/sh -c "python manage.py loaddata models/fixtures/*.yaml"
 
-IF "%IS_PROD%" == "false" (
-    echo == Loading dev fixtures (admin)
-    docker compose -f bin/docker/docker-compose.yml exec django /bin/sh -c "python manage.py loaddata models/fixtures/.dev.yaml"
-)
+echo == Loading base fixtures (admin)
+docker compose -f bin/docker/docker-compose.yml exec django /bin/sh -c "python manage.py loaddata models/fixtures/.base.yaml"
 
 echo == Installing local dependencies
 python -m venv .venv
 call ".\.venv\Scripts\activate"
 python -m pip install --upgrade pip
 python -m pip install -r requirements.txt
+
+IF "%IS_PROD%" == "true" (
+    echo == Exporting prod statics
+    docker compose -f bin/docker/docker-compose.yml exec django /bin/sh -c "python manage.py collectstatic"
+)
 
 echo == Cleaning setup
 docker compose -f bin/docker/docker-compose.yml exec django /bin/sh -c "rm bin/scripts/win_init_envs.sh"
@@ -79,3 +82,10 @@ docker compose -f bin/docker/docker-compose.yml stop
 echo.
 echo == Setup completed (Start server with bin/start.bat)
 echo.
+
+IF "%IS_PROD%" == "true" (
+    echo ***
+    echo *** IMPORTANT: FOR SECURITY, CHANGE THE ADMIN PASSWORD IMMEDIATELY
+    echo ***
+    echo.
+)

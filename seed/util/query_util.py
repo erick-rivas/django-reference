@@ -64,6 +64,10 @@ def get_str_vals(query, str_vals):
             return -1
         return next_pos
 
+    query = query.replace("\\\"", "|#{QUOTE}#|")
+    query = query.replace("\\\'", "|#{APOS}#|")
+    query = query.replace("\\`", "|#{QUOTE_B}#|")
+
     iteration = 0
     while get_next_limiter_pos() != -1 and iteration < 1000:
         idx_ini = get_next_limiter_pos()
@@ -134,7 +138,10 @@ def _get_opt(flt):
 def _get_val(ele, str_vals):
     val_l = ele[1].strip()
     if val_l in str_vals:
-        return str_vals[val_l]
+        val_l = str_vals[val_l]
+        val_l = val_l.replace("|#{QUOTE}#|", "\"")
+        val_l = val_l.replace("|#{APOS}#|", "\'")
+        val_l = val_l.replace("|#{QUOTE_B}#|", "`")
     elif ele[1].isdigit():
         val_l = int(ele[1])
     elif _is_float(ele[1]):

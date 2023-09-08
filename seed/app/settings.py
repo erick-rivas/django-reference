@@ -5,20 +5,9 @@ __Seed builder__
 """
 
 import os
-from urllib.parse import urlparse
-
 import dotenv
-
-def get_environ(key):
-    return True if key in os.environ and os.environ[key].lower() == "true" else False
-
-def get_env(key):
-    return True if os.getenv(key) is not None and os.getenv(key).lower() == "true" else False
-
-def get_dotenv():
-    if get_environ('USE_DOCKER'):
-        return '.env.docker.prod' if get_environ('IS_PROD') else '.env.docker.dev'
-    return '.env.prod' if get_environ('IS_PROD') else '.env.dev'
+from urllib.parse import urlparse
+from seed.util.env_util import get_environ, get_env, get_dotenv
 
 BASE_DIR = os.path.dirname(
                os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "..", "..",))
@@ -39,7 +28,6 @@ SITE_ID = 1
 
 # Files definitions
 
-USE_AWS_S3 = get_env('USE_AWS_S3')
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, "models", "fixtures", "media"), ]
@@ -49,7 +37,6 @@ MEDIA_URL = '/media/'
 # Libs & definition
 
 INSTALLED_APPS = [
-
     # Models
     'models',
 
@@ -101,23 +88,12 @@ REQUIRE_SSLMODE = get_env("DB_SSL")
 if REQUIRE_SSLMODE:
     DATABASES['default']['OPTIONS'] = {'sslmode': 'require'}
 
-# S3 Settings
-
-if USE_AWS_S3:
-    DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-    AWS_ACCESS_KEY_ID = os.getenv('AWS_S3_KEY')
-    AWS_SECRET_ACCESS_KEY = os.getenv('AWS_S3_SECRET')
-    AWS_STORAGE_BUCKET_NAME = os.getenv('AWS_S3_BUCKET_NAME')
-    AWS_DEFAULT_ACL = "public-read"
-    AWS_BUCKET_ACL = "public-read"
-    AWS_AUTO_CREATE_BUCKET = True
-
 # Security settings
 
 REST_AUTH = {'TOKEN_SERIALIZER': 'seed.serializers.helpers.token.TokenSerializer'}
 CORS_ORIGIN_WHITELIST = [os.getenv('CLIENT_URL')]
 ALLOWED_HOSTS = ['localhost', '127.0.0.1', '[::1]', urlparse(os.getenv('SERVER_URL')).hostname]
-if get_env('USE_HTTPS'):
+if get_env('FORCE_SSL'):
     SECURE_SSL_REDIRECT = True
     SESSION_COOKIE_SECURE = True
     CSRF_COOKIE_SECURE = True
@@ -132,7 +108,6 @@ AUTH_PASSWORD_VALIDATORS = [
 # Templates settings
 
 TEMPLATES_DIRS = [os.path.join(BASE_DIR, 'templates'), os.path.join(BASE_DIR, 'seed', 'templates')]
-DOCS_DIR = os.path.join(BASE_DIR, ".data", "docs")
 REACTJS_DIR = os.path.join(BASE_DIR, "reactjs")
 if os.path.exists((os.path.join(REACTJS_DIR, "index.html"))):
     STATICFILES_DIRS += [os.path.join(REACTJS_DIR, "static"), ]
@@ -155,28 +130,21 @@ TEMPLATES = [
     },
 ]
 
-REST_FRAMEWORK = {
-    'DEFAULT_RENDERER_CLASSES': [
-        'rest_framework.renderers.JSONRenderer',
-        'rest_framework.renderers.BrowsableAPIRenderer'
-    ],
-} if DEBUG else {
-    'DEFAULT_RENDERER_CLASSES': [
-        'seed.routes.helpers.rest_render.ProductionBrowsableAPIRenderer'
-    ],
-}
+# DRF Settings
+
+REST_FRAMEWORK = {}
+REST_FRAMEWORK['DEFAULT_RENDERER_CLASSES'] = [
+    'rest_framework.renderers.JSONRenderer',
+    'seed.routes.helpers.rest_render.BrowsableAPIRenderer',
+]
+
 REST_FRAMEWORK['DEFAULT_AUTHENTICATION_CLASSES'] = [
     'rest_framework.authentication.TokenAuthentication',
     'rest_framework.authentication.SessionAuthentication',
 ]
+REST_FRAMEWORK['DEFAULT_PERMISSION_CLASSES'] = ['rest_framework.permissions.IsAuthenticated', ]
 
-REST_FRAMEWORK['DEFAULT_PERMISSION_CLASSES'] = [
-    'rest_framework.permissions.IsAuthenticated',
-]
-
-GRAPHENE = {
-    'SCHEMA': 'seed.app.graphene.schema'
-}
+GRAPHENE = {'SCHEMA': 'seed.app.graphene.schema'}
 
 # Celery
 

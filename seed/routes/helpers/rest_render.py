@@ -3,13 +3,18 @@ __Seed builder__
   (Read_only) Routes helper
 """
 
-from rest_framework.renderers import BrowsableAPIRenderer
+from rest_framework.renderers import BrowsableAPIRenderer as DRFBrowsableAPIRenderer
 
-class ProductionBrowsableAPIRenderer(BrowsableAPIRenderer):
+class BrowsableAPIRenderer(DRFBrowsableAPIRenderer):
 
     def get_context(self, *args, **kwargs):
         ctx = super().get_context(*args, **kwargs)
-        ctx['display_edit_forms'] = False
+        is_dev_user = bool(ctx['user'] and ctx['user'].is_superuser)
+
+        if not is_dev_user:
+            ctx['display_edit_forms'] = False
+            ctx['allowed_methods'] = []
+            ctx['content'] = None
         return ctx
 
     def show_form_for_method(self, view, method, request, obj):

@@ -6,7 +6,6 @@ __Seed builder__
 import secrets
 import time
 
-from app.settings import get_env
 from django.db import models
 from django.db.models import Lookup
 from django.db.models import Field
