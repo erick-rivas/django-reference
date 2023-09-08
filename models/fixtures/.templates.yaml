@@ -55,7 +55,7 @@
     rival: 0
 
 ## USERS
-# TEST PASSWORD: datagrid70
+# TEMP PASSWORD: datagrid70
 - model: models.user
   pk: 1
   fields:
