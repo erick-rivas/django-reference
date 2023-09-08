@@ -18,7 +18,7 @@
 - To change project variables (db_credentials, email, etc) adjust `.env.docker.dev` or in case of native implementation modify `.env.dev`
     >   Tip: For common variables values that ARE NOT SECRET, it is recommended to modify .env.example for reuse values in future implementations
 
-- To modify environment variables of docker (e.g. IS_PROD) adjust `bin/docker/docker.env` and then execute `bin/setup`.
+- To modify environment variables of docker (e.g. IS_PROD) execute `bin/setup` with their respective parameters.
     >   In case of require native modifications, check O.S. specification (e.g. For ubuntu 18.04 modify `~/.bash_profile`)
 
 ### Database management
@@ -27,7 +27,7 @@
 -   To load fixtures execute `bin/fixtures`
    - To load fixtures of an specific folder execute `bin/fixtures <Folder_Name>`
 -   To dump database in .yaml format execute `bin/dump <Model_Name>`
--   To open db manager (psql) execute `bin/query`
+-   To open db manager (psql) execute `bin/dbadmin`
 
 ### Testing & QA
 

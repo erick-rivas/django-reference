@@ -32,7 +32,7 @@ if [ ! -f $DOCKER_ENV ]; then
 fi
 
 if [ ! -f $LOCAL_ENV ]; then
-    echo "== Creating & configuring env.dev file"
+    echo "== Creating & configuring $LOCAL_ENV file"
     cp .env.example $LOCAL_ENV
     sed -i "s/CLIENT_URL=http:\/\/localhost:3000/CLIENT_URL='$CLIENT_URL'/" "$LOCAL_ENV"
     sed -i "s/CLIENT_URL='http:\/\/localhost:3000'/CLIENT_URL='$CLIENT_URL'/" "$LOCAL_ENV"

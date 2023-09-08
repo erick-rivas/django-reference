@@ -3,14 +3,12 @@
 #   Add custom patterns at the end
 
 ## General
+.env
 .env.prod
 .env.dev
 .env.docker.dev
 .env.docker.prod
 .dev.pem
-bin/docker/.env
-bin/docker/.port
-bin/docker/docker.env
 static
 reactjs
 debug_.py

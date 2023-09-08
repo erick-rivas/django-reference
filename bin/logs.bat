@@ -12,14 +12,14 @@ IF NOT "%~3" == "" set /A MAX_LINES=%3
 
 IF "%SCOPE%" == "all" (
     IF "%ONLY_LATEST%" == "true" (
-        docker compose -f bin/docker/docker-compose.yml logs --follow --since 0m --tail %MAX_LINES% django celery
+        docker compose logs --follow --since 0m --tail %MAX_LINES% django celery
     ) ELSE (
-        docker compose -f bin/docker/docker-compose.yml logs --follow --tail %MAX_LINES% django celery
+        docker compose logs --follow --tail %MAX_LINES% django celery
     )
 ) ELSE (
     IF "%ONLY_LATEST%" == "true" (
-        docker compose -f bin/docker/docker-compose.yml logs --follow --since 0m --tail %MAX_LINES% %SCOPE%
+        docker compose logs --follow --since 0m --tail %MAX_LINES% %SCOPE%
     ) ELSE (
-        docker compose -f bin/docker/docker-compose.yml logs --follow --tail %MAX_LINES% %SCOPE%
+        docker compose logs --follow --tail %MAX_LINES% %SCOPE%
     )
 )

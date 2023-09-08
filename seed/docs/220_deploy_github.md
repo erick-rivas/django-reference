@@ -15,5 +15,6 @@ This workflow will execute a deployment using an ssh connection with a server, t
     -   **PEM** refers to the PEM file that will be created with the raw string of the file.
     -   **SERVER** refers to the server that will be connected to execute the deployment.
     -   **USER** refers to the user that will be connected to execute the deployment.
+    -   **GIT_PATH** refers to the github path of the repo (e.g https://<USER_TOKEN>@github.com/<USERNAME>/<REPO_NAME>.git)
 
 -   If you have problems trouble finding the **Secrets** section, you can go to (https://github.com/&lt;user>/&lt;repository>/settings/secrets/actions), remember to change &lt;user> for your github username and &lt;repository> for your repository name.

@@ -1,10 +1,13 @@
-#!/bin/sh
+#!/bin/bash
+
+GIT_PATH="origin"
+if [ $# -ge 1 ]; then GIT_PATH=$1; fi
 
 API_DIR="###"
 WEB_DIR="###"
 # Update project
 cd $API_DIR
-sudo git pull origin dev
+sudo git pull $GIT_PATH dev
 # shellcheck disable=SC1090
 . "$(pwd)"/.venv/bin/activate
 pip3 install -r requirements.txt
@@ -14,7 +17,6 @@ python3 manage.py collectstatic --noinput
 
 # Optional (Uncomment for reactJS integration)
 # cd $WEB_DIR
-# sudo git pull origin dev
 # npm run-script build
 # sudo rm -rf  $API_DIR/reactjs
 # sudo mv $WEB_DIR/build $API_DIR/reactjs

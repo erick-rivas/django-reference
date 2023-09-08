@@ -5,6 +5,7 @@
 
 .codacy.yml
 .dockerignore
+.env
 .env.example
 .env.dev
 .env.prod
@@ -22,9 +23,6 @@ requirements.txt
 SeedManifest.json
 SeedModeling.mdj
 SeedSettings.json
-bin/docker/.env
-bin/docker/.port
-bin/docker/docker.env
 app/celery.py
 app/models.py
 app/serializers.py
