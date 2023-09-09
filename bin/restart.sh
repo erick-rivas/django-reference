@@ -13,7 +13,7 @@ echo "== Starting server"
 source .env
 sudo docker compose start
 echo ""
-echo "== Server is running in background ($SERVER_URL)"
+echo "== Server is running in background (http://localhost:$COMPOSE_DJANGO_PORT)"
 echo "    - To show logs execute bin/logs.sh"
 echo "    - To stop server execute bin/stop.sh"
 echo ""

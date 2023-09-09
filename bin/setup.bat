@@ -22,14 +22,12 @@ echo == Creating docker .envs
 del .env
 echo # DOCKER SETTINGS > .\.env
 echo ### MODIFY WITH WITH $ bin/setup.bat DJANGO_PORT POSTGRES_PORT REDIS_PORT IS_PROD ### >> .\.env
-echo _ >> .env
-echo COMPOSE_PROJECT_NAME="django_reference_backend" >> .\.env
-echo /A DJANGO_PORT=%DJANGO_PORT% >> .\.env
-echo /A POSTGRES_PORT=%POSTGRES_PORT% >> .\.env
-echo /A REDIS_PORT=%REDIS_PORT% >> .\.env
-echo SERVER_URL="%SERVER_URL%" >> .\.env
-echo CLIENT_URL="%CLIENT_URL%" >> .\.env
-echo IS_PROD=%IS_PROD% >> .\.env
+echo.>> .env
+echo COMPOSE_PROJECT_NAME=django_reference_backend>> .\.env
+echo COMPOSE_DJANGO_PORT=%DJANGO_PORT%>> .\.env
+echo COMPOSE_POSTGRES_PORT=%POSTGRES_PORT%>> .\.env
+echo COMPOSE_REDIS_PORT=%REDIS_PORT%>> .\.env
+echo IS_PROD=%IS_PROD%>> .\.env
 
 IF NOT EXIST .\debug_.py (
     echo # Temporary file for debugging, run with bin/debug.bat > .\debug_.py
@@ -61,7 +59,9 @@ echo == Loading base fixtures (admin)
 docker compose exec django /bin/sh -c "python manage.py loaddata models/fixtures/.base.yaml"
 
 echo == Installing local dependencies
-python -m venv .venv
+IF NOT EXIST .\.venv (
+    python -m venv .venv
+)
 call ".\.venv\Scripts\activate"
 python -m pip install --upgrade pip
 python -m pip install -r requirements.txt

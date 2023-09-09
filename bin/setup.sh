@@ -24,11 +24,9 @@ echo "# DOCKER SETTINGS" > ".env"
 echo "### MODIFY WITH WITH $ bin/setup DJANGO_PORT POSTGRES_PORT REDIS_PORT IS_PROD ###" >> ".env"
 echo "" >> ".env"
 echo "COMPOSE_PROJECT_NAME=django_reference_backend" >> ".env"
-echo "DJANGO_PORT=$DJANGO_PORT" >> ".env"
-echo "POSTGRES_PORT=$POSTGRES_PORT" >> ".env"
-echo "REDIS_PORT=$REDIS_PORT" >> ".env"
-echo "SERVER_URL=\"$SERVER_URL\"" >> ".env"
-echo "CLIENT_URL=\"$CLIENT_URL\"" >> ".env"
+echo "COMPOSE_DJANGO_PORT=$DJANGO_PORT" >> ".env"
+echo "COMPOSE_POSTGRES_PORT=$POSTGRES_PORT" >> ".env"
+echo "COMPOSE_REDIS_PORT=$REDIS_PORT" >> ".env"
 echo "IS_PROD=$IS_PROD" >> ".env"
 
 if [ ! -f debug_.py ]; then
@@ -62,7 +60,9 @@ echo "== Removing root permissions"
 sudo chown -R $(whoami) .
 
 echo "== Installing local dependencies"
-python3 -m venv .venv
+if [ ! -d .venv ]; then
+    python3 -m venv .venv
+fi
 . "$(pwd)"/.venv/bin/activate
 python3 -m pip install --upgrade pip
 pip3 install -r requirements.txt

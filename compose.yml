@@ -17,19 +17,19 @@ services:
     logging:
       driver: none
     ports:
-      - "${POSTGRES_PORT}:5432"
+      - "${COMPOSE_POSTGRES_PORT}:5432"
 
   redis:
     image: "redis:alpine"
     logging:
       driver: none
     ports:
-      - "${REDIS_PORT}:6379"
+      - "${COMPOSE_REDIS_PORT}:6379"
 
   django:
     build:
       dockerfile: Dockerfile
-    command: "python manage.py runserver 0.0.0.0:${DJANGO_PORT}"
+    command: "python manage.py runserver 0.0.0.0:${COMPOSE_DJANGO_PORT}"
     volumes:
       - .:/app
     environment:
@@ -37,7 +37,7 @@ services:
     env_file:
       - .env
     ports:
-      - "${DJANGO_PORT}:${DJANGO_PORT}"
+      - "${COMPOSE_DJANGO_PORT}:${COMPOSE_DJANGO_PORT}"
     depends_on:
       - postgres
       - redis
