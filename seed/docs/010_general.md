@@ -23,27 +23,27 @@
 
 ### Database management
 
--   To generate and run migrations execute `bin/migrate`
--   To load fixtures execute `bin/fixtures`
-   - To load fixtures of an specific folder execute `bin/fixtures <Folder_Name>`
--   To dump database in .yaml format execute `bin/dump <Model_Name>`
--   To open db manager (psql) execute `bin/dbadmin`
+-   To generate and run migrations, execute `bin/migrate`
+-   To load fixtures, execute `bin/fixtures`
+   - To load fixtures of an specific folder, execute `bin/fixtures <Folder_Name>`
+-   To open db manager to run sql queries, execute `bin/psql`
+-   To dump database in .yaml format, execute `bin/dump <Model_Name>`
 
 ### Testing & QA
 
--   Show server logs `bin/logs`
-    - To show specific logs `bin/logs <Scope (all|django|celery)> <Only_Latest> <Max_Lines>`
--   Test use cases `bin/test`
-    - To test specific folder `bin/test <Folder_Name>`
--   Run code from debug_.py file `bin/debug`
--   Review code quality `bin/review`
+-   TO show server logs, execute `bin/logs`
+    - To show specific logs, execute `bin/logs <Scope (all|django|celery)> <Only_Latest> <Max_Lines>`
+-   To test use cases, execute `bin/test`
+    - To test specific folder, execute `bin/test <Folder_Name>`
+-   To run code from debug_.py file, execute `bin/debug`
+-   To review code quality, execute `bin/review`
     >   Before run review command, install [Codacy CLI](https://github.com/codacy/codacy-analysis-cli)
--   Generate code coverage report `bin/coverage`
+-   To generate code coverage report, execute `bin/coverage`
 
 ### Docker
 
--   Open docker terminal (ubuntu bash) `bin/terminal`
--   Clean unused docker resources `bin/clean`
+-   To execute command in the container (e.g. > ls or > python -v ), execute `bin/terminal`
+-   To clean unused docker resources, execute `bin/clean`
 
 ## Other resources
 

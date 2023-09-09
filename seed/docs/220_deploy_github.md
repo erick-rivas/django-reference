@@ -1,20 +1,26 @@
 ## Github Actions - Deployment
 
+This file contains the guides to deploy the project automatically using Github actions.
+
 ### Description
 
-This workflow will execute a deployment using an ssh connection with a server, then it will execute a deploy.sh file, it must be located in the <i>/home/ubuntu</i> path. This file must have the necessary steps to deploy the web application.
+Internally Github actions execute the following steps to deploy the project:
+-   When a commit/pull-request is sent to master/main branch it triggers a workflow
+-   The workflow connect to the server via ssh connection
+-   Then read repository secret variables to authenticate with the server
+-   Finally, it executes the deploy-api.sh to run deployment task in the server
+  - For more information check [Ubuntu deployment docs](210_deploy_ubuntu.md)
 
-### Configure secrets in your repository
+### Github repository setup
 
--   Open github and go to your repository
--   Search the **Settings** section located on the top navigation bar
--   Go to **Secrets and variables** in the **Security** section located on the left-side navigation bar
--   Select the **Actions** option
+-   Before start, setup deploy-api.sh in server [Ubuntu deployment docs](210_deploy_ubuntu.md#deployment)
+
+-   Open the following route in the browser `https://github.com/<OWNER_NAME>/<REPOSITORY_NAME>/settings/secrets/actions`
+    - Example: `https://github.com/erick-rivas/django-reference/settings/secrets/actions`
 -   Now in the **Secrets** section in the top navigation bar, you can create or edit the following required variables
-    -   **ENABLE_DEPLOY** must be <i>True</i> if you want to enable the deployment, otherwise, it can be anything, for example <i>False</i>.
-    -   **PEM** refers to the PEM file that will be created with the raw string of the file.
-    -   **SERVER** refers to the server that will be connected to execute the deployment.
-    -   **USER** refers to the user that will be connected to execute the deployment.
-    -   **GIT_PATH** refers to the github path of the repo (e.g https://<USER_TOKEN>@github.com/<USERNAME>/<REPO_NAME>.git)
-
--   If you have problems trouble finding the **Secrets** section, you can go to (https://github.com/&lt;user>/&lt;repository>/settings/secrets/actions), remember to change &lt;user> for your github username and &lt;repository> for your repository name.
+    -   **ENABLE_DEPLOY**: Set <i>TRUE</i> to enable the deployment
+    -   **SERVER_PEM**: Refers to the PEM file that will be created with the raw string of the .pem file.
+    -   **SERVER_NAME**: Refers to the server that will be connected to execute the deployment (e.g. datagrid.mx)
+    -   **SERVER_USER**: Refers to the user that will be connected to execute the deployment (e.g. ubuntu)
+    -   **GIT_PATH**: Refers to the github path of the repo `https://<USER_TOKEN>@github.com/<OWNER_NAME>/<REPOSITORY_NAME>.git`
+        - Example: `https://<USER_TOKEN>@github.com/erick-rivas/django-reference.git`

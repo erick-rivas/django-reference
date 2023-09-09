@@ -39,15 +39,15 @@ export IS_PROD=true
 
 ### Deployment
 
--   Copy `seed/docs/assets/ubuntu/deploy.sh` in project root folder
--   Modify deploy.sh settings
+-   Copy `seed/docs/assets/ubuntu/deploy-api.sh` in project root folder
+-   Modify deploy-api.sh settings
 ```
 API_DIR="###"
 WEB_DIR="###"
 ```
 
--   Run deployment script `deploy.sh`
-    > For automatic deployment check [AW Code Deploy documentation](230_eb_single_instance.md)
+-   Run deployment script `deploy-api.sh`
+    > For automatic deployment, check [Github actions docs](220_deploy_github.md)
 
 #### Deploy on reboot
 

@@ -8,5 +8,5 @@ if [ $RUNNING -z ]; then
   exit 1
 fi
 
-echo "== Opening db console"
+echo "== Opening psql console"
 sudo docker compose exec django /bin/sh -c "python manage.py dbshell"

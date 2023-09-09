@@ -20,6 +20,21 @@
     teams: []
     profile_image: 10000
 
+# TEMP ACCESS: donjulio70
+- model: models.user
+  pk: 9990
+  fields:
+    username: "test@email.com"
+    first_name: "Test"
+    last_name: "User"
+    email: "test@email.com"
+    password: "pbkdf2_sha256$600000$Mlwlc06ALCRAJtb7fXMHSs$50KiQsXzTO6UebMsY+WpQuVs0P3tG9sq9HaM3TRKJr0="
+    is_active: true
+    is_superuser: false
+    is_staff: false
+    teams: []
+    profile_image: 10000
+
 ## FILES
 
 - model: models.File
