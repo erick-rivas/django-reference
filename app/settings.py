@@ -8,5 +8,12 @@ __Seed builder__
 
 # pylint: disable=W0401
 from seed.app.settings import *
+import sentry_sdk
+from sentry_sdk.integrations.django import DjangoIntegration
 
 ## Include custom settings after here ##
+sentry_sdk.init(
+    dsn="",
+    integrations=[DjangoIntegration()],
+    traces_sample_rate=1.0
+)
