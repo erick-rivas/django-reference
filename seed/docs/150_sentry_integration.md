@@ -13,7 +13,7 @@ This file contains instructions to integrate Sentry with the project you are wor
 ### Integrate support into the project
 
 -   Request the dsn.
--   In the [Settings] file, change the dsn to the one indicated.
+-   In the [Settings](https://github.com/erick-rivas/django-reference/blob/sentry-integration/app/settings.py) file, change the dsn to the one indicated.
 -   Change the parameters as you need:
     -   If you wish to associate users to errors (assuming you are using django.contrib.auth) you may enable sending PII data.
     -   Set traces_sample_rate to 1.0 to capture 100% of transactions for performance monitoring. It's recommend adjusting this value in production.
