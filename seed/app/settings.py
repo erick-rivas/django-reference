@@ -6,12 +6,14 @@ __Seed builder__
 
 import os
 import dotenv
+from django.core.management.commands.runserver import Command as runserver
 from urllib.parse import urlparse
 from seed.util.env_util import get_environ, get_env, get_dotenv
 
 BASE_DIR = os.path.dirname(
                os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "..", "..",))
 dotenv.read_dotenv(os.path.join(BASE_DIR, get_dotenv()))
+runserver.default_port = '8008'
 
 IS_PROD = get_environ('IS_PROD')
 DEBUG = not IS_PROD

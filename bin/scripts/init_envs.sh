@@ -20,9 +20,11 @@ if [ ! -f $DOCKER_ENV ]; then
     echo "== Creating & configuring $DOCKER_ENV file"
     cp .env.example $DOCKER_ENV
     sed -i "s/SERVER_URL=http:\/\/localhost:8000/SERVER_URL='$SERVER_URL'/" "$DOCKER_ENV"
-    sed -i "s/CLIENT_URL=http:\/\/localhost:3000/CLIENT_URL='$CLIENT_URL'/" "$DOCKER_ENV"
     sed -i "s/SERVER_URL='http:\/\/localhost:8000'/SERVER_URL='$SERVER_URL'/" "$DOCKER_ENV"
+    sed -i "s/SERVER_URL='http:\/\/localhost:8008'/SERVER_URL='$SERVER_URL'/" "$DOCKER_ENV"
+    sed -i "s/CLIENT_URL=http:\/\/localhost:3000/CLIENT_URL='$CLIENT_URL'/" "$DOCKER_ENV"
     sed -i "s/CLIENT_URL='http:\/\/localhost:3000'/CLIENT_URL='$CLIENT_URL'/" "$DOCKER_ENV"
+    sed -i "s/CLIENT_URL='http:\/\/localhost:3003'/CLIENT_URL='$CLIENT_URL'/" "$DOCKER_ENV"
     sed -i "s/DB_NAME=/DB_NAME='postgres'/" "$DOCKER_ENV"
     sed -i "s/DB_USER=/DB_USER='postgres'/" "$DOCKER_ENV"
     sed -i "s/DB_PASSWORD=/DB_PASSWORD='postgres'/" "$DOCKER_ENV"
@@ -34,8 +36,12 @@ fi
 if [ ! -f $LOCAL_ENV ]; then
     echo "== Creating & configuring $LOCAL_ENV file"
     cp .env.example $LOCAL_ENV
+    sed -i "s/SERVER_URL=http:\/\/localhost:8000/SERVER_URL='$SERVER_URL'/" "$LOCAL_ENV"
+    sed -i "s/SERVER_URL='http:\/\/localhost:8000'/SERVER_URL='$SERVER_URL'/" "$LOCAL_ENV"
+    sed -i "s/SERVER_URL='http:\/\/localhost:8008'/SERVER_URL='$SERVER_URL'/" "$LOCAL_ENV"
     sed -i "s/CLIENT_URL=http:\/\/localhost:3000/CLIENT_URL='$CLIENT_URL'/" "$LOCAL_ENV"
     sed -i "s/CLIENT_URL='http:\/\/localhost:3000'/CLIENT_URL='$CLIENT_URL'/" "$LOCAL_ENV"
+    sed -i "s/CLIENT_URL='http:\/\/localhost:3003'/CLIENT_URL='$CLIENT_URL'/" "$LOCAL_ENV"
     sed -i "s/DB_NAME=/DB_NAME='postgres'/" "$LOCAL_ENV"
     sed -i "s/DB_USER=/DB_USER='postgres'/" "$LOCAL_ENV"
     sed -i "s/DB_PASSWORD=/DB_PASSWORD='postgres'/" "$LOCAL_ENV"

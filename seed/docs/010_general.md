@@ -19,7 +19,7 @@
     >   Tip: For common variables values that ARE NOT SECRET, it is recommended to modify .env.example for reuse values in future implementations
 
 - To modify environment variables of docker (e.g. IS_PROD) execute `bin/setup` with their respective parameters.
-    >   In case of require native modifications, check O.S. specification (e.g. For ubuntu 18.04 modify `~/.bash_profile`)
+    >   In case of require native modifications, check O.S. specification (e.g. For ubuntu 20.04 modify `~/.bash_profile`)
 
 ### Database management
 

@@ -15,6 +15,7 @@
 .gitignore
 .pylintrc
 .seedignore
+compose.yml
 Dockerfile
 LICENSE
 manage.py
@@ -29,6 +30,7 @@ app/serializers.py
 app/settings.py
 app/urls.py
 
+bin/*
 domain/*
 models/*.py
 models/*.md
