@@ -91,7 +91,7 @@ if REQUIRE_SSLMODE:
 # Security settings
 
 REST_AUTH = {'TOKEN_SERIALIZER': 'seed.serializers.helpers.token.TokenSerializer'}
-CORS_ORIGIN_WHITELIST = [os.getenv('CLIENT_URL')]
+CORS_ORIGIN_WHITELIST = [os.getenv('CLIENT_URL'),]
 ALLOWED_HOSTS = ['localhost', '127.0.0.1', '[::1]', urlparse(os.getenv('SERVER_URL')).hostname]
 if get_env('FORCE_SSL'):
     SECURE_SSL_REDIRECT = True
