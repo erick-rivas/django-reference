@@ -114,8 +114,9 @@ AUTH_PASSWORD_VALIDATORS = [
 sentry_sdk.init(
     dsn=os.getenv('SENTRY_DSN'),
     integrations=[DjangoIntegration()],
+    environment="production" if IS_PROD else "development",
     send_default_pii=True,
-    traces_sample_rate=1.0,
+    traces_sample_rate=float(os.getenv('SENTRY_SAMPLE_RATE')),
     profiles_sample_rate=1.0
 )
 
