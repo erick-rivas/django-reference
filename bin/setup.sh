@@ -72,8 +72,10 @@ if [ $IS_PROD = true ]; then
     sudo docker compose exec django /bin/sh -c "python manage.py collectstatic"
 fi
 
-echo "== Cleaning services"
+echo "== Cleaning setup"
 sudo docker compose stop
+sudo docker image prune --force
+sudo docker volume prune --force
 
 echo ""
 echo "== Setup completed (Start server with bin/start.sh)"

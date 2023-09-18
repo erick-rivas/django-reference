@@ -3,7 +3,6 @@ __Seed builder__
   (Read_only) Base viewset class
 """
 
-from app.settings import get_env
 from django.shortcuts import get_object_or_404
 from rest_framework import status
 from rest_framework.authentication import TokenAuthentication

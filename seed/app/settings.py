@@ -10,14 +10,14 @@ import sentry_sdk
 from django.core.management.commands.runserver import Command as runserver
 from sentry_sdk.integrations.django import DjangoIntegration
 from urllib.parse import urlparse
-from seed.util.env_util import get_environ, get_env, get_dotenv
+from seed.util.env_util import get_environ_bool, get_env_bool, get_dotenv_path
 
 BASE_DIR = os.path.dirname(
                os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "..", "..",))
-dotenv.read_dotenv(os.path.join(BASE_DIR, get_dotenv()))
+dotenv.read_dotenv(os.path.join(BASE_DIR, get_dotenv_path()))
 runserver.default_port = '8008'
 
-IS_PROD = get_environ('IS_PROD')
+IS_PROD = get_environ_bool('IS_PROD')
 DEBUG = not IS_PROD
 SECRET_KEY = os.getenv('SECRET_KEY')
 
@@ -88,7 +88,7 @@ DATABASES = {
     }
 }
 
-REQUIRE_SSLMODE = get_env("DB_SSL")
+REQUIRE_SSLMODE = get_env_bool("DB_SSL")
 if REQUIRE_SSLMODE:
     DATABASES['default']['OPTIONS'] = {'sslmode': 'require'}
 
@@ -97,7 +97,7 @@ if REQUIRE_SSLMODE:
 REST_AUTH = {'TOKEN_SERIALIZER': 'seed.serializers.helpers.token.TokenSerializer'}
 CORS_ORIGIN_WHITELIST = [os.getenv('CLIENT_URL'), ]
 ALLOWED_HOSTS = ['localhost', '127.0.0.1', '[::1]', urlparse(os.getenv('SERVER_URL')).hostname]
-if get_env('FORCE_SSL'):
+if get_env_bool('FORCE_SSL'):
     SECURE_SSL_REDIRECT = True
     SESSION_COOKIE_SECURE = True
     CSRF_COOKIE_SECURE = True
@@ -112,11 +112,11 @@ AUTH_PASSWORD_VALIDATORS = [
 # Sentry settings
 
 sentry_sdk.init(
-    dsn=os.getenv('SENTRY_DSN'),
+    dsn=os.getenv('SENTRY_DSN', ""),
     integrations=[DjangoIntegration()],
     environment="production" if IS_PROD else "development",
     send_default_pii=True,
-    traces_sample_rate=float(os.getenv('SENTRY_SAMPLE_RATE')),
+    traces_sample_rate=float(os.getenv('SENTRY_SAMPLE_RATE', "0.1")),
     profiles_sample_rate=1.0
 )
 

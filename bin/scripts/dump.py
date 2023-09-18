@@ -21,9 +21,9 @@ def handle(model_str, file_path="./dump.yaml"):
 if __name__ == "__main__":
     base_dir = os.path.dirname(os.path.realpath(__file__)) + '/../../'
     sys.path.append(base_dir)
-    from app.settings import get_dotenv
+    from app.settings import get_dotenv_path
 
-    dotenv.read_dotenv(os.path.join(base_dir, get_dotenv()))
+    dotenv.read_dotenv(os.path.join(base_dir, get_dotenv_path()))
     os.environ.setdefault("DJANGO_SETTINGS_MODULE", "app.settings")
     django.setup()
 
