@@ -2,12 +2,11 @@
 # Seed builder
 # AUTO_GENERATED (Read only)
 
-DJANGO_PORT=$1
-POSTGRES_PORT=$2
-REDIS_PORT=$3
-SERVER_URL=${4//[\/]/\\\/}
-CLIENT_URL=${5//[\/]/\\\/}
-IS_PROD=$6
+POSTGRES_PORT=$1
+REDIS_PORT=$2
+SERVER_URL=${3//[\/]/\\\/}
+CLIENT_URL=${4//[\/]/\\\/}
+IS_PROD=$5
 
 DOCKER_ENV=".env.docker.dev"
 LOCAL_ENV=".env.dev"

@@ -43,7 +43,7 @@ echo "== Setting execute permissions to bin"
 sudo docker compose run --rm django /bin/sh -c "chmod +x bin/*.sh;chmod +x bin/scripts/*.sh"
 
 echo "== Initializing .envs"
-sudo docker compose run --rm django /bin/sh -c  "bin/scripts/init_envs.sh $DJANGO_PORT $POSTGRES_PORT $REDIS_PORT $SERVER_URL $CLIENT_URL $IS_PROD"
+sudo docker compose run --rm django /bin/sh -c  "bin/scripts/init_envs.sh $POSTGRES_PORT $REDIS_PORT $SERVER_URL $CLIENT_URL $IS_PROD"
 
 echo "== Starting services"
 sudo docker compose up -d

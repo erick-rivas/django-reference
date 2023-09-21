@@ -116,7 +116,7 @@ sentry_sdk.init(
     integrations=[DjangoIntegration()],
     environment="production" if IS_PROD else "development",
     send_default_pii=True,
-    traces_sample_rate=float(os.getenv('SENTRY_SAMPLE_RATE', "0.1")),
+    traces_sample_rate=float(os.getenv('SENTRY_SAMPLE_RATE', "0.05")),
     profiles_sample_rate=1.0
 )
 

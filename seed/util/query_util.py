@@ -31,11 +31,11 @@ def sql_alike_q(query):
     :param query: SQL alike query
     :return: Q object
     """
-    hsh = dict()
+    hsh = {}
     stack = [0]
     hsh_idx = 0
     overflow = 0
-    str_vals = dict()
+    str_vals = {}
     query, str_vals = get_str_vals(query, str_vals)
     while query.find('(') != -1 and overflow < 100:
         idx_ini = query[stack[-1] + 1: len(query)].find('(') + stack[-1] + 1
@@ -75,7 +75,7 @@ def get_str_vals(query, str_vals):
         idx_end = idx_ini + query[idx_ini + 1:].find(limiter) + 1
         raw_str_val = query[idx_ini:idx_end + 1]
         str_vals_idx = len(str_vals)
-        str_id = "|#{}#|".format(str_vals_idx)
+        str_id = f"|#{str_vals_idx}#|"
         str_vals[str_id] = raw_str_val[1:-1]
         query = query.replace(raw_str_val, str_id, 1)
         iteration += 1

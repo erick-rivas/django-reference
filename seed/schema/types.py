@@ -205,7 +205,7 @@ def resolve_count(model, count_type, info, **kwargs):
         count=len(query))
 
 # pylint: disable=R0904
-class Query(object):
+class Query():
     
     matches = graphene.List(
         Match, query=graphene.String(),
