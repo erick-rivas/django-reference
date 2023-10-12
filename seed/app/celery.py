@@ -47,11 +47,6 @@ def init_sentry(**kwargs):
 # Common beat tasks
 
 app.conf.beat_schedule = {}
-if get_env_bool('ENABLE_FILE_CLEANING'):
-    app.conf.beat_schedule['file_cleaning'] = {
-        'task': 'seed.app.celery.clean_files_async',
-        'schedule': timedelta(hours=1)
-    }
 
 # Common shared tasks
 
@@ -60,7 +55,3 @@ def send_mail_async(**kwargs):
     if "from_email" not in kwargs:
         kwargs["from_email"] = os.getenv('SMTP_EMAIL')
     send_mail(**kwargs)
-
-@shared_task
-def clean_files_async(dir_path=None, min_file_age=72):
-    clean_files(dir_path, min_file_age)

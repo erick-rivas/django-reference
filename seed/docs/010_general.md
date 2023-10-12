@@ -44,6 +44,7 @@
 
 -   To execute command in the container (e.g. > ls or > python -v ), execute `bin/terminal`
 -   To clean unused docker resources, execute `bin/clean`
+    - To include file cleaning, execute `bin/clean true`
 
 ## Other resources
 

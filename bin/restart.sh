@@ -3,7 +3,7 @@
 # AUTO_GENERATED (Read only)
 
 echo "== Restarting celery & redis"
-sudo docker compose exec celery /bin/sh -c "celery -A seed.app purge"
+sudo docker compose exec celery /bin/sh -c "celery -A seed.app purge -f"
 sudo docker compose exec redis /bin/sh -c "redis-cli flushall"
 
 echo "== Stopping server"

@@ -10,7 +10,7 @@ IS_PROD=$5
 
 DOCKER_ENV=".env.docker.dev"
 LOCAL_ENV=".env.dev"
-if [ $IS_PROD = true ]; then
+if [ "$IS_PROD" = true ]; then
     DOCKER_ENV=".env.docker.prod"
     LOCAL_ENV=".env.prod"
 fi

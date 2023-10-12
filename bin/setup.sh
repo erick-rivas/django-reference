@@ -67,7 +67,7 @@ fi
 python3 -m pip install --upgrade pip
 pip3 install -r requirements.txt
 
-if [ $IS_PROD = true ]; then
+if [ "$IS_PROD" = true ]; then
     echo "== Exporting prod statics"
     sudo docker compose exec django /bin/sh -c "python manage.py collectstatic"
 fi
@@ -81,7 +81,7 @@ echo ""
 echo "== Setup completed (Start server with bin/start.sh)"
 echo ""
 
-if [ $IS_PROD = true ]; then
+if [ "$IS_PROD" = true ]; then
     echo "***"
     echo "*** IMPORTANT: FOR SECURITY, CHANGE THE ADMIN PASSWORD IMMEDIATELY"
     echo "***"
