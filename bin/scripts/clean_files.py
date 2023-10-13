@@ -16,10 +16,10 @@ if __name__ == "__main__":
 
     removed_files, num_original_files = clean_files()
 
-    print("TOTAL FILES: {}".format(num_original_files))
-    print("CLEANED FILES: {}".format(len(removed_files)))
-    print("PRESERVED FILES: {}".format(num_original_files-len(removed_files)))
+    print(f"TOTAL FILES: {num_original_files}")
+    print(f"CLEANED FILES: {len(removed_files)}")
+    print(f"PRESERVED FILES: {num_original_files-len(removed_files)}")
     if num_original_files > 0:
-        print("CLEANING %: {}%".format(len(removed_files)/num_original_files))
+        print(f"CLEANING %: {len(removed_files)/num_original_files}%")
     else:
-        print("CLEANING %: {}%".format(0))
+        print(f"CLEANING %: {0}%")

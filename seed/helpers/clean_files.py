@@ -52,7 +52,7 @@ def remove_orphan_files():
     rel_names = []
     for field in file_fields:
         typ = field.__class__.__name__
-        if typ == "ManyToOneRel" or typ == "ManyToManyRel":
+        if typ in ["ManyToOneRel", "ManyToManyRel"]:
             rel_names.append(field.name)
 
     orphan_file_ids = []
