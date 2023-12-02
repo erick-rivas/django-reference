@@ -6,6 +6,7 @@
 
 wheel==0.41.2
 celery==5.3.4
+daphne==4.0.0
 channels==4.0.0
 channels-redis==4.1.0
 coverage==7.3.2

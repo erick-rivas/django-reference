@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'models',
 
     # Libs
+    'daphne',
     'rest_framework',
     'rest_framework.authtoken',
     'django_filters',

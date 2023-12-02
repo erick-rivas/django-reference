@@ -6,6 +6,7 @@ __Seed builder__
 
 import json
 from django.urls import re_path
+from django.core.asgi import get_asgi_application
 from channels.routing import ProtocolTypeRouter, URLRouter
 from channels.security.websocket import AllowedHostsOriginValidator
 from channels.generic.websocket import WebsocketConsumer
@@ -35,6 +36,7 @@ class BaseSocket(WebsocketConsumer):
         self.send(text_data=json.dumps(data["message"]))
 
 application = ProtocolTypeRouter({
+    'http': get_asgi_application(),
     'websocket': AllowedHostsOriginValidator(
         URLRouter(
             [
