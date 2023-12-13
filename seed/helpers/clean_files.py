@@ -25,8 +25,11 @@ def clean_files(dir_path=None, min_file_age=72):
     file_names = os.listdir(dir_path)
     num_original_files = len(file_names)
     removed_files = []
-    for file_name in file_names:
-
+    print("====")
+    print(f"Removing {dir_path} files...")
+    for idx, file_name in enumerate(file_names):
+        if idx % 1000 == 0:
+            print(f"{idx} / {len(file_names)}")
         file_path = os.path.join(dir_path, file_name)
         if not os.path.isfile(file_path): continue
 
@@ -55,8 +58,11 @@ def remove_orphan_files():
         if typ in ["ManyToOneRel", "ManyToManyRel"]:
             rel_names.append(field.name)
 
-    orphan_file_ids = []
-    for file in files:
+    print("====")
+    print("Removing orphan files...")
+    for idx, file in enumerate(files):
+        if idx % 1000 == 0:
+            print(f"{idx} / {len(files)}")
         is_orphan = True
         for rel_name in rel_names:
             if not is_orphan: continue
@@ -64,6 +70,4 @@ def remove_orphan_files():
             if rel_fields_count > 0:
                 is_orphan = False
         if is_orphan:
-            orphan_file_ids.append(file.id)
-
-    File.objects.filter(id__in=orphan_file_ids).delete()
+            file.delete()
