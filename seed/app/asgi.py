@@ -13,13 +13,18 @@ from channels.generic.websocket import WebsocketConsumer
 from asgiref.sync import async_to_sync
 from urllib.parse import parse_qs
 
+connected = {}
+
 # pylint: disable=W0201
 class BaseSocket(WebsocketConsumer):
     url = r'^ws/(?P<room>[^/]+)/$'
 
     def connect(self):
+        
         self.room = self.scope['url_route']['kwargs']['room']
         self.params = parse_qs(self.scope['query_string'].decode('utf8'))
+        connected[self.room] = self.params
+
         async_to_sync(self.channel_layer.group_add)(
             self.room,
             self.channel_name
@@ -27,6 +32,7 @@ class BaseSocket(WebsocketConsumer):
         self.accept()
 
     def disconnect(self, code):
+        connected.pop(self.room, None)
         async_to_sync(self.channel_layer.group_discard)(
             self.room,
             self.channel_name
