@@ -17,7 +17,7 @@ class TestGraphql(GraphQLTestCase):
         fill_test_database()
         user = User.objects.all().first()
         token, created = TokenModel.objects.get_or_create(user=user)
-        self.headers = {"HTTP_AUTHORIZATION": 'Token ' + token.key}
+        self.headers = {"authorization": 'Token ' + token.key}
     
     def test_query_matches(self):
         response_01 = self.query(

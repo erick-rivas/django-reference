@@ -20,7 +20,7 @@ class BaseSocket(WebsocketConsumer):
     url = r'^ws/(?P<room>[^/]+)/$'
 
     def connect(self):
-        
+
         self.room = self.scope['url_route']['kwargs']['room']
         self.params = parse_qs(self.scope['query_string'].decode('utf8'))
         connected[self.room] = self.params

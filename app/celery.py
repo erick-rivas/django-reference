@@ -23,3 +23,5 @@ from seed.app.celery import *
 from celery import shared_task
 
 ## Include custom tasks after here ##
+
+app.conf.beat_schedule = {}
