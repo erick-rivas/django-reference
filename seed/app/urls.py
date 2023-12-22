@@ -7,14 +7,16 @@ __Seed builder__
 import os
 
 from django.conf import settings
-from django.conf.urls.static import static
 from django.contrib import admin
-from django.urls import include, path, re_path
+from django.urls import include
+from django.urls import re_path
 from django.views.decorators.cache import never_cache
-from django.views.generic import TemplateView, RedirectView
+from django.views.generic import TemplateView
 from django.views.static import serve
+
 from seed.routes.helpers.graphene_view import graphene_view
 from seed.routes.helpers.robot_view import robots_txt
+from seed.util.url_util import custom_static
 
 urlpatterns = \
     [
@@ -34,6 +36,6 @@ if settings.DEBUG:
 
 if os.path.exists((os.path.join(settings.REACTJS_DIR, "index.html"))):
     urlpatterns += \
-        static("/theme", document_root=os.path.join(settings.REACTJS_DIR, "theme")) \
-        + static("/resources", document_root=os.path.join(settings.REACTJS_DIR, "resources")) \
+        custom_static("/theme", document_root=os.path.join(settings.REACTJS_DIR, "theme")) \
+        + custom_static("/resources", document_root=os.path.join(settings.REACTJS_DIR, "resources")) \
         + [re_path(r'^.*', never_cache(TemplateView.as_view(template_name='index.html')))]

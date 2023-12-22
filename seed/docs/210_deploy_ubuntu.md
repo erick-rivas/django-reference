@@ -29,7 +29,7 @@ sudo systemctl restart nginx
 
 -  For  production set the environment variable IS_PROD=true
 ```bash
-vim ~/.bash_profile
+vim ~/.bashrc
 export IS_PROD=true
 ```
 
