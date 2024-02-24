@@ -8,6 +8,7 @@
 .env.dev
 .env.docker.dev
 .env.docker.prod
+.env.gunicorn
 .dev.pem
 static
 reactjs

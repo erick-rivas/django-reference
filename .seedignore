@@ -11,6 +11,7 @@
 .env.prod
 .env.docker.dev
 .env.docker.prod
+.env.gunicorn
 .dev.pem
 .gitignore
 .pylintrc

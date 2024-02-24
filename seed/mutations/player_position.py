@@ -15,6 +15,8 @@ class SavePlayerPositionMutation(graphene.Mutation):
     
     class Arguments:
         name = graphene.String(required=True)
+        code = graphene.String(required=True)
+        stats = GenericScalar(required=True)
         details = GenericScalar(required=True)
         pass
         
@@ -24,6 +26,10 @@ class SavePlayerPositionMutation(graphene.Mutation):
         player_position = {}
         if "name" in kwargs:
             player_position["name"] = kwargs["name"]
+        if "code" in kwargs:
+            player_position["code"] = kwargs["code"]
+        if "stats" in kwargs:
+            player_position["stats"] = kwargs["stats"]
         if "details" in kwargs:
             player_position["details"] = kwargs["details"]
         player_position = \
@@ -40,6 +46,8 @@ class SetPlayerPositionMutation(graphene.Mutation):
     class Arguments:
         id = graphene.Int(required=True)
         name = graphene.String(required=False)
+        code = graphene.String(required=False)
+        stats = GenericScalar(required=False)
         details = GenericScalar(required=False)
         
     # pylint: disable=R0912,W0622
@@ -51,6 +59,10 @@ class SetPlayerPositionMutation(graphene.Mutation):
             .get(pk=kwargs["id"])
         if "name" in kwargs:
             player_position.name = kwargs["name"]
+        if "code" in kwargs:
+            player_position.code = kwargs["code"]
+        if "stats" in kwargs:
+            player_position.stats = kwargs["stats"]
         if "details" in kwargs:
             player_position.details = kwargs["details"]
         player_position.save()

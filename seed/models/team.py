@@ -6,6 +6,7 @@ __Seed builder__
 
 from django.db import models
 from seed.models.model import Model
+from seed.models.helpers.json_schema_field import JSONSchemaField
 
 class Team(Model):
 

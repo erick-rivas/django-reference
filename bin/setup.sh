@@ -7,7 +7,7 @@ echo "== Configuring docker .env"
 DJANGO_PORT=8008
 POSTGRES_PORT=5435
 REDIS_PORT=6377
-SERVER_URL="http://localhost:8008"
+SERVER_URL="http://localhost:$DJANGO_PORT"
 CLIENT_URL="http://localhost:3003"
 IS_PROD=false
 

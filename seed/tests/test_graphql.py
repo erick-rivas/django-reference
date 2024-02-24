@@ -372,6 +372,8 @@ class TestGraphql(GraphQLTestCase):
                 playerPositions(query: "id=1", orderBy: "id", limit: 1){
                     id
                     name
+                    code
+                    stats
                     details
                 }
             }
@@ -440,6 +442,8 @@ class TestGraphql(GraphQLTestCase):
                 playerPosition(id: 1){
                     id
                     name
+                    code
+                    stats
                     details
                 }
             }
@@ -454,11 +458,15 @@ class TestGraphql(GraphQLTestCase):
             mutation {
                 savePlayerPosition(
                     name: "",
+                    code: "",
+                    stats: """{"expected_goals": 1401.0}""",
                     details: "{}",
                 ) {
                     playerPosition {
                         id
                         name
+                        code
+                        stats
                         details
                     }
                 }
@@ -474,12 +482,16 @@ class TestGraphql(GraphQLTestCase):
             mutation {
                 setPlayerPosition(id:1
                     name: "",
+                    code: "",
+                    stats: """{"expected_goals": 1496.0, "dominant_leg": "ipsum elit. illum"}""",
                     details: "{}",
 
                 ) {
                     playerPosition {
                         id
                         name
+                        code
+                        stats
                         details
                     }
                 }

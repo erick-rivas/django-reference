@@ -51,7 +51,13 @@ app.conf.beat_schedule = {}
 # Common shared tasks
 
 @shared_task
-def send_mail_async(**kwargs):
-    if "from_email" not in kwargs:
-        kwargs["from_email"] = os.getenv('SMTP_EMAIL')
-    send_mail(**kwargs)
+def send_mail_async(subject, message, recipient_list, from_email=None, **kwargs):
+    if from_email is None:
+        from_email = os.getenv('SMTP_EMAIL')
+    send_mail(
+        subject,
+        message,
+        from_email,
+        recipient_list,
+        **kwargs
+    )

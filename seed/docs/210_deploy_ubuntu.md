@@ -27,10 +27,11 @@ sudo systemctl restart nginx
 
 #### Production environment
 
--  For  production set the environment variable IS_PROD=true
+-  For production environment variables, create a `.env.gunicorn` and include the variable `IS_PROD=true`
+-  Include the .env file in gunicorn configuration files
 ```bash
-vim ~/.bashrc
-export IS_PROD=true
+sudo vim /etc/systemd/system/gunicorn.service
+// EnvironmentFile=$API_DIR/.env.gunicorn
 ```
 
 ### ReactJS configuration (optional)

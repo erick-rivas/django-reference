@@ -19,10 +19,10 @@ sudo certbot certonly --nginx
 echo "== Nginx setup"
 
 NGINX_SSL="
+limit_req_zone $binary_remote_addr zone=mim:10m rate=10r/s;
 server {
     listen 443 ssl default_server;
-    server_name $SERVER_NAME
-    ;
+    server_name $SERVER_NAME;
     client_max_body_size 75M;
     fastcgi_read_timeout 3000;
     proxy_read_timeout 3000;
@@ -34,6 +34,12 @@ server {
     ssl_certificate_key /etc/letsencrypt/live/$SERVER_NAME/privkey.pem;
     include /etc/letsencrypt/options-ssl-nginx.conf;
     ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem;
+
+    location ~ ^/(login|admin\/login\/) {
+        limit_req zone=lim;
+        include proxy_params;
+        proxy_pass http://unix:/run/gunicorn.sock;
+    }
 
     location / {
         include proxy_params;

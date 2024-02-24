@@ -111,12 +111,19 @@ echo "== Nginx setup"
 #####
 
 NGINX_NORMAL="
+limit_req_zone $binary_remote_addr zone=mim:10m rate=10r/s;
 server {
     listen 80;
     server_name $SERVER_NAME;
     client_max_body_size 75M;
     fastcgi_read_timeout 3000;
     proxy_read_timeout 3000;
+
+    location ~ ^/(login|admin\/login\/) {
+        limit_req zone=lim;
+        include proxy_params;
+        proxy_pass http://unix:/run/gunicorn.sock;
+    }
 
     location / {
         include proxy_params;

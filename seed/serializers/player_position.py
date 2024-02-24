@@ -16,5 +16,7 @@ class PlayerPositionSerializer(serializers.ModelSerializer):
             'created_at',
             'hash',
             'name',
+            'code',
+            'stats',
             'details',  
         )

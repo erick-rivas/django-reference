@@ -32,7 +32,9 @@
   pk: 1
   fields:
     name: ""
-    details: "{}"
+    code: ""
+    stats: {"expected_goals": 2104.0, "dominant_leg_accuracy": 7080.0}
+    details: {}
 
 ## SCORES
 
