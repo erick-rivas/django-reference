@@ -1,10 +1,17 @@
 # Django reference
 
+## Architecture
+
+The project uses an architecture based on Django Framework with support for REST API, GraphQL API and Distributed task processing (celery).
+<br>
+The main differentiator / advantage of the architecture is its **code auto-generation** support, which allows the automatic models creation, API definition, graphql setup, test data generation and automatic update of libraries.
+
 ## Project structure
 
 -   **/routes**: Custom endpoint definitions (API extensions)
 -   **/domain**: Business logic methods
 -   **/models/fixtures**: Data inserts (e.g. dummy data, catalogs, users)
+-   **/app/celery.py **: Async function definition (celery)
 -   /models: Data model extensions
 -   /app/settings.py: Custom django settings
 -	.env.*: Project variables (e.g. DB credentials, secrets, host urls) 
@@ -48,9 +55,9 @@
 
 ## Other resources
 
--   [Routes docs](020_routes.md)
--   [Domain docs](030_domain.md)
--   [Models docs](040_models.md)
+-   [Routes](020_routes.md)
+-   [Domain](030_domain.md)
+-   [Models](040_models.md)
 -   [Seed builder](110_seed_builder.md)
 -   [Seed commons](120_seed_commons.md)
 -   [Deploy - Ubuntu](210_deploy_ubuntu.md)

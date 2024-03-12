@@ -36,7 +36,7 @@
     created_at: "2020-01-01"
     name: ""
     code: ""
-    stats: {"expected_goals": 1897.0, "dominant_leg_accuracy": 5370.0}
+    stats: {"expected_goals": 508.0, "dominant_leg": "modi", "dominant_leg_accuracy": 9598.0}
     details: {}
 
 ## SCORES

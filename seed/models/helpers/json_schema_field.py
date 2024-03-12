@@ -25,7 +25,7 @@ class JSONSchemaField(models.JSONField):
             return True
 
         try:
-            if not isinstance(value, dict):
+            if not isinstance(value, dict) and not isinstance(value, list):
                 value = json.loads(str(value))
             jsonschema.validate(value, json.loads(self.schema))
         except jsonschema.exceptions.ValidationError:

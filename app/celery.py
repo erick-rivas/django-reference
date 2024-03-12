@@ -15,7 +15,8 @@ __Seed builder__
         }
 
   Pre-build async tasks (seed.app.celery)
-    - send_mail_async(**kwargs) # See django send_mail docs https://docs.djangoproject.com/en/4.2/topics/email/
+    - send_mail_async(subject, message, recipient_list, from_email=None, **kwargs)
+        - # See django send_mail docs https://docs.djangoproject.com/en/4.2/topics/email/
 """
 
 # pylint: disable=W0401

@@ -7,7 +7,6 @@ __Seed builder__
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 from seed.models.model import Model
-from seed.models.helpers.json_schema_field import JSONSchemaField
 
 class User(AbstractUser, Model):
 

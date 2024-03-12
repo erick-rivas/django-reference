@@ -4,6 +4,7 @@ __Seed builder__
   Examples:
       INSTALLED_APPS += ["new_apps"]
       ALLOWED_HOSTS = ["*",]
+      CONSTANCE_CONFIG += [(123, 'Internal setting description', int)]
 """
 
 # pylint: disable=W0401

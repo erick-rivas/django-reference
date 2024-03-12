@@ -41,6 +41,10 @@ MEDIA_URL = '/media/'
 # Libs & definition
 
 INSTALLED_APPS = [
+
+    # System constance
+    'constance',
+
     # Models
     'models',
 
@@ -92,6 +96,15 @@ DATABASES = {
 REQUIRE_SSLMODE = get_env_bool("DB_SSL")
 if REQUIRE_SSLMODE:
     DATABASES['default']['OPTIONS'] = {'sslmode': 'require'}
+
+# Constance settings
+
+CONSTANCE_CONFIG = {
+    'LATEST_VERSION': ("1.0", 'Latest version of the system', str),
+    'UNDER_MAINTENANCE': (False, 'Flag to define if it is under maintenance or not', bool)
+}
+
+CONSTANCE_BACKEND = 'constance.backends.database.DatabaseBackend'
 
 # Security settings
 

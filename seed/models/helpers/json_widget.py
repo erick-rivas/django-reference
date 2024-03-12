@@ -35,6 +35,9 @@ class JSPath:
         </script>
         """
 
+    def startswith(self, data):
+        pass
+
 @html_safe
 class CssPath:
     def __str__(self):
@@ -45,6 +48,9 @@ class CssPath:
             }
         </style>
         """
+
+    def startswith(self, data):
+        pass
 
 class JsonWidget(forms.Textarea):
     def __init__(self, *args, **kwargs):

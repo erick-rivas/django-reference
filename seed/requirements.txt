@@ -4,16 +4,18 @@
 #   Modify via builder
 #
 
-wheel==0.42.0
+wheel==0.43.0
 celery==5.3.6
 daphne==4.1.0
 channels==4.0.0
 channels-redis==4.2.0
 coverage==7.4.3
-Django==4.2.10
+Django==4.2.11
 django-cors-headers==4.3.1
+django-constance==3.1.0
 django-dotenv==1.4.2
-django-filter==23.5
+django-filter==24.1
+django-picklefield==3.1
 djangoql==0.18.1
 django-import-export==3.3.7
 dj-rest-auth==5.0.2
@@ -23,9 +25,9 @@ graphene-django==3.2.0
 gunicorn==21.2.0
 jsonschema==4.21.1
 psycopg2-binary==2.9.9
-pylint==3.0.4
-redis==5.0.1
+pylint==3.1.0
+redis==5.0.3
 requests==2.31.0
-sentry-sdk==1.40.5
+sentry-sdk==1.41.0
 setuptools==69.1.1
 six==1.16.0

@@ -20,4 +20,14 @@ This repository holds a **reference** for the development of a **REST API with g
 
 ## Documentation
 
--   All documentation is in the [docs](./seed/docs/010_general.md) directory
+-   All documentation is in the [docs](seed/docs) directory
+
+### Index
+
+-   [Development](seed/docs/010_general.md)
+-   [Routes](seed/docs/020_routes.md)
+-   [Domain](seed/docs/030_domain.md)
+-   [Models](seed/docs/040_models.md)
+-   [Seed builder](seed/docs/110_seed_builder.md)
+-   [Seed commons](seed/docs/120_seed_commons.md)
+-   [Deploy - Ubuntu](seed/docs/210_deploy_ubuntu.md)

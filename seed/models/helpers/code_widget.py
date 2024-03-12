@@ -34,6 +34,9 @@ class JSPath:
         </script>
         """
 
+    def startswith(self, data):
+        pass
+
 @html_safe
 class CssPath:
     def __str__(self):
@@ -41,9 +44,12 @@ class CssPath:
         <style>
             .CodeMirror {
                 width: 100%
-            }     
+            }
         </style>
         """
+
+    def startswith(self, data):
+        pass
 
 class CodeWidget(forms.Textarea):
     def __init__(self, *args, **kwargs):
