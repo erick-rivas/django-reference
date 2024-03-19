@@ -18,6 +18,10 @@ IF NOT "%~4" == "" set SERVER_URL=%4
 IF NOT "%~5" == "" set CLIENT_URL=%5
 IF NOT "%~6" == "" set IS_PROD=%6
 
+for /f "delims=" %%i in ('docker ps') do set RUNNING=%%i
+IF "%RUNNING%" == "" echo ERROR: Before executing bin/setup.bat, start docker service
+IF "%RUNNING%" == "" exit 1
+
 echo == Creating docker .envs
 del .env
 echo # DOCKER SETTINGS > .\.env

@@ -45,7 +45,7 @@ services:
   celery:
     build:
       dockerfile: Dockerfile
-    command: "celery -A seed.app worker -l INFO -B"
+    command: "python manage.py celery"
     volumes:
       - .:/app
     environment:

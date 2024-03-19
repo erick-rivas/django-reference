@@ -18,6 +18,12 @@ if [ $# -ge 4 ]; then SERVER_URL=$4; fi
 if [ $# -ge 5 ]; then CLIENT_URL=$5; fi
 if [ $# -ge 6 ]; then IS_PROD=$6; fi
 
+RUNNING=$(sudo docker ps)
+if [ $RUNNING -z ]; then
+  echo "ERROR: Before executing bin/setup.sh, start docker service"
+  exit 1
+fi
+
 echo "== Creating docker .envs"
 sudo rm .env
 echo "# DOCKER SETTINGS" > ".env"
