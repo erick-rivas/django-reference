@@ -4,7 +4,7 @@ __Seed builder__
 """
 
 import shlex
-import subprocess
+import subprocess # nosec B404
 import sys
 
 from django.core.management.base import BaseCommand
@@ -16,8 +16,8 @@ def restart_celery():
     if sys.platform == "win32":
         cmd = "taskkill /f /t /im celery.exe"
 
-    subprocess.call(shlex.split(cmd))
-    subprocess.call(shlex.split(f"{celery_worker_cmd} --loglevel=info"))
+    subprocess.call(shlex.split(cmd)) # nosec B603
+    subprocess.call(shlex.split(f"{celery_worker_cmd} --loglevel=info")) # nosec B603
 
 class Command(BaseCommand):
     def handle(self, *args, **options):
