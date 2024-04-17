@@ -11,6 +11,6 @@ sudo docker image prune --force
 sudo docker volume prune --force
 
 if [ "$CLEAN_FILES" = true ]; then
-    echo "== Cleaning unused files"
-    sudo docker compose exec django /bin/sh -c "python ./bin/scripts/clean_files.py"
+  echo "== Cleaning unused files"
+  sudo docker compose exec django /bin/sh -c "python ./bin/scripts/clean_files.py"
 fi

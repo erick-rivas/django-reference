@@ -10,9 +10,9 @@ set SUB_PATH=None
 IF NOT "%~1" == "" set SUB_PATH=%1
 
 IF "%SUB_PATH%" == "None" (
-    echo == Executing all test cases
-    docker compose exec django /bin/sh -c "python manage.py test"
+  echo == Executing all test cases
+  docker compose exec django /bin/sh -c "python manage.py test"
 ) ELSE (
-    echo == Executing /%SUB_PATH% test cases
-    docker compose exec django /bin/sh -c "python manage.py test %SUB_PATH%/ "
+  echo == Executing /%SUB_PATH% test cases
+  docker compose exec django /bin/sh -c "python manage.py test %SUB_PATH%/ "
 )

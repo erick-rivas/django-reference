@@ -11,8 +11,8 @@ docker image prune --force
 docker volume prune --force
 
 IF "%CLEAN_FILES%" == "true" (
-    echo == Cleaning unused files
-    docker compose exec django /bin/sh -c "python ./bin/scripts/clean_files.py"
+  echo == Cleaning unused files
+  docker compose exec django /bin/sh -c "python ./bin/scripts/clean_files.py"
 )
 
 echo == NOTICE: Run with administrative permissions

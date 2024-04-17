@@ -19,9 +19,11 @@ from app.models import Team as TeamModel
 from app.models import User as UserModel
 from app.models import File as FileModel
 from seed.util.query_util import sql_alike_q
+from seed.schema.helpers.json_dict import JSONDict
 
 class Match(DjangoObjectType):
     id = graphene.Int(description="Match primary key")
+
     class Meta:
         model = MatchModel
         description = "Represents a match between two teams  (A vs B)"
@@ -42,6 +44,7 @@ class MatchCount(ObjectType):
 
 class Player(DjangoObjectType):
     id = graphene.Int(description="Player primary key")
+
     class Meta:
         model = PlayerModel
         
@@ -62,6 +65,9 @@ class PlayerCount(ObjectType):
 
 class PlayerPosition(DjangoObjectType):
     id = graphene.Int(description="PlayerPosition primary key")
+    stats = JSONDict()
+    details = JSONDict()
+
     class Meta:
         model = PlayerPositionModel
         description = "Represents a player  position (eg. forward)"
@@ -82,6 +88,7 @@ class PlayerPositionCount(ObjectType):
 
 class Score(DjangoObjectType):
     id = graphene.Int(description="Score primary key")
+
     class Meta:
         model = ScoreModel
         description = "Represents a match score (goal)"
@@ -102,6 +109,7 @@ class ScoreCount(ObjectType):
 
 class Team(DjangoObjectType):
     id = graphene.Int(description="Team primary key")
+
     class Meta:
         model = TeamModel
         
@@ -122,6 +130,7 @@ class TeamCount(ObjectType):
 
 class User(DjangoObjectType):
     id = graphene.Int(description="User primary key")
+
     class Meta:
         model = UserModel
         exclude = ('password',)

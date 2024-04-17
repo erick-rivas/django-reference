@@ -10,9 +10,9 @@ set SUB_PATH=None
 IF NOT "%~1" == "" set SUB_PATH=%1
 
 IF "%SUB_PATH%" == "None" (
-    echo == Executing fixtures in models/fixtures/*.yaml
-    docker compose exec django /bin/sh -c "python manage.py loaddata models/fixtures/*.yaml"
+  echo == Executing fixtures in models/fixtures/*.yaml
+  docker compose exec django /bin/sh -c "python manage.py loaddata models/fixtures/*.yaml"
 ) ELSE (
-    echo == Executing fixtures in models/fixtures/%SUB_PATH%/*.yaml
-    docker compose exec django /bin/sh -c "python manage.py loaddata models/fixtures/%SUB_PATH%/*.yaml"
+  echo == Executing fixtures in models/fixtures/%SUB_PATH%/*.yaml
+  docker compose exec django /bin/sh -c "python manage.py loaddata models/fixtures/%SUB_PATH%/*.yaml"
 )

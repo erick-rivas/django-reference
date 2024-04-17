@@ -8,5 +8,13 @@ if [ $RUNNING -z ]; then
   exit 1
 fi
 
-echo "== Opening terminal"
-sudo docker compose exec django /bin/sh
+CONTAINER="None"
+if [ $# -ge 1 ]; then CONTAINER=$1; fi
+
+if [ $CONTAINER = "celery" ]; then
+  echo "== Opening $CONTAINER terminal"
+  sudo docker compose exec celery /bin/bash
+else
+  echo "== Opening django terminal"
+  sudo docker compose exec django /bin/bash
+fi
