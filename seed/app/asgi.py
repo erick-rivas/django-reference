@@ -7,6 +7,7 @@ __Seed builder__
 import json
 from django.urls import re_path
 from django.core.asgi import get_asgi_application
+from rest_framework.authtoken.models import Token
 from channels.routing import ProtocolTypeRouter, URLRouter
 from channels.security.websocket import AllowedHostsOriginValidator
 from channels.generic.websocket import WebsocketConsumer
@@ -23,13 +24,21 @@ class BaseSocket(WebsocketConsumer):
 
         self.room = self.scope['url_route']['kwargs']['room']
         self.params = parse_qs(self.scope['query_string'].decode('utf8'))
-        connected[self.room] = self.params
 
-        async_to_sync(self.channel_layer.group_add)(
-            self.room,
-            self.channel_name
-        )
-        self.accept()
+        if "token" in self.params:
+            
+            token = self.params["token"][0]
+            user = Token.objects.filter(key=token).first().user
+
+            if user is not None and user.is_authenticated:
+                connected[self.room] = self.params
+                async_to_sync(self.channel_layer.group_add)(
+                    self.room,
+                    self.channel_name
+                )
+                return self.accept()
+
+        self.disconnect(1000)
 
     def disconnect(self, code):
         connected.pop(self.room, None)
