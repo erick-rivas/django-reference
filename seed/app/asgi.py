@@ -5,18 +5,19 @@ __Seed builder__
 """
 
 import json
-from django.urls import re_path
-from django.core.asgi import get_asgi_application
-from rest_framework.authtoken.models import Token
+from urllib.parse import parse_qs
+
+from asgiref.sync import async_to_sync
+from channels.generic.websocket import WebsocketConsumer
 from channels.routing import ProtocolTypeRouter, URLRouter
 from channels.security.websocket import AllowedHostsOriginValidator
-from channels.generic.websocket import WebsocketConsumer
-from asgiref.sync import async_to_sync
-from urllib.parse import parse_qs
+from django.core.asgi import get_asgi_application
+from django.urls import re_path
+from rest_framework.authtoken.models import Token
 
 connected = {}
 
-# pylint: disable=W0201
+# pylint: disable=W0201,R1710
 class BaseSocket(WebsocketConsumer):
     url = r'^ws/(?P<room>[^/]+)/$'
 
@@ -26,7 +27,7 @@ class BaseSocket(WebsocketConsumer):
         self.params = parse_qs(self.scope['query_string'].decode('utf8'))
 
         if "token" in self.params:
-            
+
             token = self.params["token"][0]
             user = Token.objects.filter(key=token).first().user
 
