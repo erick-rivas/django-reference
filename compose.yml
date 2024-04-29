@@ -29,7 +29,7 @@ services:
   django:
     build:
       dockerfile: Dockerfile
-    command: "python manage.py runserver 0.0.0.0:${COMPOSE_DJANGO_PORT}"
+    command: "python -m debugpy --listen 0.0.0.0:8001 manage.py runserver 0.0.0.0:${COMPOSE_DJANGO_PORT}"
     volumes:
       - .:/app
     environment:
@@ -38,6 +38,7 @@ services:
       - .env
     ports:
       - "${COMPOSE_DJANGO_PORT}:${COMPOSE_DJANGO_PORT}"
+      - "8001:8001"
     depends_on:
       - postgres
       - redis
@@ -45,13 +46,15 @@ services:
   celery:
     build:
       dockerfile: Dockerfile
-    command: "python manage.py celery"
+    command: "python -m debugpy --listen 0.0.0.0:8002 worker.py"
     volumes:
       - .:/app
     environment:
       - USE_DOCKER=true
     env_file:
       - .env
+    ports:
+      - "8002:8002"
     depends_on:
       - postgres
       - redis

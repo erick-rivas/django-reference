@@ -10,6 +10,7 @@ daphne==4.1.2
 channels==4.1.0
 channels-redis==4.2.0
 coverage==7.5.0
+debugpy==1.8.1
 Django==4.2.11
 django-cors-headers==4.3.1
 django-constance==3.1.0
@@ -17,7 +18,7 @@ django-dotenv==1.4.2
 django-filter==24.2
 django-picklefield==3.2
 djangoql==0.18.1
-django-import-export==3.3.8
+django-import-export==4.0.0
 dj-rest-auth==6.0.0
 django-storages==1.14.2
 djangorestframework==3.15.1
@@ -26,8 +27,9 @@ gunicorn==22.0.0
 jsonschema==4.21.1
 psycopg2-binary==2.9.9
 pylint==3.1.0
+PyYAML==6.0.1
 redis==5.0.4
 requests==2.31.0
-sentry-sdk==1.45.0
+sentry-sdk==2.0.1
 setuptools==69.5.1
 six==1.16.0
