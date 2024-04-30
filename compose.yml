@@ -46,7 +46,7 @@ services:
   celery:
     build:
       dockerfile: Dockerfile
-    command: "python -m debugpy --listen 0.0.0.0:8002 worker.py"
+    command: "python -m debugpy --listen 0.0.0.0:8002 celery-worker.py"
     volumes:
       - .:/app
     environment:
