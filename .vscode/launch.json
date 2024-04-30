@@ -13,20 +13,6 @@
         "remoteRoot": "/app"
       }],
       "django": true
-    },
-    {
-      "name": "Celery debugger",
-      "type": "debugpy",
-      "request": "attach",
-      "connect": {
-        "host": "localhost",
-        "port": 8002
-      },
-      "pathMappings": [{
-        "localRoot": "${workspaceFolder}",
-        "remoteRoot": "/app"
-      }],
-      "django": true
     }
   ]
 }

@@ -46,15 +46,13 @@ services:
   celery:
     build:
       dockerfile: Dockerfile
-    command: "python -m debugpy --listen 0.0.0.0:8002 celery-worker.py"
+    command: "python celery-worker.py"
     volumes:
       - .:/app
     environment:
       - USE_DOCKER=true
     env_file:
       - .env
-    ports:
-      - "8002:8002"
     depends_on:
       - postgres
       - redis

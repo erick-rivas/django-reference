@@ -1,7 +1,5 @@
 import os
 
-import django
-
 import dotenv
 
 if __name__ == "__main__":
@@ -9,6 +7,7 @@ if __name__ == "__main__":
 
     dotenv.read_dotenv(os.path.join(os.path.dirname(__file__), get_dotenv_path()))
     os.environ.setdefault("DJANGO_SETTINGS_MODULE", "app.settings")
+    import django
     django.setup()
 
     from django.utils import autoreload
