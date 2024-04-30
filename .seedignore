@@ -20,6 +20,7 @@ compose.yml
 Dockerfile
 LICENSE
 manage.py
+worker.py
 README.md
 requirements.txt
 SeedManifest.json

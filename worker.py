@@ -1,17 +1,13 @@
-#!/usr/bin/env python
 import os
-import sys
 
 import django
 
 import dotenv
 
 if __name__ == "__main__":
-    base_dir = os.path.dirname(os.path.realpath(__file__)) + '/../../'
-    sys.path.append(base_dir)
-    from app.settings import get_dotenv_path
+    from seed.util.env_util import get_dotenv_path
 
-    dotenv.read_dotenv(os.path.join(base_dir, get_dotenv_path()))
+    dotenv.read_dotenv(os.path.join(os.path.dirname(__file__), get_dotenv_path()))
     os.environ.setdefault("DJANGO_SETTINGS_MODULE", "app.settings")
     django.setup()
 
