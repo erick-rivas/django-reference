@@ -14,7 +14,7 @@ This repository holds a **reference** for the development of a **REST API with g
 ### Examples
 
 -   Admin pane: [http://localhost:8008/admin](http://localhost:8008/admin)
-    >   user:admin@email.com, pass: 123
+    >   user:admin@email.com
 -   API browser: [http://localhost:8008/api](http://localhost:8008/api)
 -   Graphql browser: [http://localhost:8008/graphql](http://localhost:8008/graphql)
 
