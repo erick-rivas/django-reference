@@ -32,6 +32,9 @@ app/serializers.py
 app/settings.py
 app/urls.py
 
+.github
+.idea
+.vscode
 bin/*
 domain/*
 models/*.py

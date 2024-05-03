@@ -1,0 +1,17 @@
+{
+  "files.exclude": {
+    "**/__pycache__/": true,
+    ".data/": true,
+    ".github/": true,
+    ".idea/": true,
+    ".venv/": true,
+    ".vscode/": true,
+    "bin/docker/": true,
+    "bin/scripts/": true,
+    ".env": true,
+    ".codacy.yml": true,
+    ".dockerignore": true,
+    ".pylintrc": true,
+    "celerybeat-schedule": true
+  }
+}
