@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="NamedScopeManager">
+    <scope name="seed-builder" pattern="!file[settings]:.github//*&amp;&amp;!file[settings]:.vscode//*&amp;&amp;!file[settings]:.data//*&amp;&amp;!file[settings]:.venv//*&amp;&amp;!file:.codacy.yml&amp;&amp;!file:.dockerignore&amp;&amp;!file:.env&amp;&amp;!file:.pylintrc&amp;&amp;!file:celerybeat-schedule&amp;&amp;!file[settings]:bin/docker/*&amp;&amp;!file[settings]:bin/scripts/*" />
+  </component>
+  <component name="ProjectRootManager" version="2" project-jdk-name="Python 3.8" project-jdk-type="Python SDK" />
+</project>

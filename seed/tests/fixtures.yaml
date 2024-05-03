@@ -36,7 +36,7 @@
     created_at: "2020-01-01"
     name: ""
     code: ""
-    stats: {"expected_goals": 3820.0, "dominant_leg_accuracy": 790.0}
+    stats: {"expected_goals": 5516.0, "dominant_leg": "Hic Enim possimus architecto quas modi Nullam"}
     details: {}
 
 ## SCORES
