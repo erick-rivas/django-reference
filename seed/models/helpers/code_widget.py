@@ -13,7 +13,6 @@ class JSPath:
         return """
         <script>
             (function(){
-                var $ = django.jQuery;
                 $(document).ready(function(){
                     $('textarea.code-editor:not(.processed)').each(function(idx, el){
                         el.className += ' processed'
@@ -64,6 +63,7 @@ class CodeWidget(forms.Textarea):
             )
         }
         js = (
+            'https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js',
             'https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.9.0/codemirror.js',
             'https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.9.0/mode/python/python.js',
             JSPath()
