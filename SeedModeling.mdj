@@ -121,7 +121,7 @@
 									"font": "Arial;13;1",
 									"left": 328,
 									"top": 77,
-									"width": 161.4853515625,
+									"width": 170.87353515625,
 									"height": 13,
 									"text": "TEAM"
 								},
@@ -147,7 +147,7 @@
 											"font": "Arial;13;0",
 											"left": 333,
 											"top": 100,
-											"width": 151.4853515625,
+											"width": 160.87353515625,
 											"height": 13
 										},
 										{
@@ -162,7 +162,7 @@
 											"font": "Arial;13;0",
 											"left": 333,
 											"top": 115,
-											"width": 151.4853515625,
+											"width": 160.87353515625,
 											"height": 13
 										},
 										{
@@ -177,7 +177,7 @@
 											"font": "Arial;13;0",
 											"left": 333,
 											"top": 130,
-											"width": 151.4853515625,
+											"width": 160.87353515625,
 											"height": 13
 										},
 										{
@@ -192,7 +192,7 @@
 											"font": "Arial;13;0",
 											"left": 333,
 											"top": 145,
-											"width": 151.4853515625,
+											"width": 160.87353515625,
 											"height": 13
 										},
 										{
@@ -207,7 +207,7 @@
 											"font": "Arial;13;0",
 											"left": 333,
 											"top": 160,
-											"width": 151.4853515625,
+											"width": 160.87353515625,
 											"height": 13
 										},
 										{
@@ -222,7 +222,7 @@
 											"font": "Arial;13;0",
 											"left": 333,
 											"top": 175,
-											"width": 151.4853515625,
+											"width": 160.87353515625,
 											"height": 13
 										},
 										{
@@ -237,21 +237,21 @@
 											"font": "Arial;13;0",
 											"left": 333,
 											"top": 190,
-											"width": 151.4853515625,
+											"width": 160.87353515625,
 											"height": 13
 										}
 									],
 									"font": "Arial;13;0",
 									"left": 328,
 									"top": 95,
-									"width": 161.4853515625,
+									"width": 170.87353515625,
 									"height": 113
 								}
 							],
 							"font": "Arial;13;0",
 							"left": 328,
 							"top": 72,
-							"width": 161.4853515625,
+							"width": 170.87353515625,
 							"height": 136,
 							"nameLabel": {
 								"$ref": "AAAAAAFp1c6hRb8tHEQ="
@@ -745,7 +745,7 @@
 										"$ref": "AAAAAAFp1dGecsAZn98="
 									},
 									"font": "Arial;13;0",
-									"left": 513,
+									"left": 523,
 									"top": 89,
 									"height": 13,
 									"alpha": 0.5235987755982988,
@@ -780,7 +780,7 @@
 								"$ref": "AAAAAAFp1c6hRb8s7bk="
 							},
 							"lineStyle": 2,
-							"points": "488:110;520:110;520:136",
+							"points": "498:110;520:110;520:136",
 							"nameLabel": {
 								"$ref": "AAAAAAFp1dGecsAa2xA="
 							},
@@ -1516,9 +1516,10 @@
 								"$ref": "AAAAAAFp1c6hRb8q0MQ="
 							},
 							"name": "rival",
-							"documentation": "empty: true\nref: 1\nhas: 0..*\ndescription:  Team's biggest rival",
+							"documentation": "ref: 1\nhas: 0..*\ndelete: EMPTY\ndescription:  Team's biggest rival",
 							"type": "Team",
-							"length": 0
+							"length": 0,
+							"nullable": true
 						},
 						{
 							"_type": "ERDColumn",

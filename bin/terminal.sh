@@ -9,12 +9,22 @@ if [ $RUNNING -z ]; then
 fi
 
 CONTAINER="None"
+COMMAND="None"
 if [ $# -ge 1 ]; then CONTAINER=$1; fi
+if [ $# -ge 2 ]; then COMMAND=$2; fi
 
 if [ $CONTAINER = "celery" ]; then
   echo "== Opening $CONTAINER terminal"
-  sudo docker compose exec celery /bin/bash
+  if [ $COMMAND = "None" ]; then
+    sudo docker compose exec celery /bin/bash
+  else
+    sudo docker compose exec celery /bin/bash $COMMAND
+  fi
 else
   echo "== Opening django terminal"
-  sudo docker compose exec django /bin/bash
+  if [ $COMMAND = "None" ]; then
+    sudo docker compose exec django /bin/bash
+  else
+    sudo docker compose exec django /bin/bash $COMMAND
+  fi
 fi

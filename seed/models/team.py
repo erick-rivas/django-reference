@@ -24,7 +24,8 @@ class Team(Model):
 
     rival = models.ForeignKey(
         'models.Team', related_name='rival_teams',
-        blank=True, null=True, on_delete=models.CASCADE, help_text="Team's biggest rival")
+        blank=True, null=True,
+        on_delete=models.SET_NULL, help_text="Team's biggest rival")
     
     @property
     def players(self):

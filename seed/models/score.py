@@ -14,10 +14,12 @@ class Score(Model):
 
     player = models.ForeignKey(
         'models.Player', related_name='scores',
-        blank=False, null=False, on_delete=models.CASCADE, help_text="Player that score")
+        blank=False, null=False,
+        on_delete=models.CASCADE, help_text="Player that score")
     match = models.ForeignKey(
         'models.Match', related_name='scores',
-        blank=False, null=False, on_delete=models.CASCADE)
+        blank=False, null=False,
+        on_delete=models.CASCADE)
 
     class Meta:
         db_table = '_score'

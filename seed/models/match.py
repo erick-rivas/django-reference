@@ -24,10 +24,12 @@ class Match(Model):
 
     local = models.ForeignKey(
         'models.Team', related_name='local_matches',
-        blank=False, null=False, on_delete=models.CASCADE)
+        blank=False, null=False,
+        on_delete=models.CASCADE)
     visitor = models.ForeignKey(
         'models.Team', related_name='visitor_matches',
-        blank=False, null=False, on_delete=models.CASCADE)
+        blank=False, null=False,
+        on_delete=models.CASCADE)
     
     @property
     def scores(self):

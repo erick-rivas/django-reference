@@ -21,10 +21,12 @@ class Player(Model):
 
     team = models.ForeignKey(
         'models.Team', related_name='players',
-        blank=False, null=False, on_delete=models.CASCADE)
+        blank=False, null=False,
+        on_delete=models.CASCADE)
     position = models.ForeignKey(
         'models.PlayerPosition', related_name='position_players',
-        blank=False, null=False, on_delete=models.CASCADE)
+        blank=False, null=False,
+        on_delete=models.CASCADE)
 
     class Meta:
         db_table = '_player'
