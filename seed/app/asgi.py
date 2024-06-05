@@ -8,6 +8,7 @@ import json
 from urllib.parse import parse_qs
 
 from asgiref.sync import async_to_sync
+from channels.exceptions import StopConsumer
 from channels.generic.websocket import WebsocketConsumer
 from channels.routing import ProtocolTypeRouter, URLRouter
 from channels.security.websocket import AllowedHostsOriginValidator
@@ -47,6 +48,7 @@ class BaseSocket(WebsocketConsumer):
             self.room,
             self.channel_name
         )
+        raise StopConsumer()
 
     def send_message(self, data):
         self.send(text_data=json.dumps(data["message"]))
