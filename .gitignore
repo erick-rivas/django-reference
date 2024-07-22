@@ -28,7 +28,6 @@ appspec.yml
 !.vscode/launch.json
 !.vscode/settings.json
 .idea/*
-!.idea/misc.xml
 !.idea/modules.xml
 !.idea/settings.iml
 *.log

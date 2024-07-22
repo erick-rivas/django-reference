@@ -459,7 +459,7 @@ class TestGraphql(GraphQLTestCase):
                 savePlayerPosition(
                     name: "",
                     code: "",
-                    stats: """{"expected_goals": 185.0, "dominant_leg": "consectetur enim nunc exercitationem arcu officiis", "dominant_leg_accuracy": 9880.0}""",
+                    stats: """{"expected_goals": 2251.0, "dominant_leg": "ipsum, repellendus reiciendis esse possimus dolor"}""",
                     details: "{}",
                 ) {
                     playerPosition {
@@ -483,7 +483,7 @@ class TestGraphql(GraphQLTestCase):
                 setPlayerPosition(id:1
                     name: "",
                     code: "",
-                    stats: """{"expected_goals": 1728.0}""",
+                    stats: """{"expected_goals": 615.0, "dominant_leg_accuracy": 1280.0}""",
                     details: "{}",
 
                 ) {

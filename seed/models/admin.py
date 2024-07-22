@@ -23,6 +23,9 @@ class Admin:
     # pylint: disable=R0914,R0915
     @staticmethod
     def register():
+
+        admin.site.site_header = "Django reference Admin"
+        admin.site.site_title = "Django reference Admin"
         
         class MatchResource(resources.ModelResource):
             class Meta:
