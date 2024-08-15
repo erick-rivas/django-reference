@@ -36,7 +36,7 @@
     created_at: "2020-01-01"
     name: ""
     code: ""
-    stats: {"expected_goals": 8486.0, "dominant_leg": "placeat vitae congue. nobis illum consectetur odit"}
+    stats: {"expected_goals": 1141.0, "dominant_leg_accuracy": 9404.0}
     details: {}
 
 ## SCORES

@@ -24,11 +24,11 @@ pip3 install -r requirements.txt
 
 echo "== Creating & configuring env.dev file"
 cp .env.example .env.dev
-sed -i "s/DB_NAME=/DB_NAME=$DB_NAME/" ".env.dev"
-sed -i "s/DB_USER=/DB_USER=$DB_USER/" ".env.dev"
-sed -i "s/DB_PASSWORD=/DB_PASSWORD=$DB_PASSWORD/" ".env.dev"
-sed -i "s/DB_HOST=/DB_HOST=localhost/" ".env.dev"
-sed -i "s/SECRET_KEY=/SECRET_KEY=fupswltefA9efredrufihUSTOwamc/" ".env.dev"
+sed -i "s/^DB_NAME=/DB_NAME=$DB_NAME/" ".env.dev"
+sed -i "s/^DB_USER=/DB_USER=$DB_USER/" ".env.dev"
+sed -i "s/^DB_PASSWORD=/DB_PASSWORD=$DB_PASSWORD/" ".env.dev"
+sed -i "s/^DB_HOST=/DB_HOST=localhost/" ".env.dev"
+sed -i "s/^SECRET_KEY=/SECRET_KEY=fupswltefA9efredrufihUSTOwamc/" ".env.dev"
 
 echo "== Making & executing migrations"
 python3 manage.py makemigrations

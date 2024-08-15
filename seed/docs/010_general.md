@@ -46,9 +46,11 @@ The main differentiator / advantage of the architecture is its **code auto-gener
 -   To review code quality, execute `bin/review`
     >   Before run review command, install [Codacy CLI](https://github.com/codacy/codacy-analysis-cli)
 -   To generate code coverage report, execute `bin/coverage`
+    - To generate specific folder, execute `bin/coverage <Folder_Name>`
 
 ### Docker
 
+-   To reinstall pip dependencies, execute `bin/install`
 -   To execute command in the container (e.g. > ls or > python -v ), execute `bin/terminal`
 -   To clean unused docker resources, execute `bin/clean`
     - To include file cleaning, execute `bin/clean true`
