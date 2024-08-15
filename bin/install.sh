@@ -10,7 +10,7 @@ if [ $RUNNING -z ]; then
 fi
 
 echo "== Installing dependencies"
-sudo docker compose exec django /bin/sh -c "pip install -r requirements.txt"
+sudo docker compose exec django /bin/sh -c "pip install -r requirements.txt --no-cache-dir"
 
 echo "== Installing local dependencies"
 if [ ! -d .venv ]; then

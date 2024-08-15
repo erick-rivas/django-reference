@@ -8,7 +8,7 @@ IF "%RUNNING%" == "" echo ERROR: Before executing bin/install.bat, start server 
 IF "%RUNNING%" == "" exit 1
 
 echo == Installing dependencies
-docker compose exec django /bin/sh -c "pip install -r requirements.txt"
+docker compose exec django /bin/sh -c "pip install -r requirements.txt --no-cache-dir"
 
 echo == Installing local dependencies
 IF NOT EXIST .\.venv (
