@@ -4,7 +4,7 @@
 
 RUNNING=$(sudo docker compose ps --services --filter "status=running")
 if [ $RUNNING -z ]; then
-  echo "ERROR: Before executing bin/terminal.sh, start server with bin/start.sh"
+  echo "ERROR: Before executing bin/console.sh, start server with bin/start.sh"
   exit 1
 fi
 

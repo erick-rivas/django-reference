@@ -4,7 +4,7 @@ __Seed builder__
   Modify via builder
 """
 
-from datetime import datetime
+from django.utils import timezone
 from django.db import models
 from seed.models.model import Model
 
@@ -17,7 +17,7 @@ class Match(Model):
     )
 
     date = models.DateTimeField(
-        blank=False, null=False, default=datetime.now)
+        blank=False, null=False, default=timezone.now)
     type = models.CharField(
         max_length=64, choices=TYPES,
         blank=False, null=False, help_text="Match type (eg. cup)")

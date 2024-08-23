@@ -16,6 +16,7 @@ jobs:
 
   review-code-pylint:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
 
     steps:
       - name: Checkout code
@@ -29,6 +30,7 @@ jobs:
 
   review-code-bandit:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
 
     steps:
       - name: Checkout code

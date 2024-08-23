@@ -51,7 +51,8 @@ The main differentiator / advantage of the architecture is its **code auto-gener
 ### Docker
 
 -   To reinstall pip dependencies, execute `bin/install`
--   To execute command in the container (e.g. > ls or > python -v ), execute `bin/terminal`
+-   To open container console (bash), execute `bin/console`
+    -   To execute command in the container, execute `bin/console <Command>`
 -   To clean unused docker resources, execute `bin/clean`
     - To include file cleaning, execute `bin/clean true`
 
