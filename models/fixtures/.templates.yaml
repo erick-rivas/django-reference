@@ -9,7 +9,7 @@
 - model: models.match
   pk: 1
   fields:
-    date: "2020-01-01"
+    date: "2020-01-01T12:00:00+00:00"
     type: "FRIENDSHIP|LEAGUE|CUP|"
     local: 0
     visitor: 0
@@ -33,7 +33,7 @@
   fields:
     name: ""
     code: ""
-    stats: {"expected_goals": 2178.0, "dominant_leg": "ipsum possimus odit illum libero magnam, placeat a", "dominant_leg_accuracy": 7976.0}
+    stats: {"expected_goals": 9684.0, "dominant_leg": "enim amet adipisicing"}
     details: {}
 
 ## SCORES

@@ -9,8 +9,8 @@
 - model: models.match
   pk: 1
   fields:
-    created_at: "2020-01-01"
-    date: "2020-01-01"
+    created_at: "2020-01-01T12:00:00+00:00"
+    date: "2020-01-01T12:00:00+00:00"
     type: "FRIENDSHIP"
     local: 1
     visitor: 1
@@ -20,7 +20,7 @@
 - model: models.player
   pk: 1
   fields:
-    created_at: "2020-01-01"
+    created_at: "2020-01-01T12:00:00+00:00"
     name: ""
     photo: 1
     is_active: false
@@ -33,10 +33,10 @@
 - model: models.playerPosition
   pk: 1
   fields:
-    created_at: "2020-01-01"
+    created_at: "2020-01-01T12:00:00+00:00"
     name: ""
     code: ""
-    stats: {"expected_goals": 3212.0}
+    stats: {"expected_goals": 2140.0}
     details: {}
 
 ## SCORES
@@ -44,7 +44,7 @@
 - model: models.score
   pk: 1
   fields:
-    created_at: "2020-01-01"
+    created_at: "2020-01-01T12:00:00+00:00"
     min: 128
     player: 1
     match: 1
@@ -54,7 +54,7 @@
 - model: models.team
   pk: 1
   fields:
-    created_at: "2020-01-01"
+    created_at: "2020-01-01T12:00:00+00:00"
     name: ""
     logo: 1
     description: ""
@@ -66,7 +66,7 @@
 - model: models.user
   pk: 1
   fields:
-    created_at: "2020-01-01"
+    created_at: "2020-01-01T12:00:00+00:00"
     username: "email@test.com"
     first_name: "FirstName"
     last_name: "LastName"
@@ -75,8 +75,8 @@
     is_active: true
     is_superuser: false
     is_staff: false
-    last_login: "2020-01-01"
-    date_joined: "2020-01-01"
+    last_login: "2020-01-01T12:00:00+00:00"
+    date_joined: "2020-01-01T12:00:00+00:00"
     teams: [1]
     profile_image: 1
 
@@ -85,7 +85,7 @@
 - model: models.File
   pk: 1
   fields:
-    created_at: "2020-01-01"
+    created_at: "2020-01-01T12:00:00+00:00"
     url: "https://seedb.s3.amazonaws.com/dummy.jpg"
     size: 128
     name: "file"

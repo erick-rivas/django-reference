@@ -10,10 +10,10 @@ daphne==4.1.2
 channels==4.1.0
 channels-redis==4.2.0
 coverage==7.6.1
-debugpy==1.8.5
-Django==4.2.15
+debugpy==1.8.6
+Django==4.2.16
 django-cors-headers==4.4.0
-django-constance==3.1.0
+django-constance==4.1.2
 django-dotenv==1.4.2
 django-filter==24.3
 django-picklefield==3.2
@@ -26,10 +26,10 @@ graphene-django==3.2.2
 gunicorn==23.0.0
 jsonschema==4.23.0
 psycopg2-binary==2.9.9
-pylint==3.2.6
+pylint==3.2.7
 PyYAML==6.0.2
 redis==5.0.8
 requests==2.32.3
-sentry-sdk==2.13.0
-setuptools==73.0.1
+sentry-sdk==2.14.0
+setuptools==75.1.0
 six==1.16.0
