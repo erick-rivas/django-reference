@@ -21,5 +21,5 @@ python3 -m venv .venv
 echo "== Installing dependencies"
 python3 -m pip install --upgrade pip
 
-chmod 777 $API_DIR/dependencies.sh
-$API_DIR/dependencies.sh
+chmod 777 $API_DIR/requirements.sh
+$API_DIR/requirements.sh
