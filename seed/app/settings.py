@@ -38,6 +38,16 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, "models", "fixtures", "media"), ]
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 MEDIA_URL = '/media/'
 
+USE_AWS_S3 = get_env_bool('USE_AWS_S3')
+if USE_AWS_S3:
+    AWS_ACCESS_KEY_ID = os.getenv('AWS_ACCESS_KEY_ID')
+    AWS_SECRET_ACCESS_KEY = os.getenv('AWS_SECRET_ACCESS_KEY')
+    AWS_STORAGE_BUCKET_NAME = os.getenv('AWS_STORAGE_BUCKET_NAME')
+    AWS_S3_REGION_NAME = os.getenv('AWS_S3_REGION_NAME')
+    AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
+    DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+    MEDIA_URL = 'https://%s/%s/' % (AWS_S3_CUSTOM_DOMAIN, 'media')
+
 # Libs & definition
 
 INSTALLED_APPS = [
@@ -59,6 +69,7 @@ INSTALLED_APPS = [
     'graphene_django',
     'channels',
     'dj_rest_auth',
+    'storages',
 
     'django.contrib.admin',
     'django.contrib.auth',
@@ -112,7 +123,7 @@ REST_AUTH = {
     'TOKEN_SERIALIZER': 'seed.serializers.helpers.token.TokenSerializer',
     'USER_DETAILS_SERIALIZER': 'seed.serializers.user.UserSerializer'
 }
-CORS_ORIGIN_WHITELIST = [os.getenv('CLIENT_URL'), ]
+CORS_ORIGIN_WHITELIST = [os.getenv('CLIENT_URL', "http://localhost:3003"), ]
 ALLOWED_HOSTS = ['localhost', '127.0.0.1', '[::1]', urlparse(os.getenv('SERVER_URL')).hostname]
 if get_env_bool('FORCE_SSL'):
     SECURE_SSL_REDIRECT = True
@@ -180,7 +191,7 @@ GRAPHENE = {'SCHEMA': 'seed.app.graphene.schema'}
 
 # Celery
 
-CELERY_BROKER_URL = 'redis://' + os.getenv("REDIS_HOST") + ':' + os.getenv("REDIS_PORT")
+CELERY_BROKER_URL = 'redis://' + os.getenv("REDIS_HOST", "") + ':' + os.getenv("REDIS_PORT", "")
 CELERY_RESULT_BACKEND = CELERY_BROKER_URL
 CELERY_ACCEPT_CONTENT = ['application/json']
 CELERY_TASK_SERIALIZER = 'json'

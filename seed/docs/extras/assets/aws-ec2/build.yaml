@@ -1,0 +1,103 @@
+# Description: This is a buildspec file for AWS CodeBuild to build and deploy a Django project to an EC2 Auto Scaling Group.
+# You need to define the following environment variables in your AWS CodeBuild project:
+# - PROJECT: Project name
+# - AWS_ACCESS_KEY: AWS Access Key ID
+# - AWS_SECRET_KEY: AWS Secret Access Key
+# - AWS_REGION: AWS Region
+# - AWS_SM_ENV: AWS Secrets Manager ARN for environment variables
+# - AWS_SM_CERT: AWS Secrets Manager ARN for SSH certificate
+# - AWS_AMI: EC2 AMI ID
+# - AWS_AMI_NAME: EC2 AMI Name
+# - AWS_SM_PEM_KEY: AWS Secrets Manager ARN for PEM key
+# - AWS_SUBNET: EC2 Subnet ID
+# - AWS_SECURITY_GROUP: EC2 Security Group ID
+# - AWS_LT_APP_NAME: Launch Template name for App Auto Scaling Group
+# - AWS_AGS_APP_NAME: Auto Scaling Group name for App
+# - AWS_LT_WORKERS_NAME: Launch Template name for Workers Auto Scaling Group
+
+version: 0.2
+
+phases:
+
+  install:
+    runtime-versions:
+      python: 3.8.18
+    commands:
+      - pip install --upgrade pip==24.2
+      - pip install -r requirements.txt
+      - aws configure set aws_access_key_id $AWS_ACCESS_KEY
+      - aws configure set aws_secret_access_key $AWS_SECRET_KEY
+      - aws configure set default.region $AWS_REGION
+      - ENV_PATH=".env.prod"
+      - aws secretsmanager get-secret-value --secret-id $AWS_SM_ENV --query SecretString --output text > $ENV_PATH
+      
+  pre_build:
+    commands:
+      - python manage.py migrate
+      - python manage.py loaddata models/fixtures/*.yaml
+      
+  post_build:
+    commands:
+
+      # Downloading certificate for SSH connection
+      - KEY_PATH="/tmp/$PROJECT.pem"
+      - aws secretsmanager get-secret-value --secret-id $AWS_SM_CERT --query SecretString --output text > $KEY_PATH
+      - chmod 400 $KEY_PATH
+      
+      # Defining EC2 instance
+      - INSTANCE_ID=$(aws ec2 run-instances --image-id $AWS_AMI --count 1 --instance-type t2.micro --key-name $AWS_SM_PEM_KEY --subnet-id $AWS_SUBNET --security-group-ids $AWS_SECURITY_GROUP --query 'Instances[0].InstanceId' --output text)
+      - aws ec2 wait instance-running --instance-ids $INSTANCE_ID
+      - | 
+        while true; do
+          STATUS=$(aws ec2 describe-instance-status --instance-ids $INSTANCE_ID --query 'InstanceStatuses[0].InstanceStatus.Status' --output text)
+          if [ "$STATUS" == "ok" ]; then
+            break
+          fi
+          sleep 5
+        done
+
+      - INSTANCE_IP=$(aws ec2 describe-instances --instance-ids $INSTANCE_ID --query 'Reservations[0].Instances[0].PrivateIpAddress' --output text)
+      - echo "Instance $INSTANCE_ID is running at $INSTANCE_IP."
+
+      # Uploading project files to EC2 instance
+      - cd ..
+      - mv src $PROJECT
+      - SCRIPT_FOLDER=/home/ubuntu/$PROJECT/seed/docs/assets/ubuntu/single-install.sh
+      - scp -o StrictHostKeyChecking=no -i $PROJECT/$KEY_PATH -r $PROJECT/ ubuntu@$INSTANCE_IP:/home/ubuntu/
+      - scp -o StrictHostKeyChecking=no -i $PROJECT/$KEY_PATH -r $PROJECT/$ENV_PATH ubuntu@$INSTANCE_IP:/home/ubuntu/$PROJECT/.env.prod
+      - ssh -o StrictHostKeyChecking=no -i $PROJECT/$KEY_PATH ubuntu@$INSTANCE_IP "cd /home/ubuntu/$PROJECT/ && sudo chmod +x $SCRIPT_FOLDER && sudo $SCRIPT_FOLDER"
+
+      # Creating AMI from EC2 instance
+      - AMI_NAME="$AWS_AMI_NAME-$(date +%Y%m%d%H%M%S)"
+      - AMI_ID=$(aws ec2 create-image --instance-id $INSTANCE_ID --name $AMI_NAME --no-reboot --query 'ImageId' --output text)
+      - aws ec2 wait image-available --image-ids $AMI_ID
+      - echo "AMI $AMI_ID is available."
+
+      # Terminating EC2 instance
+      - aws ec2 terminate-instances --instance-ids $INSTANCE_ID
+      - aws ec2 wait instance-terminated --instance-ids $INSTANCE_ID
+
+      # Updating App Launch Template
+      - LAST_VERSION=$(aws ec2 describe-launch-template-versions --launch-template-name $AWS_LT_APP_NAME --query 'LaunchTemplateVersions[-1].VersionNumber' --output text)
+      - LAUNCH_TEMPLATE_DATA="{\"ImageId\":\"$AMI_ID\"}"
+      - NEW_VERSION=$(aws ec2 create-launch-template-version --launch-template-name $AWS_LT_APP_NAME --source-version $LAST_VERSION --launch-template-data $LAUNCH_TEMPLATE_DATA --query "LaunchTemplateVersion.VersionNumber" --output text)
+      - echo "Launch template $AWS_LT_APP_NAME is updated to version $NEW_VERSION."
+
+      # Refreshing App Auto Scaling Group
+      - INSTANCE_IDS=$(aws autoscaling describe-auto-scaling-instances --query 'AutoScalingInstances[?AutoScalingGroupName==`'$AWS_AGS_APP_NAME'`].InstanceId' --output text)
+      - |
+        for INSTANCE in $INSTANCE_IDS; do
+          aws ec2 terminate-instances --instance-ids $INSTANCE;
+          echo "Terminated instance $INSTANCE";
+        done
+      - echo "Instances in Auto Scaling Group $AWS_AGS_APP_NAME are being replaced."
+
+      # Updating Workers Launch Template
+      - LAST_VERSION=$(aws ec2 describe-launch-template-versions --launch-template-name $AWS_LT_WORKERS_NAME --query 'LaunchTemplateVersions[-1].VersionNumber' --output text)
+      - LAUNCH_TEMPLATE_DATA="{\"ImageId\":\"$AMI_ID\"}"
+      - NEW_VERSION=$(aws ec2 create-launch-template-version --launch-template-name $AWS_LT_WORKERS_NAME --source-version $LAST_VERSION --launch-template-data $LAUNCH_TEMPLATE_DATA --query "LaunchTemplateVersion.VersionNumber" --output text)
+      - echo "Launch template $AWS_LT_WORKERS_NAME is updated to version $NEW_VERSION."
+      
+artifacts:
+  files:
+    - "**/*"
