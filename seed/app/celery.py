@@ -24,14 +24,8 @@ from celery import signals
 dotenv.read_dotenv(os.path.join(os.path.dirname(__file__), "..", "..", get_dotenv_path()))
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'app.settings')
 app = Celery('app')
-app.config_from_object('django.conf:settings', namespace='CELERY')
+app.config_from_object(settings.CELERY_SETTINGS)
 app.autodiscover_tasks()
-app.conf.update(
-    CELERYD_PREFETCH_MULTIPLIER=1,
-    CELERY_ACKS_LATE=True,
-    CONCURRENCY=2,
-    ACKS_ON_FAILURE_OR_TIMEOUT=True,
-)
 
 # Sentry init
 
