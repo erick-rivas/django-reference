@@ -191,20 +191,22 @@ GRAPHENE = {'SCHEMA': 'seed.app.graphene.schema'}
 
 # Celery
 
-CELERY_BROKER_URL = 'redis://' + os.getenv("REDIS_HOST", "") + ':' + os.getenv("REDIS_PORT", "")
-CELERY_RESULT_BACKEND = CELERY_BROKER_URL
-CELERY_ACCEPT_CONTENT = ['application/json']
-CELERY_TASK_SERIALIZER = 'json'
-CELERY_RESULT_SERIALIZER = 'json'
-CELERY_TIMEZONE = 'America/Mexico_City'
+CELERY_BROKER_URL = 'redis://' + os.getenv('REDIS_HOST') + ':' + os.getenv('REDIS_PORT')
+CELERY_SETTINGS = {
+    'broker_url': CELERY_BROKER_URL,
+    'result_backend': CELERY_BROKER_URL,
+    'accept_content': ['application/json'],
+    'timezone': 'America/Mexico_City',
+    'worker_prefetch_multiplier': 1
+}
 
 # Channels
 
 CHANNEL_LAYERS = {
-    "default": {
-        "BACKEND": "channels_redis.core.RedisChannelLayer",
-        "CONFIG": {
-            "hosts": [(os.getenv("REDIS_HOST"), os.getenv("REDIS_PORT"))],
+    'default': {
+        'BACKEND': 'channels_redis.core.RedisChannelLayer',
+        'CONFIG': {
+            'hosts': [(os.getenv('REDIS_HOST'), os.getenv('REDIS_PORT'))],
         }
     }
 }
