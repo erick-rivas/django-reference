@@ -5,7 +5,16 @@ __Seed builder__
 """
 
 import json
+import os
+import dotenv
+from app.settings import get_dotenv_path
 from urllib.parse import parse_qs
+
+dotenv.read_dotenv(os.path.join(os.path.dirname(os.path.dirname(__file__)), "..", get_dotenv_path()))
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "app.settings")
+
+import django
+django.setup()
 
 from asgiref.sync import async_to_sync
 from channels.exceptions import StopConsumer

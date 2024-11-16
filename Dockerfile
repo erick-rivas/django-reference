@@ -16,7 +16,12 @@ ENV TZ=America/Mexico_City
 # Include commands after this block
 ###
 
+COPY requirements.libs /usr/local/bin/requirements.libs
+RUN chmod +x /usr/local/bin/requirements.libs
+RUN /usr/local/bin/requirements.libs
+
 COPY requirements.txt .
 COPY seed/requirements.txt seed/
 RUN pip install -r requirements.txt --no-cache-dir
+
 COPY . .
