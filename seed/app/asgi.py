@@ -13,9 +13,11 @@ from urllib.parse import parse_qs
 dotenv.read_dotenv(os.path.join(os.path.dirname(os.path.dirname(__file__)), "..", get_dotenv_path()))
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "app.settings")
 
+# pylint: disable=C0413
 import django
 django.setup()
 
+# pylint: disable=C0413
 from asgiref.sync import async_to_sync
 from channels.exceptions import StopConsumer
 from channels.generic.websocket import WebsocketConsumer
