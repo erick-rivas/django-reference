@@ -30,12 +30,12 @@ phases:
       - aws configure set default.region $AWS_REGION
       - ENV_PATH=".env.prod"
       - aws secretsmanager get-secret-value --secret-id $AWS_SM_ENV --query SecretString --output text > $ENV_PATH
-      
+
   pre_build:
     commands:
       - python manage.py migrate
       - python manage.py loaddata models/fixtures/*.yaml
-      
+
   post_build:
     commands:
 
@@ -43,11 +43,11 @@ phases:
       - KEY_PATH="/tmp/$PROJECT.pem"
       - aws secretsmanager get-secret-value --secret-id $AWS_SM_CERT --query SecretString --output text > $KEY_PATH
       - chmod 400 $KEY_PATH
-      
+
       # Defining EC2 instance
       - INSTANCE_ID=$(aws ec2 run-instances --image-id $AWS_AMI --count 1 --instance-type t2.micro --key-name $AWS_SM_PEM_KEY --subnet-id $AWS_SUBNET --security-group-ids $AWS_SECURITY_GROUP --query 'Instances[0].InstanceId' --output text)
       - aws ec2 wait instance-running --instance-ids $INSTANCE_ID
-      - | 
+      - |
         while true; do
           STATUS=$(aws ec2 describe-instance-status --instance-ids $INSTANCE_ID --query 'InstanceStatuses[0].InstanceStatus.Status' --output text)
           if [ "$STATUS" == "ok" ]; then
@@ -97,7 +97,7 @@ phases:
       - LAUNCH_TEMPLATE_DATA="{\"ImageId\":\"$AMI_ID\"}"
       - NEW_VERSION=$(aws ec2 create-launch-template-version --launch-template-name $AWS_LT_WORKERS_NAME --source-version $LAST_VERSION --launch-template-data $LAUNCH_TEMPLATE_DATA --query "LaunchTemplateVersion.VersionNumber" --output text)
       - echo "Launch template $AWS_LT_WORKERS_NAME is updated to version $NEW_VERSION."
-      
+
 artifacts:
   files:
     - "**/*"

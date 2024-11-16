@@ -1,3 +1,5 @@
+#!/bin/bash
+
 API_DIR=$(pwd)
 
 # General dependencies

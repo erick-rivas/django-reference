@@ -1,3 +1,5 @@
 #!/bin/bash
 
-# Install the required packages below
+#  Include extra commands to install OS libraries
+#  Examples:
+#     apt -y install chromium
