@@ -57,10 +57,10 @@ docker compose up -d
 echo == Executing db setup (make & run migrations)
 docker compose exec django /bin/sh -c "python manage.py makemigrations"
 docker compose exec django /bin/sh -c "python manage.py migrate"
-docker compose exec django /bin/sh -c "python manage.py loaddata models/fixtures/*.yaml"
 
-echo == Loading base fixtures (admin)
+echo == Loading fixtures
 docker compose exec django /bin/sh -c "python manage.py loaddata models/fixtures/.base.yaml"
+docker compose exec django /bin/sh -c "python manage.py loaddata models/fixtures/*.yaml"
 
 echo == Installing local dependencies
 IF NOT EXIST .\.venv (

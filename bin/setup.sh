@@ -57,10 +57,10 @@ sudo docker compose up -d
 echo "== Executing db update (make & run migrations)"
 sudo docker compose exec django /bin/sh -c "python manage.py makemigrations"
 sudo docker compose exec django /bin/sh -c "python manage.py migrate"
-sudo docker compose exec django /bin/sh -c "python manage.py loaddata models/fixtures/*.yaml"
 
-echo "== Loading base fixtures (admin)"
+echo "== Loading fixtures"
 sudo docker compose exec django /bin/sh -c "python manage.py loaddata models/fixtures/.base.yaml"
+sudo docker compose exec django /bin/sh -c "python manage.py loaddata models/fixtures/*.yaml"
 
 echo "== Removing root permissions"
 sudo chown -R $(whoami) .

@@ -174,8 +174,7 @@ def resolve_list(model, info, **kwargs):
         res = model.objects.all()
     if "orderBy" in kwargs:
         orders = kwargs["orderBy"].split(",")
-        for order in orders:
-            res = res.order_by(order)
+        res = res.order_by(*orders)
     if "start" in kwargs and "end" not in kwargs:
         res = res[kwargs["start"]:]
     if "end" in kwargs and "start" not in kwargs:
