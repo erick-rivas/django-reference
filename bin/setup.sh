@@ -27,7 +27,7 @@ fi
 echo "== Creating docker .envs"
 sudo rm .env
 echo "# DOCKER SETTINGS" > ".env"
-echo "### MODIFY WITH WITH $ bin/setup DJANGO_PORT POSTGRES_PORT REDIS_PORT IS_PROD ###" >> ".env"
+echo "# MODIFY WITH WITH $ bin/setup DJANGO_PORT POSTGRES_PORT REDIS_PORT IS_PROD #" >> ".env"
 echo "" >> ".env"
 echo "COMPOSE_PROJECT_NAME=django_reference_backend" >> ".env"
 echo "COMPOSE_DJANGO_PORT=$DJANGO_PORT" >> ".env"

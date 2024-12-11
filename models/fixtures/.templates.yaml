@@ -33,7 +33,7 @@
   fields:
     name: ""
     code: ""
-    stats: {"expected_goals": 4352.0}
+    stats: {"expected_goals": 4422.0, "dominant_leg": "enim", "dominant_leg_accuracy": 2410.0}
     details: {}
 
 ## SCORES
