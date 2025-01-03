@@ -10,7 +10,7 @@ daphne==4.1.2
 channels==4.2.0
 channels-redis==4.2.1
 coverage==7.6.1
-debugpy==1.8.10
+debugpy==1.8.11
 Django==4.2.17
 django-cors-headers==4.4.0
 django-constance==4.1.3

@@ -29,9 +29,7 @@ class JSONSchemaField(models.JSONField):
                 value = json.loads(str(value))
             jsonschema.validate(value, json.loads(self.schema))
         except jsonschema.exceptions.ValidationError:
-            raise exceptions.ValidationError(
-                '{value} failed JSON schema :: Schema = {schema}'.format(value=value, schema=self.schema)
-            )
+            raise exceptions.ValidationError(f'{value} failed JSON schema :: Schema = {self.schema}')
         return True
 
     def validate(self, value, model_instance):

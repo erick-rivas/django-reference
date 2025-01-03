@@ -15,6 +15,7 @@ def custom_static(prefix, view=serve, **kwargs):
     # Overridden  from django.conf.urls.static.static
     if not prefix:
         raise ImproperlyConfigured("Empty static prefix not permitted")
-    elif urlsplit(prefix).netloc:
+
+    if urlsplit(prefix).netloc:
         return []
     return [re_path(r'^%s(?P<path>.*)$' % re.escape(prefix.lstrip('/')), view, kwargs=kwargs), ]
