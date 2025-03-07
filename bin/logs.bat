@@ -3,12 +3,12 @@
 :: AUTO_GENERATED (Read only)
 
 set SCOPE=all
-set ONLY_LATEST=false
 set /A MAX_LINES=250
+set ONLY_LATEST=false
 
 IF NOT "%~1" == "" set SCOPE=%1
-IF NOT "%~2" == "" set ONLY_LATEST=%2
-IF NOT "%~3" == "" set /A MAX_LINES=%3
+IF NOT "%~2" == "" set /A MAX_LINES=%2
+IF NOT "%~3" == "" set ONLY_LATEST=%3
 
 IF "%SCOPE%" == "all" (
   IF "%ONLY_LATEST%" == "true" (
