@@ -33,7 +33,7 @@
   fields:
     name: ""
     code: ""
-    stats: {"expected_goals": 857.0}
+    stats: {"expected_goals": 2748.0, "dominant_leg": "magnam, enim"}
     details: {}
 
 ## SCORES

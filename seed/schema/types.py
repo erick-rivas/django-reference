@@ -172,6 +172,7 @@ def resolve_list(model, info, **kwargs):
         res = model.objects.filter(sql_alike_q(kwargs["query"])).distinct()
     else:
         res = model.objects.all()
+    res = model.filter_permissions(res, model.permission_filters(user))
     if "orderBy" in kwargs:
         orders = kwargs["orderBy"].split(",")
         res = res.order_by(*orders)
@@ -181,7 +182,6 @@ def resolve_list(model, info, **kwargs):
         res = res[:kwargs["end"]]
     if "start" in kwargs and "end" in kwargs:
         res = res[kwargs["start"]:kwargs["end"]]
-    res = model.filter_permissions(res, model.permission_filters(user))
     return res
 
 def resolve_pagination(model, model_name, pagination_type, info, **kwargs):

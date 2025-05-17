@@ -70,6 +70,7 @@ INSTALLED_APPS = [
     'channels',
     'dj_rest_auth',
     'storages',
+    'django_celery_beat',
 
     'django.contrib.admin',
     'django.contrib.auth',

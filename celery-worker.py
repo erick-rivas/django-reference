@@ -18,7 +18,7 @@ if __name__ == "__main__":
     from django.utils import autoreload
 
     def restart_celery():
-        celery_worker_cmd = "celery -A seed.app worker -l INFO -B"
+        celery_worker_cmd = "celery -A seed.app worker -l INFO -B --scheduler django_celery_beat.schedulers:DatabaseScheduler"
         cmd = f'pkill -f "{celery_worker_cmd}"'
         if sys.platform == "win32":
             cmd = "taskkill /f /t /im celery.exe"

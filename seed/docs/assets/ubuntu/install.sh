@@ -154,7 +154,7 @@ echo "== Supervisor setup"
 CELERY_WORKER="
 [program:celery]
 directory=$API_DIR
-command=$API_DIR/.venv/bin/celery -A seed.app worker -l INFO -B
+command=$API_DIR/.venv/bin/celery -A seed.app worker -l INFO -B --scheduler django_celery_beat.schedulers:DatabaseScheduler
 
 user=ubuntu
 numprocs=1

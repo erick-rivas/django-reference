@@ -27,7 +27,7 @@ services:
   django:
     build:
       dockerfile: Dockerfile
-    command: "python -m debugpy --listen 0.0.0.0:8001 manage.py runserver 0.0.0.0:${COMPOSE_DJANGO_PORT}"
+    command: "python manage.py runserver 0.0.0.0:${COMPOSE_DJANGO_PORT}"
     volumes:
       - .:/app
     environment:
@@ -36,7 +36,6 @@ services:
       - .env
     ports:
       - "${COMPOSE_DJANGO_PORT}:${COMPOSE_DJANGO_PORT}"
-      - "8001:8001"
     depends_on:
       - postgres
       - redis
