@@ -1,4 +1,9 @@
 #!/usr/bin/env python
+"""
+__Seed builder__
+  AUTO_GENERATED (Read only)
+  Modify via builder
+"""
 import os
 import sys
 

@@ -1,3 +1,8 @@
+"""
+__Seed builder__
+  AUTO_GENERATED (Read only)
+  Modify via builder
+"""
 # pylint: disable=C0103
 import os
 import shlex
