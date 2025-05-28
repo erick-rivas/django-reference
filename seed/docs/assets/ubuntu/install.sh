@@ -19,9 +19,21 @@ echo "== Installing dependencies"
 sudo apt update
 sudo apt install curl git-core zlib1g-dev build-essential libssl-dev libreadline-dev libyaml-dev libsqlite3-dev sqlite3 libxml2-dev libxslt1-dev libcurl4-openssl-dev software-properties-common libffi-dev yarn
 
-# Install python tools
+# Update python 3.11
 sudo apt update
+sudo add-apt-repository ppa:deadsnakes/ppa
+sudo apt update
+sudo apt install python3.11
+sudo update-alternatives --remove-all python
+sudo update-alternatives --install /usr/bin/python python /usr/bin/python3.11 1
+sudo update-alternatives --config python
+
+# Install python tools
 sudo apt install python3-pip python3-dev python3-venv libpq-dev nginx nginx-extras
+
+# Install nginx
+sudo apt update
+sudo apt install nginx nginx-extras
 
 # Install postgreSQL
 sudo apt install wget ca-certificates

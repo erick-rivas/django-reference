@@ -40,10 +40,24 @@ services:
       - postgres
       - redis
 
-  celery:
+  celery-worker:
     build:
       dockerfile: Dockerfile
-    command: "python celery-worker.py"
+    command: "celery -A seed.app worker --loglevel=info"
+    volumes:
+      - .:/app
+    environment:
+      - USE_DOCKER=true
+    env_file:
+      - .env
+    depends_on:
+      - postgres
+      - redis
+
+  celery-beat:
+    build:
+      dockerfile: Dockerfile
+    command: "celery -A seed.app beat --scheduler django_celery_beat.schedulers:DatabaseScheduler --loglevel=info"
     volumes:
       - .:/app
     environment:

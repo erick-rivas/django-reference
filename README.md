@@ -4,7 +4,7 @@ This repository holds a **reference** for the development of a **REST API with g
 
 ## Quickstart
 
--   Install [Python 3.8.x](https://www.python.org/downloads/)
+-   Install [Python 3.11.x](https://www.python.org/downloads/)
 -   Install [Docker Desktop 4.22.x](https://docs.docker.com/desktop/)
 -   Clone this repository
 -   Execute setup script `bin/setup`
