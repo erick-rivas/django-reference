@@ -40,7 +40,7 @@ services:
       - postgres
       - redis
 
-  celery-worker:
+  celery:
     build:
       dockerfile: Dockerfile
     command: "celery -A seed.app worker --loglevel=info"
