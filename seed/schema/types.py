@@ -212,6 +212,10 @@ def resolve_count(model, count_type, info, **kwargs):
         id=int(''.join(secrets.choice("0123456789") for i in range(9))),
         count=len(query))
 
+def resolve_detail(model, info, pk):
+    user = info.context.user
+    return model.filter_permissions(model.objects, model.permission_filters(user)).filter(pk=pk).first()
+
 # pylint: disable=R0904
 class Query():
     
@@ -309,10 +313,8 @@ class Query():
 
     # pylint: disable=C0103,W0622
     def resolve_match(self, info, id):
-        user = info.context.user
-        return MatchModel.filter_permissions(
-            MatchModel.objects,
-            MatchModel.permission_filters(user)).get(pk=id)
+        return resolve_detail(
+           MatchModel, info, id)
     
     # pylint: disable=C0103
     def resolve_players(self, info, **kwargs):
@@ -333,10 +335,8 @@ class Query():
 
     # pylint: disable=C0103,W0622
     def resolve_player(self, info, id):
-        user = info.context.user
-        return PlayerModel.filter_permissions(
-            PlayerModel.objects,
-            PlayerModel.permission_filters(user)).get(pk=id)
+        return resolve_detail(
+           PlayerModel, info, id)
     
     # pylint: disable=C0103
     def resolve_playerPositions(self, info, **kwargs):
@@ -357,10 +357,8 @@ class Query():
 
     # pylint: disable=C0103,W0622
     def resolve_playerPosition(self, info, id):
-        user = info.context.user
-        return PlayerPositionModel.filter_permissions(
-            PlayerPositionModel.objects,
-            PlayerPositionModel.permission_filters(user)).get(pk=id)
+        return resolve_detail(
+           PlayerPositionModel, info, id)
     
     # pylint: disable=C0103
     def resolve_scores(self, info, **kwargs):
@@ -381,10 +379,8 @@ class Query():
 
     # pylint: disable=C0103,W0622
     def resolve_score(self, info, id):
-        user = info.context.user
-        return ScoreModel.filter_permissions(
-            ScoreModel.objects,
-            ScoreModel.permission_filters(user)).get(pk=id)
+        return resolve_detail(
+           ScoreModel, info, id)
     
     # pylint: disable=C0103
     def resolve_teams(self, info, **kwargs):
@@ -405,10 +401,8 @@ class Query():
 
     # pylint: disable=C0103,W0622
     def resolve_team(self, info, id):
-        user = info.context.user
-        return TeamModel.filter_permissions(
-            TeamModel.objects,
-            TeamModel.permission_filters(user)).get(pk=id)
+        return resolve_detail(
+           TeamModel, info, id)
     
     # pylint: disable=C0103
     def resolve_users(self, info, **kwargs):
@@ -429,10 +423,8 @@ class Query():
 
     # pylint: disable=C0103,W0622
     def resolve_user(self, info, id):
-        user = info.context.user
-        return UserModel.filter_permissions(
-            UserModel.objects,
-            UserModel.permission_filters(user)).get(pk=id)
+        return resolve_detail(
+           UserModel, info, id)
     
     def resolve_files(self, info, **kwargs):
         if "limit" in kwargs:
@@ -449,7 +441,5 @@ class Query():
 
     # pylint: disable=C0103,W0622
     def resolve_file(self, info, id):
-        user = info.context.user
-        return FileModel.filter_permissions(
-            FileModel.objects, FileModel.permission_filters(user)).get(pk=id)
+        return resolve_detail(FileModel, info, id)
     pass

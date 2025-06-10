@@ -5,12 +5,12 @@
 #
 
 wheel==0.45.1
-celery==5.5.2
+celery==5.5.3
 daphne==4.2.0
 channels==4.2.2
 channels-redis==4.2.1
 coverage==7.8.2
-Django==5.2.1
+Django==5.2.2
 django-celery-beat==2.8.1
 django-cors-headers==4.7.0
 django-constance==4.3.2
@@ -29,7 +29,7 @@ psycopg2-binary==2.9.10
 pylint==3.3.7
 PyYAML==6.0.2
 redis==6.2.0
-requests==2.32.3
+requests==2.32.4
 sentry-sdk==2.29.1
 setuptools==80.9.0
 six==1.17.0

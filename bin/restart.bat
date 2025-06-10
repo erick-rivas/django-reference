@@ -2,16 +2,26 @@
 :: Seed builder
 :: AUTO_GENERATED (Read only)
 
-echo == Restarting celery & redis
-docker compose exec celery /bin/sh -c "celery -A seed.app purge -f"
-docker compose exec redis /bin/sh -c "redis-cli flushall"
+set SCOPE=all
+IF NOT "%~1" == "" set SCOPE=%1
 
 echo == Stopping server
-docker compose stop
+IF "%SCOPE%" == "all" (
+  echo == Restarting celery & redis
+  docker compose exec celery /bin/sh -c "celery -A seed.app purge -f"
+  docker compose exec redis /bin/sh -c "redis-cli flushall"
+  docker compose stop
+) ELSE (
+  docker compose stop %SCOPE%
+)
 
 echo == Starting server
 FOR /F "eol=# tokens=*" %%i IN (.env) DO SET %%i
-docker compose start
+IF "%SCOPE%" == "all" (
+  docker compose start
+) ELSE (
+  docker compose start %SCOPE%
+)
 echo.
 echo == Server is running in background (http://localhost:%COMPOSE_DJANGO_PORT%)
 echo     - To show logs execute bin/logs.bat
