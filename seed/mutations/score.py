@@ -8,6 +8,7 @@ import graphene
 from app.models import Score
 from app.models import Player
 from app.models import Match
+from seed.schema.types import resolve_detail
 from seed.schema.types import Score as ScoreTypeField
 
 class SaveScoreMutation(graphene.Mutation):
@@ -27,16 +28,10 @@ class SaveScoreMutation(graphene.Mutation):
         if "min" in kwargs:
             score["min"] = kwargs["min"]
         if "player" in kwargs:
-            player = Player.filter_permissions(
-                Player.objects,
-                Player.permission_filters(user)) \
-                .get(pk=kwargs["player"])
+            player = resolve_detail(Player, info, kwargs["player"])
             score["player"] = player
         if "match" in kwargs:
-            match = Match.filter_permissions(
-                Match.objects,
-                Match.permission_filters(user)) \
-                .get(pk=kwargs["match"])
+            match = resolve_detail(Match, info, kwargs["match"])
             score["match"] = match
         score = \
             Score.objects.create(**score)
@@ -58,19 +53,14 @@ class SetScoreMutation(graphene.Mutation):
     # pylint: disable=R0912,W0622
     def mutate(self, info, **kwargs):
         user = info.context.user
-        score = Score.filter_permissions(
-            Score.objects,
-            Score.permission_filters(user)) \
-            .get(pk=kwargs["id"])
+        score = resolve_detail(Score, info, kwargs["id"])
         if "min" in kwargs:
             score.min = kwargs["min"]
         if "player" in kwargs:
-            player = Player.objects \
-                .get(pk=kwargs["player"])
+            player = resolve_detail(Player, info, kwargs["player"])
             score.player = player
         if "match" in kwargs:
-            match = Match.objects \
-                .get(pk=kwargs["match"])
+            match = resolve_detail(Match, info, kwargs["match"])
             score.match = match
         score.save()
     
@@ -86,7 +76,7 @@ class DeleteScoreMutation(graphene.Mutation):
 
     def mutate(self, info, **kwargs):
         score_id = kwargs["id"]
-        score = Score.objects.get(pk=kwargs["id"])
+        score = resolve_detail(Score, info, kwargs["id"])
         score.delete()
         return DeleteScoreMutation(
             id=score_id)

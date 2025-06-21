@@ -7,6 +7,7 @@ __Seed builder__
 import graphene
 from app.models import PlayerPosition
 from graphene.types.generic import GenericScalar
+from seed.schema.types import resolve_detail
 from seed.schema.types import PlayerPosition as PlayerPositionTypeField
 
 class SavePlayerPositionMutation(graphene.Mutation):
@@ -53,10 +54,7 @@ class SetPlayerPositionMutation(graphene.Mutation):
     # pylint: disable=R0912,W0622
     def mutate(self, info, **kwargs):
         user = info.context.user
-        player_position = PlayerPosition.filter_permissions(
-            PlayerPosition.objects,
-            PlayerPosition.permission_filters(user)) \
-            .get(pk=kwargs["id"])
+        player_position = resolve_detail(PlayerPosition, info, kwargs["id"])
         if "name" in kwargs:
             player_position.name = kwargs["name"]
         if "code" in kwargs:
@@ -79,7 +77,7 @@ class DeletePlayerPositionMutation(graphene.Mutation):
 
     def mutate(self, info, **kwargs):
         player_position_id = kwargs["id"]
-        player_position = PlayerPosition.objects.get(pk=kwargs["id"])
+        player_position = resolve_detail(PlayerPosition, info, kwargs["id"])
         player_position.delete()
         return DeletePlayerPositionMutation(
             id=player_position_id)

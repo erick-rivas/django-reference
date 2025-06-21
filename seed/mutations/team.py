@@ -7,6 +7,7 @@ __Seed builder__
 import graphene
 from app.models import Team
 from app.models import File
+from seed.schema.types import resolve_detail
 from seed.schema.types import Team as TeamTypeField
 
 class SaveTeamMutation(graphene.Mutation):
@@ -32,16 +33,10 @@ class SaveTeamMutation(graphene.Mutation):
         if "marketValue" in kwargs:
             team["market_value"] = kwargs["marketValue"]
         if "logo" in kwargs:
-            logo = File.filter_permissions(
-                File.objects,
-                File.permission_filters(user)) \
-                .get(pk=kwargs["logo"])
+            logo = resolve_detail(File, info, kwargs["logo"])
             team["logo"] = logo
         if "rival" in kwargs:
-            rival = Team.filter_permissions(
-                Team.objects,
-                Team.permission_filters(user)) \
-                .get(pk=kwargs["rival"])
+            rival = resolve_detail(Team, info, kwargs["rival"])
             team["rival"] = rival
         team = \
             Team.objects.create(**team)
@@ -65,10 +60,7 @@ class SetTeamMutation(graphene.Mutation):
     # pylint: disable=R0912,W0622
     def mutate(self, info, **kwargs):
         user = info.context.user
-        team = Team.filter_permissions(
-            Team.objects,
-            Team.permission_filters(user)) \
-            .get(pk=kwargs["id"])
+        team = resolve_detail(Team, info, kwargs["id"])
         if "name" in kwargs:
             team.name = kwargs["name"]
         if "description" in kwargs:
@@ -76,12 +68,10 @@ class SetTeamMutation(graphene.Mutation):
         if "marketValue" in kwargs:
             team.market_value = kwargs["marketValue"]
         if "logo" in kwargs:
-            logo = File.objects \
-                .get(pk=kwargs["logo"])
+            logo = resolve_detail(File, info, kwargs["logo"])
             team.logo = logo
         if "rival" in kwargs:
-            rival = Team.objects \
-                .get(pk=kwargs["rival"])
+            rival = resolve_detail(Team, info, kwargs["rival"])
             team.rival = rival
         team.save()
     
@@ -97,7 +87,7 @@ class DeleteTeamMutation(graphene.Mutation):
 
     def mutate(self, info, **kwargs):
         team_id = kwargs["id"]
-        team = Team.objects.get(pk=kwargs["id"])
+        team = resolve_detail(Team, info, kwargs["id"])
         team.delete()
         return DeleteTeamMutation(
             id=team_id)

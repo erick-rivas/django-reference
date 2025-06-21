@@ -9,6 +9,7 @@ from app.models import Player
 from app.models import Team
 from app.models import PlayerPosition
 from app.models import File
+from seed.schema.types import resolve_detail
 from seed.schema.types import Player as PlayerTypeField
 
 class SavePlayerMutation(graphene.Mutation):
@@ -35,22 +36,13 @@ class SavePlayerMutation(graphene.Mutation):
         if "salary" in kwargs:
             player["salary"] = kwargs["salary"]
         if "photo" in kwargs:
-            photo = File.filter_permissions(
-                File.objects,
-                File.permission_filters(user)) \
-                .get(pk=kwargs["photo"])
+            photo = resolve_detail(File, info, kwargs["photo"])
             player["photo"] = photo
         if "team" in kwargs:
-            team = Team.filter_permissions(
-                Team.objects,
-                Team.permission_filters(user)) \
-                .get(pk=kwargs["team"])
+            team = resolve_detail(Team, info, kwargs["team"])
             player["team"] = team
         if "position" in kwargs:
-            position = PlayerPosition.filter_permissions(
-                PlayerPosition.objects,
-                PlayerPosition.permission_filters(user)) \
-                .get(pk=kwargs["position"])
+            position = resolve_detail(PlayerPosition, info, kwargs["position"])
             player["position"] = position
         player = \
             Player.objects.create(**player)
@@ -75,10 +67,7 @@ class SetPlayerMutation(graphene.Mutation):
     # pylint: disable=R0912,W0622
     def mutate(self, info, **kwargs):
         user = info.context.user
-        player = Player.filter_permissions(
-            Player.objects,
-            Player.permission_filters(user)) \
-            .get(pk=kwargs["id"])
+        player = resolve_detail(Player, info, kwargs["id"])
         if "name" in kwargs:
             player.name = kwargs["name"]
         if "isActive" in kwargs:
@@ -86,16 +75,13 @@ class SetPlayerMutation(graphene.Mutation):
         if "salary" in kwargs:
             player.salary = kwargs["salary"]
         if "photo" in kwargs:
-            photo = File.objects \
-                .get(pk=kwargs["photo"])
+            photo = resolve_detail(File, info, kwargs["photo"])
             player.photo = photo
         if "team" in kwargs:
-            team = Team.objects \
-                .get(pk=kwargs["team"])
+            team = resolve_detail(Team, info, kwargs["team"])
             player.team = team
         if "position" in kwargs:
-            position = PlayerPosition.objects \
-                .get(pk=kwargs["position"])
+            position = resolve_detail(PlayerPosition, info, kwargs["position"])
             player.position = position
         player.save()
     
@@ -111,7 +97,7 @@ class DeletePlayerMutation(graphene.Mutation):
 
     def mutate(self, info, **kwargs):
         player_id = kwargs["id"]
-        player = Player.objects.get(pk=kwargs["id"])
+        player = resolve_detail(Player, info, kwargs["id"])
         player.delete()
         return DeletePlayerMutation(
             id=player_id)

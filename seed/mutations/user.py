@@ -8,6 +8,7 @@ import graphene
 from app.models import User
 from app.models import Team
 from app.models import File
+from seed.schema.types import resolve_detail
 from seed.schema.types import User as UserTypeField
 
 class SaveUserMutation(graphene.Mutation):
@@ -40,10 +41,7 @@ class SaveUserMutation(graphene.Mutation):
         if "isActive" in kwargs:
             user["is_active"] = kwargs["isActive"]
         if "profileImage" in kwargs:
-            profile_image = File.filter_permissions(
-                File.objects,
-                File.permission_filters(user)) \
-                .get(pk=kwargs["profileImage"])
+            profile_image = resolve_detail(File, info, kwargs["profileImage"])
             user["profile_image"] = profile_image
         user = \
             User.objects.create(**user)
@@ -51,10 +49,7 @@ class SaveUserMutation(graphene.Mutation):
         if "teams" in kwargs:
             user.teams.clear()
             for teams_id in kwargs["teams"]:
-                teams = Team.filter_permissions(
-                    Team.objects,
-                    Team.permission_filters(user)) \
-                    .get(pk=teams_id)
+                teams = resolve_detail(Team, info, teams_id)
                 user.teams.add(teams)
         user.save()
     
@@ -79,10 +74,7 @@ class SetUserMutation(graphene.Mutation):
     # pylint: disable=R0912,W0622
     def mutate(self, info, **kwargs):
         user = info.context.user
-        user = User.filter_permissions(
-            User.objects,
-            User.permission_filters(user)) \
-            .get(pk=kwargs["id"])
+        user = resolve_detail(User, info, kwargs["id"])
         if "userName" in kwargs:
             user.user_name = kwargs["userName"]
         if "firstName" in kwargs:
@@ -96,13 +88,12 @@ class SetUserMutation(graphene.Mutation):
         if "password" in kwargs:
             user.set_password(kwargs["password"])
         if "profileImage" in kwargs:
-            profile_image = File.objects \
-                .get(pk=kwargs["profileImage"])
+            profile_image = resolve_detail(File, info, kwargs["profileImage"])
             user.profile_image = profile_image
         if "teams" in kwargs:
             user.teams.clear()
             for teams_id in kwargs["teams"]:
-                teams = Team.objects.get(pk=teams_id)
+                teams = resolve_detail(Team, info, teams_id)
                 user.teams.add(teams)
         user.save()
     
@@ -118,7 +109,7 @@ class DeleteUserMutation(graphene.Mutation):
 
     def mutate(self, info, **kwargs):
         user_id = kwargs["id"]
-        user = User.objects.get(pk=kwargs["id"])
+        user = resolve_detail(User, info, kwargs["id"])
         user.delete()
         return DeleteUserMutation(
             id=user_id)
