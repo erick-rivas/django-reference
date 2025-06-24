@@ -180,6 +180,7 @@ REST_FRAMEWORK = {}
 REST_FRAMEWORK['DEFAULT_RENDERER_CLASSES'] = [
     'rest_framework.renderers.JSONRenderer',
     'seed.routes.helpers.rest_render.BrowsableAPIRenderer',
+    'seed.routes.helpers.plain_render.PlainTextRenderer',
 ]
 
 REST_FRAMEWORK['DEFAULT_AUTHENTICATION_CLASSES'] = [
