@@ -6,11 +6,11 @@
 
 wheel==0.45.1
 celery==5.5.3
-daphne==4.2.0
+daphne==4.2.1
 channels==4.2.2
 channels-redis==4.2.1
-coverage==7.9.1
-Django==5.2.3
+coverage==7.9.2
+Django==5.2.4
 django-celery-beat==2.8.1
 django-cors-headers==4.7.0
 django-constance==4.3.2
@@ -18,7 +18,7 @@ django-dotenv==1.4.2
 django-filter==25.1
 django-picklefield==3.3
 djangoql==0.18.1
-django-import-export==4.3.7
+django-import-export==4.3.8
 dj-rest-auth==7.0.1
 django-storages==1.14.6
 djangorestframework==3.16.0
@@ -30,6 +30,6 @@ pylint==3.3.7
 PyYAML==6.0.2
 redis==6.2.0
 requests==2.32.4
-sentry-sdk==2.30.0
+sentry-sdk==2.32.0
 setuptools==80.9.0
 six==1.17.0
