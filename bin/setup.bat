@@ -2,6 +2,7 @@
 ::: __Seed builder__
 :: AUTO_GENERATED
 :: Add custom commands at the end
+:: Use $ bin/setup.bat <django_port> <postgres_port> <redis_port> <server_url> <client_url> <is_prod>
 
 echo == Configuring docker .env
 set /A DJANGO_PORT=8008

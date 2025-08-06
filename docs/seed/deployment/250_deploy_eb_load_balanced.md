@@ -20,11 +20,11 @@
 
 -   Create and configure *.env.prod* file.
 -   Create a `.ebextensions` folder in the root directory of the project and copy inside
-    -   `seed/docs/extras/assets/aws-eb/load-balanced/apache-settings.config`
-    -   `seed/docs/extras/assets/aws-eb/load-balanced/db.config`
-    -   `seed/docs/extras/assets/aws-eb/load-balanced/django.config`
--   Copy `seed/docs/extras/assets/aws-eb/load-balanced/.ebignore` in the root directory of the project
--   Copy `seed/docs/extras/assets/aws-eb/load-balanced/deploy.sh` in `/bin` folder
+    -   `seed/docs/deployment/assets/aws-eb/load-balanced/apache-settings.config`
+    -   `seed/docs/deployment/assets/aws-eb/load-balanced/db.config`
+    -   `seed/docs/deployment/assets/aws-eb/load-balanced/django.config`
+-   Copy `seed/docs/deployment/assets/aws-eb/load-balanced/.ebignore` in the root directory of the project
+-   Copy `seed/docs/deployment/assets/aws-eb/load-balanced/deploy.sh` in `/bin` folder
 
 ### SSL
 
@@ -54,11 +54,11 @@ To enable a https connection
 
 #### Enable application settings
 
--    Copy `seed/docs/extras/assets/aws-eb/https-reencrypt-alb.config` into `.ebextensions` folder
+-    Copy `seed/docs/deployment/assets/aws-eb/https-reencrypt-alb.config` into `.ebextensions` folder
 
 ### Deployment
 
--   Run script `seed/docs/extras/assets/aws-eb/deploy.sh`
+-   Run script `seed/docs/deployment/assets/aws-eb/deploy.sh`
 
 ### References
 -   AWS reference [https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/create-deploy-python-django.html](https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/create-deploy-python-django.html)

@@ -1,6 +1,7 @@
 #!/bin/bash
 # Seed builder
 # AUTO_GENERATED (Read only)
+# Use $ bin/review.sh
 
 echo "== Reviewing with pylint"
 sudo codacy-analysis-cli analyze --tool pylint --force-file-permissions --parallel 4

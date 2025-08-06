@@ -1,6 +1,7 @@
 #!/bin/bash
 # Seed builder
 # AUTO_GENERATED (Read only)
+# Use $ bin/clean.sh <clean_files>
 
 CLEAN_FILES=false
 

@@ -25,7 +25,6 @@ README.md
 requirements.libs
 requirements.txt
 SeedManifest.json
-SeedModeling.mdj
 SeedSettings.json
 app/celery.py
 app/models.py
@@ -37,6 +36,7 @@ app/urls.py
 .idea
 .vscode
 bin/*
+docs/seed/*
 domain/*
 models/*.py
 models/*.md

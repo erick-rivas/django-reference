@@ -1,4 +1,4 @@
-# Django reference
+# General documentation
 
 ## Architecture
 
@@ -32,27 +32,27 @@ The main differentiator / advantage of the architecture is its **code auto-gener
 
 -   To generate and run migrations, execute `bin/migrate`
 -   To load fixtures, execute `bin/fixtures`
-   - To load fixtures of an specific folder, execute `bin/fixtures <Folder_Name>`
+   - To load fixtures of an specific folder, execute `bin/fixtures <folder_name>`
 -   To open db manager to run sql queries, execute `bin/psql`
--   To dump database in .yaml format, execute `bin/dump <Model_Name>`
+-   To dump database in .yaml format, execute `bin/dump <model_Name>`
 
 ### Testing & QA
 
 -   TO show server logs, execute `bin/logs`
-    - To show specific logs, execute `bin/logs <Scope (all|django|celery)> <Max_Lines> <Only_Latest>`
+    - To show specific logs, execute `bin/logs <container (all|django|celery)> <max_Lines> <only_Latest>`
 -   To test use cases, execute `bin/test`
-    - To test specific folder, execute `bin/test <Folder_Name>`
+    - To test specific folder, execute `bin/test <folder_Name>`
 -   To run code from debug_.py file, execute `bin/debug`
 -   To review code quality, execute `bin/review`
     >   Before run review command, install [Codacy CLI](https://github.com/codacy/codacy-analysis-cli)
 -   To generate code coverage report, execute `bin/coverage`
-    - To generate specific folder, execute `bin/coverage <Folder_Name>`
+    - To generate specific folder, execute `bin/coverage <folder_Name>`
 
 ### Docker
 
 -   To reinstall pip dependencies, execute `bin/install`
 -   To open container console (bash), execute `bin/console`
-    -   To execute command in the container, execute `bin/console <Command>`
+    -   To execute command in the container, execute `bin/console <command>`
 -   To clean unused docker resources, execute `bin/clean`
     - To include file cleaning, execute `bin/clean true`
 
@@ -63,4 +63,3 @@ The main differentiator / advantage of the architecture is its **code auto-gener
 -   [Models](040_models.md)
 -   [Seed builder](110_seed_builder.md)
 -   [Seed commons](120_seed_commons.md)
--   [Deploy - Ubuntu](210_deploy_ubuntu.md)

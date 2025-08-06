@@ -1,16 +1,17 @@
 @echo off
 :: Seed builder
 :: AUTO_GENERATED (Read only)
+:: Use $ bin/logs.bat <container> <max_lines> <only_latest>
 
-set SCOPE=all
+set CONTAINER=all
 set /A MAX_LINES=250
 set ONLY_LATEST=false
 
-IF NOT "%~1" == "" set SCOPE=%1
+IF NOT "%~1" == "" set CONTAINER=%1
 IF NOT "%~2" == "" set /A MAX_LINES=%2
 IF NOT "%~3" == "" set ONLY_LATEST=%3
 
-IF "%SCOPE%" == "all" (
+IF "%CONTAINER%" == "all" (
   IF "%ONLY_LATEST%" == "true" (
     docker compose logs --follow --since 0m --tail %MAX_LINES% django celery
   ) ELSE (
@@ -18,8 +19,8 @@ IF "%SCOPE%" == "all" (
   )
 ) ELSE (
   IF "%ONLY_LATEST%" == "true" (
-    docker compose logs --follow --since 0m --tail %MAX_LINES% %SCOPE%
+    docker compose logs --follow --since 0m --tail %MAX_LINES% %CONTAINER%
   ) ELSE (
-    docker compose logs --follow --tail %MAX_LINES% %SCOPE%
+    docker compose logs --follow --tail %MAX_LINES% %CONTAINER%
   )
 )

@@ -62,7 +62,7 @@ phases:
       # Uploading project files to EC2 instance
       - cd ..
       - mv src $PROJECT
-      - SCRIPT_FOLDER=/home/ubuntu/$PROJECT/seed/docs/assets/ubuntu/single-install.sh
+      - SCRIPT_FOLDER=/home/ubuntu/$PROJECT/docs/seed/assets/ubuntu/single-install.sh
       - scp -o StrictHostKeyChecking=no -i $PROJECT/$KEY_PATH -r $PROJECT/ ubuntu@$INSTANCE_IP:/home/ubuntu/
       - scp -o StrictHostKeyChecking=no -i $PROJECT/$KEY_PATH -r $PROJECT/$ENV_PATH ubuntu@$INSTANCE_IP:/home/ubuntu/$PROJECT/.env.prod
       - ssh -o StrictHostKeyChecking=no -i $PROJECT/$KEY_PATH ubuntu@$INSTANCE_IP "cd /home/ubuntu/$PROJECT/ && sudo chmod +x $SCRIPT_FOLDER && sudo $SCRIPT_FOLDER"

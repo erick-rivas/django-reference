@@ -1,6 +1,7 @@
 @echo off
 :: Seed builder
 :: AUTO_GENERATED (Read only)
+:: Use $ bin/clean.bat <clean_files>
 
 set CLEAN_FILES=false
 

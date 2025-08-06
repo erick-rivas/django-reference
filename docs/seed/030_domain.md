@@ -20,4 +20,4 @@ def create_project(user, project_name):  #
 
 ## References
 
--   Query reference: [https://docs.djangoproject.com/en/2.2/topics/db/queries/](https://docs.djangoproject.com/en/2.2/topics/db/queries/)
+-   Query reference: [https://docs.djangoproject.com/en/5.2/topics/db/queries/](https://docs.djangoproject.com/en/5.2/topics/db/queries/)

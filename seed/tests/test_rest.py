@@ -108,7 +108,7 @@ class TestRest(APITestCase):
         data = {
             "name": "",
             "code": "",
-            "stats": """{"expected_goals": 3608.0, "dominant_leg": "tellus. vitae accusantium Nullam ipsum, vitae odit"}""",
+            "stats": """{"expected_goals": 6594.0}""",
             "details": "{}",
         }
         response = self.client.post('/api/player_positions/', data)
@@ -118,7 +118,7 @@ class TestRest(APITestCase):
         data = {
             "name": "",
             "code": "",
-            "stats": """{"expected_goals": 1112.0, "dominant_leg": "possimus ut Nullam mattis Nullam illum"}""",
+            "stats": """{"expected_goals": 3077.0}""",
             "details": "{}",
         }
         response = self.client.put('/api/player_positions/1/', data)

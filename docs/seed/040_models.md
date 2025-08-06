@@ -75,4 +75,4 @@ class Node_A(_User):
 
 ## References
 
--   Model reference: [https://docs.djangoproject.com/en/2.2/topics/db/models/](https://docs.djangoproject.com/en/2.2/topics/db/models/)
+-   Model reference: [https://docs.djangoproject.com/en/5.2/topics/db/models/](https://docs.djangoproject.com/en/5.2/topics/db/models/)

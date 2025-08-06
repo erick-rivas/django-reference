@@ -23,11 +23,11 @@
 
 -   Create and configure *.env.prod* file
 -   Create a `.ebextensions` folder in the root directory of the project and copy inside
-    -   `seed/docs/extras/assets/aws-eb/single-instance/apache-settings.config`
-    -   `seed/docs/extras/assets/aws-eb/single-instance/db.config`
-    -   `seed/docs/extras/assets/aws-eb/single-instance/django.config`
--   Copy `seed/docs/extras/assets/aws-eb/single-instance/.ebignore` in the root directory of the project
--   Copy `seed/docs/extras/assets/aws-eb/single-instance/deploy.sh` in `/bin` folder
+    -   `seed/docs/deployment/assets/aws-eb/single-instance/apache-settings.config`
+    -   `seed/docs/deployment/assets/aws-eb/single-instance/db.config`
+    -   `seed/docs/deployment/assets/aws-eb/single-instance/django.config`
+-   Copy `seed/docs/deployment/assets/aws-eb/single-instance/.ebignore` in the root directory of the project
+-   Copy `seed/docs/deployment/assets/aws-eb/single-instance/deploy.sh` in `/bin` folder
 
 ### SSL
 
@@ -78,13 +78,13 @@ sudo ./certbot-auto certonly --debug
 ```
 -    **Important:** Copy the certificate and private key paths for later
 -    Remove /etc/httpd/conf.d/temp.conf and exit server
--    Copy `seed/docs/extras/assets/single-instance/https-instance.config` into `.ebextensions` folder
+-    Copy `seed/docs/deployment/assets/single-instance/https-instance.config` into `.ebextensions` folder
 -    Configure the *SSLCertificateFile* and *SSLCertificateKeyFile* keys with the files created by certbot
 -    Deploy again `eb deploy`
 
 ### Deployment
 
--   Run script `seed/docs/extras/assets/aws-eb/deploy.sh`
+-   Run script `seed/docs/deployment/assets/aws-eb/deploy.sh`
 
 ### References
 -   AWS reference [https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/create-deploy-python-django.html](https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/create-deploy-python-django.html)

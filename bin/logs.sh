@@ -1,16 +1,17 @@
 #!/bin/bash
 # Seed builder
 # AUTO_GENERATED (Read only)
+# Use $ bin/logs.sh <container> <max_lines> <only_latest>
 
-SCOPE="all"
+CONTAINER="all"
 MAX_LINES=250
 ONLY_LATEST=false
 
-if [ $# -ge 1 ]; then SCOPE=$1; fi
+if [ $# -ge 1 ]; then CONTAINER=$1; fi
 if [ $# -ge 2 ]; then MAX_LINES=$2; fi
 if [ $# -ge 3 ]; then ONLY_LATEST=$3; fi
 
-if [ "$SCOPE" = "all" ]; then
+if [ "$CONTAINER" = "all" ]; then
   if [ "$ONLY_LATEST" = true ]; then
     sudo docker compose logs --follow --since 0m --tail "$MAX_LINES" django celery
   else
@@ -18,8 +19,8 @@ if [ "$SCOPE" = "all" ]; then
   fi
 else
   if [ "$ONLY_LATEST" = true ]; then
-    sudo docker compose logs --follow --since 0m --tail "$MAX_LINES" "$SCOPE"
+    sudo docker compose logs --follow --since 0m --tail "$MAX_LINES" "$CONTAINER"
   else
-    sudo docker compose logs --follow --tail "$MAX_LINES" "$SCOPE"
+    sudo docker compose logs --follow --tail "$MAX_LINES" "$CONTAINER"
   fi
 fi

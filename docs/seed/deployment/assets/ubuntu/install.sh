@@ -64,8 +64,8 @@ sudo service postgresql restart
 echo "== Project setup"
 #####
 
-chmod 777 $API_DIR/seed/docs/assets/ubuntu/setup.sh
-$API_DIR/seed/docs/assets/ubuntu/setup.sh $DB_NAME $DB_USER $DB_PASSWORD
+chmod 777 $API_DIR/docs/seed/deployment/assets/ubuntu/setup.sh
+$API_DIR/docs/seed/deployment/assets/ubuntu/setup.sh $DB_NAME $DB_USER $DB_PASSWORD
 
 #####
 echo "== Gunicorn setup"

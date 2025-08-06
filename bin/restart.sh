@@ -1,26 +1,27 @@
 #!/bin/bash
 # Seed builder
 # AUTO_GENERATED (Read only)
+# Use $ bin/restart.sh <container>
 
-SCOPE="all"
-if [ $# -ge 1 ]; then SCOPE=$1; fi
+CONTAINER="all"
+if [ $# -ge 1 ]; then CONTAINER=$1; fi
 
 echo "== Stopping server"
-if [ "$SCOPE" = "all" ]; then
+if [ "$CONTAINER" = "all" ]; then
   echo "== Restarting celery & redis"
   sudo docker compose exec celery /bin/sh -c "celery -A seed.app purge -f"
   sudo docker compose exec redis /bin/sh -c "redis-cli flushall"
   sudo docker compose stop
 else
-  sudo docker compose stop "$SCOPE"
+  sudo docker compose stop "$CONTAINER"
 fi
 
 echo "== Starting server"
 source .env
-if [ "$SCOPE" = "all" ]; then
+if [ "$CONTAINER" = "all" ]; then
   sudo docker compose start
 else
-  sudo docker compose start "$SCOPE"
+  sudo docker compose start "$CONTAINER"
 fi
 
 echo ""

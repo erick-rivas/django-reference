@@ -5,9 +5,9 @@ This file contains guides to deploy project to a (Ubuntu Server)
 ### Server installation
 
 -   Clone repository
--   Execute installation script ```seed/docs/assets/ubuntu/install.sh #SERVER_NAME# #DB_NAME# #DB_USER# #DB_PASSWORD#```
-    >  Example: ```seed/docs/assets/ubuntu/install.sh seed-project.com db admin 123```
--   In case of require ssl execute ```seed/docs/assets/ubuntu/install-ssl.sh #SERVER_NAME#```
+-   Execute installation script ```docs/seed/deployment/assets/ubuntu/install.sh #SERVER_NAME# #DB_NAME# #DB_USER# #DB_PASSWORD#```
+    >  Example: ```docs/seed/deployment/assets/ubuntu/install.sh seed-project.com db admin 123```
+-   In case of require ssl execute ```docs/seed/deployment/assets/ubuntu/install-ssl.sh #SERVER_NAME#```
 
 ### Project settings
 
@@ -36,11 +36,11 @@ sudo vim /etc/systemd/system/gunicorn.service
 
 ### ReactJS configuration (optional)
 
--   Check reference [documentation](https://github.com/erick-rivas/reactjs-reference/blob/master/src/seed/docs/220_ubuntu.md)
+-   Check reference [documentation](https://github.com/erick-rivas/reactjs-reference/blob/master/src/docs/seed/220_ubuntu.md)
 
 ### Deployment
 
--   Copy `seed/docs/assets/ubuntu/deploy-api.sh` in project root folder
+-   Copy `docs/seed/deployment/assets/ubuntu/deploy-api.sh` in project root folder
 -   Modify deploy-api.sh settings
 ```
 API_DIR="###"
@@ -52,7 +52,7 @@ WEB_DIR="###"
 
 #### Deploy on reboot
 
--   Copy `seed/docs/assets/ubuntu/reboot.sh` in project root folder
+-   Copy `docs/seed/deployment/assets/ubuntu/reboot.sh` in project root folder
 -   Execute `crontab -e`
 -   Include `@reboot <root_path>/reboot.sh`
     -   Example `/home/ubuntu/reboot.sh`
