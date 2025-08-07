@@ -34,25 +34,25 @@ The main differentiator / advantage of the architecture is its **code auto-gener
 -   To load fixtures, execute `bin/fixtures`
    - To load fixtures of an specific folder, execute `bin/fixtures <folder_name>`
 -   To open db manager to run sql queries, execute `bin/psql`
--   To dump database in .yaml format, execute `bin/dump <model_Name>`
+-   To dump database in .yaml format, execute `bin/dump <model_name>`
 
 ### Testing & QA
 
 -   TO show server logs, execute `bin/logs`
-    - To show specific logs, execute `bin/logs <container (all|django|celery)> <max_Lines> <only_Latest>`
+    - To show specific logs, execute `bin/logs <container (all|django|celery)> <max_Lines> <only_latest>`
 -   To test use cases, execute `bin/test`
-    - To test specific folder, execute `bin/test <folder_Name>`
+    - To test specific folder, execute `bin/test <folder_name>`
 -   To run code from debug_.py file, execute `bin/debug`
 -   To review code quality, execute `bin/review`
     >   Before run review command, install [Codacy CLI](https://github.com/codacy/codacy-analysis-cli)
 -   To generate code coverage report, execute `bin/coverage`
-    - To generate specific folder, execute `bin/coverage <folder_Name>`
+    - To generate specific folder, execute `bin/coverage <folder_name>`
 
 ### Docker
 
 -   To reinstall pip dependencies, execute `bin/install`
 -   To open container console (bash), execute `bin/console`
-    -   To execute command in the container, execute `bin/console <command>`
+    -   To execute command in the container, execute `bin/console <container (all|django|celery)> <command>`
 -   To clean unused docker resources, execute `bin/clean`
     - To include file cleaning, execute `bin/clean true`
 

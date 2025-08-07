@@ -36,7 +36,7 @@ app/urls.py
 .idea
 .vscode
 bin/*
-docs/seed/*
+docs/*
 domain/*
 models/*.py
 models/*.md
