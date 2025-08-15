@@ -21,4 +21,4 @@ hooks:
   AfterInstall:
     - location: appspec.sh
       timeout: 2800
-      runas: root  
+      runas: root

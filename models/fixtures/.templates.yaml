@@ -33,7 +33,7 @@
   fields:
     name: ""
     code: ""
-    stats: {"expected_goals": 7953.0}
+    stats: {"expected_goals": 4608.0, "dominant_leg": "libero vitae culpa! accusantium a tellus. officiis", "dominant_leg_accuracy": 9078.0}
     details: {}
 
 ## SCORES
