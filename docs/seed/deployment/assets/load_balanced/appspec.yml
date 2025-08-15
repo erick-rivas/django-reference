@@ -1,0 +1,24 @@
+version: 0.0
+os: linux
+
+files: 
+  - source: /
+    destination: /home/ubuntu/<PROJECT>
+    overwrite: true
+
+permissions:
+  - object: /home/ubuntu/<PROJECT>
+    owner: ubuntu
+    group: ubuntu
+    mode: 777
+    type:
+      - file
+      - directory
+    
+file_exists_behavior: OVERWRITE
+
+hooks:
+  AfterInstall:
+    - location: appspec.sh
+      timeout: 2800
+      runas: root  
