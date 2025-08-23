@@ -23,16 +23,20 @@ for /f "delims=" %%i in ('docker ps') do set RUNNING=%%i
 IF "%RUNNING%" == "" echo ERROR: Before executing bin/setup.bat, start docker service
 IF "%RUNNING%" == "" exit 1
 
-echo == Creating docker .envs
-del .env
-echo # DOCKER SETTINGS > .\.env
-echo # MODIFY WITH WITH $ bin/setup.bat DJANGO_PORT POSTGRES_PORT REDIS_PORT IS_PROD # >> .\.env
-echo.>> .env
-echo COMPOSE_PROJECT_NAME=django_reference_backend>> .\.env
-echo COMPOSE_DJANGO_PORT=%DJANGO_PORT%>> .\.env
-echo COMPOSE_POSTGRES_PORT=%POSTGRES_PORT%>> .\.env
-echo COMPOSE_REDIS_PORT=%REDIS_PORT%>> .\.env
-echo IS_PROD=%IS_PROD%>> .\.env
+IF NOT EXIST .\.env  (
+  IF NOT "%~1" == "" (
+    echo == Creating docker .envs
+    del .env
+    echo # DOCKER SETTINGS > .\.env
+    echo # MODIFY WITH WITH $ bin/setup.bat DJANGO_PORT POSTGRES_PORT REDIS_PORT IS_PROD # >> .\.env
+    echo.>> .env
+    echo COMPOSE_PROJECT_NAME=django_reference_backend>> .\.env
+    echo COMPOSE_DJANGO_PORT=%DJANGO_PORT%>> .\.env
+    echo COMPOSE_POSTGRES_PORT=%POSTGRES_PORT%>> .\.env
+    echo COMPOSE_REDIS_PORT=%REDIS_PORT%>> .\.env
+    echo IS_PROD=%IS_PROD%>> .\.env
+  )
+)
 
 IF NOT EXIST .\debug_.py (
   echo # Temporary file for debugging, run with bin/debug.bat > .\debug_.py
@@ -47,7 +51,6 @@ docker compose build
 echo == Setting execute permissions to bin
 docker compose run --rm django /bin/sh -c "chmod +x bin/*.sh;chmod +x bin/scripts/*.sh"
 
-echo == Initializing .envs
 docker compose run --rm django /bin/sh -c "cp bin/scripts/init_envs.sh bin/scripts/win_init_envs.sh"
 docker compose run --rm django /bin/sh -c "sed -i 's/\r$//g' bin/scripts/win_init_envs.sh"
 docker compose run --rm django /bin/sh -c "bin/scripts/win_init_envs.sh %POSTGRES_PORT% %REDIS_PORT% %SERVER_URL% %CLIENT_URL% %IS_PROD%"

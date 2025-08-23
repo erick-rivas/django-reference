@@ -53,8 +53,8 @@ The main differentiator / advantage of the architecture is its **code auto-gener
 -   To reinstall pip dependencies, execute `bin/install`
 -   To open container console (bash), execute `bin/console`
     -   To execute command in the container, execute `bin/console <container (all|django|celery)> <command>`
--   To clean unused docker resources, execute `bin/clean`
-    - To include file cleaning, execute `bin/clean true`
+-   To clean unused docker resources, execute `bin/clean docker`
+-   To clean unused files, execute `bin/clean files`
 
 ## Other resources
 

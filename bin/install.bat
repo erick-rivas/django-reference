@@ -5,8 +5,10 @@
 :: Use $ bin/install.bat
 
 for /f "delims=" %%i in ('docker compose ps --services --filter "status=running"') do set RUNNING=%%i
-IF "%RUNNING%" == "" echo ERROR: Before executing bin/install.bat, start server with bin/start.bat
-IF "%RUNNING%" == "" exit 1
+IF "%RUNNING%" == "" (
+  echo ERROR: Before executing bin/console.bat, start server with bin/start.bat
+  exit 1
+)
 
 echo == Installing dependencies
 docker compose exec django /bin/sh -c "pip install -r requirements.txt --no-cache-dir"

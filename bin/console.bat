@@ -4,8 +4,10 @@
 :: Use $ bin/console.bat <container> <command>
 
 for /f "delims=" %%i in ('docker compose ps --services --filter "status=running"') do set RUNNING=%%i
-IF "%RUNNING%" == "" echo ERROR: Before executing bin/console.bat, start server with bin/start.bat
-IF "%RUNNING%" == "" exit 1
+IF "%RUNNING%" == "" (
+  echo ERROR: Before executing bin/console.bat, start server with bin/start.bat
+  exit 1
+)
 
 set CONTAINER=None
 set COMMAND=None

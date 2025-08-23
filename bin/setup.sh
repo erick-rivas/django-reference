@@ -25,16 +25,20 @@ if [ $RUNNING -z ]; then
   exit 1
 fi
 
-echo "== Creating docker .envs"
-sudo rm .env
-echo "# DOCKER SETTINGS" > ".env"
-echo "# MODIFY WITH WITH $ bin/setup DJANGO_PORT POSTGRES_PORT REDIS_PORT IS_PROD #" >> ".env"
-echo "" >> ".env"
-echo "COMPOSE_PROJECT_NAME=django_reference_backend" >> ".env"
-echo "COMPOSE_DJANGO_PORT=$DJANGO_PORT" >> ".env"
-echo "COMPOSE_POSTGRES_PORT=$POSTGRES_PORT" >> ".env"
-echo "COMPOSE_REDIS_PORT=$REDIS_PORT" >> ".env"
-echo "IS_PROD=$IS_PROD" >> ".env"
+if [ ! -f debug_.py ]; then
+  if [ $# -ge 1 ]; then
+    echo "== Creating docker .envs"
+    sudo rm .env
+    echo "# DOCKER SETTINGS" > ".env"
+    echo "# MODIFY WITH WITH $ bin/setup DJANGO_PORT POSTGRES_PORT REDIS_PORT IS_PROD #" >> ".env"
+    echo "" >> ".env"
+    echo "COMPOSE_PROJECT_NAME=django_reference_backend" >> ".env"
+    echo "COMPOSE_DJANGO_PORT=$DJANGO_PORT" >> ".env"
+    echo "COMPOSE_POSTGRES_PORT=$POSTGRES_PORT" >> ".env"
+    echo "COMPOSE_REDIS_PORT=$REDIS_PORT" >> ".env"
+    echo "IS_PROD=$IS_PROD" >> ".env"
+  fi
+fi
 
 if [ ! -f debug_.py ]; then
   echo "# Temporary file for debugging, run with bin/debug.sh" -> "debug_.py"
@@ -49,7 +53,6 @@ sudo docker compose build
 echo "== Setting execute permissions to bin"
 sudo docker compose run --rm django /bin/sh -c "chmod +x bin/*.sh;chmod +x bin/scripts/*.sh"
 
-echo "== Initializing .envs"
 sudo docker compose run --rm django /bin/sh -c  "bin/scripts/init_envs.sh $POSTGRES_PORT $REDIS_PORT $SERVER_URL $CLIENT_URL $IS_PROD"
 
 echo "== Starting services"
