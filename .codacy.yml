@@ -2,9 +2,9 @@
 exclude_paths:
   - "**.md"
   - "requirements.txt"
+  - "docs/seed/**"
   - "models/migrations/*"
   - "seed/requirements.txt"
-  - "seed/docs/**"
   - "seed/tests/**"
   - "tests/**"
   - ".data/**"

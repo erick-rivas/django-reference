@@ -38,7 +38,7 @@ The main differentiator / advantage of the architecture is its **code auto-gener
 
 ### Testing & QA
 
--   TO show server logs, execute `bin/logs`
+-   To show server logs, execute `bin/logs`
     - To show specific logs, execute `bin/logs <container (all|django|celery)> <max_Lines> <only_latest>`
 -   To test use cases, execute `bin/test`
     - To test specific folder, execute `bin/test <folder_name>`
