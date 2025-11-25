@@ -56,10 +56,58 @@ The main differentiator / advantage of the architecture is its **code auto-gener
 -   To clean unused docker resources, execute `bin/clean docker`
 -   To clean unused files, execute `bin/clean files`
 
+## Seed Copilot Agents
+
+This project includes specialized AI agents to streamline development workflows.
+Just select the desired agent in the chat and provide your instructions.
+
+### Available Agents
+
+#### SeedDeveloperAgent
+Specialized in generating functional code:
+
+- Domain (business logic)
+- Routes (custom endpoints)
+- Models (extensions and properties)
+- Serializers (extra fields)
+
+**Usage:** In the Copilot chat, select the agent from the selector and provide instructions like: `Create an endpoint to get the top 10 players`
+
+#### SeedTesterAgent
+Specialized in generating comprehensive tests:
+
+- Domain function tests
+- REST API endpoint tests
+- GraphQL query/mutation tests
+- Model extension tests
+
+**Usage:** In the Copilot chat, select the agent and provide instructions like: `Generate tests for the create_project function`
+
+#### SeedDocumenterAgent
+Specialized in creating technical documentation:
+
+- API endpoint documentation
+- Domain function documentation
+- Model and serializer documentation
+- READMEs and user guides
+
+**Usage:** In the Copilot chat, select the agent and provide instructions like: `Document the /api/players/top_10 endpoint`
+
+### Custom Models and Integrations
+
+You can configure custom models using Ollama or other providers through VS Code settings (settings.json) to customize agent behavior. The agents are designed to integrate with GitHub Copilot, Continue and other providers. 
+
+### Modify Agents
+
+Agents are located in the `.github/copilot/agents/` directory. You can modify their behavior by editing the respective markdown files:
+- `seed-developer.md`: For development-related tasks
+- `seed-tester.md`: For testing-related tasks
+- `seed-documenter.md`: For documentation-related tasks
+
 ## Other resources
 
--   [Routes](020_routes.md)
--   [Domain](030_domain.md)
--   [Models](040_models.md)
--   [Seed builder](110_seed_builder.md)
--   [Seed commons](120_seed_commons.md)
+- [Routes](020_routes.md)
+- [Domain](030_domain.md)
+- [Models](040_models.md)
+- [Seed builder](110_seed_builder.md)
+- [Seed commons](120_seed_commons.md)
