@@ -40,4 +40,4 @@ def filter_perms(queryset, filters):
     """
     if filters is None:
         return queryset
-    return queryset.filter(multi_q(filters))
+    return queryset.filter(multi_q(filters)).distinct()

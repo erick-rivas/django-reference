@@ -37,12 +37,14 @@ class Admin:
                     'local',
                     'visitor',
                 )
+        
         class MatchForm(forms.ModelForm):
             model = Match
             class Meta:
                 fields = '__all__'
                 widgets = {
                 }
+        
         @admin.register(Match)
         class MatchAdmin(DjangoQLSearchMixin, ImportExportModelAdmin):
             resource_class = MatchResource
@@ -98,12 +100,14 @@ class Admin:
                     'team',
                     'position',
                 )
+        
         class PlayerForm(forms.ModelForm):
             model = Player
             class Meta:
                 fields = '__all__'
                 widgets = {
                 }
+        
         @admin.register(Player)
         class PlayerAdmin(DjangoQLSearchMixin, ImportExportModelAdmin):
             resource_class = PlayerResource
@@ -158,6 +162,7 @@ class Admin:
                     'stats',
                     'details',
                 )
+        
         class PlayerPositionForm(forms.ModelForm):
             model = PlayerPosition
             class Meta:
@@ -167,6 +172,7 @@ class Admin:
                     'stats': JsonWidget(),
                     'details': JsonWidget(),
                 }
+        
         @admin.register(PlayerPosition)
         class PlayerPositionAdmin(DjangoQLSearchMixin, ImportExportModelAdmin):
             resource_class = PlayerPositionResource
@@ -215,12 +221,14 @@ class Admin:
                     'player',
                     'match',
                 )
+        
         class ScoreForm(forms.ModelForm):
             model = Score
             class Meta:
                 fields = '__all__'
                 widgets = {
                 }
+        
         @admin.register(Score)
         class ScoreAdmin(DjangoQLSearchMixin, ImportExportModelAdmin):
             resource_class = ScoreResource
@@ -272,12 +280,14 @@ class Admin:
                     'market_value',
                     'rival',
                 )
+        
         class TeamForm(forms.ModelForm):
             model = Team
             class Meta:
                 fields = '__all__'
                 widgets = {
                 }
+        
         @admin.register(Team)
         class TeamAdmin(DjangoQLSearchMixin, ImportExportModelAdmin):
             resource_class = TeamResource
@@ -335,17 +345,46 @@ class Admin:
                     'profile_image',
                     'teams',
                 )
+        
+        from django.core.exceptions import ValidationError
+        from django.contrib.auth.forms import ReadOnlyPasswordHashField
         class UserForm(forms.ModelForm):
             model = User
+            password1 = forms.CharField(label="Password", widget=forms.PasswordInput)
+            password2 = forms.CharField(label="Password confirmation", widget=forms.PasswordInput)
             class Meta:
                 fields = '__all__'
                 widgets = {
                 }
+            def clean_password2(self):
+                # Check that the two password entries match
+                password1 = self.cleaned_data.get("password1")
+                password2 = self.cleaned_data.get("password2")
+                if password1 and password2 and password1 != password2:
+                    raise ValidationError("Passwords don't match")
+                return password2
+
+            def save(self, commit=True):
+                # Save the provided password in hashed format
+                user = super().save(commit=False)
+                user.set_password(self.cleaned_data["password1"])
+                if commit:
+                    user.save()
+                return user
+        class UserChangeForm(forms.ModelForm):
+            model = User
+            password = ReadOnlyPasswordHashField()
+            class Meta:
+                fields = '__all__'
+                widgets = {
+                }
+        
         from django.contrib.auth.admin import UserAdmin as UserAdminRoot
         @admin.register(User)
         class UserAdmin(UserAdminRoot, DjangoQLSearchMixin, ImportExportModelAdmin):
             resource_class = UserResource
-            form = UserForm
+            add_form = UserForm
+            form = UserChangeForm
             fieldsets = [(None, {"fields": (
                 'id',
                 'created_at',

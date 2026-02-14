@@ -185,25 +185,24 @@ def resolve_list(model, info, **kwargs):
     return res
 
 def resolve_pagination(model, model_name, pagination_type, info, **kwargs):
-    
     user = info.context.user
     if "query" in kwargs:
         res = model.objects.filter(sql_alike_q(kwargs["query"])).distinct()
     else:
         res = model.objects.all()
-        
+
     res = model.filter_permissions(res, model.permission_filters(user))
     total_count = res.count()
     total_pages = math.ceil(total_count / kwargs["pageSize"]) if kwargs["pageSize"] > 0 else 1
-    
+
     if "orderBy" in kwargs:
         orders = kwargs["orderBy"].split(",")
         res = res.order_by(*orders)
-        
+
     start = (kwargs["pageNum"] - 1) * kwargs["pageSize"]
     end = start + kwargs["pageSize"]
     page = res[start:end]
-    
+
     return pagination_type(**{
         "id": int(''.join(secrets.choice("0123456789") for i in range(9))),
         "pageNum": kwargs["pageNum"],
