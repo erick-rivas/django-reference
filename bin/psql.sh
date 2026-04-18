@@ -1,7 +1,7 @@
 #!/bin/bash
 ### __Seed builder__
-# AUTO_GENERATED (Read only)
-# Use $ bin/psql.sh
+##  AUTO_GENERATED (Read only)
+##  Use $ bin/psql.sh
 
 RUNNING=$(sudo docker compose ps --services --filter "status=running")
 if [ $RUNNING -z ]; then

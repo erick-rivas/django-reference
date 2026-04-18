@@ -1,6 +1,6 @@
 #!/bin/bash
-# Seed builder
-# AUTO_GENERATED (Read only)
+### __Seed builder__
+##  AUTO_GENERATED (Read only)
 
 POSTGRES_PORT=$1
 REDIS_PORT=$2

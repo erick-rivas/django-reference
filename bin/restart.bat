@@ -1,7 +1,7 @@
 @echo off
 ::: __Seed builder__
-:: AUTO_GENERATED (Read only)
-:: Use $ bin/restart.bat <container>
+::  AUTO_GENERATED (Read only)
+::  Use $ bin/restart.bat <container>
 
 set CONTAINER=all
 IF NOT "%~1" == "" set CONTAINER=%1

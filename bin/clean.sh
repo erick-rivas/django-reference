@@ -1,7 +1,7 @@
 #!/bin/bash
 ### __Seed builder__
-# AUTO_GENERATED (Read only)
-# Use $ bin/clean.sh <cleaning_type docker|files>
+##  AUTO_GENERATED (Read only)
+##  Use $ bin/clean.sh <cleaning_type docker|files>
 
 RUNNING=$(sudo docker compose ps --services --filter "status=running")
 if [ $RUNNING -z ]; then

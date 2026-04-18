@@ -1,7 +1,7 @@
 #!/bin/bash
 ### __Seed builder__
-# AUTO_GENERATED (Read only)
-# Use $ bin/coverage.sh <sub_path>
+##  AUTO_GENERATED (Read only)
+##  Use $ bin/coverage.sh <sub_path>
 
 RUNNING=$(sudo docker compose ps --services --filter "status=running")
 if [ $RUNNING -z ]; then
