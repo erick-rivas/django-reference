@@ -16,6 +16,6 @@ if [ $SUB_PATH = "None" ]; then
   echo "== Executing all test cases"
   sudo docker compose exec django /bin/sh -c "python manage.py test"
 else
-  echo "== Executing /tests/$SUB_PATH test cases"
-  sudo docker compose exec django /bin/sh -c "python manage.py test /tests/$SUB_PATH "
+  echo "== Executing $SUB_PATH test cases"
+  sudo docker compose exec django /bin/sh -c "python manage.py test $SUB_PATH"
 fi

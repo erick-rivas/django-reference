@@ -21,7 +21,7 @@ from seed.util.url_util import custom_static
 urlpatterns = \
     [
         re_path(r'^api/', include('seed.app.api')),
-        re_path(r'^graphql$', graphene_view()),
+        re_path(r'^graphql/', graphene_view()),
         re_path(r'^admin/', admin.site.urls),
         re_path("robots.txt", robots_txt),
     ]

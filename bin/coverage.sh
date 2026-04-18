@@ -16,9 +16,9 @@ if [ $SUB_PATH = "None" ]; then
   echo "== Executing full coverage"
   sudo docker compose exec django /bin/sh -c "coverage run --omit='.venv/*,bin/*,tests/*,*__init__*,seed/*, app/*' manage.py test"
 else
-  echo "== Executing /$SUB_PATH coverage"
-  sudo docker compose exec django /bin/sh -c "coverage run --omit='.venv/*,bin/*,tests/*,*__init__*,seed/*, app/*' manage.py test $SUB_PATH/ "
+  echo "== Executing $SUB_PATH coverage"
+  sudo docker compose exec django /bin/sh -c "coverage run --omit='.venv/*,bin/*,tests/*,*__init__*,seed/*, app/*' manage.py test $SUB_PATH"
 fi
 
-sudo docker compose exec django /bin/sh -c "coverage report -m"
-sudo docker compose exec django /bin/sh -c "coverage xml"
+sudo docker compose exec django /bin/sh -c "coverage report -m --ignore-errors"
+sudo docker compose exec django /bin/sh -c "coverage xml --ignore-errors"

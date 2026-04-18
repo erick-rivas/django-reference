@@ -11,7 +11,7 @@ from dj_rest_auth.models import TokenModel
 from app.models import User
 
 class TestGraphql(GraphQLTestCase):
-    GRAPHQL_URL = "/graphql"
+    GRAPHQL_URL = "/graphql/"
 
     def setUp(self):
         fill_test_database()
@@ -459,7 +459,7 @@ class TestGraphql(GraphQLTestCase):
                 savePlayerPosition(
                     name: "",
                     code: "",
-                    stats: """{"expected_goals": 8614.0, "dominant_leg": "veniam libero", "dominant_leg_accuracy": 8368.0}""",
+                    stats: """{"expected_goals": 6940.0, "dominant_leg": "molestias, officiis Lorem nobis possimus officiis"}""",
                     details: "{}",
                 ) {
                     playerPosition {
@@ -483,7 +483,7 @@ class TestGraphql(GraphQLTestCase):
                 setPlayerPosition(id:1
                     name: "",
                     code: "",
-                    stats: """{"expected_goals": 6106.0, "dominant_leg_accuracy": 9080.0}""",
+                    stats: """{"expected_goals": 9417.0, "dominant_leg": ""}""",
                     details: "{}",
 
                 ) {

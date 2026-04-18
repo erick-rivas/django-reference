@@ -16,9 +16,9 @@ IF "%SUB_PATH%" == "None" (
   echo == Executing full coverage
   docker compose exec django /bin/sh -c "coverage run --omit='.venv/*,bin/*,tests/*,*__init__*,seed/*, app/*' manage.py test"
 ) ELSE (
-  echo == Executing /%SUB_PATH% coverage
-  docker compose exec django /bin/sh -c "coverage run --omit='.venv/*,bin/*,tests/*,*__init__*,seed/*, app/*' manage.py test %SUB_PATH%/ "
+  echo == Executing %SUB_PATH% coverage
+  docker compose exec django /bin/sh -c "coverage run --omit='.venv/*,bin/*,tests/*,*__init__*,seed/*, app/*' manage.py test %SUB_PATH%"
 )
 
-docker compose exec django /bin/sh -c "coverage report -m"
-docker compose exec django /bin/sh -c "coverage xml"
+docker compose exec django /bin/sh -c "coverage report -m --ignore-errors"
+docker compose exec django /bin/sh -c "coverage xml --ignore-errors"
