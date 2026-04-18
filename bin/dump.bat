@@ -1,5 +1,5 @@
 @echo off
-:: Seed builder
+::: __Seed builder__
 :: AUTO_GENERATED (Read only)
 :: Use $ bin/dump.bat <model_name> <file_path>
 
