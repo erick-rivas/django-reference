@@ -1,8 +1,9 @@
-#
-# __Seed builder__
-#   AUTO_GENERATED (Read only)
-#   Modify via builder
-#
+"""
+__Seed builder__
+  AUTO_GENERATED (Read only)
+  Util test
+"""
+
 import os
 from unittest import TestCase
 from seed.helpers.save_file import save_file, save_file_obj

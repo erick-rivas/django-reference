@@ -1,7 +1,9 @@
 """
 __Seed builder__
-  (Read_only) Environment variables util
+  AUTO_GENERATED (Read only)
+  Environment variables util
 """
+
 import os
 
 def get_environ_bool(key):

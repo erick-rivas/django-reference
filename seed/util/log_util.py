@@ -1,7 +1,9 @@
 """
 __Seed builder__
-  (Read_only) Logging util
+  AUTO_GENERATED (Read only)
+  Logging util
 """
+
 import logging
 
 def info(message):

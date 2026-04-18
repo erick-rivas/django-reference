@@ -1,6 +1,7 @@
 """
 __Seed builder__
-  (Read_only) Request util
+  AUTO_GENERATED (Read only)
+  Request util
 """
 
 from rest_framework.exceptions import ValidationError

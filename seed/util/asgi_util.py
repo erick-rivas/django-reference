@@ -1,7 +1,9 @@
 """
 __Seed builder__
-  (Read_only) Asgi util
+  AUTO_GENERATED (Read only)
+  AGSI util
 """
+
 from channels.layers import get_channel_layer
 from asgiref.sync import async_to_sync
 from seed.app.asgi import BaseSocket

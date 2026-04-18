@@ -1,6 +1,7 @@
 """
 __Seed builder__
-  (Read_only) Query util
+  AUTO_GENERATED (Read only)
+  Query util
 """
 
 import re

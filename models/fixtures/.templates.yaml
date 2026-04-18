@@ -1,8 +1,8 @@
-#
-# __Seed builder__
-#   AUTO_GENERATED (Read only)
-#   Modify via builder
-#
+###
+##  __Seed builder__
+##  AUTO_GENERATED (Read only)
+##  Modify via builder
+###
 
 ## MATCHES
 
@@ -33,7 +33,7 @@
   fields:
     name: ""
     code: ""
-    stats: {"expected_goals": 5421.0, "dominant_leg": "ipsum magnam, amet", "dominant_leg_accuracy": 4403.0}
+    stats: {"expected_goals": 8284.0, "dominant_leg_accuracy": 4789.0}
     details: {}
 
 ## SCORES

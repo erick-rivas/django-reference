@@ -1,6 +1,7 @@
 """
 __Seed builder__
-  (Read_only) Util test
+  AUTO_GENERATED (Read only)
+  Util test
 """
 
 from unittest import TestCase

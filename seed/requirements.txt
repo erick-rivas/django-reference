@@ -1,8 +1,8 @@
-#
-# __Seed builder__
-#   AUTO_GENERATED (Read only)
-#   Modify via builder
-#
+###
+##  __Seed builder__
+##  AUTO_GENERATED (Read only)
+##  Base libraries
+###
 
 wheel==0.46.3
 celery==5.6.3

@@ -1,6 +1,7 @@
 """
 __Seed builder__
-  (Read_only) Model permission util
+  AUTO_GENERATED (Read only)
+  Model permission util
 """
 
 from seed.util.query_util import multi_q
