@@ -1,7 +1,9 @@
 @echo off
-::: __Seed builder__
+::: 
+::  __Seed builder__
 ::  AUTO_GENERATED (Read only)
 ::  Use $ bin/coverage.bat <sub_path>
+:::
 
 for /f "delims=" %%i in ('docker compose ps --services --filter "status=running"') do set RUNNING=%%i
 IF "%RUNNING%" == "" (

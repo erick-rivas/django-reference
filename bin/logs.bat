@@ -1,7 +1,9 @@
 @echo off
-::: __Seed builder__
+::: 
+::  __Seed builder__
 ::  AUTO_GENERATED (Read only)
 ::  Use $ bin/logs.bat <container> <max_lines> <only_latest>
+:::
 
 set CONTAINER=all
 set /A MAX_LINES=250

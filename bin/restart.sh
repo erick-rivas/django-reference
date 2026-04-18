@@ -1,7 +1,9 @@
 #!/bin/bash
-### __Seed builder__
+### 
+##  __Seed builder__
 ##  AUTO_GENERATED (Read only)
 ##  Use $ bin/restart.sh <container>
+###
 
 CONTAINER="all"
 if [ $# -ge 1 ]; then CONTAINER=$1; fi

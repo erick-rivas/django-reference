@@ -1,6 +1,7 @@
 @echo off
-::: __Seed builder__
-::  AUTO_GENERATED
+::: 
+::  __Seed builder__
+::  AUTO_GENERATED (Read only)
 ::  Add custom commands at the end
 ::  Use $ bin/setup.bat <django_port> <postgres_port> <redis_port> <server_url> <client_url> <is_prod>
 
