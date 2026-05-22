@@ -6,15 +6,17 @@ __Seed builder__
 
 import json
 import os
+from urllib.parse import parse_qs
+
 import dotenv
 from app.settings import get_dotenv_path
-from urllib.parse import parse_qs
 
 dotenv.read_dotenv(os.path.join(os.path.dirname(os.path.dirname(__file__)), "..", get_dotenv_path()))
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "app.settings")
 
 # pylint: disable=C0413
 import django
+
 django.setup()
 
 # pylint: disable=C0413
@@ -41,9 +43,9 @@ class BaseSocket(WebsocketConsumer):
         if "token" in self.params:
 
             token = self.params["token"][0]
-            user = Token.objects.filter(key=token).first().user
+            token_obj = Token.objects.filter(key=token).first()
 
-            if user is not None and user.is_authenticated:
+            if token_obj is not None and token_obj.user is not None and token_obj.user.is_authenticated:
                 connected[self.room] = self.params
                 async_to_sync(self.channel_layer.group_add)(
                     self.room,
