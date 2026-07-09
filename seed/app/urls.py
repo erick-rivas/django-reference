@@ -15,6 +15,7 @@ from django.views.generic import TemplateView
 from django.views.static import serve
 
 from seed.routes.helpers.graphene_view import graphene_view
+from seed.routes.helpers.health_view import health
 from seed.routes.helpers.robot_view import robots_txt
 from seed.util.url_util import custom_static
 
@@ -23,6 +24,7 @@ urlpatterns = \
         re_path(r'^api/', include('seed.app.api')),
         re_path(r'^graphql/', graphene_view()),
         re_path(r'^admin/', admin.site.urls),
+        re_path(r'^health/?$', health),
         re_path("robots.txt", robots_txt),
     ]
 
